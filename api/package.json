@@ -1,0 +1,31 @@
+{
+  "name": "ecommerce",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --inspect src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/haidang1810/ecommerce.git"
+  },
+  "keywords": [
+    "e-commerce"
+  ],
+  "author": "dang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/haidang1810/ecommerce/issues"
+  },
+  "homepage": "https://github.com/haidang1810/ecommerce#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
