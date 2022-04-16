@@ -3,12 +3,16 @@
     --main-color: #E2C29D;
     --white-color: #fff;
     --black-color: #000;
-    --red-color: #f01c2c;
+    --red-color: #ff424e;
     --gray-color: #6c6c6c;
-    --text-color: #181818;
+    --text-color: #2c2c2c;
+    --background-hover-color: #f3f3f3;
+    --background-color: #F5F5F5;
 }
 *{
     box-sizing: inherit;
+    padding: 0;
+    margin: 0;
 }
 html {
     font-size: 62.5%;

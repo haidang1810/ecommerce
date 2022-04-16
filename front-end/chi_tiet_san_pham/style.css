@@ -1,0 +1,72 @@
+body {
+    background-color: var(--background-hover-color);
+}
+.produce-info {
+    background-color: var(--white-color);
+    margin-top: 20px;
+    padding: 15px;
+}
+.img-info {
+    padding: 0;
+}
+
+.main-img,
+.main-img img{
+    width: 100%;
+    height: 430px;
+    object-fit: contain;
+    object-position: 50% 0;
+}
+.list-img{
+    position: relative;
+    width: 100%;
+    height: 82px;
+    display: flex;
+    align-items: center;
+}
+.list-img:hover .button-control{
+    opacity: 1;
+}
+.button-control{
+    position: absolute;
+    width: 30px;
+    height: 50px;
+    font-size: 1.8rem;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    color: var(--white-color);
+}
+.button-control:hover {
+    background-color: rgba(0, 0, 0, 0.65);
+}
+#btn-pre {
+    left: 0;
+}
+#btn-next {
+    right: 0;
+}
+.list-img-item{
+    overflow: scroll;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.list-img-item::-webkit-scrollbar{
+    width: 0;
+    height: 0;
+    display: none;
+}
+.list-img-item img {
+    cursor: pointer;
+    width: 82px;
+    height: 82px;
+    object-fit: cover;
+    margin-right: 5px;
+}
+.hover-img{
+    border: 1px solid var(--black-color);
+}
+.list-img-item img:hover {
+    border: 1px solid var(--black-color);
+}
