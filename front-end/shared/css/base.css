@@ -3,7 +3,7 @@
     --main-color: #E2C29D;
     --white-color: #fff;
     --black-color: #000;
-    --red-color: #ff424e;
+    --red-color: #da364f;
     --gray-color: #6c6c6c;
     --text-color: #2c2c2c;
     --background-hover-color: #f3f3f3;
@@ -24,4 +24,14 @@ html {
     max-width: 1200px;
     padding: 0;
     margin: 0 80px;
+}
+.checked,
+.fa-star-half{
+    color: var(--red-color);
+}
+.btn {
+    font-size: 1.4rem !important;
+}
+.dropdown-menu {
+    font-size: 1.4rem;
 }

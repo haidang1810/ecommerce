@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"> 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
         <script src="https://kit.fontawesome.com/a009e9706c.js"></script>
         <link rel="stylesheet" href="../shared/css/base.css">   
         <link rel="stylesheet" href="../shared/css/header.css">
@@ -246,16 +247,135 @@
                             <button class="button-control" id="btn-next"><i class="fa fa-angle-right"></i></button>
                         </div>
                     </div>
+                    <div class="col-xl-8 produce-info-main">
+                        <h3 class="info-name">
+                            Vòng Tay Mạ Bạc Hình Trái Tim/Bướm/Ngọc Trai Phong Cách Retro Hàn Quốc
+                        </h3>
+                        <div class="below-title">
+                            <div class="info-rating">
+                                <span class="info-rating-total">4.0</span>
+                                <i class="fa fa-star checked"></i>
+                                <i class="fa fa-star checked"></i>
+                                <i class="fa fa-star checked"></i>
+                                <i class="fa fa-star checked"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="info-count-rating">
+                                <span class="count-rating-number">120</span>
+                                <span class="count-rating-title">Đánh Giá</span>
+                            </div>
+                            <div class="info-count-sold">
+                                <span class="count-sold-number">140</span>
+                                <span class="count-sold-title">Đã bán</span>
+                            </div>
+                        </div>
+                        <div class="info-price">
+                            <span class="old-price">38.500đ</span>
+                            <span class="current-price">25.000đ</span>
+                            <div class="info-discount">Giảm 10%</div>
+                        </div>
+                        <div class="info-transport" data-toggle="modal" data-target=".modal_change_address">
+                            Giao đến
+                            <span class="info-address">P.2, TP.Vĩnh Long, Vĩnh Long</span>
+                            <span class="change-address"> - Đổi địa chỉ</span>
+                        </div>
+                        <div class="info-amount">
+                            <span class="amount-title">Số lượng</span>
+                            <div class="amount-control">
+                                <button class="btn-sub">
+                                    <img src="../shared/img/icons-remove.svg" alt="loading">
+                                </button>
+                                <input type="number" class="amount-input" value="1"
+                                min="1" step="1">
+                                <button class="btn-add">
+                                    <img src="../shared/img/icons-add.svg" alt="loading">
+                                </button>
+                                <span class="amount-total">2150 sản phẩm có sẵn</span>
+                            </div>
+                        </div>
+                        <div class="info-purchase">
+                            <button class="btn-add-cart">
+                                <i class="bi bi-cart"></i>
+                                Thêm vào giỏ hàng
+                            </button>
+                            <button class="btn-purchase">
+                                Mua ngay
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <footer class="footer">
 
             </footer>
         </div>
+        <div class="modal fade modal_change_address" >
+            <div class="modal-dialog">
+                <div class="modal__inner modal-content">
+                    <div class="modal__header">
+                        <h3>Địa chỉ giao hàng</h3>
+                        <div class="modal__close-btn" data-dismiss="modal">
+                            <i class="fa-solid fa-xmark"></i>
+                        </div>
+                    </div>
+                    <div class="modal__body">
+                        <p class="modal__title">
+                            Hãy chọn địa chỉ nhận hàng để được dự báo 
+                            phí đóng gói, vận chuyển một cách chính xác nhất.
+                        </p>
+                        <input class="modal__radio" type="radio" name="radio_address" 
+                        id="current_address">
+                        <label for="current_address" class="modal__label">
+                            P.2, TP.Vĩnh Long, Vĩnh Long
+                        </label><br>
+                        <input class="modal__radio new_address" type="radio" name="radio_address" 
+                        id="new_address">
+                        <label for="new_address" class="modal__label">
+                            Chọn khu vực giao hàng khác
+                        </label>
+                        <form action="" class="modal__form">
+                            <div class="row modal__form-location">
+                                <div class="col-xl-4 location-type">Tỉnh/Thành phố</div>
+                                <select class="selectpicker col-xl-8" data-live-search="true">
+                                    <!-- data-tokens are short keywords to search. you can ignore it -->
+                                    <option data-tokens="hcm">TP. HCM</option>
+                                    <option data-tokens="hn">Hà Nội</option>
+                                    <option data-tokens="vl">Vĩnh Long</option>
+                                </select>
+                            </div>
+                            <div class="row modal__form-location">
+                                <div class="col-xl-4 location-type">Quận/Huyện</div>
+                                <select class="selectpicker col-xl-8" data-live-search="true">
+                                    <option data-tokens="q1">Quận 1</option>
+                                    <option data-tokens="q2">Quận 2</option>
+                                    <option data-tokens="q3">Quận 3</option>
+                                    <option data-tokens="q4">Quận 4</option>
+                                </select>
+                            </div>
+                            <div class="row modal__form-location">
+                                <div class="col-xl-4 location-type">Phường/Xã</div>
+                                <select class="selectpicker col-xl-8" data-live-search="true">
+                                    <option data-tokens="p1">Phường 1</option>
+                                    <option data-tokens="p2">Phường 2</option>
+                                    <option data-tokens="p3">Phường 3</option>
+                                    <option data-tokens="p4">Phường 4</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal__footer">
+                        <button class="modal__footer-btn" data-dismiss="modal">
+                            GIAO ĐẾN ĐỊA CHỈ NÀY
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
         <script src="./app.js"></script>
     </body>
 </html>

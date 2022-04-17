@@ -134,10 +134,7 @@ body {
     padding-top: 0;
     cursor: pointer;
 }
-.checked,
-.fa-star-half{
-    color: #FFA500;
-}
+
 .card-title{
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -170,6 +167,6 @@ body {
     color: black;
 }
 .card-category i{
-    color: red;
+    color: var(--red-color);
     margin-right: 5px;
 }
