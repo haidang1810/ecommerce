@@ -170,3 +170,6 @@ body {
     color: var(--red-color);
     margin-right: 5px;
 }
+.home-pagination {
+    margin-top: 40px;
+}
