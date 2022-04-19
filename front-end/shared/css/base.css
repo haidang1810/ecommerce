@@ -57,3 +57,10 @@ html {
 .pagination__btn--page:hover {
     color: var(--red-color);
 }
+
+a:hover {
+    text-decoration: none;
+}
+.sidebar-admin {
+    background-color: #373C4D;
+}

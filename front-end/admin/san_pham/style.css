@@ -1,0 +1,17 @@
+html {
+    font-size: 100% !important;
+}
+.btn {
+    font-size: 16px !important;
+}
+.img-produce {
+    width: 60px;
+    height: 80px;
+    object-fit: cover;
+}
+.btn-action {
+    min-width: 28px;
+}
+.form-control-sm:focus {
+    box-shadow: none !important;
+}
