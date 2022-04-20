@@ -1,0 +1,20 @@
+html {
+    font-size: 100% !important;
+}
+.btn {
+    font-size: 16px !important;
+}
+.label_avatar {
+    line-height: 1.2;
+    cursor: pointer;
+}
+.cart_avatar {
+    height: 298px;
+}
+.avatar_img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
