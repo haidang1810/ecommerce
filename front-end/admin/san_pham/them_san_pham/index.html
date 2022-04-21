@@ -60,8 +60,8 @@
                 </a>
                 <div id="collapse_produce" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="../san_pham/">Sản phẩm</a>
-                        <a class="collapse-item" href="../danh_muc/">Danh mục</a>
+                        <a class="collapse-item" href="../../san_pham/">Sản phẩm</a>
+                        <a class="collapse-item" href="../../danh_muc/">Danh mục</a>
                     </div>
                 </div>
             </li>
@@ -69,7 +69,7 @@
             <hr class="sidebar-divider">
 
             <li class="nav-item">
-                <a class="nav-link" href="i../don_hang/">
+                <a class="nav-link" href="../don_hang/">
                     <i class="fa-solid fa-cart-shopping"></i>
                     <span>Đơn hàng</span></a>
             </li>
@@ -84,15 +84,15 @@
                 </a>
                 <div id="collapse_customer" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="../danh_sach_khach_hang/">Danh sách khách hàng</a>
-                        <a class="collapse-item" href="../nhom_khach_hang/">Nhóm khách hàng</a>
+                        <a class="collapse-item" href="../../danh_sach_khach_hang/">Danh sách khách hàng</a>
+                        <a class="collapse-item" href="../../nhom_khach_hang/">Nhóm khách hàng</a>
                     </div>
                 </div>
             </li>
             <hr class="sidebar-divider">
 
             <li class="nav-item">
-                <a class="nav-link" href="../khuyen_mai/">
+                <a class="nav-link" href="../../khuyen_mai/">
                     <i class="fa-solid fa-tags"></i>
                     <span>Khuyễn mãi</span>
                 </a>
@@ -101,7 +101,7 @@
             <hr class="sidebar-divider">
 
             <li class="nav-item">
-                <a class="nav-link" href="../thong_bao/">
+                <a class="nav-link" href="../../thong_bao/">
                     <i class="fa-solid fa-bell"></i>
                     <span>Thông báo</span>
                 </a>
@@ -117,17 +117,14 @@
                 </a>
                 <div id="collapse_feedback" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="../danh_gia/">Đánh giá</a>
-                        <a class="collapse-item" href="../cau_hoi/">Hỏi về sản phẩm</a>
+                        <a class="collapse-item" href="../../danh_gia/">Đánh giá</a>
+                        <a class="collapse-item" href="../../cau_hoi/">Hỏi về sản phẩm</a>
                     </div>
                 </div>
             </li>
             <hr class="sidebar-divider">
 
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
+            
 
         </ul>
         <!-- End of Sidebar -->
@@ -140,11 +137,6 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -225,7 +217,7 @@
                                 </a>
                             </div>
                         </li>
-
+                        <button class="btn-sidebar-toggle" id="sidebarToggle"><i class="fa-solid fa-align-justify"></i></button>
                     </ul>
 
                 </nav>
@@ -306,10 +298,13 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Ảnh bìa sản phẩm</h6>
                                     <label for="avatar_input" class="m-0 text-primary label_avatar">+ Chọn ảnh</label>
                                     <input id="avatar_input" style="display:none;" type="file" 
-                                    accept="image/png, image/jpeg, image/jpg">
+                                    accept="image/png, image/jpeg, image/jpg" >
                                 </div>
                                 <div class="card-body cart_avatar">
                                     <img src="" alt="" class="avatar_img">
+                                    <div class="avatar_img_size">
+                                        <span id="width">0</span>x<span id="height">0</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -323,9 +318,9 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Hình ảnh sản phẩm</h6>
                                     <label for="img-produce-input" class="m-0 text-primary label_avatar">+ Chọn ảnh</label>
                                     <input id="img-produce-input" style="display:none;" type="file" 
-                                    accept="image/png, image/jpeg, image/jpg">
+                                    accept="image/png, image/jpeg, image/jpg" multiple="multiple">
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body list-img-produce">
                                     
                                 </div>
                             </div>

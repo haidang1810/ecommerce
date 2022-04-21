@@ -14,7 +14,42 @@ function numberWithCommas(x) {
 }
 $('#avatar_input').change(function (event) {
     $('.avatar_img').attr("src",URL.createObjectURL(event.target.files[0]));
-    console.log(event.target.files[0]);
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+        var img = new Image();      
+        img.src = e.target.result;
+
+        img.onload = function () {
+            var w = this.width;
+            var h = this.height;
+            $('#width').html(w);
+            $('#height').html(h);
+        }
+    };
+    reader.readAsDataURL(event.target.files[0]);
 }); 
 
+$('#img-produce-input').change(function (event) {
+    $('.list-img-produce').html("");
+    for(let item of event.target.files){
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            var img = new Image();      
+            img.src = e.target.result;
 
+            img.onload = function () {
+                var w = this.width;
+                var h = this.height;
+                $('.list-img-produce').append(`
+                    <div>
+                        <img class='img-produce' 
+                        src='${URL.createObjectURL(item)}' alt="">
+                        <p>${w}x${h}</p>
+                    </div>
+                `);       
+            }
+        };
+        reader.readAsDataURL(item); 
+    }
+}); 

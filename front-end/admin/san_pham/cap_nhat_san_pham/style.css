@@ -25,13 +25,8 @@ html {
     left: 50%;
     transform: translateX(-50%);
 }
-.list-img-produce {
-    display: flex;
-    flex-wrap: wrap;
-}
 .img-produce {
-    width: 70px;
-    height: 80px;
-    margin-right: 10px;
+    width: 150px;
+    height: 180px;
     object-fit: contain;
 }

@@ -63,4 +63,18 @@ a:hover {
 }
 .sidebar-admin {
     background-color: #373C4D;
+    transition: all ease 0.2s;
+}
+
+.btn-sidebar-toggle {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.8rem;
+    height: 100%;
+    width: 60px;
+    margin-left: 10px;
+    border: none;
+    background-color: transparent;
+    color: #373C4D;
 }
