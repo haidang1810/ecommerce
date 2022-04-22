@@ -44,7 +44,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="../../trang_chu/">
+                <a class="nav-link" href="../trang_chu/">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Trang chủ</span></a>
             </li>
@@ -221,17 +221,24 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Thêm mới sản phẩm</h1>
-                        <button 
-                        class="btn btn-primary shadow-sm px-3 py-2">
-                            <i class="fa-solid fa-plus"></i>
-                            Lưu 
-                        </but>
+                        <h1 class="h3 mb-0 text-gray-800">Thêm đơn hàng</h1>
+                        <div>
+                            <button 
+                            class="btn btn-primary shadow-sm px-3 py-2 mr-2">
+                                <i class="fa-solid fa-plus"></i>
+                                Tạo đơn
+                            </button>
+                            <button 
+                            class="btn btn-primary shadow-sm px-3 py-2">
+                                <i class="fa-solid fa-plus"></i>
+                                Tạo và duyệt đơn
+                            </button>
+                        </div>
                     </div>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="../">Sản phẩm</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Thêm sản phẩm</li>
+                            <li class="breadcrumb-item"><a href="../">Đơn hàng</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Thêm đơn hàng</li>
                         </ol>
                     </nav>
 
@@ -241,46 +248,74 @@
                             <div class="card shadow mb-4">
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Thông tin sản phẩm</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Thông tin khách hàng</h6>
                                 </div>
                                 <div class="card-body">
-                                    <form action="">
-                                        <div class="form-group">
-                                            <label for="">Tên sản phẩm</label>
-                                            <input type="text" class="form-control" name="" 
-                                            placeholder="Nhập tên sản phẩm...">
+                                    <div class="row form-group">
+                                        <div class="col-6 select-search">
+                                            <div class="select-search__searchBar">
+                                                <input type="text" class="form-control shadow-none select-search__input"
+                                                placeholder="Chọn khách hàng">
+                                                <i class="fa-solid fa-magnifying-glass select-search__icon"></i>
+                                                <div class="select-search__list">
+                                                    <div class="select-search__item">
+                                                        <p class="select-search__info">
+                                                            Nguyễn Sang
+                                                        </p>
+                                                        <p class="select-search__info">
+                                                            0231524689
+                                                        </p>
+                                                    </div>
+                                                    <div class="select-search__item">
+                                                        <p class="select-search__info">
+                                                            Anh tứ
+                                                        </p>
+                                                        <p class="select-search__info">
+                                                            0231524689
+                                                        </p>
+                                                    </div>
+                                                    <div class="select-search__item">
+                                                        <p class="select-search__info">
+                                                            Chị Phương
+                                                        </p>
+                                                        <p class="select-search__info">
+                                                            0231524689
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
+                                        <div class="col-6">
+                                            <button class="btn text-primary shadow-none">+ Thêm khách hàng</button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Địa chỉ nhận hàng</label>
                                         <div class="row">
-                                            <div class="form-group col-6">
-                                                <label for="">Mã sản phẩm</label>
-                                                <input type="text" class="form-control" name="" 
-                                                placeholder="Nhập mã sản phẩm...">
+                                            <div class="col-9">
+                                                <input type="text" class="form-control shadow-none" 
+                                                value="" readonly id="input-address">
                                             </div>
-                                            <div class="form-group col-6">
-                                                <label for="">Danh mục</label>
-                                                <select name="" id="" class="form-control">
-                                                    <option value="">Chọn danh mục sản phẩm</option>
-                                                    <option value="">Vòng cổ</option>
-                                                    <option value="">Dây chuyền</option>
-                                                    <option value="">Nhẫn</option>
-                                                    <option value="">Lắc tay</option>
-                                                </select>
+                                            <div class="col-3">
+                                                <button class="btn text-primary shadow-none"
+                                                id="btn-change-addres">
+                                                    + Thay đổi
+                                                </button>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="form-group col-6">
-                                                <label for="">Giá bán</label>
-                                                <input type="text" class="form-control input-price" 
-                                                name="" placeholder="Nhập giá bán..." id="">
-                                            </div>
-                                            <div class="form-group col-6">
-                                                <label for="">Số lượng</label>
-                                                <input type="number" class="form-control input-amount" 
-                                                name="" placeholder="Nhập số lượng..." id=""
-                                                min="0" step="1">
-                                            </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-5">
+                                            <label for="">Số điện thoại</label>
+                                            <input type="text" class="form-control shadow-none" 
+                                            value="" readonly>
                                         </div>
-                                    </form>
+                                        <div class="col-7">
+                                            <label for="">Gmail</label>
+                                            <input type="text" class="form-control shadow-none" 
+                                            value="" readonly>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -288,16 +323,12 @@
                             <div class="card shadow mb-4">
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Ảnh bìa sản phẩm</h6>
-                                    <label for="avatar_input" class="m-0 text-primary label_avatar">+ Chọn ảnh</label>
-                                    <input id="avatar_input" style="display:none;" type="file" 
-                                    accept="image/png, image/jpeg, image/jpg" >
+                                    <h6 class="m-0 font-weight-bold text-primary">Thông tin vận chuyển</h6>
                                 </div>
-                                <div class="card-body cart_avatar">
-                                    <img src="" alt="" class="avatar_img">
-                                    <div class="avatar_img_size">
-                                        <span id="width">0</span>x<span id="height">0</span>
-                                    </div>
+                                <div class="card-body">
+                                    Đơn vị giao hàng mặc định: <p>Ghn Express</p>
+                                    Phí vận chuyển: <p class="transport__cost">20.000đ</p>
+                                    Thời gian dự kiến: <p class="transport__lead-time">Trước ngày 25/05/2020</p>
                                 </div>
                             </div>
                         </div>
@@ -308,13 +339,145 @@
                             <div class="card shadow mb-4">
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Hình ảnh sản phẩm</h6>
-                                    <label for="img-produce-input" class="m-0 text-primary label_avatar">+ Chọn ảnh</label>
-                                    <input id="img-produce-input" style="display:none;" type="file" 
-                                    accept="image/png, image/jpeg, image/jpg" multiple="multiple">
+                                    <h6 class="m-0 font-weight-bold text-primary">Thông tin sản phẩm</h6>
                                 </div>
-                                <div class="card-body list-img-produce">
-                                    
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-8 select-search">
+                                            <div class="select-search__searchBar">
+                                                <input type="text" class="form-control shadow-none select-search__input"
+                                                placeholder="Tìm kiếm sản phẩm">
+                                                <i class="fa-solid fa-magnifying-glass select-search__icon"></i>
+                                                <div class="select-search__list select-search__list--produce">
+                                                    <div class="select-search__item select-search__item--produce">
+                                                        <div class="row">
+                                                            <div class="col-2">
+                                                                <img src="https://picsum.photos/200" alt="" 
+                                                                class="select-search__img produce-img">
+                                                            </div>
+                                                            <div class="col-7">
+                                                                <p class="select-search__info--produce produce-name">
+                                                                    Vòng Tay Mạ Bạc Hình Trái Tim/Bướm/Ngọc Trai Phong Cách Retro Hàn Quốc
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-3">
+                                                                <p class="select-search__info--produce produce-price">
+                                                                    999.000đ
+                                                                </p>
+                                                                <p class="select-search__info--produce produce-amout">
+                                                                    Có thể bán: 3000
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="table-responsive mt-3">
+                                        <table class="table table-bordered"
+                                        id="produce-list" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Ảnh bìa</th>
+                                                    <th>Tên sản phẩm</th>
+                                                    <th>Giá bán</th>
+                                                    <th>Số lượng</th>
+                                                    <th>Thành tiền</th>
+                                                    <th>Hành động</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><img src="../../../shared/img/img_info_2.jpg" class="table-produce-img" alt=""></td>
+                                                    <td>
+                                                        Vòng Tay Mạ Bạc Hình Trái Tim/Bướm/Ngọc Trai Phong Cách Retro Hàn Quốc
+                                                    </td>
+                                                    <td>90.000đ</td>
+                                                    <td>
+                                                        <div class="amount-control">
+                                                            <button class="btn-sub">
+                                                                <img src="../../../shared/img/icons-remove.svg" alt="loading">
+                                                            </button>
+                                                            <input type="number" class="amount-input" value="1"
+                                                            min="1" step="1">
+                                                            <button class="btn-add">
+                                                                <img src="../../../shared/img/icons-add.svg" alt="loading">
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                    <td>90.000đ</td>
+                                                    <td>
+                                                        <button class="btn btn-action btn-danger" >
+                                                            <i class="fa-solid fa-trash-can"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="card shadow mb-4">
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Phương thức thanh toán</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <input class="payment__radio" type="radio" name="payment" 
+                                        checked id="COD">
+                                        <label for="COD" class="payment__label">
+                                            Thanh toán khi nhận hàng COD
+                                        </label><br>
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="payment__radio" type="radio" name="payment" 
+                                        id="online-payment">
+                                        <label for="online-payment" class="payment__label">
+                                            Thanh toán trực tuyến
+                                        </label>
+                                        <div class="payment__list">
+                                            <div class="payment__item payment__item--active">
+                                                <img src="../../../shared/img/MoMo_Logo.png" alt="">
+                                            </div>
+                                            <div class="payment__item">
+                                                <img src="../../../shared/img/ZaloPay_Logo.png" alt="">
+                                            </div>
+                                            <div class="payment__item">
+                                                <img src="../../../shared/img/ACB_Logo.png" alt="">
+                                            </div>
+                                            <div class="payment__item">
+                                                <img src="../../../shared/img/ViettelPay_Logo.png" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card shadow mb-4">
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Tổng kết đơn hàng</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p class="payment__info">Tạm tính:</p>
+                                            <p class="payment__info">Phí vận chuyển:</p>
+                                            <p class="payment__info">Tổng thanh toán:</p>
+                                        </div>
+                                        <div class="col-67">
+                                            <p class="payment__info">90.000đ</p>
+                                            <p class="payment__info">20.000đ</p>
+                                            <p class="payment__info">110.000đ</p>
+                                        </div>
+                                    </div>                                    
                                 </div>
                             </div>
                         </div>
