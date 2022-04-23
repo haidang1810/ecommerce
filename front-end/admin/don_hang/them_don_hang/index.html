@@ -286,7 +286,10 @@
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <button class="btn text-primary shadow-none">+ Thêm khách hàng</button>
+                                            <button class="btn text-primary shadow-none"
+                                            data-toggle="modal" data-target=".modal_add_customer">
+                                                + Thêm khách hàng
+                                            </button>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -509,6 +512,76 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
+
+    <div class="modal fade modal_add_customer" >
+        <div class="modal-dialog">
+            <div class="modal__inner modal-content">
+                <div class="modal__header">
+                    <h3>Thêm khách hàng</h3>
+                    <div class="modal__close-btn" data-dismiss="modal">
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                </div>
+                <div class="modal__body">
+                    <form action="" class="modal__form">
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="">Mã khách hàng</label>
+                                <input type="text" class="form-control" name="" id="">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="">Tên khách hàng</label>
+                                <input type="text" class="form-control" name="" id="">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="">Ngày sinh</label>
+                                <input type="date" class="form-control" name="" id="">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="">Giới tính</label>
+                                <div class="form-check">
+                                    <label class="form-check-label modal__label">
+                                    <input type="radio" class="form-check-input modal__radio" 
+                                    name="gender" id="" value="checkedValue" checked>
+                                    Nam
+                                    </label>
+                                    <label class="form-check-label ml-5 modal__label">
+                                    <input type="radio" class="form-check-input modal__radio" 
+                                    name="gender" id="" value="checkedValue">
+                                    Nữ
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Địa chỉ</label>
+                            <input type="text" class="form-control" name="" id="">
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-5">
+                                <label for="">Số điện thoại</label>
+                                <input type="number" class="form-control" name="" id="phone-add-customer">
+                            </div>
+                            <div class="form-group col-7">
+                                <label for="">Gmail</label>
+                                <input type="text" class="form-control" name="" id="">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal__footer">
+                    <button class="modal__footer-btn btn btn-danger" data-dismiss="modal">
+                        Huỷ
+                    </button>
+                    <button class="modal__footer-btn btn btn-primary" data-dismiss="modal">
+                        Lưu
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
