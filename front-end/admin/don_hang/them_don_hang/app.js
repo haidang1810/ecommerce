@@ -1,10 +1,3 @@
-$("#btn-change-addres").click(function() {
-    $("#input-address").removeAttr('readonly');
-})
-
-$("#input-address").blur(function() {
-    $("#input-address").attr('readonly', 'true');
-})
 $('.amount-input').on('keypress', function (event) {
     var charCode = !event.charCode ? event.which : event.charCode;
     if( charCode == 46 || charCode == 69 || charCode == 101 
