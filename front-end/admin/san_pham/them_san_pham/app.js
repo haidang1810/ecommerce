@@ -30,8 +30,8 @@ $('#avatar_input').change(function (event) {
     reader.readAsDataURL(event.target.files[0]);
 }); 
 
-$('#img-produce-input').change(function (event) {
-    $('.list-img-produce').html("");
+$('#img-product-input').change(function (event) {
+    $('.list-img-product').html("");
     for(let item of event.target.files){
         var reader = new FileReader();
         reader.onload = function (e) {
@@ -41,9 +41,9 @@ $('#img-produce-input').change(function (event) {
             img.onload = function () {
                 var w = this.width;
                 var h = this.height;
-                $('.list-img-produce').append(`
+                $('.list-img-product').append(`
                     <div>
-                        <img class='img-produce' 
+                        <img class='img-product' 
                         src='${URL.createObjectURL(item)}' alt="">
                         <p>${w}x${h}</p>
                     </div>

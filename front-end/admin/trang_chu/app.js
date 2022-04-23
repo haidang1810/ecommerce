@@ -73,19 +73,19 @@ options: {
     }
 }
 });
-let x_amount_produce = ['09/2021','10/2021','11/2021','12/2021','01/2022','02/2022','03/2022', '04/2022'];
-let y_amount_produce = [520, 440, 605, 204, 305, 720, 556, 332, 611];
-var ctx_amount_produce = document.getElementById("chart-amount-produce");
-var Chartctx_amount_produce = new Chart(ctx_amount_produce, {
+let x_amount_product = ['09/2021','10/2021','11/2021','12/2021','01/2022','02/2022','03/2022', '04/2022'];
+let y_amount_product = [520, 440, 605, 204, 305, 720, 556, 332, 611];
+var ctx_amount_product = document.getElementById("chart-amount-product");
+var Chartctx_amount_product = new Chart(ctx_amount_product, {
 type: 'line',
 data: {
-    labels: x_amount_produce,
+    labels: x_amount_product,
     datasets: [{
     label: "Sản phẩm",
     lineTension: 0.3,
     backgroundColor: "rgba(78, 115, 223, 0.05)",
     borderColor: "rgba(78, 115, 223, 1)",
-    data: y_amount_produce,
+    data: y_amount_product,
     }],
 },
 options: {
@@ -104,15 +104,15 @@ options: {
     }
 }
 });
-let x_produce = ['Sản phẩm 1', 'Sản phẩm 2', 'Sản phẩm 3', 'Sản phẩm 4', 'Sản phẩm 5'];
-let y_produce = [2000, 1300, 900, 1000, 1500];
-var ctx_produce = document.getElementById("chart-produces");
-var Chart_produce = new Chart(ctx_produce, {
+let x_product = ['Sản phẩm 1', 'Sản phẩm 2', 'Sản phẩm 3', 'Sản phẩm 4', 'Sản phẩm 5'];
+let y_product = [2000, 1300, 900, 1000, 1500];
+var ctx_product = document.getElementById("chart-products");
+var Chart_product = new Chart(ctx_product, {
     type: 'pie',
     data: {
-        labels: x_produce,
+        labels: x_product,
         datasets: [{
-            data: y_produce,
+            data: y_product,
             label: 'Sản phẩm bán chạy',
             backgroundColor: [
                 'rgb(255, 99, 132)',

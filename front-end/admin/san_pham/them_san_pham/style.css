@@ -25,11 +25,11 @@ html {
     left: 50%;
     transform: translateX(-50%);
 }
-.list-img-produce {
+.list-img-product {
     display: flex;
     flex-wrap: wrap;
 }
-.img-produce {
+.img-product {
     width: 70px;
     height: 80px;
     margin-right: 10px;

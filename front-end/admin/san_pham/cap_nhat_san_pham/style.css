@@ -25,7 +25,7 @@ html {
     left: 50%;
     transform: translateX(-50%);
 }
-.img-produce {
+.img-product {
     width: 150px;
     height: 180px;
     object-fit: contain;
