@@ -14,9 +14,12 @@
     href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
     <!-- Custom styles for this template-->
-    <link href="../../shared/css/sb-admin-2.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../shared/css/base.css"> 
+    <link href="../../../shared/css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../shared/css/base.css"> 
     <link rel="stylesheet" href="./style.css">
 
 </head>
@@ -41,8 +44,8 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="../trang_chu/">
+            <li class="nav-item">
+                <a class="nav-link" href="../../trang_chu/">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Trang chủ</span></a>
             </li>
@@ -58,16 +61,16 @@
                 </a>
                 <div id="collapse_product" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="../san_pham/">Sản phẩm</a>
-                        <a class="collapse-item" href="../danh_muc/">Danh mục</a>
+                        <a class="collapse-item" href="../../san_pham/">Sản phẩm</a>
+                        <a class="collapse-item" href="../../danh_muc/">Danh mục</a>
                     </div>
                 </div>
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <li class="nav-item">
-                <a class="nav-link" href="../don_hang/">
+            <li class="nav-item active">
+                <a class="nav-link" href="../">
                     <i class="fa-solid fa-cart-shopping"></i>
                     <span>Đơn hàng</span></a>
             </li>
@@ -82,15 +85,15 @@
                 </a>
                 <div id="collapse_customer" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="../khach_hang/">Danh sách khách hàng</a>
-                        <a class="collapse-item" href="../nhom_khach_hang/">Nhóm khách hàng</a>
+                        <a class="collapse-item" href="../../khach_hang/">Danh sách khách hàng</a>
+                        <a class="collapse-item" href="../../nhom_khach_hang/">Nhóm khách hàng</a>
                     </div>
                 </div>
             </li>
             <hr class="sidebar-divider">
 
             <li class="nav-item">
-                <a class="nav-link" href="../chien_dich/">
+                <a class="nav-link" href="../../chien_dich/">
                     <i class="fa-solid fa-bullhorn"></i>
                     <span>Chiến dịch</span>
                 </a>
@@ -99,7 +102,7 @@
             <hr class="sidebar-divider">
 
             <li class="nav-item">
-                <a class="nav-link" href="../khuyen_mai/">
+                <a class="nav-link" href="../../khuyen_mai/">
                     <i class="fa-solid fa-tags"></i>
                     <span>Khuyễn mãi</span>
                 </a>
@@ -117,13 +120,14 @@
                 </a>
                 <div id="collapse_feedback" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="../danh_gia/">Đánh giá</a>
-                        <a class="collapse-item" href="../cau_hoi/">Hỏi về sản phẩm</a>
+                        <a class="collapse-item" href="../../danh_gia/">Đánh giá</a>
+                        <a class="collapse-item" href="../../cau_hoi/">Hỏi về sản phẩm</a>
                     </div>
                 </div>
             </li>
             <hr class="sidebar-divider">
 
+            
 
         </ul>
         <!-- End of Sidebar -->
@@ -216,9 +220,7 @@
                                 </a>
                             </div>
                         </li>
-                        <button class="btn-sidebar-toggle" id="sidebarToggle">
-                            <i class="fa-solid fa-align-justify"></i>
-                        </button>
+                        <button class="btn-sidebar-toggle" id="sidebarToggle"><i class="fa-solid fa-align-justify"></i></button>
                     </ul>
 
                 </nav>
@@ -229,188 +231,110 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Trang chủ</h1>
-                        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
+                        <h1 class="h3 mb-0 text-gray-800">Thêm nhóm khách hàng</h1>
+                        <button 
+                        class="btn btn-primary shadow-sm px-3 py-2 mr-2">
+                            <i class="fa-solid fa-plus"></i>
+                            Lưu
+                        </button>
                     </div>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item active" aria-current="page">Trang chủ</li>
+                            <li class="breadcrumb-item"><a href="../">Nhóm khách hàng</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Thêm nhóm</li>
                         </ol>
                     </nav>
 
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        
-                        <a href="#" class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Khách hàng</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">1000</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fa-solid fa-users fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-
-                        
-                        <a href="#" class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Đơn hàng
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                10000
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fa-solid fa-cart-shopping fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="#" class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                Đánh giá
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                4.5
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fa-solid fa-star fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="#" class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Sản phẩm
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                500
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fa-solid fa-cube fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- content row -->
-                    <div class="row mb-4">
-                        <div class="col-3 form-inline">
-                            <label for="" >Từ ngày </label>
-                            <input type="date" class="ml-3 form-control" name="" id="">
-                        </div>
-                        <div class="col-3 form-inline">
-                            <label for=""  >Đến ngày </label>
-                            <input type="date" class="ml-3 form-control" name="" id="">
-                        </div>
-                        <div class="col-2">
-                            <button class="btn btn-primary">Lọc</button>
-                        </div>
-                    </div>
-                    
                     <!-- content row -->
                     <div class="row">
-
-                        <!-- Area Chart -->
-                        <div class="col-xl-12">
+                        <div class="col-xl-6 col-sm-12">
                             <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Doanh thu</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Thông tin chung</h6>
                                 </div>
-                                <!-- Card Body -->
                                 <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="chart-sales"></canvas>
+                                    <div class="row">
+                                        <div class="form-group col-6">
+                                            <label for="">Tên nhóm</label>
+                                            <input type="text" name="" id="" class="form-control" 
+                                            placeholder="Nhập tên nhóm..." >
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label for="">Mã nhóm</label>
+                                            <input type="text" name="" id="" class="form-control" 
+                                            placeholder="Nhập mã nhóm..." >
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Mô tả</label>
+                                        <textarea class="form-control" name="" id="" rows="5"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card shadow mb-4">
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Điều khiện</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="condition__list">
+                                        <div class="condition__item">
+                                            <div class="condition__info">
+                                                Giới tính bằng nữ
+                                            </div>
+                                            <div class="condition__control">
+                                                <button class="condition__btn condition__btn--gray">
+                                                    <i class="fa-solid fa-pen"></i>
+                                                </button>
+                                                <button class="condition__btn">
+                                                    <i class="fa-solid fa-trash-can condition__btn--gray"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button data-toggle="modal" data-target=".modal_add_condition"
+                                    class="condition__btn text-primary float-right">
+                                        Thêm điều kiện
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-sm-12">
+                            <div class="card shadow mb-4">
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Danh sách khách hàng thoả điều khiện</h6>
+                                </div>
+                                <div class="card-body card-customer">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered"
+                                        id="table-customer" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Mã khách hàng</th>
+                                                    <th>Tên khách hàng</th>
+                                                    <th>Số điện thoại</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>KH001</td>
+                                                    <td>Trang Trần</td>
+                                                    <td>0253185964</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>KH002</td>
+                                                    <td>Chí Nguyên</td>
+                                                    <td>0253185964</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <!-- Area Chart -->
-                        <div class="col-12">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Đơn hàng</h6>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="chart-carts"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <!-- Area Chart -->
-                        <div class="col-12">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Sản phẩm bán ra</h6>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="chart-amount-product"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <!-- Area Chart -->
-                        <div class="col-12">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Sản phẩm bán chạy</h6>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area chart-area-products">
-                                        <canvas id="chart-products"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
                 <!-- /.container-fluid -->
 
@@ -437,6 +361,61 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
+
+    <div class="modal fade modal_add_condition" >
+        <div class="modal-dialog">
+            <div class="modal__inner modal-content">
+                <div class="modal__header">
+                    <h3>Thêm điều kiện</h3>
+                    <div class="modal__close-btn" data-dismiss="modal">
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                </div>
+                <div class="modal__body">
+                    <form action="" class="modal__form">
+                        <div class="form-group">
+                            <label for="">Thuộc tính</label>
+                            <select name="" class="form-control" id="">
+                                <option value="">Chọn thuộc tính</option>
+                                <option value="">Tháng sinh</option>
+                                <option value="">Nam sinh</option>
+                                <option value="">Tuổi</option>
+                                <option value="">Giới tính</option>
+                                <option value="">Địa chỉ</option>
+                                <option value="">Tên</option>
+                                <option value="">Tổng số đơn đã mua</option>
+                                <option value="">Tổng chi tiêu</option>
+                                <option value="">Đơn hàng cao nhất</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Điều kiện</label>
+                            <select name="" class="form-control" id="">
+                                <option value="">Chọn điều kiện</option>
+                                <option value="">Bằng</option>
+                                <option value="">Lớn hơn</option>
+                                <option value="">Nhỏ hơn</option>
+                                <option value="">Khác</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Giá trị</label>
+                            <input type="text" class="form-control" placeholder="Nhập giá trị"
+                            name="" id="">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal__footer">
+                    <button class="modal__footer-btn btn btn-danger" data-dismiss="modal">
+                        Huỷ
+                    </button>
+                    <button class="modal__footer-btn btn btn-primary" data-dismiss="modal">
+                        Xác nhận
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -467,14 +446,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="../../shared/js/sb-admin-2.min.js"></script>
+    <script src="../../../shared/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/1.0.0/chartjs-plugin-datalabels.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
     <!-- Page level custom scripts -->
     <script src="./app.js"></script>
-
+    
 </body>
 </html>

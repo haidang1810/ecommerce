@@ -14,6 +14,7 @@
     href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap4.min.css">
     <!-- Custom styles for this template-->
     <link href="../../shared/css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../shared/css/base.css"> 
@@ -41,7 +42,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="../trang_chu/">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Trang chủ</span></a>
@@ -50,7 +51,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item ">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse_product"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fa-solid fa-cube"></i>
@@ -74,7 +75,7 @@
 
             <hr class="sidebar-divider">
 
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse_customer"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fa-solid fa-users"></i>
@@ -97,7 +98,7 @@
             </li>
 
             <hr class="sidebar-divider">
-
+            
             <li class="nav-item">
                 <a class="nav-link" href="../khuyen_mai/">
                     <i class="fa-solid fa-tags"></i>
@@ -138,9 +139,7 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-
-                        
+                    <ul class="navbar-nav ml-auto">                        
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
@@ -229,184 +228,70 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Trang chủ</h1>
-                        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
+                        <h1 class="h3 mb-0 text-gray-800">Khách hàng</h1>
+                        <button data-toggle="modal" data-target=".modal_add_customer"
+                        class="btn btn-primary shadow-sm px-3 py-2">
+                            <i class="fa-solid fa-plus"></i>
+                            Thêm khách hàng
+                        </button>
                     </div>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item active" aria-current="page">Trang chủ</li>
+                            <li class="breadcrumb-item active" aria-current="page">Khách hàng</li>
                         </ol>
                     </nav>
 
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        
-                        <a href="#" class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Khách hàng</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">1000</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fa-solid fa-users fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-
-                        
-                        <a href="#" class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Đơn hàng
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                10000
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fa-solid fa-cart-shopping fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="#" class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                Đánh giá
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                4.5
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fa-solid fa-star fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="#" class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Sản phẩm
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                500
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fa-solid fa-cube fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
                     <!-- content row -->
-                    <div class="row mb-4">
-                        <div class="col-3 form-inline">
-                            <label for="" >Từ ngày </label>
-                            <input type="date" class="ml-3 form-control" name="" id="">
-                        </div>
-                        <div class="col-3 form-inline">
-                            <label for=""  >Đến ngày </label>
-                            <input type="date" class="ml-3 form-control" name="" id="">
-                        </div>
-                        <div class="col-2">
-                            <button class="btn btn-primary">Lọc</button>
-                        </div>
-                    </div>
-                    
-                    <!-- content row -->
-                    <div class="row">
-
-                        <!-- Area Chart -->
-                        <div class="col-xl-12">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Doanh thu</h6>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="chart-sales"></canvas>
-                                    </div>
-                                </div>
+                    <div class="card shadow mb-4">
+                        <!-- Card Header - Dropdown -->
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">Danh sách khách hàng</h6>
+                            <div class="dropdown no-arrow">
+                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                </a>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <!-- Area Chart -->
-                        <div class="col-12">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Đơn hàng</h6>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="chart-carts"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <!-- Area Chart -->
-                        <div class="col-12">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Sản phẩm bán ra</h6>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="chart-amount-product"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <!-- Area Chart -->
-                        <div class="col-12">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Sản phẩm bán chạy</h6>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area chart-area-products">
-                                        <canvas id="chart-products"></canvas>
-                                    </div>
-                                </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered"
+                                id="table-customer" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Mã khách hàng</th>
+                                            <th>Tên khách hàng</th>
+                                            <th>Giới tính</th>
+                                            <th>Ngày sinh</th>
+                                            <th>Nhóm khách hàng</th>
+                                            <th>Số điện thoại</th>
+                                            <th>Gmail</th>
+                                            <th>Địa chỉ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>KH001</td>
+                                            <td>Trang Trần</td>
+                                            <td>Nữ</td>
+                                            <td>01/06/1994</td>
+                                            <td>Bán lẻ</td>
+                                            <td>0253185964</td>
+                                            <td>example@gmail.com</td>
+                                            <td>Số 73, Nguyễn Huệ, P2, TP. Vĩnh Long</td>
+                                        </tr>
+                                        <tr>
+                                            <td>KH002</td>
+                                            <td>Chí Nguyên</td>
+                                            <td>Nam</td>
+                                            <td>15/02/1993</td>
+                                            <td>Bán lẻ, Sinh nhật tháng 2</td>
+                                            <td>0253185964</td>
+                                            <td>example@gmail.com</td>
+                                            <td>Số 73, Nguyễn Huệ, P2, TP. Vĩnh Long</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -437,7 +322,76 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-
+    <!-- modal add category -->
+    <div class="modal fade modal_add_customer" >
+        <div class="modal-dialog">
+            <div class="modal__inner modal-content">
+                <div class="modal__header">
+                    <h3>Thêm khách hàng</h3>
+                    <div class="modal__close-btn" data-dismiss="modal">
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                </div>
+                <div class="modal__body">
+                    <form action="" class="modal__form">
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="">Mã khách hàng</label>
+                                <input type="text" class="form-control" name="" id="">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="">Tên khách hàng</label>
+                                <input type="text" class="form-control" name="" id="">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="">Ngày sinh</label>
+                                <input type="date" class="form-control" name="" id="">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="">Giới tính</label>
+                                <div class="form-check">
+                                    <label class="form-check-label modal__label">
+                                    <input type="radio" class="form-check-input modal__radio" 
+                                    name="gender" id="" value="checkedValue" checked>
+                                    Nam
+                                    </label>
+                                    <label class="form-check-label ml-5 modal__label">
+                                    <input type="radio" class="form-check-input modal__radio" 
+                                    name="gender" id="" value="checkedValue">
+                                    Nữ
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Địa chỉ</label>
+                            <input type="text" class="form-control" name="" id="">
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-5">
+                                <label for="">Số điện thoại</label>
+                                <input type="number" class="form-control" name="" id="phone-add-customer">
+                            </div>
+                            <div class="form-group col-7">
+                                <label for="">Gmail</label>
+                                <input type="text" class="form-control" name="" id="">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal__footer">
+                    <button class="modal__footer-btn btn btn-danger" data-dismiss="modal">
+                        Huỷ
+                    </button>
+                    <button class="modal__footer-btn btn btn-primary" data-dismiss="modal">
+                        Lưu
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -472,6 +426,8 @@
     <!-- Page level plugins -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/1.0.0/chartjs-plugin-datalabels.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
     <script src="./app.js"></script>

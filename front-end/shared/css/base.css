@@ -78,3 +78,6 @@ a:hover {
     background-color: transparent;
     color: #373C4D;
 }
+textarea {
+    resize: none;
+}
