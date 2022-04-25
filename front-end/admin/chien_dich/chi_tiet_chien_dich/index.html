@@ -70,14 +70,14 @@
             <hr class="sidebar-divider">
 
             <li class="nav-item ">
-                <a class="nav-link" href="../">
+                <a class="nav-link" href="../../don_hang/">
                     <i class="fa-solid fa-cart-shopping"></i>
                     <span>Đơn hàng</span></a>
             </li>
 
             <hr class="sidebar-divider">
 
-            <li class="nav-item active">
+            <li class="nav-item ">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse_customer"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fa-solid fa-users"></i>
@@ -92,8 +92,8 @@
             </li>
             <hr class="sidebar-divider">
 
-            <li class="nav-item">
-                <a class="nav-link" href="../../chien_dich/">
+            <li class="nav-item active">
+                <a class="nav-link" href="../">
                     <i class="fa-solid fa-bullhorn"></i>
                     <span>Chiến dịch</span>
                 </a>
@@ -231,7 +231,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Thêm nhóm khách hàng</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Chi tiết chiến dịch</h1>
                         <button 
                         class="btn btn-primary shadow-sm px-3 py-2 mr-2">
                             <i class="fa-solid fa-plus"></i>
@@ -240,93 +240,120 @@
                     </div>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="../">Nhóm khách hàng</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Thêm nhóm</li>
+                            <li class="breadcrumb-item"><a href="../">Chiến dịch</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Chi tiết chiến dịch</li>
                         </ol>
                     </nav>
 
                     <!-- content row -->
                     <div class="row">
-                        <div class="col-xl-6 col-sm-12">
+                        <div class="col-12">
                             <div class="card shadow mb-4">
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Thông tin chung</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Thông tin chiến dịch</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="form-group col-6">
-                                            <label for="">Tên nhóm</label>
-                                            <input type="text" name="" id="" class="form-control" 
-                                            placeholder="Nhập tên nhóm..." >
+                                            <label for="">Tên chiến dịch</label>
+                                            <input type="text" class="form-control" name="" id="" 
+                                            readonly>
                                         </div>
                                         <div class="form-group col-6">
-                                            <label for="">Mã nhóm</label>
-                                            <input type="text" name="" id="" class="form-control" 
-                                            placeholder="Nhập mã nhóm..." >
+                                            <label for="">Mã chiến dịch</label>
+                                            <input type="text" class="form-control" name="" id=""  
+                                            readonly>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-6">
+                                            <label for="">Loại tin nhắn</label>
+                                            <p class="type-massage">SMS</p>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label for="">Thời gian kích hoạt</label>
+                                            <p class="time-active">01/06/2022 01:00:00</p>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Mô tả</label>
-                                        <textarea class="form-control" name="" id="" rows="5"></textarea>
+                                        <label for="">Nội dung</label>
+                                        <textarea class="form-control" name="" 
+                                        id="" rows="7" readonly></textarea>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="card shadow mb-4">
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Điều khiện</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="condition__list">
-                                        <div class="condition__item">
-                                            <div class="condition__info">
-                                                Giới tính bằng nữ
+                                    <div class="">
+                                        <label for="">Gửi kèm mã giảm giá</label>
+                                        <div class="discount">
+                                            <div class="form-group">
+                                                <label for="">Mô tả</label>
+                                                <textarea class="form-control" name="" id="" 
+                                                readonly rows="7"></textarea>
                                             </div>
-                                            <div class="condition__control">
-                                                <button class="condition__btn condition__btn--gray">
-                                                    <i class="fa-solid fa-pen"></i>
-                                                </button>
-                                                <button class="condition__btn">
-                                                    <i class="fa-solid fa-trash-can condition__btn--gray"></i>
-                                                </button>
+                                            <div class="form-group">
+                                                <label for="">Số tiền giảm</label>
+                                                <input type="number" class="form-control discount__input--number" 
+                                                name="" id="" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Hạn sử dụng</label>
+                                                <input type="datetime-local" class="form-control" 
+                                                name="" id="" readonly>
                                             </div>
                                         </div>
                                     </div>
-                                    <button data-toggle="modal" data-target=".modal_add_condition"
-                                    class="condition__btn text-primary float-right">
-                                        Thêm điều kiện
-                                    </button>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-6 col-sm-12">
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
                             <div class="card shadow mb-4">
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Danh sách khách hàng thoả điều khiện</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Đối tượng áp dụng</h6>
                                 </div>
                                 <div class="card-body card-customer">
                                     <div class="table-responsive">
                                         <table class="table table-bordered"
-                                        id="table-customer" cellspacing="0">
+                                        id="table-customer" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
                                                     <th>Mã khách hàng</th>
                                                     <th>Tên khách hàng</th>
-                                                    <th>Số điện thoại</th>
+                                                    <th>SDT</th>
+                                                    <th style="max-width: 100px;">Trang Thái</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>KH001</td>
-                                                    <td>Trang Trần</td>
-                                                    <td>0253185964</td>
+                                                    <td>KH0001</td>
+                                                    <td>Nguyễn Quang Sáng</td>
+                                                    <td>0325489563</td>
+                                                    <td>
+                                                        <div class="bg-primary text-white rounded text-center">
+                                                            Gửi thành công
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>KH002</td>
-                                                    <td>Chí Nguyên</td>
-                                                    <td>0253185964</td>
+                                                    <td>KH0002</td>
+                                                    <td>Tú Xương</td>
+                                                    <td>0213658452</td>
+                                                    <td>
+                                                        <div class="bg-danger text-white rounded text-center">
+                                                            Gửi thất bại
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>KH0003</td>
+                                                    <td>Nguyễn Minh Châu</td>
+                                                    <td>0852132647</td>
+                                                    <td>
+                                                        <div class="bg-info text-white rounded text-center">
+                                                        Chưa kích hoạt
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -362,62 +389,7 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <div class="modal fade modal_add_condition" >
-        <div class="modal-dialog">
-            <div class="modal__inner modal-content">
-                <div class="modal__header">
-                    <h3>Thêm điều kiện</h3>
-                    <div class="modal__close-btn" data-dismiss="modal">
-                        <i class="fa-solid fa-xmark"></i>
-                    </div>
-                </div>
-                <div class="modal__body">
-                    <form action="" class="modal__form">
-                        <div class="form-group">
-                            <label for="">Thuộc tính</label>
-                            <select name="" class="form-control" id="">
-                                <option value="">Chọn thuộc tính</option>
-                                <option value="">Ngày sinh</option>
-                                <option value="">Tháng sinh</option>
-                                <option value="">Năm sinh</option>
-                                <option value="">Tuổi</option>
-                                <option value="">Giới tính</option>
-                                <option value="">Địa chỉ</option>
-                                <option value="">Tên</option>
-                                <option value="">Tổng số đơn đã mua</option>
-                                <option value="">Tổng chi tiêu</option>
-                                <option value="">Đơn hàng cao nhất</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Điều kiện</label>
-                            <select name="" class="form-control" id="">
-                                <option value="">Chọn điều kiện</option>
-                                <option value="">Bằng</option>
-                                <option value="">Lớn hơn</option>
-                                <option value="">Nhỏ hơn</option>
-                                <option value="">Khác</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Giá trị</label>
-                            <input type="text" class="form-control" placeholder="Nhập giá trị"
-                            name="" id="">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal__footer">
-                    <button class="modal__footer-btn btn btn-danger" data-dismiss="modal">
-                        Huỷ
-                    </button>
-                    <button class="modal__footer-btn btn btn-primary" data-dismiss="modal">
-                        Xác nhận
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">

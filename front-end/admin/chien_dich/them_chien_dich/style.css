@@ -1,0 +1,46 @@
+html {
+    font-size: 100% !important;
+}
+.btn {
+    font-size: 16px !important;
+}
+.form-label {
+    margin: 0;
+}
+.form-label,
+.form-radio {
+    cursor: pointer;
+}
+.select-search {
+    padding-left: 30px;
+    display: none;
+}
+.input-time-send {
+    display: none;
+    width: 60%;
+}
+.group-send{
+    height: 38px;
+    display: flex;
+    align-items: center;
+}
+#for-group-customer:checked ~ .select-search {
+    display: block;
+}
+#send-later:checked ~ .input-time-send {
+    display: inline-block;
+}
+
+.discount {
+    display: none;
+    width: 50%;
+    margin: 20px auto;
+}
+#isDiscount:checked ~ .discount {
+    display: block;
+}
+.discount__input--number::-webkit-outer-spin-button,
+.discount__input--number::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
