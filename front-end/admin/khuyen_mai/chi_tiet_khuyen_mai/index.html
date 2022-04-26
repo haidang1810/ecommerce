@@ -15,7 +15,8 @@
     rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap4.min.css">
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
     <!-- Custom styles for this template-->
     <link href="../../../shared/css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../../shared/css/base.css"> 
@@ -52,7 +53,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse_product"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fa-solid fa-cube"></i>
@@ -68,7 +69,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <li class="nav-item">
+            <li class="nav-item ">
                 <a class="nav-link" href="../../don_hang/">
                     <i class="fa-solid fa-cart-shopping"></i>
                     <span>Đơn hàng</span></a>
@@ -100,7 +101,7 @@
 
             <hr class="sidebar-divider">
 
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="../../khuyen_mai/">
                     <i class="fa-solid fa-tags"></i>
                     <span>Khuyễn mãi</span>
@@ -230,66 +231,43 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Chi tiết đơn hàng</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Chi tiết khuyến mãi</h1>
                     </div>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="../">Đơn hàng</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Chi tiết đơn hàng</li>
+                            <li class="breadcrumb-item"><a href="../">Khuyến mãi</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Chi tiết khuyến mãi</li>
                         </ol>
                     </nav>
 
                     <!-- content row -->
                     <div class="row">
-                        <div class="col-xl-8 col-md-8 col-sm-12">
+                        <div class="col-12">
                             <div class="card shadow mb-4">
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Thông tin khách hàng</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Thông tin khuyễn mãi</h6>
                                 </div>
                                 <div class="card-body">
-                                    <div class="row form-group">
-                                        <div class="col-6">
-                                            <label for="">Tên khách hàng</label>
-                                            <input type="text" readonly
-                                            class="form-control shadow-none"
-                                            value="Nguyễn Sang">
+                                    <div class="row">
+                                        <div class="form-group col-6">
+                                            <label for="">Thời gian bắt đầu</label>
+                                            <input type="datetime-local" class="form-control" 
+                                            name="" id="" placeholder="" readonly>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label for="">Thời gian kết thúc</label>
+                                            <input type="datetime-local" class="form-control" 
+                                            name="" id="" placeholder="" readonly>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="">Địa chỉ nhận hàng</label>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <input type="text" class="form-control shadow-none" 
-                                                value="Nguyễn Huệ, P2, TP. Vĩnh Long" readonly id="input-address">
-                                            </div>
+                                    <div class="row">
+                                        <div class="form-group col-6">
+                                            <label for="">Chiết khấu</label>
+                                            <input type="text" class="form-control" 
+                                            name="" id="input_discount" placeholder="" readonly>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <div class="col-5">
-                                            <label for="">Số điện thoại</label>
-                                            <input type="text" class="form-control shadow-none" 
-                                            value="0321524895" readonly>
-                                        </div>
-                                        <div class="col-7">
-                                            <label for="">Gmail</label>
-                                            <input type="text" class="form-control shadow-none" 
-                                            value="exampelEmail@gmail.com" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-md-4 col-sm-12">
-                            <div class="card shadow mb-4">
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Thông tin vận chuyển</h6>
-                                </div>
-                                <div class="card-body">
-                                    Đơn vị giao hàng mặc định: <p>Ghn Express</p>
-                                    Phí vận chuyển: <p class="transport__cost">20.000đ</p>
-                                    Thời gian dự kiến: <p class="transport__lead-time">Trước ngày 25/05/2020</p>
                                 </div>
                             </div>
                         </div>
@@ -300,32 +278,52 @@
                             <div class="card shadow mb-4">
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Thông tin sản phẩm</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Sản phẩm áp dụng</h6>
                                 </div>
                                 <div class="card-body">
-                                    <div class="table-responsive mt-3">
+                                    <div class="table-responsive">
                                         <table class="table table-bordered"
                                         id="product-list" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
                                                     <th>Ảnh bìa</th>
+                                                    <th>Mã sản phẩm</th>
                                                     <th>Tên sản phẩm</th>
+                                                    <th>Danh mục</th>
                                                     <th>Giá bán</th>
                                                     <th>Số lượng</th>
-                                                    <th>Thành tiền</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td><img src="../../../shared/img/img_info_2.jpg" class="table-product-img" alt=""></td>
+                                                    <td><img src="../../../shared/img/img_info_2.jpg" class="img-product" alt=""></td>
+                                                    <td>SP001</td>
                                                     <td>
                                                         Vòng Tay Mạ Bạc Hình Trái Tim/Bướm/Ngọc Trai Phong Cách Retro Hàn Quốc
                                                     </td>
+                                                    <td>Vòng tay</td>
                                                     <td>90.000đ</td>
+                                                    <td>500</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><img src="../../../shared/img/img_info_1.jpg" class="img-product" alt=""></td>
+                                                    <td>SP002</td>
                                                     <td>
-                                                        1
+                                                        Nhẫn đeo tay kim cương
                                                     </td>
-                                                    <td>90.000đ</td>
+                                                    <td>Nhẫn</td>
+                                                    <td>1.000.000đ</td>
+                                                    <td>300</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><img src="../../../shared/img/img_info_3.jpg" class="img-product" alt=""></td>
+                                                    <td>SP003</td>
+                                                    <td>
+                                                        Bông tay bạc trẻ trung
+                                                    </td>
+                                                    <td>Bông tay</td>
+                                                    <td>120.000đ</td>
+                                                    <td>460</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -334,50 +332,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="card shadow mb-4">
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Phương thức thanh toán</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <!-- <label for="">Thanh toán khi nhận hàng COD</label> -->
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Thanh toán trực tuyến</label>
-                                        <div class="payment__item">
-                                            <img src="../../../shared/img/ZaloPay_Logo.png" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="card shadow mb-4">
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Tổng kết đơn hàng</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <p class="payment__info">Tạm tính:</p>
-                                            <p class="payment__info">Phí vận chuyển:</p>
-                                            <p class="payment__info">Tổng thanh toán:</p>
-                                        </div>
-                                        <div class="col-67">
-                                            <p class="payment__info">90.000đ</p>
-                                            <p class="payment__info">20.000đ</p>
-                                            <p class="payment__info">110.000đ</p>
-                                        </div>
-                                    </div>                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    
                 </div>
                 <!-- /.container-fluid -->
 
@@ -404,6 +359,8 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
+    
+    
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -441,6 +398,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/1.0.0/chartjs-plugin-datalabels.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
     <!-- Page level custom scripts -->
     <script src="./app.js"></script>
     
