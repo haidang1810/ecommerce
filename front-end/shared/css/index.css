@@ -173,3 +173,115 @@ body {
 .home-pagination {
     margin-top: 40px;
 }
+.modal__body {
+    background-color: var(--white-color);
+    border-radius: 4px;
+    padding: 20px 30px;
+    width: 500px !important;
+    margin-top: 10vh;
+}
+
+.auth-form__login,
+.auth-form__register {
+    display: none;
+}
+#auth-form__login:checked ~ .auth-form__login {
+    display: block;
+}
+#auth-form__register:checked ~ .auth-form__register {
+    display: block;
+}
+.auth-form__control {
+    display: none;
+}
+.auth-form__header{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.auth-form__heading{
+    font-size: 2.2rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+.auth-form__switch-btn{
+    font-size: 1.6rem;
+    color: var(--orange-color);
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.auth-form__group {
+    width: 100%;
+    margin-bottom: 10px;
+}
+.auth-form__group--right {
+    float: right;
+}
+.auth-form__group--password {
+    position: relative;
+}
+.auth-form__group--icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+    font-size: 2rem;
+    color: #ddd;
+    padding: 0 10px;
+}
+.auth-form__input{
+    height: 40px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    padding: 0 20px;
+    font-size: 1.6rem;
+    outline: none;
+}
+.auth-form__input--password {
+    padding-right: 55px;
+}
+.auth-form__input:focus {
+    border-color: #888;
+}
+.auth-form__link{
+    font-size: 1.6rem;
+}
+.auth-form__link--forgot{
+    color: var(--orange-color);
+    float: right;
+}
+.auth-form__link--forgot:hover {
+    color: var(--orange-color);
+    filter:brightness(120%);
+}
+.auth-form__footer{
+    float: right;
+}
+.auth-form__footer{
+    margin-top: 20px;
+}
+.auth-form__btn{
+    height: 40px;
+    padding: 10px 20px;
+    border: none;
+    font-size: 1.6rem;
+    font-weight: 500;
+    border-radius: 4px;
+}
+.auth-form__btn--close{
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+.auth-form__btn--submit{
+    background-color: var(--orange-color);
+    color: var(--white-color);
+    margin-left: 10px;
+}
+.auth-form__btn--submit:hover {
+    opacity: 0.9;
+}
