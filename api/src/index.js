@@ -5,7 +5,6 @@ const port = process.env.PORT || 3000
 
 const route = require('./routes');
 
-
 route(app);
 
 app.listen(port, () => {
