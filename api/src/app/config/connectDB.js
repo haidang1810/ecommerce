@@ -1,13 +1,11 @@
 const mysql = require('mysql');
-var connection = mysql.createConnection({
+const pool = mysql.createPool({
     host     : 'localhost',
     user     : 'root',
     password : '',
-    database : 'db_cua_hang'
-});
-connection.connect(function(err) {
-    if (err) throw err;
-    console.log("Database connected!");
+    database : 'db_cua_hang',
+    connectionLimit: 10
 });
 
-module.exports = connection;
+
+module.exports = pool;

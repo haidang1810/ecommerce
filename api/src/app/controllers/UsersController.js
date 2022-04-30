@@ -5,6 +5,10 @@ class UsersController {
             res.json(response);
         })
     }
-
+    getAll(req,res){
+        UsersModel.getAll(req,function(response){
+            res.json(response);
+        })
+    }
 }
 module.exports = new UsersController();

@@ -3,10 +3,11 @@ const app = express();
 const server = require("http").Server(app);
 const dotenv = require('dotenv').config();
 const port = process.env.PORT || 3000
-
+const cookieParser = require('cookie-parser');
 const route = require('./routes');
 app.use(express.urlencoded());
 app.use(express.json());
+app.use(cookieParser());
 
 
 route(app);
