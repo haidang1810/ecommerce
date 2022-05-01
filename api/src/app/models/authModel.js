@@ -14,7 +14,8 @@ const Auth = function(auth) {
 
 Auth.login = (req,res) => {
     let formData = req.body;
-    const getUser = `select * from tb_nguoi_dung where TaiKhoan=?`;
+    const getUser = `select * from tb_nguoi_dung, tb_khach_hang where tb_khach_hang.TaiKhoan=?
+        and tb_nguoi_dung.TaiKhoan=tb_khach_hang.TaiKhoan`;
         pool.query(getUser, formData.username, (err, result) =>{
             if(err){
                 res({
@@ -52,6 +53,7 @@ Auth.login = (req,res) => {
                         res({
                             status: 1,
                             msg: "Đăng nhập thành công",
+                            fullName: result[0].HoTen,
                             accessToken,
                             refreshToken
                         });
@@ -76,22 +78,61 @@ Auth.refreshToken = (req,res) => {
                 msg: 'RefreshToken hết hạn hoặc không chính xác'
             });
         }else{
-            let now = new Date();
-            const value = {
-                username: result.username,
-                time: now
-            };
-            const accessToken = jwt.sign(value, process.env.ACCESS_TOKEN_SECRET,{
-                expiresIn: '60s',
-            });
-            res({
-                status: 1,
-                msg: 'successfully',
-                accessToken
-            });
+            pool.query('select HoTen from tb_khach_hang where TaiKhoan=?',result.username,
+            (err, data)=>{
+                if(err){
+                    res({
+                        status: 0,
+                        msg: err
+                    });
+                    return;
+                }  
+                let now = new Date();
+                const value = {
+                    username: result.username,
+                    time: now
+                };
+                const accessToken = jwt.sign(value, process.env.ACCESS_TOKEN_SECRET,{
+                    expiresIn: '60s',
+                });
+                res({
+                    status: 1,
+                    msg: 'successfully',
+                    accessToken,
+                    fullName: data[0]
+                });
+            })
+            
         }
     })
 }
-
+Auth.checkLogin = (req, res) => {
+    let token = req.cookies.accessToken;
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, result) => {
+        if(err){
+            res({
+                status: 0,
+                msg: 'Chưa đăng nhập'
+            });
+        }else{
+            pool.query('select HoTen from tb_khach_hang where TaiKhoan=?',result.username,
+            (err, data)=>{
+                if(err){
+                    res({
+                        status: 0,
+                        msg: err
+                    });
+                    return;
+                }    
+                res({
+                    status: 1,
+                    msg: 'Đã đăng nhập',
+                    fullName: data[0]
+                });
+            })
+            
+        }
+    })
+}
 
 module.exports = Auth;
