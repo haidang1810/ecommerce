@@ -4,11 +4,11 @@ class AuthenticationController {
         AuthModel.login(req,function(response,accessToken,refreshToken){
 			res.cookie('accessToken',accessToken,{
 				maxAge: 60 * 1000,
-				httpOnly: false,
+				httpOnly: true,
 				secure: true
 			}).cookie('refreshToken',refreshToken,{
 				maxAge: 7 * 24 * 60 * 60 * 1000,
-				httpOnly: false,
+				httpOnly: true,
 				secure: true
 			});
             res.json(response);
@@ -18,7 +18,7 @@ class AuthenticationController {
         AuthModel.refreshToken(req,function(response,accessToken){
 			res.cookie('accessToken',accessToken,{
 				maxAge: 60 * 1000,
-				httpOnly: false,
+				httpOnly: true,
 				secure: true
 			});
             res.json(response);

@@ -54,7 +54,8 @@ Auth.login = (req,res) => {
                         res({
                             status: 1,
                             msg: "Đăng nhập thành công",
-                            fullName: result[0].HoTen
+                            fullName: result[0].HoTen,
+							avatar: result[0].AnhDaiDien
                         },accessToken,refreshToken);
                         return;
                     }else{
@@ -77,29 +78,18 @@ Auth.refreshToken = (req,res) => {
                 msg: 'RefreshToken hết hạn hoặc không chính xác'
             });
         }else{
-            pool.query('select HoTen from tb_khach_hang where TaiKhoan=?',result.username,
-            (err, data)=>{
-                if(err){
-                    res({
-                        status: 0,
-                        msg: err
-                    });
-                    return;
-                }  
-                let now = new Date();
-                const value = {
-                    username: result.username,
-                    time: now
-                };
-                const accessToken = jwt.sign(value, process.env.ACCESS_TOKEN_SECRET,{
-                    expiresIn: '60s',
-                });
-                res({
-                    status: 1,
-                    msg: 'successfully',
-                    fullName: data[0]
-                },accessToken);
-            })
+            let now = new Date();
+			const value = {
+				username: result.username,
+				time: now
+			};
+			const accessToken = jwt.sign(value, process.env.ACCESS_TOKEN_SECRET,{
+				expiresIn: '60s',
+			});
+			res({
+				status: 1,
+				msg: 'successfully',
+			},accessToken);
             
         }
     })
@@ -113,7 +103,7 @@ Auth.checkLogin = (req, res) => {
                 msg: 'Chưa đăng nhập'
             });
         }else{
-            pool.query('select HoTen from tb_khach_hang where TaiKhoan=?',result.username,
+            pool.query('select HoTen, AnhDaiDien from tb_khach_hang where TaiKhoan=?',result.username,
             (err, data)=>{
                 if(err){
                     res({
@@ -125,7 +115,8 @@ Auth.checkLogin = (req, res) => {
                 res({
                     status: 1,
                     msg: 'Đã đăng nhập',
-                    fullName: data[0].HoTen
+                    fullName: data[0].HoTen,
+					avatar: data[0].AnhDaiDien
                 });
             })
             
