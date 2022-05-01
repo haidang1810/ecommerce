@@ -50,13 +50,12 @@ Auth.login = (req,res) => {
                         const refreshToken = jwt.sign(value, process.env.REFRESH_TOKEN_SECRET,{
                             expiresIn: '7d',
                         });
+						
                         res({
                             status: 1,
                             msg: "Đăng nhập thành công",
-                            fullName: result[0].HoTen,
-                            accessToken,
-                            refreshToken
-                        });
+                            fullName: result[0].HoTen
+                        },accessToken,refreshToken);
                         return;
                     }else{
                         res({
@@ -98,9 +97,8 @@ Auth.refreshToken = (req,res) => {
                 res({
                     status: 1,
                     msg: 'successfully',
-                    accessToken,
                     fullName: data[0]
-                });
+                },accessToken);
             })
             
         }
@@ -127,7 +125,7 @@ Auth.checkLogin = (req, res) => {
                 res({
                     status: 1,
                     msg: 'Đã đăng nhập',
-                    fullName: data[0]
+                    fullName: data[0].HoTen
                 });
             })
             

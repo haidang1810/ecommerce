@@ -1,12 +1,26 @@
 const AuthModel = require('../models/AuthModel');
 class AuthenticationController {
     login(req,res){
-        AuthModel.login(req,function(response){
+        AuthModel.login(req,function(response,accessToken,refreshToken){
+			res.cookie('accessToken',accessToken,{
+				maxAge: 60 * 1000,
+				httpOnly: false,
+				secure: true
+			}).cookie('refreshToken',refreshToken,{
+				maxAge: 7 * 24 * 60 * 60 * 1000,
+				httpOnly: false,
+				secure: true
+			});
             res.json(response);
         });
     }
     refreshToken(req,res){
-        AuthModel.refreshToken(req,function(response){
+        AuthModel.refreshToken(req,function(response,accessToken){
+			res.cookie('accessToken',accessToken,{
+				maxAge: 60 * 1000,
+				httpOnly: false,
+				secure: true
+			});
             res.json(response);
         });
     }
