@@ -82,3 +82,9 @@ a:hover {
 textarea {
     resize: none;
 }
+.hide {
+	display: none !important;
+}
+.swal2-popup {
+	font-size: 1.4rem !important;
+}

@@ -37,6 +37,7 @@ body {
     margin: 15px 0 15px 25px;
 }
 .category__item {
+	cursor: pointer;
     font-weight: 400;    
 }
 .category__link {
@@ -284,4 +285,14 @@ body {
 }
 .auth-form__btn--submit:hover {
     opacity: 0.9;
+}
+
+#input-register-phone::-webkit-outer-spin-button,
+#input-register-phone::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.message-err {
+	font-size: 1.4rem;
+	color: #fd1336;
 }
