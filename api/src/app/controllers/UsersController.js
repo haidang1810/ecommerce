@@ -1,7 +1,16 @@
 const UsersModel = require('../models/UsersModel');
 class UsersController {
     add(req,res){
-        UsersModel.add(req,function(response){
+        UsersModel.add(req,function(response,accessToken,refreshToken){
+			res.cookie('accessToken',accessToken,{
+				maxAge: 60 * 1000,
+				httpOnly: true,
+				secure: true
+			}).cookie('refreshToken',refreshToken,{
+				maxAge: 7 * 24 * 60 * 60 * 1000,
+				httpOnly: true,
+				secure: true
+			});
             res.json(response);
         })
     }

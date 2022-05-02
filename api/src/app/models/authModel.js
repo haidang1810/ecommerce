@@ -9,7 +9,7 @@ const Auth = function(auth) {
     this.LoaiND = user.LoaiND;
     this.MatKhau = user.MatKhau;
     this.AccessToken = user.AccessToken;
-    this.RefeshToken = user.RefeshToken;
+    this.RefreshToken = user.RefreshToken;
 }
 
 Auth.login = (req,res) => {
@@ -50,14 +50,24 @@ Auth.login = (req,res) => {
                         const refreshToken = jwt.sign(value, process.env.REFRESH_TOKEN_SECRET,{
                             expiresIn: '7d',
                         });
-						
-                        res({
-                            status: 1,
-                            msg: "Đăng nhập thành công",
-                            fullName: result[0].HoTen,
-							avatar: result[0].AnhDaiDien
-                        },accessToken,refreshToken);
-                        return;
+						pool.query('update tb_nguoi_dung set RefreshToken=? where TaiKhoan=?',
+						[refreshToken,formData.username],(err,data)=>{
+							if(err){
+								res({
+									status: 0,
+									msg: err
+								});
+								return;
+							}
+							res({
+								status: 1,
+								msg: "Đăng nhập thành công",
+								fullName: result[0].HoTen,
+								avatar: result[0].AnhDaiDien
+							},accessToken,refreshToken);
+							return;
+						})
+                        
                     }else{
                         res({
                             status: 0,
@@ -71,28 +81,49 @@ Auth.login = (req,res) => {
 }
 Auth.refreshToken = (req,res) => {
     let token = req.cookies.refreshToken;
-    jwt.verify(token, process.env.REFRESH_TOKEN_SECRET, (err, result) => {
-        if(err){
-            res({
-                status: 0,
-                msg: 'RefreshToken hết hạn hoặc không chính xác'
-            });
-        }else{
-            let now = new Date();
-			const value = {
-				username: result.username,
-				time: now
-			};
-			const accessToken = jwt.sign(value, process.env.ACCESS_TOKEN_SECRET,{
-				expiresIn: '60s',
-			});
-			res({
-				status: 1,
-				msg: 'successfully',
-			},accessToken);
-            
-        }
-    })
+	if(token){
+		jwt.verify(token, process.env.REFRESH_TOKEN_SECRET, (err, result) => {
+			if(err){
+				res({
+					status: 0,
+					msg: 'RefreshToken hết hạn hoặc không chính xác'
+				});
+				return;
+			}else{
+				pool.query('select * from tb_nguoi_dung where TaiKhoan=? and RefreshToken=?',
+				[result.username,token], (err, data)=>{
+					if(err){
+						res({
+							status: 0,
+							msg: err
+						});
+						return;
+					}else if(data.length>0){
+						let now = new Date();
+						const value = {
+							username: result.username,
+							time: now
+						};
+						const accessToken = jwt.sign(value, process.env.ACCESS_TOKEN_SECRET,{
+							expiresIn: '60s',
+						});
+						res({
+							status: 1,
+							msg: 'successfully',
+						},accessToken);
+					}else{
+						res({
+							status: 0,
+							msg: 'RefreshToken hết hạn hoặc không chính xác'
+						});
+						return;
+					}
+				})
+			}
+		})
+		
+	}
+    
 }
 Auth.checkLogin = (req, res) => {
     let token = req.cookies.accessToken;
@@ -103,7 +134,9 @@ Auth.checkLogin = (req, res) => {
                 msg: 'Chưa đăng nhập'
             });
         }else{
-            pool.query('select HoTen, AnhDaiDien from tb_khach_hang where TaiKhoan=?',result.username,
+			const checkToken = `select HoTen, AnhDaiDien from tb_khach_hang 
+			where TaiKhoan=?`
+            pool.query(checkToken,result.username,
             (err, data)=>{
                 if(err){
                     res({
@@ -111,13 +144,21 @@ Auth.checkLogin = (req, res) => {
                         msg: err
                     });
                     return;
-                }    
-                res({
-                    status: 1,
-                    msg: 'Đã đăng nhập',
-                    fullName: data[0].HoTen,
-					avatar: data[0].AnhDaiDien
-                });
+                }  
+				if(data.length>0)  
+					res({
+						status: 1,
+						msg: 'Đã đăng nhập',
+						fullName: data[0].HoTen,
+						avatar: data[0].AnhDaiDien
+					});
+				else{
+					res({
+                        status: 0,
+                        msg: 'User không tồn tại'
+                    });
+                    return;
+				}
             })
             
         }

@@ -8,7 +8,7 @@ const User = function(user) {
     this.TaiKhoan = user.TaiKhoan;
     this.LoaiND = user.LoaiND;
     this.MatKhau = user.MatKhau;
-    this.RefeshToken = user.RefeshToken;
+    this.RefreshToken = user.RefreshToken;
 }
 
 const createCode = (length) => {
@@ -18,21 +18,19 @@ const createCode = (length) => {
     code += possible.charAt(Math.floor(Math.random() * possible.length));
     return code;
 }
-const createCustomer = (username,fullName,phone,accessToken,refreshToken,resolve,reject)  => {
+const createCustomer = (username,fullName,phone,resolve,reject)  => {
     let code = createCode(20);
     const addCustomer = `insert into tb_khach_hang(MaKH,TaiKhoan,HoTen,SDT) 
     values('${code}','${username}','${fullName}','${phone}')`;
     
     pool.query(addCustomer, function(err,result){
         if(err){
-            createCustomer(username,fullName,phone,accessToken,refreshToken,resolve,reject);
+            createCustomer(username,fullName,phone,resolve,reject);
         }else{
             const data = {
                 status: 1,
                 msg: "Tạo tài khoản thành công !",
                 fullName,
-                accessToken,
-                refreshToken
             };
             resolve(data);
         }
@@ -93,7 +91,7 @@ User.add = (req, res) => {
                             return;
                         }
                         const checkCustomer = `select * from tb_khach_hang where
-                        SDT='${formData.phone}' and TaiKhoan=NULL`
+                        SDT='${formData.phone}' and TaiKhoan is NULL`
                         db.query(checkCustomer, function(err,result){
                             if(err){
                                 res({
@@ -119,15 +117,13 @@ User.add = (req, res) => {
                                         status: 1,
                                         msg: "Tạo tài khoản thành công !",
                                         fullName: formData.fullName,
-                                        accessToken,
-                                        refreshToken
-                                    });
+                                    },accessToken,refreshToken);
                                     pool.releaseConnection(db);
                                     return;
                                 })
                             }else {
                                 const checkCustomerExistAcc = `select * from tb_khach_hang where
-                                SDT='${formData.phone}' and TaiKhoan<>NULL`
+                                SDT='${formData.phone}' and TaiKhoan is not NULL`
                                 db.query(checkCustomerExistAcc, function(err,result){
                                     if(err){
                                         res({
@@ -147,11 +143,11 @@ User.add = (req, res) => {
                                     }else{
                                         const promise = new Promise(function(resolve, reject) {
                                             createCustomer(formData.username,formData.fullName,
-                                                formData.phone,accessToken,refreshToken,resolve,reject);
+                                                formData.phone,resolve,reject);
                                         });
                                         promise
                                             .then((data)=>{
-                                                res(data);
+                                                res(data,accessToken,refreshToken);
                                                 pool.releaseConnection(db);
                                             })
                                     }
