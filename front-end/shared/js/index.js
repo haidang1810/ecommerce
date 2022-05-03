@@ -1,7 +1,7 @@
 var product_list = [
 	{
 		MaSP: 'abc',
-		TenLoai: 'Bông Tay',
+		TenLoai: 'Bông tai',
 		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
 		Gia: 20000,
 		SoLuong: 100,
@@ -11,7 +11,7 @@ var product_list = [
 	},	
 	{
 		MaSP: 'abc',
-		TenLoai: 'Bông Tay',
+		TenLoai: 'Bông tai',
 		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
 		Gia: 20000,
 		SoLuong: 100,
@@ -21,7 +21,7 @@ var product_list = [
 	},	
 	{
 		MaSP: 'abc',
-		TenLoai: 'Bông Tay',
+		TenLoai: 'Bông tai',
 		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
 		Gia: 20000,
 		SoLuong: 100,
@@ -31,7 +31,7 @@ var product_list = [
 	},	
 	{
 		MaSP: 'abc',
-		TenLoai: 'Bông Tay',
+		TenLoai: 'Bông tai',
 		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
 		Gia: 20000,
 		SoLuong: 100,
@@ -41,7 +41,7 @@ var product_list = [
 	},	
 	{
 		MaSP: 'abc',
-		TenLoai: 'Bông Tay',
+		TenLoai: 'Bông tai',
 		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
 		Gia: 20000,
 		SoLuong: 100,
@@ -51,7 +51,7 @@ var product_list = [
 	},	
 	{
 		MaSP: 'abc',
-		TenLoai: 'Bông Tay',
+		TenLoai: 'Bông tai',
 		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
 		Gia: 20000,
 		SoLuong: 100,
@@ -61,7 +61,7 @@ var product_list = [
 	},	
 	{
 		MaSP: 'abc',
-		TenLoai: 'Bông Tay',
+		TenLoai: 'Bông tai',
 		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
 		Gia: 20000,
 		SoLuong: 100,
@@ -71,7 +71,7 @@ var product_list = [
 	},	
 	{
 		MaSP: 'abc',
-		TenLoai: 'Bông Tay',
+		TenLoai: 'Bông tai',
 		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
 		Gia: 20000,
 		SoLuong: 100,
@@ -81,7 +81,7 @@ var product_list = [
 	},	
 	{
 		MaSP: 'abc',
-		TenLoai: 'Bông Tay',
+		TenLoai: 'Bông tai',
 		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
 		Gia: 20000,
 		SoLuong: 100,
@@ -91,7 +91,7 @@ var product_list = [
 	},	
 	{
 		MaSP: 'abc',
-		TenLoai: 'Bông Tay',
+		TenLoai: 'Bông tai',
 		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
 		Gia: 20000,
 		SoLuong: 100,
@@ -101,7 +101,7 @@ var product_list = [
 	},	
 	{
 		MaSP: 'abc',
-		TenLoai: 'Bông Tay',
+		TenLoai: 'Bông tai',
 		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
 		Gia: 20000,
 		SoLuong: 100,
@@ -111,7 +111,7 @@ var product_list = [
 	},	
 	{
 		MaSP: 'abc',
-		TenLoai: 'Bông Tay',
+		TenLoai: 'Bông tai',
 		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
 		Gia: 20000,
 		SoLuong: 100,
@@ -121,7 +121,7 @@ var product_list = [
 	},	
 	{
 		MaSP: 'abc',
-		TenLoai: 'Bông Tay',
+		TenLoai: 'Bông tai',
 		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
 		Gia: 20000,
 		SoLuong: 100,
@@ -131,7 +131,7 @@ var product_list = [
 	},	
 	{
 		MaSP: 'abc',
-		TenLoai: 'Bông Tay',
+		TenLoai: 'Bông tai',
 		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
 		Gia: 20000,
 		SoLuong: 100,
@@ -141,7 +141,7 @@ var product_list = [
 	},	
 	{
 		MaSP: 'abc',
-		TenLoai: 'Bông Tay',
+		TenLoai: 'Bông tai',
 		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
 		Gia: 20000,
 		SoLuong: 100,
@@ -151,7 +151,7 @@ var product_list = [
 	},	
 	{
 		MaSP: 'abc',
-		TenLoai: 'Bông Tay',
+		TenLoai: 'Bông tai',
 		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
 		Gia: 20000,
 		SoLuong: 100,
@@ -161,7 +161,7 @@ var product_list = [
 	},	
 	{
 		MaSP: 'abc',
-		TenLoai: 'Bông Tay',
+		TenLoai: 'Bông tai',
 		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
 		Gia: 20000,
 		SoLuong: 100,
@@ -171,7 +171,7 @@ var product_list = [
 	},	
 	{
 		MaSP: 'abc',
-		TenLoai: 'Bông Tay',
+		TenLoai: 'Bông tai',
 		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
 		Gia: 20000,
 		SoLuong: 100,
@@ -181,7 +181,7 @@ var product_list = [
 	},	
 	{
 		MaSP: 'abc',
-		TenLoai: 'Bông Tay',
+		TenLoai: 'Bông tai',
 		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
 		Gia: 20000,
 		SoLuong: 100,
@@ -191,7 +191,7 @@ var product_list = [
 	},	
 	{
 		MaSP: 'abc',
-		TenLoai: 'Bông Tay',
+		TenLoai: 'Bông tai',
 		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
 		Gia: 20000,
 		SoLuong: 100,
@@ -201,7 +201,7 @@ var product_list = [
 	},	
 	{
 		MaSP: 'abc',
-		TenLoai: 'Bông Tay',
+		TenLoai: 'Bông tai',
 		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
 		Gia: 20000,
 		SoLuong: 100,
@@ -211,7 +211,7 @@ var product_list = [
 	},	
 	{
 		MaSP: 'abc',
-		TenLoai: 'Bông Tay',
+		TenLoai: 'Bông tai',
 		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
 		Gia: 20000,
 		SoLuong: 100,
@@ -221,7 +221,7 @@ var product_list = [
 	},	
 	{
 		MaSP: 'abc',
-		TenLoai: 'Bông Tay',
+		TenLoai: 'Bông tai',
 		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
 		Gia: 20000,
 		SoLuong: 100,
@@ -231,7 +231,7 @@ var product_list = [
 	},	
 	{
 		MaSP: 'abc',
-		TenLoai: 'Bông Tay',
+		TenLoai: 'Bông tai',
 		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
 		Gia: 20000,
 		SoLuong: 100,
@@ -241,7 +241,7 @@ var product_list = [
 	},	
 	{
 		MaSP: 'abc',
-		TenLoai: 'Bông Tay',
+		TenLoai: 'Bông tai',
 		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
 		Gia: 20000,
 		SoLuong: 100,
@@ -251,7 +251,7 @@ var product_list = [
 	},	
 	{
 		MaSP: 'abc',
-		TenLoai: 'Bông Tay',
+		TenLoai: 'Bông tai',
 		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
 		Gia: 20000,
 		SoLuong: 100,
@@ -261,7 +261,7 @@ var product_list = [
 	},	
 	{
 		MaSP: 'abc',
-		TenLoai: 'Bông Tay',
+		TenLoai: 'Bông tai',
 		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
 		Gia: 20000,
 		SoLuong: 100,
@@ -271,7 +271,567 @@ var product_list = [
 	},	
 	{
 		MaSP: 'abc',
-		TenLoai: 'Bông Tay',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/210'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/200'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/100'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/300'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/400'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/500'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/200'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/300'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/100'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/400'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/220'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/230'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/240'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/440'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/550'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/350'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/140'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/510'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/420'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/320'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/290'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/410'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/470'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/450'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/460'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/350'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/360'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/250'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/210'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/200'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/100'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/300'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/400'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/500'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/200'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/300'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/100'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/400'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/220'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/230'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/240'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/440'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/550'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/350'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/140'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/510'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/420'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/320'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/290'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/410'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/470'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/450'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/460'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/350'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/360'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
+		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
+		Gia: 20000,
+		SoLuong: 100,
+		ChietKhau: 10,
+		DanhGia: 4,
+		AnhBia: 'https://picsum.photos/250'
+	},	
+	{
+		MaSP: 'abc',
+		TenLoai: 'Bông tai',
 		TenSP: 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức',
 		Gia: 20000,
 		SoLuong: 100,
@@ -316,21 +876,35 @@ fetch(BASE_URL+API_CATEGORY+CATEGORY_GETALL,{
 	.then(json)
 	.then(data => {
 		if(data.status == 1){
+			$(".category__list").append(`
+				<li class="category__item category__item--active">
+					<a id="all" class="category__link">Tất cả</a>
+				</li>
+			`);
 			data.data.map((item, index)=>{
-				if(index==0){
-					$(".category__list").append(`
-						<li class="category__item category__item--active">
-							<a id="${item.MaLoai}" class="category__link">${item.TenLoai}</a>
-						</li>
-					`);
-				}else{
-					$(".category__list").append(`
-						<li class="category__item">
-							<a id="${item.MaLoai}" class="category__link">${item.TenLoai}</a>
-						</li>
-					`);
-				}
+				$(".category__list").append(`
+					<li class="category__item">
+						<a id="${item.TenLoai}" class="category__link">${item.TenLoai}</a>
+					</li>
+				`);
+			});
+			$(".category__item").click(function(){
+				let category = $(this).children('.category__link').attr("id");
+				let newListProduct;
+				if(category != 'all'){
+					newListProduct = product_list.filter((product)=> product.TenLoai==category);
+				}else newListProduct = [...product_list];
+				currentPage = 1;
+				start = (currentPage-1) * perPage;
+				end = currentPage * perPage;
+				renderProduct(newListProduct);
+				$(".category__item").each((index,item)=>{
+					if($(item).children('.category__link').attr("id")==category){
+						$(item).addClass('category__item--active');
+					}else $(item).removeClass('category__item--active');
+				})
 			})
+			
 		}
 	})
 	.catch(handlerError);
@@ -398,69 +972,189 @@ function renderProduct(list){
 }
 function renderPagingBtn(totalPage,listProductRender){
 	let html = `
+	<button class="pagination__btn pagination__btn--first">
+		<i class="fa-solid fa-angles-left"></i>
+	</button>
 	<button class="pagination__btn pagination__btn--prev">
 		<i class="fa-solid fa-angle-left"></i>
 	</button>
 	`;
-	if(totalPage < 7){
-		for(let i=1; i<=totalPage; i++){
-			if(i==currentPage)
-				html += `
-					<button class="pagination__btn 
-					pagination__btn--page pagination__btn--number
-					pagination__btn--active">
-						${i}
-					</button>
-				`;
-			else html += `
-					<button class="pagination__btn 
-					pagination__btn--page pagination__btn--number">
-						${i}
-					</button>
-				`;
-		}
-	}else {
-		for(let i=1; i<=3; i++){
-			if(i==currentPage)
-				html += `
-					<button class="pagination__btn 
-					pagination__btn--page pagination__btn--number
-					pagination__btn--active">
-						${i}
-					</button>
-				`;
-			else html += `
-					<button class="pagination__btn 
-					pagination__btn--page pagination__btn--number">
-						${i}
-					</button>
-				`;
-		}
-		html += `
+	if(totalPage - currentPage < 7 && totalPage - currentPage >0){
+		if(currentPage>=totalPage-6 ){
+			for(let i=totalPage-6; i<=totalPage; i++){
+				if(i==currentPage)
+					html += `
+						<button class="pagination__btn 
+						pagination__btn--page pagination__btn--number
+						pagination__btn--active">
+							${i}
+						</button>
+					`;
+				else html += `
+						<button class="pagination__btn 
+						pagination__btn--page pagination__btn--number">
+							${i}
+						</button>
+					`;
+			}
+		}else if(totalPage > 3){
+			for(let i=1; i<=3; i++){
+				if(i==currentPage)
+					html += `
+						<button class="pagination__btn 
+						pagination__btn--page pagination__btn--number
+						pagination__btn--active">
+							${i}
+						</button>
+					`;
+				else html += `
+						<button class="pagination__btn 
+						pagination__btn--page pagination__btn--number">
+							${i}
+						</button>
+					`;
+			}
+			html += `
 			<button class="pagination__btn pagination__btn--page">
 				...
-			</button>
-		`;
-		for(let i=totalPage-2; i<=totalPage; i++){
-			if(i==currentPage)
+			</button>`;
+		}else{
+			for(let i=currentPage; i<=totalPage; i++){
+				if(i==currentPage)
+					html += `
+						<button class="pagination__btn 
+						pagination__btn--page pagination__btn--number
+						pagination__btn--active">
+							${i}
+						</button>
+					`;
+				else html += `
+						<button class="pagination__btn 
+						pagination__btn--page pagination__btn--number">
+							${i}
+						</button>
+					`;
+			}
+		}
+		if(totalPage>=7 && currentPage < totalPage-6 ){
+			for(let i=totalPage-3; i<=totalPage; i++){
+				if(i==currentPage)
+					html += `
+						<button class="pagination__btn 
+						pagination__btn--page pagination__btn--number
+						pagination__btn--active">
+							${i}
+						</button>
+					`;
+				else html += `
+						<button class="pagination__btn 
+						pagination__btn--page pagination__btn--number">
+							${i}
+						</button>
+					`;
+			}
+		}else if(totalPage<7 && currentPage < totalPage-6){
+			for(let i=1; i<=totalPage; i++){
+				if(i==currentPage)
+					html += `
+						<button class="pagination__btn 
+						pagination__btn--page pagination__btn--number
+						pagination__btn--active">
+							${i}
+						</button>
+					`;
+				else html += `
+						<button class="pagination__btn 
+						pagination__btn--page pagination__btn--number">
+							${i}
+						</button>
+					`;
+			}
+		}
+	}else {
+		if(totalPage>=3){
+			if(currentPage<= totalPage-7){
+				for(let i=currentPage; i<=currentPage+2; i++){
+					if(i==currentPage)
+						html += `
+							<button class="pagination__btn 
+							pagination__btn--page pagination__btn--number
+							pagination__btn--active">
+								${i}
+							</button>
+						`;
+					else html += `
+							<button class="pagination__btn 
+							pagination__btn--page pagination__btn--number">
+								${i}
+							</button>
+						`;
+				}
 				html += `
-					<button class="pagination__btn 
-					pagination__btn--page pagination__btn--number
-					pagination__btn--active">
-						${i}
+					<button class="pagination__btn pagination__btn--page">
+						...
 					</button>
 				`;
-			else html += `
-					<button class="pagination__btn 
-					pagination__btn--page pagination__btn--number">
-						${i}
-					</button>
-				`;
+				for(let i=totalPage-2; i<=totalPage; i++){
+					if(i==currentPage)
+						html += `
+							<button class="pagination__btn 
+							pagination__btn--page pagination__btn--number
+							pagination__btn--active">
+								${i}
+							</button>
+						`;
+					else html += `
+							<button class="pagination__btn 
+							pagination__btn--page pagination__btn--number">
+								${i}
+							</button>
+						`;
+				}
+			}else{
+				for(let i=currentPage-6; i<=totalPage; i++){
+					if(i==currentPage)
+						html += `
+							<button class="pagination__btn 
+							pagination__btn--page pagination__btn--number
+							pagination__btn--active">
+								${i}
+							</button>
+						`;
+					else html += `
+							<button class="pagination__btn 
+							pagination__btn--page pagination__btn--number">
+								${i}
+							</button>
+						`;
+				}
+			}
+			
+		}else {
+			for(let i=1; i<=totalPage; i++){
+				if(i==currentPage)
+					html += `
+						<button class="pagination__btn 
+						pagination__btn--page pagination__btn--number
+						pagination__btn--active">
+							${i}
+						</button>
+					`;
+				else html += `
+						<button class="pagination__btn 
+						pagination__btn--page pagination__btn--number">
+							${i}
+						</button>
+					`;
+			}
 		}
 	}
 	html += `
 		<button class="pagination__btn pagination__btn--next">
 			<i class="fa-solid fa-angle-right"></i>
+		</button>
+		<button class="pagination__btn pagination__btn--last">
+			<i class="fa-solid fa-angles-right"></i>
 		</button>
 	`;
 	$(".home-pagination").html(html);
@@ -485,7 +1179,19 @@ function renderPagingBtn(totalPage,listProductRender){
 		start = (currentPage-1) * perPage;
 		end = currentPage * perPage;
 		renderProduct(listProductRender);
-	})
+	});
+	$(".pagination__btn--first").click(function(){
+		currentPage=1;
+		start = (currentPage-1) * perPage;
+		end = currentPage * perPage;
+		renderProduct(listProductRender);
+	});
+	$(".pagination__btn--last").click(function(){
+		currentPage=totalPage;
+		start = (currentPage-1) * perPage;
+		end = currentPage * perPage;
+		renderProduct(listProductRender);
+	});
 }
 
 
@@ -502,9 +1208,39 @@ fetch(BASE_URL+API_PRODUCT+PRODUCT_GETALL,{
 	.then(data => {
 		if(data.status == 1){
 			product_list.push(...data.data);
-			console.log(product_list);
 			renderProduct(product_list);
 		}
 	})
 	.catch(handlerError);
 
+$(".filterBar__select--price").change(function(){
+	const sortProductWithPriceDec = (list)=> {
+		let newList = [...list];
+		newList.sort((a,b)=>{
+			if(a.Gia>b.Gia) return 1;
+			if(a.Gia<b.Gia) return -1;
+			return 0;
+		});
+		renderProduct(newList);
+	}
+	const sortProductWithPriceEsc = (list)=> {
+		let newList = [...list];
+		newList.sort((a,b)=>{
+			if(a.Gia<b.Gia) return 1;
+			if(a.Gia>b.Gia) return -1;
+			return 0;
+		});
+		renderProduct(newList);
+	}
+	switch($(this).val()){
+		case 'price-default':
+			renderProduct(product_list);
+			break;
+		case 'price-dec':
+			sortProductWithPriceDec(product_list);
+			break;
+		case 'price-esc':
+			sortProductWithPriceEsc(product_list);
+			break;
+	}
+})
