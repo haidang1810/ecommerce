@@ -6,7 +6,7 @@ var product_list = [
 		Gia: 20000,
 		SoLuong: 100,
 		ChietKhau: 10,
-		DanhGia: 4,
+		DanhGia: 5,
 		AnhBia: 'https://picsum.photos/200'
 	},	
 	{
@@ -1241,6 +1241,46 @@ $(".filterBar__select--price").change(function(){
 			break;
 		case 'price-esc':
 			sortProductWithPriceEsc(product_list);
+			break;
+	}
+})
+$(".filterBar__select--info").change(function(){
+	const sortProductWithNameDec = (list)=> {
+		let newList = [...list];
+		newList.sort((a,b)=>{
+			if(a.TenSP>b.TenSP) return 1;
+			if(a.TenSP<b.TenSP) return -1;
+			return 0;
+		});
+		renderProduct(newList);
+	}
+	const sortProductWithNameEsc = (list)=> {
+		let newList = [...list];
+		newList.sort((a,b)=>{
+			if(a.TenSP<b.TenSP) return 1;
+			if(a.TenSP>b.TenSP) return -1;
+			return 0;
+		});
+		renderProduct(newList);
+	}
+	const sortProductWithRatingDec = (list)=> {
+		let newList = [...list];
+		newList.sort((a,b)=>{
+			if(a.DanhGia<b.DanhGia) return 1;
+			if(a.DanhGia>b.DanhGia) return -1;
+			return 0;
+		});
+		renderProduct(newList);
+	}
+	switch($(this).val()){
+		case 'name-dec':
+			sortProductWithNameDec(product_list);
+			break;
+		case 'name-esc':
+			sortProductWithNameEsc(product_list);
+			break;
+		case 'rating-dec':
+			sortProductWithRatingDec(product_list);
 			break;
 	}
 })
