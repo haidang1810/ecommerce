@@ -7,7 +7,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 5,
-		AnhBia: 'https://picsum.photos/200'
+		AnhBia: 'https://picsum.photos/200',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -17,7 +18,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/100'
+		AnhBia: 'https://picsum.photos/100',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -27,7 +29,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/300'
+		AnhBia: 'https://picsum.photos/300',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -37,7 +40,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/400'
+		AnhBia: 'https://picsum.photos/400',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -47,7 +51,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/500'
+		AnhBia: 'https://picsum.photos/500',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -57,7 +62,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/200'
+		AnhBia: 'https://picsum.photos/200',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -67,7 +73,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/300'
+		AnhBia: 'https://picsum.photos/300',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -77,7 +84,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/100'
+		AnhBia: 'https://picsum.photos/100',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -87,7 +95,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/400'
+		AnhBia: 'https://picsum.photos/400',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -97,7 +106,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/220'
+		AnhBia: 'https://picsum.photos/220',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -107,7 +117,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/230'
+		AnhBia: 'https://picsum.photos/230',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -117,7 +128,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/240'
+		AnhBia: 'https://picsum.photos/240',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -127,7 +139,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/440'
+		AnhBia: 'https://picsum.photos/440',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -137,7 +150,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/550'
+		AnhBia: 'https://picsum.photos/550',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -147,7 +161,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/350'
+		AnhBia: 'https://picsum.photos/350',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -157,7 +172,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/140'
+		AnhBia: 'https://picsum.photos/140',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -167,7 +183,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/510'
+		AnhBia: 'https://picsum.photos/510',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -177,7 +194,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/420'
+		AnhBia: 'https://picsum.photos/420',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -187,7 +205,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/320'
+		AnhBia: 'https://picsum.photos/320',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -197,7 +216,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/290'
+		AnhBia: 'https://picsum.photos/290',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -207,7 +227,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/410'
+		AnhBia: 'https://picsum.photos/410',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -217,7 +238,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/470'
+		AnhBia: 'https://picsum.photos/470',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -227,7 +249,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/450'
+		AnhBia: 'https://picsum.photos/450',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -237,7 +260,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/460'
+		AnhBia: 'https://picsum.photos/460',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -247,7 +271,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/350'
+		AnhBia: 'https://picsum.photos/350',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -257,7 +282,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/360'
+		AnhBia: 'https://picsum.photos/360',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -267,7 +293,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/250'
+		AnhBia: 'https://picsum.photos/250',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -277,7 +304,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/210'
+		AnhBia: 'https://picsum.photos/210',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -287,7 +315,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/200'
+		AnhBia: 'https://picsum.photos/200',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -297,7 +326,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/100'
+		AnhBia: 'https://picsum.photos/100',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -307,7 +337,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/300'
+		AnhBia: 'https://picsum.photos/300',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -317,7 +348,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/400'
+		AnhBia: 'https://picsum.photos/400',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -327,7 +359,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/500'
+		AnhBia: 'https://picsum.photos/500',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -337,7 +370,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/200'
+		AnhBia: 'https://picsum.photos/200',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -347,7 +381,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/300'
+		AnhBia: 'https://picsum.photos/300',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -357,7 +392,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/100'
+		AnhBia: 'https://picsum.photos/100',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -367,7 +403,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/400'
+		AnhBia: 'https://picsum.photos/400',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -377,7 +414,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/220'
+		AnhBia: 'https://picsum.photos/220',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -387,7 +425,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/230'
+		AnhBia: 'https://picsum.photos/230',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -397,7 +436,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/240'
+		AnhBia: 'https://picsum.photos/240',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -407,7 +447,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/440'
+		AnhBia: 'https://picsum.photos/440',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -417,7 +458,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/550'
+		AnhBia: 'https://picsum.photos/550',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -427,7 +469,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/350'
+		AnhBia: 'https://picsum.photos/350',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -437,7 +480,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/140'
+		AnhBia: 'https://picsum.photos/140',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -447,7 +491,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/510'
+		AnhBia: 'https://picsum.photos/510',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -457,7 +502,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/420'
+		AnhBia: 'https://picsum.photos/420',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -467,7 +513,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/320'
+		AnhBia: 'https://picsum.photos/320',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -477,7 +524,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/290'
+		AnhBia: 'https://picsum.photos/290',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -487,7 +535,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/410'
+		AnhBia: 'https://picsum.photos/410',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -497,7 +546,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/470'
+		AnhBia: 'https://picsum.photos/470',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -507,7 +557,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/450'
+		AnhBia: 'https://picsum.photos/450',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -517,7 +568,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/460'
+		AnhBia: 'https://picsum.photos/460',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -527,7 +579,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/350'
+		AnhBia: 'https://picsum.photos/350',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -537,7 +590,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/360'
+		AnhBia: 'https://picsum.photos/360',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -547,7 +601,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/250'
+		AnhBia: 'https://picsum.photos/250',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -557,7 +612,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/210'
+		AnhBia: 'https://picsum.photos/210',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -567,7 +623,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/200'
+		AnhBia: 'https://picsum.photos/200',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -577,7 +634,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/100'
+		AnhBia: 'https://picsum.photos/100',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -587,7 +645,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/300'
+		AnhBia: 'https://picsum.photos/300',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -597,7 +656,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/400'
+		AnhBia: 'https://picsum.photos/400',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -607,7 +667,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/500'
+		AnhBia: 'https://picsum.photos/500',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -617,7 +678,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/200'
+		AnhBia: 'https://picsum.photos/200',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -627,7 +689,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/300'
+		AnhBia: 'https://picsum.photos/300',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -637,7 +700,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/100'
+		AnhBia: 'https://picsum.photos/100',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -647,7 +711,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/400'
+		AnhBia: 'https://picsum.photos/400',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -657,7 +722,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/220'
+		AnhBia: 'https://picsum.photos/220',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -667,7 +733,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/230'
+		AnhBia: 'https://picsum.photos/230',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -677,7 +744,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/240'
+		AnhBia: 'https://picsum.photos/240',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -687,7 +755,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/440'
+		AnhBia: 'https://picsum.photos/440',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -697,7 +766,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/550'
+		AnhBia: 'https://picsum.photos/550',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -707,7 +777,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/350'
+		AnhBia: 'https://picsum.photos/350',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -717,7 +788,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/140'
+		AnhBia: 'https://picsum.photos/140',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -727,7 +799,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/510'
+		AnhBia: 'https://picsum.photos/510',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -737,7 +810,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/420'
+		AnhBia: 'https://picsum.photos/420',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -747,7 +821,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/320'
+		AnhBia: 'https://picsum.photos/320',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -757,7 +832,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/290'
+		AnhBia: 'https://picsum.photos/290',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -767,7 +843,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/410'
+		AnhBia: 'https://picsum.photos/410',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -777,7 +854,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/470'
+		AnhBia: 'https://picsum.photos/470',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -787,7 +865,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/450'
+		AnhBia: 'https://picsum.photos/450',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -797,7 +876,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/460'
+		AnhBia: 'https://picsum.photos/460',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -807,7 +887,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/350'
+		AnhBia: 'https://picsum.photos/350',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -817,7 +898,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/360'
+		AnhBia: 'https://picsum.photos/360',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -827,7 +909,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/250'
+		AnhBia: 'https://picsum.photos/250',
+		NgayDang: '03/05/2022'
 	},	
 	{
 		MaSP: 'abc',
@@ -837,7 +920,8 @@ var product_list = [
 		SoLuong: 100,
 		ChietKhau: 10,
 		DanhGia: 4,
-		AnhBia: 'https://picsum.photos/210'
+		AnhBia: 'https://picsum.photos/210',
+		NgayDang: '03/05/2022'
 	},	
 ];
 $("#btn-show-pass-login").click(function(){
@@ -921,10 +1005,12 @@ function renderProduct(list){
 	let html= ``;
 	list.map((item, index)=>{
 		if(index>=start && index<end){
+			const urlProduct = BASE_URL_CLIENT+'/chi_tiet_san_pham/';
 			html += `
 			<div class="card">
-				<a href="./chi_tiet_san_pham" class="card-link">
-					<img src="${item.AnhBia}" class="card-img-top" alt="Đang tải...">
+				<a href="${urlProduct}" class="card-link">
+					<img src="${item.AnhBia}" class="card-img-top" alt=",
+					NgayDang: '03/05/2022'Đang tải...">
 					<div class="card-body">
 						<div class="card-title">
 							${item.TenSP}
@@ -1272,6 +1358,28 @@ $(".filterBar__select--info").change(function(){
 		});
 		renderProduct(newList);
 	}
+	const sortProductWithDateDec = (list)=> {
+		let newList = [...list];
+		newList.sort((a,b)=>{
+			let date = new Date(a.NgayDang);
+			let nextDate = new Date(b.NgayDang);
+			if(date>nextDate) return 1;
+			if(date<nextDate) return -1;
+			return 0;
+		});
+		renderProduct(newList);
+	}
+	const sortProductWithDateEsc = (list)=> {
+		let newList = [...list];
+		newList.sort((a,b)=>{
+			let date = new Date(a.NgayDang);
+			let nextDate = new Date(b.NgayDang);
+			if(date<nextDate) return 1;
+			if(date>nextDate) return -1;
+			return 0;
+		});
+		renderProduct(newList);
+	}
 	switch($(this).val()){
 		case 'name-dec':
 			sortProductWithNameDec(product_list);
@@ -1281,6 +1389,12 @@ $(".filterBar__select--info").change(function(){
 			break;
 		case 'rating-dec':
 			sortProductWithRatingDec(product_list);
+			break;
+		case 'date-dec':
+			sortProductWithDateDec(product_list);
+			break;
+		case 'date-esc':
+			sortProductWithDateEsc(product_list);
 			break;
 	}
 })

@@ -88,3 +88,6 @@ textarea {
 .swal2-popup {
 	font-size: 1.4rem !important;
 }
+#logo-link {
+	cursor: pointer;
+}

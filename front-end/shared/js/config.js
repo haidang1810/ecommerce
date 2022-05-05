@@ -1,4 +1,5 @@
 var BASE_URL = "http://localhost:3000/";
+var BASE_URL_CLIENT = "http://localhost:8080/ecommerce/front-end";
 // API Authentication 
 var API_AUTH = "auth/";
 
@@ -20,3 +21,4 @@ var CATEGORY_GETALL = "getAll/";
 var API_PRODUCT = 'products/';
 
 var PRODUCT_GETALL = "getAll/";
+var PRODUCT_GETBYKEYWORD = 'getByKeyword/';

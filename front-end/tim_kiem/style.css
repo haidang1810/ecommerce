@@ -1,0 +1,7 @@
+.search-result-header{
+	font-size: 1.65rem;
+	font-weight: 1.9rem;
+}
+.search-result-header__keyword{
+	color: var(--red-color);
+}
