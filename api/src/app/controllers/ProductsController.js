@@ -11,5 +11,10 @@ class ProductsController {
             res.json(response);
         })
     }
+    getDetail(req,res){
+        ProductsModel.getDetail(req,function(response){
+            res.json(response);
+        })
+    }
 }
 module.exports = new ProductsController();

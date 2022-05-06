@@ -32,3 +32,45 @@ $(".btn-add").on("click", function(){
     let value = Number($('.amount-input').val());
     $('.amount-input').val(value+1);
 })
+const params = new Proxy(new URLSearchParams(window.location.search), {
+	get: (searchParams, prop) => searchParams.get(prop),
+});
+
+let productID = params.sanpham;
+fetch(BASE_URL+API_PRODUCT+PRODUCT_GETDETAIL+productID, {
+	method: 'GET', 
+	credentials: 'include',
+	headers:{
+		'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+	}
+})
+	.then(statusRes)
+	.then(json)
+	.then((res)=>{
+		if(res.status==1){
+			console.log(res.data);
+			$(".info-name").html(res.data.TenSP);
+			$(".info-rating-total").html(res.data.DanhGia);
+			const ratingIcon = renderStarRating(res.data.DanhGia);
+			$(".info-rating").append(ratingIcon);
+			$(".count-rating-number").html(res.data.LuotDanhGia);
+			$(".count-sold-number").html(res.data.DaBan);
+			if(res.data.ChietKhau){
+				const price = res.data.Gia;
+				const discount = res.data.ChietKhau;
+				const newPrice = price - (price * discount / 100);
+				const priceInfo = `
+					<span class="old-price">${price}</span>
+					<span class="current-price">${newPrice}</span>
+					<div class="info-discount">Giảm ${discount}%</div>
+				`;
+				$(".info-price").html(priceInfo);
+			}else{
+				$(".info-price").html(`
+					<span class="current-price">${res.data.Gia}</span>
+				`);
+			}
+			$(".product-desc__detail").append(res.data.MoTa);
+		}else console.log(res.msg);
+	})
+	.catch(handlerError);

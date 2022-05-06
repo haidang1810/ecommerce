@@ -357,6 +357,7 @@ body {
 }
 .product-desc__detail {
     padding: 20px;
+	font-size: 1.6rem;
 }
 .product-rating {
     background-color: var(--white-color);
