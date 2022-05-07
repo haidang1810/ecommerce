@@ -17,23 +17,41 @@ function numberWithCommas(x) {
 $("#logo-link").click(function(){
 	window.location.href = BASE_URL_CLIENT+'/';
 })
-function renderStarRating(totalStart){
+function renderStarRating(totalStar){
 	let html = ``;
 	for(let i=1; i<=5; i++){
-		if(totalStart>=1){
+		if(totalStar>=1){
 			html += `<i class="fa fa-star checked"></i>`;
 		}else{
-			if(totalStart > 0.2 && totalStart < 0.8){
+			if(totalStar > 0.2 && totalStar < 0.8){
 				html += `<i class="fa-solid fa-star-half"></i>`;
-			}else if(totalStart >= 0.8){
+			}else if(totalStar >= 0.8){
 				html += `<i class="fa fa-star checked"></i>`;
 			}else {
 				html += `<i class="fa fa-star"></i>`;				
 			}
 		}
-		totalStart--;
+		totalStar--;
 	}
 	return html;
+}
+function roundingRating(totalStar){
+	let rounding = 0;
+	for(let i=1; i<=5; i++){
+		if(totalStar>=1){
+			rounding++;
+		}else{
+			if(totalStar > 0.2 && totalStar < 0.8){
+				rounding += 0.5;
+			}else if(totalStar >= 0.8){
+				rounding++;
+			}else {
+				html += `<i class="fa fa-star"></i>`;				
+			}
+		}
+		totalStar--;
+	}
+	return rounding;
 }
 function setCookie(cname, cvalue, second=null) {
     if(second!=null){
@@ -97,6 +115,8 @@ $("#btn-login").click(function(){
 				$('#modal-auth').modal('hide'); 
 				if(data.avatar){
 					$(".navbar__user--avatar").attr('src',data.avatar);
+				}else{
+					$(".navbar__user--avatar").attr('src','../shared/img/user_default.png');
 				}
 			}else Toast.fire({
 				icon: 'error',
@@ -133,6 +153,8 @@ validator('.auth-form__register',{
 					$('#modal-auth').modal('hide'); 
 					if(data.avatar){
 						$(".navbar__user--avatar").attr('src',data.avatar);
+					}else{
+						$(".navbar__user--avatar").attr('src','../shared/img/user_default.png');
 					}
 				}else Toast.fire({
 					icon: 'error',
@@ -166,6 +188,8 @@ function checkLogin(){
 				$('#modal-auth').modal('hide'); 
 				if(data.avatar){
 					$(".navbar__user--avatar").attr('src',data.avatar);
+				}else{
+					$(".navbar__user--avatar").attr('src','../shared/img/user_default.png');
 				}
 			}else{
 				console.log(data.msg);

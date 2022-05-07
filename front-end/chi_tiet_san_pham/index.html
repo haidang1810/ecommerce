@@ -124,20 +124,28 @@
                                 Hỗ trợ
                             </a>
                         </li>
-                        <li class="header__navbar-item header__navbar-item--separate">
-                            <a href="#" class="header__navbar-item-link header__navbar-item-link--strong">
+                        <li class="header__navbar-item header__navbar-item--separate"
+						id="header__item--register">
+                            <label data-toggle="modal" data-target="#modal-auth" 
+                            for="auth-form__register"
+                            class="header__navbar-item-link header__navbar-item-link--strong"
+                            id="btn-show-modal-register">
                                 Đăng ký                                
-                            </a>
+                            </label>
                         </li>
-                        <li class="header__navbar-item">
-                            <a href="#" class="header__navbar-item-link header__navbar-item-link--strong">
+                        <li class="header__navbar-item" id="header__item--login">
+                            <label data-toggle="modal" data-target="#modal-auth" 
+                            for="auth-form__login"
+                            class="header__navbar-item-link header__navbar-item-link--strong"
+                            id="btn-show-modal-login">
                                 Đăng nhập
-                            </a>
+                            </lab>
                         </li>
-                        <li class="header__navbar-item navbar__user">
+                        <li class="header__navbar-item navbar__user hide"
+						id="header__item--user">
                             <img src="https://picsum.photos/200" alt="" 
                             class="navbar__user--avatar">
-                            <span class="navbar__user--info">
+                            <span class="navbar__user--info" id="header-full-name">
                                 Hải Đăng
                             </span>
                             <div class="navbar__user--menu">
@@ -312,142 +320,132 @@
                     <div class="col-12 product-rating__overview">
                         <div class="row product-rating__overview--wrapper">
                             <div class="overview__briefing col-xl-2">
-                                <span class="overview__briefing--score">4.5</span>
+                                <span class="overview__briefing--score">
+									
+								</span>
                                 <span class="overview__briefing--score-out-of"> trên 5</span>
                                 <div class="overview__briefing--start">
-                                    <i class="fa fa-star checked"></i>
-                                    <i class="fa fa-star checked"></i>
-                                    <i class="fa fa-star checked"></i>
-                                    <i class="fa fa-star checked"></i>
-                                    <i class="fa-solid fa-star-half"></i>
+
                                 </div>
                             </div>
                             <div class="overview__filter col-xl-10">
-                                <button class="overview__filter-button overview__filter-button--active">
-                                    Tất cả
+                                <button class="overview__filter-button overview__filter-button--active"
+								id="totalStar">
+                                    Tất cả (100)
                                 </button>
-                                <button class="overview__filter-button">
+                                <button class="overview__filter-button" id="fiveStar">
                                     5 Sao (100)
                                 </button>
-                                <button class="overview__filter-button">
+                                <button class="overview__filter-button" id="fourStar">
                                     4 Sao (20)
                                 </button>
-                                <button class="overview__filter-button">
+                                <button class="overview__filter-button" id="threeStar">
+                                    3 Sao (0)
+                                </button>
+                                <button class="overview__filter-button" id="twoStar">
                                     2 Sao (0)
                                 </button>
-                                <button class="overview__filter-button">
+                                <button class="overview__filter-button" id="oneStar">
                                     1 Sao (0)
                                 </button>
-                                <button class="overview__filter-button">
+                                <button class="overview__filter-button" id="zeroStar">
                                     0 Sao (0)
                                 </button>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 product-rating__list">
-                        <div class="product-rating__item">
-                            <div class="item__avatar">
-                                <img src="https://picsum.photos/200" 
-                                class="item__avatar-img" alt="loading">
-                            </div>
-                            <div class="item__main">
-                                <div class="item__name">
-                                    Hải Đăng
+                        
+                    </div>
+                </div>
+            </div>
+			<div class="modal" id="modal-auth">
+                <div class="modal-dialog ">
+                    <div class="modal__body modal-content">
+                        <div class="auth-form">
+                            <input type="radio" name="control-auth-form" 
+                            class="auth-form__control" id="auth-form__login">
+                            <input type="radio" name="control-auth-form"
+                            class="auth-form__control" id="auth-form__register">
+                            <div class="auth-form__login">
+                                <div class="auth-form__header">
+                                    <h3 class="auth-form__heading">Đăng nhập</h3>
+                                    <label class="auth-form__switch-btn"
+                                    id="switch-btn-register" for="auth-form__register">
+                                        Đăng ký
+                                    </label>
                                 </div>
-                                <div class="item__rating">
-                                    <i class="fa fa-star checked"></i>
-                                    <i class="fa fa-star checked"></i>
-                                    <i class="fa fa-star checked"></i>
-                                    <i class="fa fa-star checked"></i>
-                                    <i class="fa-solid fa-star-half"></i>
-                                </div>
-                                <div class="item__time">2022-04-18 07:54</div>
-                                <div class="item__massage">
-                                    Sản phẩm đẹp, giống ảnh, có đủ size tay, 
-                                    nhưng giao hơi lâu, chắc do Trung Quốc đang kẹt biên
-                                </div>
-                                <div class="item__reply">
-                                    <p class="item__reply-title">Phản Hồi Của Người Bán</p>
-                                    <p class="item__reply-massage">
-                                        Cửa hàng của chúng tôi, xưởng sản xuất của chúng tôi, 
-                                        cố gắng để giữ cho các sản phẩm tốt với giá cả đẹp nhất cho bạn, 
-                                        cảm ơn bạn, cảm ơn bạn
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-rating__item">
-                            <div class="item__avatar">
-                                <img src="https://picsum.photos/200" 
-                                class="item__avatar-img" alt="loading">
-                            </div>
-                            <div class="item__main">
-                                <div class="item__name">
-                                    Hải Đăng
-                                </div>
-                                <div class="item__rating">
-                                    <i class="fa fa-star checked"></i>
-                                    <i class="fa fa-star checked"></i>
-                                    <i class="fa fa-star checked"></i>
-                                    <i class="fa fa-star checked"></i>
-                                    <i class="fa-solid fa-star-half"></i>
-                                </div>
-                                <div class="item__time">2022-04-18 07:54</div>
-                                <div class="item__massage">
-                                    Sản phẩm đẹp, giống ảnh, có đủ size tay, 
-                                    nhưng giao hơi lâu, chắc do Trung Quốc đang kẹt biên
+                                <div class="auth-form__form">
+                                    <div class="auth-form__group">
+                                        <input type="text" name="" id="input-username-login" 
+										class="auth-form__input"
+                                        placeholder="Tài khoản">
+                                    </div>
+                                    <div class="auth-form__group auth-form__group--password">
+                                        <input type="password" name="" id="input-password-login" 
+                                        class="auth-form__input auth-form__input--password"
+                                        placeholder="Mật khẩu">
+                                        <button class="auth-form__group--icon" 
+                                        id="btn-show-pass-login">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </div>
+                                    <div class="auth-form__group auth-form__group--right">
+                                        <a href="#" class="auth-form__link auth-form__link--forgot">Quên mật khẩu</a>
+                                    </div>
+                                    <div class="auth-form__footer">
+                                        <button class="auth-form__btn auth-form__btn--close" data-dismiss="modal">Trở lại</button>
+                                        <button class="auth-form__btn auth-form__btn--submit"
+										id="btn-login">
+											Đăng nhập
+										</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="product-rating__item">
-                            <div class="item__avatar">
-                                <img src="https://picsum.photos/200" 
-                                class="item__avatar-img" alt="loading">
-                            </div>
-                            <div class="item__main">
-                                <div class="item__name">
-                                    Hải Đăng
+                            <form class="auth-form__register">
+                                <div class="auth-form__header">
+                                    <h3 class="auth-form__heading">Đăng ký</h3>
+                                    <label class="auth-form__switch-btn"
+                                    id="switch-btn-login" for="auth-form__login">
+                                        Đăng nhập
+                                    </label>
                                 </div>
-                                <div class="item__rating">
-                                    <i class="fa fa-star checked"></i>
-                                    <i class="fa fa-star checked"></i>
-                                    <i class="fa fa-star checked"></i>
-                                    <i class="fa fa-star checked"></i>
-                                    <i class="fa-solid fa-star-half"></i>
+                                <div class="auth-form__form">
+                                    <div class="auth-form__group">
+                                        <input type="text" name="username" id="" rules='required|min:4|max:30'
+										class="auth-form__input"
+                                        placeholder="Tài khoản">
+										<span class="message-err"></span>
+                                    </div>
+                                    <div class="auth-form__group auth-form__group--password">
+                                        <input type="password" name="password" id="input-password-register" 
+										rules='required|min:4|max:30'
+                                        class="auth-form__input auth-form__input--password"
+                                        placeholder="Mật khẩu">
+                                        <button class="auth-form__group--icon" 
+                                        id="btn-show-pass-register">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+										<span class="message-err"></span>
+                                    </div>
+                                    <div class="auth-form__group">
+                                        <input type="text" name="fullName" id="" class="auth-form__input"
+                                        placeholder="Họ và tên"
+										rules='required'>
+										<span class="message-err"></span>
+                                    </div>
+                                    <div class="auth-form__group">
+                                        <input type="number" name="phone" id="input-register-phone" 
+										class="auth-form__input"
+                                        placeholder="Số điện thoại" rules='required|min:10'>
+										<span class="message-err"></span>
+                                    </div>                                    
+                                    <div class="auth-form__footer">
+                                        <button class="auth-form__btn auth-form__btn--close" data-dismiss="modal">Trở lại</button>
+                                        <button type="submit" class="auth-form__btn auth-form__btn--submit">Đăng ký</button>
+                                    </div>
                                 </div>
-                                <div class="item__time">2022-04-18 07:54</div>
-                                <div class="item__massage">
-                                    Sản phẩm đẹp, giống ảnh, có đủ size tay, 
-                                    nhưng giao hơi lâu, chắc do Trung Quốc đang kẹt biên
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pagination rating-pagination">
-                            <button class="pagination__btn">
-                                <i class="fa-solid fa-angle-left"></i>
-                            </button>
-                            <button class="pagination__btn 
-                            pagination__btn--page pagination__btn--active">
-                                1
-                            </button>
-                            <button class="pagination__btn pagination__btn--page">
-                                2
-                            </button>
-                            <button class="pagination__btn pagination__btn--page">
-                                3
-                            </button>
-                            <button class="pagination__btn pagination__btn--page">
-                                4
-                            </button>
-                            <button class="pagination__btn pagination__btn--page">
-                                5
-                            </button>
-                            <button class="pagination__btn pagination__btn--page">
-                                ...
-                            </button>
-                            <button class="pagination__btn">
-                                <i class="fa-solid fa-angle-right"></i>
-                            </button>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -23,3 +23,8 @@ var API_PRODUCT = 'products/';
 var PRODUCT_GETALL = "getAll/";
 var PRODUCT_GETBYKEYWORD = 'getByKeyword/';
 var PRODUCT_GETDETAIL = 'getDetail/'
+
+// API Rating
+var API_RATING = 'ratings/';
+
+var RATING_GETBYPRODUCT = 'getByProduct/';
