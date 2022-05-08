@@ -28,3 +28,24 @@ var PRODUCT_GETDETAIL = 'getDetail/'
 var API_RATING = 'ratings/';
 
 var RATING_GETBYPRODUCT = 'getByProduct/';
+
+//API images
+var API_IMAGE = 'images/';
+
+var IMAGE_GETBYPRODUCT = 'getByProduct/';
+
+//API Address
+var API_ADDRESS = 'addresses/';
+
+var ADDRESS_GETBYCUSTOMER = 'getByCustomer/';
+
+
+var LENGHT_BOX = 50;
+var WIDTH_BOX = 35;
+var HEIGHT_BOX = 15;
+var WEIGHT_BOX = 150;
+
+//API GHN
+var TOKEN = '9bb1eb6a-be0c-11ec-ac64-422c37c6de1b';
+var SHOPID = '111713';
+var API_GETCOSTTRANSPORT = 'https://dev-online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/fee';

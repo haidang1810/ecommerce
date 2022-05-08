@@ -1,11 +1,5 @@
-$(".list-img-item img").click(function(){
-    $(".list-img-item img").each(function(){
-        $(this).removeClass('hover-img');
-    });
-    $(this).addClass('hover-img');
-    let imgPath = $(this).attr('src');
-    $('.main-img img').attr('src',imgPath);
-})
+var listRating = [];
+const weightProduct = 80;
 $("#btn-pre").click(function(){
     $('.list-img-item').scrollLeft( $('.list-img-item').scrollLeft() - 86 );
 })
@@ -48,7 +42,6 @@ fetch(BASE_URL+API_PRODUCT+PRODUCT_GETDETAIL+productID, {
 	.then(json)
 	.then((res)=>{
 		if(res.status==1){
-			// console.log(res.data);
 			$(".info-name").html(res.data.TenSP);
 			$(".info-rating-total").html(res.data.DanhGia);
 			const ratingIcon = renderStarRating(res.data.DanhGia);
@@ -71,6 +64,7 @@ fetch(BASE_URL+API_PRODUCT+PRODUCT_GETDETAIL+productID, {
 				`);
 			}
 			$(".product-desc__detail").append(res.data.MoTa);
+			weightProduct = res.data.KhoiLuong;
 		}else console.log(res.msg);
 	})
 	.catch(handlerError);
@@ -82,17 +76,17 @@ fetch(BASE_URL+API_RATING+RATING_GETBYPRODUCT+productID, {
 		'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
 	}
 })
-.then(statusRes)
+	.then(statusRes)
 	.then(json)
 	.then((res)=>{
 		if(res.status==1){
-			console.log(res.data);
-			renderRatingItem(res.data);
+			listRating = res.data;
+			renderRatingItem(listRating,-1);
 		}else console.log(res.msg);
 	})
 	.catch(handlerError);
 
-function renderRatingItem(data){
+function renderRatingItem(data,filter){
 	let fiveStar = 0;
 	let fourStar = 0;
 	let threeStar = 0;
@@ -102,7 +96,31 @@ function renderRatingItem(data){
 	let totalStar = 0;
 	let html = ``;
 	let sumStar = 0;
-	for(let item of data){
+	let list = [];
+	switch(filter){
+			case 5: 
+				list = data.filter((rating)=> rating.SoSao==5);
+				break
+			case 4: 
+				list = data.filter((rating)=> rating.SoSao==4);
+				break
+			case 3: 
+				list = data.filter((rating)=> rating.SoSao==3);
+				break
+			case 2: 
+				list = data.filter((rating)=> rating.SoSao==2);
+				break
+			case 1: 
+				list = data.filter((rating)=> rating.SoSao==1);
+				break
+			case 0: 
+				list = data.filter((rating)=> rating.SoSao==0);
+				break
+			case -1: 
+				list = [...data];
+				break
+	}
+	for(let item of list){
 		html += `
 			<div class="product-rating__item">
 				<div class="item__avatar">`;
@@ -142,6 +160,8 @@ function renderRatingItem(data){
 		html += `</div>
 			</div>
 		`;
+	}
+	for(let item of data){
 		switch (item.SoSao){
 			case 5: 
 				fiveStar++;
@@ -176,4 +196,118 @@ function renderRatingItem(data){
 	let avgStar = sumStar/data.length;
 	$(".overview__briefing--start").html(renderStarRating(avgStar));
 	$(".overview__briefing--score").html(roundingRating(avgStar));
+}
+
+$(".overview__filter-button").click(function(){
+	const btnId = $(this).attr('id');
+	switch(btnId){
+		case 'fiveStar': 
+				renderRatingItem(listRating,5);
+				break
+			case 'fourStar': 
+				renderRatingItem(listRating,4);
+				break
+			case 'threeStar': 
+				renderRatingItem(listRating,3);
+				break
+			case 'twoStar': 
+				renderRatingItem(listRating,2);
+				break
+			case 'oneStar': 
+				renderRatingItem(listRating,1);
+				break
+			case 'zeroStar': 
+				renderRatingItem(listRating,0);
+				break
+			case 'totalStar': 
+				renderRatingItem(listRating,-1);
+				break
+	}
+});
+
+fetch(BASE_URL+API_IMAGE+IMAGE_GETBYPRODUCT+productID, {
+	method: 'GET', 
+	credentials: 'include',
+	headers:{
+		'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+	}
+})
+.then(statusRes)
+	.then(json)
+	.then((res)=>{
+		if(res.status==1){
+			let listImg = res.data;
+			listImg.map((item, index)=>{
+				if(index==1){
+					$(".main-img").html(`
+					<img src="${item.DuongDan}" alt="loading">
+					`);
+				}else{
+					$(".list-img-item").append(`
+						<img src="${item.DuongDan}" alt="loading">
+					`);
+				}
+			});
+			$(".list-img-item img").click(function(){
+				$(".list-img-item img").each(function(){
+					$(this).removeClass('hover-img');
+				});
+				$(this).addClass('hover-img');
+				let imgPath = $(this).attr('src');
+				$('.main-img img').attr('src',imgPath);
+			});
+		}else console.log(res.msg);
+	})
+	.catch(handlerError);
+
+checkLogin((data)=>{
+	fetch(BASE_URL+API_ADDRESS+ADDRESS_GETBYCUSTOMER+data.id,{
+		method: 'GET', 
+		credentials: 'include',
+		headers:{
+			'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+		}
+	})
+		.then(statusRes)
+		.then(json)
+		.then((res)=>{
+			if(res.status==1){
+				const data = res.data;
+				let address = `${data.ward.name}, ${data.district.name}, ${data.province.name}`;
+				$(".info-address").html(address);
+				getTransportCost(data.district.id, data.ward.id, weightProduct,(costRes)=>{
+					if(costRes.code==200){
+						let cost = numberWithCommas(costRes.data.total)+'đ';
+						$(".info-transport-price").html(`
+							Phí vận chuyển: ${cost}
+						`);
+					}
+				});
+
+			}else console.log(res.msg);
+		})
+		.catch(handlerError);
+});
+
+
+
+function getTransportCost(to_district_id, to_ward_code, weight, handleTransportCost){
+	let query = `?from_district_id=${1484}&service_type_id=${2}`;
+	query += `&to_district_id=${to_district_id}&to_ward_code=${to_ward_code}`;
+	query += `&height=${HEIGHT_BOX}&length=${LENGHT_BOX}&weight=${WEIGHT_BOX+weight}`;
+	query += `&width${WIDTH_BOX}&insurance_value=0&coupon=`
+	fetch(API_GETCOSTTRANSPORT+query, {
+		method: 'GET',
+		headers:{
+			'Content-Type': 'application/json',
+			'Token': TOKEN,
+			'ShopId': SHOPID
+		}
+	})
+		.then(statusRes)
+		.then(json)
+		.then((res)=>{
+			handleTransportCost(res);
+		})
+		.catch(handlerError);
 }

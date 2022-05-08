@@ -134,7 +134,8 @@ Auth.checkLogin = (req, res) => {
                 msg: 'Chưa đăng nhập'
             });
         }else{
-			const checkToken = `select HoTen, AnhDaiDien from tb_khach_hang 
+			const checkToken = `select HoTen, AnhDaiDien, MaKH 
+			from tb_khach_hang 
 			where TaiKhoan=?`
             pool.query(checkToken,result.username,
             (err, data)=>{
@@ -150,7 +151,8 @@ Auth.checkLogin = (req, res) => {
 						status: 1,
 						msg: 'Đã đăng nhập',
 						fullName: data[0].HoTen,
-						avatar: data[0].AnhDaiDien
+						avatar: data[0].AnhDaiDien,
+						id: data[0].MaKH
 					});
 				else{
 					res({

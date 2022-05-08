@@ -168,7 +168,7 @@ validator('.auth-form__register',{
 	}
 })
 
-function checkLogin(){
+function checkLogin(isLogin){
 	fetch(BASE_URL+API_AUTH+AUTH_CHECKLOGIN,{
 		method: 'GET', 
 		credentials: 'include',
@@ -181,19 +181,14 @@ function checkLogin(){
 		.then(json)
 		.then(data => {
 			if(data.status == 1){
-				$("#header__item--register").addClass("hide");
-				$("#header__item--login").addClass("hide");
-				$("#header__item--user").removeClass("hide");
-				$("#header-full-name").html(data.fullName);
-				$('#modal-auth').modal('hide'); 
-				if(data.avatar){
-					$(".navbar__user--avatar").attr('src',data.avatar);
-				}else{
-					$(".navbar__user--avatar").attr('src','../shared/img/user_default.png');
-				}
+				return data
 			}else{
 				console.log(data.msg);
+				return false
 			}
+		})
+		.then((data)=> {
+			if(data) isLogin(data);
 		})
 		.catch(handlerError);
 }
@@ -221,7 +216,18 @@ function getAccessToken(resolve, reject){
 
 var promiseAccessToken = new Promise((resolve, reject)=>{
 	getAccessToken(resolve, reject);
-})
+});
 promiseAccessToken.then(()=>{
-	checkLogin();
+	checkLogin((data)=>{
+		$("#header__item--register").addClass("hide");
+		$("#header__item--login").addClass("hide");
+		$("#header__item--user").removeClass("hide");
+		$("#header-full-name").html(data.fullName);
+		$('#modal-auth').modal('hide'); 
+		if(data.avatar){
+			$(".navbar__user--avatar").attr('src',data.avatar);
+		}else{
+			$(".navbar__user--avatar").attr('src','../shared/img/user_default.png');
+		}
+	});
 });
