@@ -43,9 +43,13 @@ var ADDRESS_GETBYCUSTOMER = 'getByCustomer/';
 var LENGHT_BOX = 50;
 var WIDTH_BOX = 35;
 var HEIGHT_BOX = 15;
-var WEIGHT_BOX = 150;
+var WEIGHT_BOX = 120;
 
 //API GHN
 var TOKEN = '9bb1eb6a-be0c-11ec-ac64-422c37c6de1b';
 var SHOPID = '111713';
 var API_GETCOSTTRANSPORT = 'https://dev-online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/fee';
+var API_GETPROVINCE = 'https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/province';
+var API_GETDISTRICT = 'https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/district';
+var API_GETWARD = 'https://dev-online-gateway.ghn.vn/shiip/public-api/master-data/ward';
+

@@ -45,8 +45,6 @@ function roundingRating(totalStar){
 				rounding += 0.5;
 			}else if(totalStar >= 0.8){
 				rounding++;
-			}else {
-				html += `<i class="fa fa-star"></i>`;				
 			}
 		}
 		totalStar--;
@@ -108,16 +106,17 @@ $("#btn-login").click(function(){
 		.then(json)
 		.then(data => {
 			if(data.status == 1){
-				$("#header__item--register").addClass("hide");
-				$("#header__item--login").addClass("hide");
-				$("#header__item--user").removeClass("hide");
-				$("#header-full-name").html(data.fullName);
-				$('#modal-auth').modal('hide'); 
-				if(data.avatar){
-					$(".navbar__user--avatar").attr('src',data.avatar);
-				}else{
-					$(".navbar__user--avatar").attr('src','../shared/img/user_default.png');
-				}
+				// $("#header__item--register").addClass("hide");
+				// $("#header__item--login").addClass("hide");
+				// $("#header__item--user").removeClass("hide");
+				// $("#header-full-name").html(data.fullName);
+				// $('#modal-auth').modal('hide'); 
+				// if(data.avatar){
+				// 	$(".navbar__user--avatar").attr('src',data.avatar);
+				// }else{
+				// 	$(".navbar__user--avatar").attr('src','../shared/img/user_default.png');
+				// }
+				window.location.reload();
 			}else Toast.fire({
 				icon: 'error',
 				title: data.msg,
@@ -146,16 +145,17 @@ validator('.auth-form__register',{
 			.then(json)
 			.then(data => {
 				if(data.status == 1){
-					$("#header__item--register").addClass("hide");
-					$("#header__item--login").addClass("hide");
-					$("#header__item--user").removeClass("hide");
-					$("#header-full-name").html(data.fullName);
-					$('#modal-auth').modal('hide'); 
-					if(data.avatar){
-						$(".navbar__user--avatar").attr('src',data.avatar);
-					}else{
-						$(".navbar__user--avatar").attr('src','../shared/img/user_default.png');
-					}
+					// $("#header__item--register").addClass("hide");
+					// $("#header__item--login").addClass("hide");
+					// $("#header__item--user").removeClass("hide");
+					// $("#header-full-name").html(data.fullName);
+					// $('#modal-auth').modal('hide'); 
+					// if(data.avatar){
+					// 	$(".navbar__user--avatar").attr('src',data.avatar);
+					// }else{
+					// 	$(".navbar__user--avatar").attr('src','../shared/img/user_default.png');
+					// }
+					window.location.reload();
 				}else Toast.fire({
 					icon: 'error',
 					title: data.msg,
@@ -183,7 +183,6 @@ function checkLogin(isLogin){
 			if(data.status == 1){
 				return data
 			}else{
-				console.log(data.msg);
 				return false
 			}
 		})
@@ -231,3 +230,24 @@ promiseAccessToken.then(()=>{
 		}
 	});
 });
+
+function getTransportCost(to_district_id, to_ward_code, weight, handleTransportCost){
+	let query = `?from_district_id=${1484}&service_type_id=${3}`;
+	query += `&to_district_id=${to_district_id}&to_ward_code=${to_ward_code}`;
+	query += `&height=${HEIGHT_BOX}&length=${LENGHT_BOX}&weight=${WEIGHT_BOX+weight}`;
+	query += `&width${WIDTH_BOX}&insurance_value=0&coupon=`
+	fetch(API_GETCOSTTRANSPORT+query, {
+		method: 'GET',
+		headers:{
+			'Content-Type': 'application/json',
+			'Token': TOKEN,
+			'ShopId': SHOPID
+		}
+	})
+		.then(statusRes)
+		.then(json)
+		.then((res)=>{
+			handleTransportCost(res);
+		})
+		.catch(handlerError);
+}

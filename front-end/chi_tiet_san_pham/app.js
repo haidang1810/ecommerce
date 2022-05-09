@@ -1,5 +1,5 @@
 var listRating = [];
-const weightProduct = 80;
+var weightProduct = 0;
 $("#btn-pre").click(function(){
     $('.list-img-item').scrollLeft( $('.list-img-item').scrollLeft() - 86 );
 })
@@ -63,7 +63,17 @@ fetch(BASE_URL+API_PRODUCT+PRODUCT_GETDETAIL+productID, {
 					<span class="current-price">${res.data.Gia}</span>
 				`);
 			}
-			$(".product-desc__detail").append(res.data.MoTa);
+			
+			DecoupledEditor
+			.create( document.querySelector( '#editor_detail_product' ) )
+			.then( editor => {
+				editor.enableReadOnlyMode( 'editor' );
+				editor.setData(res.data.MoTa);
+			} )
+			.catch( error => {
+				console.error( error );
+			} );
+			
 			weightProduct = res.data.KhoiLuong;
 		}else console.log(res.msg);
 	})
@@ -81,7 +91,7 @@ fetch(BASE_URL+API_RATING+RATING_GETBYPRODUCT+productID, {
 	.then((res)=>{
 		if(res.status==1){
 			listRating = res.data;
-			renderRatingItem(listRating,-1);
+			if(listRating) renderRatingItem(listRating,-1);
 		}else console.log(res.msg);
 	})
 	.catch(handlerError);
@@ -193,9 +203,16 @@ function renderRatingItem(data,filter){
 	$("#oneStar").html(`1 Sao (${oneStar})`);
 	$("#zeroStar").html(`0 Sao (${zeroStar})`);
 	$("#totalStar").html(`Tất cả (${totalStar})`);
-	let avgStar = sumStar/data.length;
-	$(".overview__briefing--start").html(renderStarRating(avgStar));
-	$(".overview__briefing--score").html(roundingRating(avgStar));
+	if(data.length>0){
+		console.log(data);
+		let avgStar = sumStar/data.length;
+		$(".overview__briefing--start").html(renderStarRating(avgStar));
+		$(".overview__briefing--score").html(roundingRating(avgStar));
+	}else{
+		$(".overview__briefing--start").html(renderStarRating(0));
+		$(".overview__briefing--score").html(roundingRating(0));
+	}
+	
 }
 
 $(".overview__filter-button").click(function(){
@@ -275,6 +292,7 @@ checkLogin((data)=>{
 				const data = res.data;
 				let address = `${data.ward.name}, ${data.district.name}, ${data.province.name}`;
 				$(".info-address").html(address);
+				$(".label_current_address").html(address);
 				getTransportCost(data.district.id, data.ward.id, weightProduct,(costRes)=>{
 					if(costRes.code==200){
 						let cost = numberWithCommas(costRes.data.total)+'đ';
@@ -291,23 +309,139 @@ checkLogin((data)=>{
 
 
 
-function getTransportCost(to_district_id, to_ward_code, weight, handleTransportCost){
-	let query = `?from_district_id=${1484}&service_type_id=${2}`;
-	query += `&to_district_id=${to_district_id}&to_ward_code=${to_ward_code}`;
-	query += `&height=${HEIGHT_BOX}&length=${LENGHT_BOX}&weight=${WEIGHT_BOX+weight}`;
-	query += `&width${WIDTH_BOX}&insurance_value=0&coupon=`
-	fetch(API_GETCOSTTRANSPORT+query, {
-		method: 'GET',
-		headers:{
-			'Content-Type': 'application/json',
-			'Token': TOKEN,
-			'ShopId': SHOPID
-		}
+
+
+fetch(API_GETPROVINCE, {
+	method: 'GET',
+	headers:{
+		'Content-Type': 'application/json',
+		'Token': TOKEN
+	}
+})
+	.then(statusRes)
+	.then(json)
+	.then((res)=>{
+		if(res.code==200){
+			for(let item of res.data){
+				$("#select_province").append(`
+					<option value="${item.ProvinceID}" id="${item.ProvinceID}">
+						${item.ProvinceName}
+					</option>
+				`);
+			}
+			$('.selectpicker').selectpicker('refresh');
+		}else console.log(res.message);
 	})
-		.then(statusRes)
-		.then(json)
-		.then((res)=>{
-			handleTransportCost(res);
+	.catch(handlerError);
+
+$('#select_province').on('changed.bs.select', function (e) {
+	var selectedValue = $(e.currentTarget).val();
+	if(selectedValue!=-1){
+		fetch(API_GETDISTRICT+`?province_id=${selectedValue}`, {
+			method: 'GET',
+			headers:{
+				'Content-Type': 'application/json',
+				'Token': TOKEN
+			}
 		})
-		.catch(handlerError);
-}
+			.then(statusRes)
+			.then(json)
+			.then((res)=>{
+				if(res.code==200){
+					$("#select_district").html(`
+						<option value="-1">Chọn quận huyện</option>
+					`);
+					$("#select_ward").html(`
+						<option value="-1">Chọn phường xã</option>
+					`);
+					$('.selectpicker').selectpicker('refresh');
+					for(let item of res.data){
+						$("#select_district").removeAttr("disabled");
+						$("#select_district").append(`
+							<option value="${item.DistrictID}" id="${item.DistrictID}">
+							${item.DistrictName}
+							</option>
+						`);
+					}
+					$('.selectpicker').selectpicker('refresh');
+				}else console.log(res.message);
+			})
+			.catch(handlerError);
+	}else{
+		$("#select_district").html(`
+			<option value="-1">Chọn quận huyện</option>
+		`);
+		$("#select_ward").html(`
+			<option value="-1">Chọn phường xã</option>
+		`);
+		$('.selectpicker').selectpicker('refresh');
+		$('.selectpicker').selectpicker('refresh');
+		$('.selectpicker').selectpicker('refresh');
+	}
+});
+$('#select_district').on('changed.bs.select', function (e) {
+	var selectedValue = $(e.currentTarget).val();
+	if(selectedValue!=-1){
+		fetch(API_GETWARD+`?district_id=${selectedValue}`, {
+			method: 'GET',
+			headers:{
+				'Content-Type': 'application/json',
+				'Token': TOKEN
+			}
+		})
+			.then(statusRes)
+			.then(json)
+			.then((res)=>{
+				if(res.code==200){
+					$("#select_ward").html(`
+						<option value="-1">Chọn phường xã</option>
+					`);
+					$('.selectpicker').selectpicker('refresh');
+					for(let item of res.data){
+						$("#select_ward").removeAttr("disabled");
+						$("#select_ward").append(`
+							<option value="${item.WardCode}" id="${item.WardCode}">
+								${item.WardName}
+							</option>
+						`);
+					}
+					$('.selectpicker').selectpicker('refresh');
+				}else console.log(res.message);
+			})
+			.catch(handlerError);
+	}else{
+		$("#select_ward").html(`
+			<option value="-1">Chọn phường xã</option>
+		`);
+		$('.selectpicker').selectpicker('refresh');
+		$('.selectpicker').selectpicker('refresh');
+		$('.selectpicker').selectpicker('refresh');
+	}
+});
+
+$("#btn_select_addres").click(function(){
+	if($("#current_address").is(':checked')){
+		$('.modal').modal('hide');
+	}else{
+		const provinceID = $("#select_province").val();
+		const districtID = $("#select_district").val();
+		const wardID = $("#select_ward").val();
+		if(provinceID!=-1 && districtID!=-1 && wardID!=-1){
+			const provinceName = $("#select_province").children(`#${provinceID}`).html().trim();
+			const districtName = $("#select_district").children(`#${districtID}`).html().trim();
+			const wardName = $("#select_ward").children(`#${wardID}`).html().trim();
+			const address = `${wardName}, ${districtName}, ${provinceName}`;
+			$(".info-address").html(address);
+			$(".label_current_address").html(address);
+			getTransportCost(districtID, wardID, weightProduct, (res)=>{
+				if(res.code==200){
+					let cost = numberWithCommas(res.data.total)+'đ';
+					$(".info-transport-price").html(`
+						Phí vận chuyển: ${cost}
+					`);
+				}
+			})
+			$('.modal').modal('hide');
+		}
+	}
+});

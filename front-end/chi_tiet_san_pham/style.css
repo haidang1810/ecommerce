@@ -398,6 +398,7 @@ body {
 }
 .overview__briefing--start{
     font-size: 1.6rem;
+	color: #212529;
 }
 
 .overview__filter{
@@ -478,4 +479,3 @@ body {
     float: right;
     margin-right: 15px;
 }
-

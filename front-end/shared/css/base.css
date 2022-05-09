@@ -91,3 +91,6 @@ textarea {
 #logo-link {
 	cursor: pointer;
 }
+.bs-searchbox input {
+	font-size: 14px !important;
+}
