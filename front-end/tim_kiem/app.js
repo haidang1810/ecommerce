@@ -86,7 +86,7 @@ function renderProduct(list){
 	let html= ``;
 	list.map((item, index)=>{
 		if(index>=start && index<end){
-			const urlProduct = BASE_URL_CLIENT+'/chi_tiet_san_pham/?sanpham='+item.MaSP;
+			const urlProduct = BASE_URL_CLIENT+'chi_tiet_san_pham/?sanpham='+item.MaSP;
 			html += `
 			<div class="card">
 				<a href="${urlProduct}" class="card-link">

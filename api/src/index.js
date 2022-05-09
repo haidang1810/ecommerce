@@ -6,6 +6,8 @@ const port = process.env.PORT || 3000
 const cookieParser = require('cookie-parser');
 const route = require('./routes');
 const cors = require('cors');
+const db = require('./app/config/mongooseDB');
+db.connect();
 app.use(express.urlencoded());
 app.use(express.json());
 app.use(cookieParser());

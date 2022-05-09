@@ -226,7 +226,7 @@ promiseAccessToken.then(()=>{
 		if(data.avatar){
 			$(".navbar__user--avatar").attr('src',data.avatar);
 		}else{
-			$(".navbar__user--avatar").attr('src','../shared/img/user_default.png');
+			$(".navbar__user--avatar").attr('src','https://res.cloudinary.com/jwb/image/upload/v1652092431/images_default/user_default_dpsjgs.png');
 		}
 	});
 });

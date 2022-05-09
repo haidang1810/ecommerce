@@ -924,24 +924,7 @@ var product_list = [
 		NgayDang: '03/05/2022'
 	},	
 ];
-$("#btn-show-pass-login").click(function(){
-    if($("#input-password-login").attr("type") == "password"){
-        $("#btn-show-pass-login").html(`<i class="fa-solid fa-eye-slash"></i>`);
-        $("#input-password-login").attr("type","text");
-    }else {
-        $("#btn-show-pass-login").html(`<i class="fa-solid fa-eye"></i>`);
-        $("#input-password-login").attr("type","password");
-    }
-})
-$("#btn-show-pass-register").click(function(){
-    if($("#input-password-register").attr("type") == "password"){
-        $("#btn-show-pass-register").html(`<i class="fa-solid fa-eye-slash"></i>`);
-        $("#input-password-register").attr("type","text");
-    }else {
-        $("#btn-show-pass-register").html(`<i class="fa-solid fa-eye"></i>`);
-        $("#input-password-register").attr("type","password");
-    }
-})
+
 $('#input-register-phone').on('keypress', function (event) {
     var charCode = !event.charCode ? event.which : event.charCode;
     if( charCode == 46 || charCode == 69 || charCode == 101 
@@ -1005,7 +988,7 @@ function renderProduct(list){
 	let html= ``;
 	list.map((item, index)=>{
 		if(index>=start && index<end){
-			const urlProduct = BASE_URL_CLIENT+'/chi_tiet_san_pham/?sanpham='+item.MaSP;
+			const urlProduct = BASE_URL_CLIENT+'chi_tiet_san_pham/?sanpham='+item.MaSP;
 			html += `
 			<div class="card">
 				<a href="${urlProduct}" class="card-link">

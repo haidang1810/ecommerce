@@ -1,12 +1,12 @@
 var BASE_URL = "http://localhost:3000/";
-var BASE_URL_CLIENT = "http://localhost:8080/ecommerce/front-end";
+var BASE_URL_CLIENT = "http://localhost:8080/ecommerce/front-end/";
 // API Authentication 
 var API_AUTH = "auth/";
 
 var AUTH_LOGIN = 'login/';
 var AUTH_CHECKLOGIN = 'checkLogin/';
 var AUTH_REFRESHTOKEN = 'refreshToken/';
-
+var AUTH_LOGOUT = 'logout/'
 // API user
 var API_USER = 'users/';
 
@@ -39,6 +39,16 @@ var API_ADDRESS = 'addresses/';
 
 var ADDRESS_GETBYCUSTOMER = 'getByCustomer/';
 
+//API Cart
+var API_CART = 'carts/';
+
+var CART_GETBYUSER = 'getByUser/';
+
+
+// API Notification
+var API_NOTIFICATION = 'notifications/';
+
+var NOTI_GETBYUSER = 'getByUser/';
 
 var LENGHT_BOX = 50;
 var WIDTH_BOX = 35;

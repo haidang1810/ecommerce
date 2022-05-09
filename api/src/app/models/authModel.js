@@ -152,7 +152,8 @@ Auth.checkLogin = (req, res) => {
 						msg: 'Đã đăng nhập',
 						fullName: data[0].HoTen,
 						avatar: data[0].AnhDaiDien,
-						id: data[0].MaKH
+						id: data[0].MaKH,
+						user: result.username
 					});
 				else{
 					res({
@@ -166,5 +167,9 @@ Auth.checkLogin = (req, res) => {
         }
     })
 }
-
+Auth.logout = (req, res) => {
+	res.clearCookie("refreshToken");
+	res.clearCookie("accessToken");
+	res.end();
+}
 module.exports = Auth;

@@ -1,7 +1,5 @@
-const db = require('../config/mongooseDB');
 const { default: mongoose } = require("mongoose");
 const Schema = mongoose.Schema;
-db.connect();
 
 const Address = new Schema({
     address: {type: String},

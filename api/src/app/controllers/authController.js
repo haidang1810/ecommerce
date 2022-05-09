@@ -29,5 +29,8 @@ class AuthenticationController {
             res.json(response);
         });
     }
+    logout(req,res){
+        AuthModel.logout(req,res);
+    }
 }
 module.exports = new AuthenticationController();

@@ -53,14 +53,14 @@ fetch(BASE_URL+API_PRODUCT+PRODUCT_GETDETAIL+productID, {
 				const discount = res.data.ChietKhau;
 				const newPrice = price - (price * discount / 100);
 				const priceInfo = `
-					<span class="old-price">${price}</span>
-					<span class="current-price">${newPrice}</span>
+					<span class="old-price">${numberWithCommas(price)}đ</span>
+					<span class="current-price">${numberWithCommas(newPrice)}đ</span>
 					<div class="info-discount">Giảm ${discount}%</div>
 				`;
 				$(".info-price").html(priceInfo);
 			}else{
 				$(".info-price").html(`
-					<span class="current-price">${res.data.Gia}</span>
+					<span class="current-price">${numberWithCommas(res.data.Gia)}đ</span>
 				`);
 			}
 			
@@ -204,7 +204,6 @@ function renderRatingItem(data,filter){
 	$("#zeroStar").html(`0 Sao (${zeroStar})`);
 	$("#totalStar").html(`Tất cả (${totalStar})`);
 	if(data.length>0){
-		console.log(data);
 		let avgStar = sumStar/data.length;
 		$(".overview__briefing--start").html(renderStarRating(avgStar));
 		$(".overview__briefing--score").html(roundingRating(avgStar));

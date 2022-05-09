@@ -5,6 +5,8 @@ const categoriesRouter = require('./categories');
 const ratingsRouter = require('./ratings');
 const imagesRouter = require('./images');
 const addressesRouter = require('./addresses');
+const cartsRouter = require('./carts');
+const notificationsRouter = require('./notifications');
 function route(app){
     app.use('/users', usersRouter);
     app.use('/auth', authRouter);
@@ -13,5 +15,7 @@ function route(app){
     app.use('/ratings', ratingsRouter);
     app.use('/images', imagesRouter);
     app.use('/addresses', addressesRouter);
+    app.use('/carts', cartsRouter);
+    app.use('/notifications', notificationsRouter);
 }
 module.exports = route;
