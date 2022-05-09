@@ -5,6 +5,7 @@ const Product = function (product) {
     this.LoaiSP = product.LoaiSP;
     this.TenSP = product.TenSP;
     this.MoTa = product.MoTa;
+    this.KhoiLuong = product.KhoiLuong;
     this.Gia = product.Gia;
     this.SoLuong = product.SoLuong;
     this.AnhBia = product.AnhBia;
@@ -85,7 +86,7 @@ Product.getByKeyword = (req, res) => {
 Product.getDetail = (req, res) => {
 	const productID = req.params.id;
 	const getDetailProduct = `select tb_san_pham.MaSP, tb_loai_san_pham.TenLoai, TenSP, 
-	tb_san_pham.Gia, tb_san_pham.SoLuong, tb_san_pham.MoTa, tb_san_pham.KhoiLuong
+	tb_san_pham.Gia, tb_san_pham.SoLuong, tb_san_pham.MoTa, tb_san_pham.KhoiLuong,
 	AnhBia, AVG(SoSao) as DanhGia, tb_dot_khuyen_mai.ChietKhau, 
 	tb_san_pham.NgayDang, tb_chi_tiet_don.SoLuong as DaBan, COUNT(tb_danh_gia.TaiKhoan) as LuotDanhGia
 		from tb_san_pham
