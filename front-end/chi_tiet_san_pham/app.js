@@ -96,7 +96,13 @@ fetch(BASE_URL+API_RATING+RATING_GETBYPRODUCT+productID, {
 	})
 	.catch(handlerError);
 
+let perPage = 6;
+let currentPage = 1;
+let start = (currentPage-1) * perPage;
+let end = currentPage * perPage;
+
 function renderRatingItem(data,filter){
+	
 	let fiveStar = 0;
 	let fourStar = 0;
 	let threeStar = 0;
@@ -130,47 +136,51 @@ function renderRatingItem(data,filter){
 				list = [...data];
 				break
 	}
-	for(let item of list){
-		html += `
-			<div class="product-rating__item">
-				<div class="item__avatar">`;
-					if(item.AnhDaiDien){
-						html += `
-							<img src="${item.AnhDaiDien}" 
-							class="item__avatar-img" alt="loading">
-						`
-					}else{
-						html += `
-							<img src="../shared/img/user_default.png" 
-							class="item__avatar-img" alt="loading">
-						`;
-					}
-		html +=	`</div>
-				<div class="item__main">
-					<div class="item__name">
-						${item.HoTen}
-					</div>
-					<div class="item__rating">`;
-		html += renderStarRating(item.SoSao);
-		html += `	</div>
-					<div class="item__time">2022-04-18 07:54</div>
-					<div class="item__massage">
-						${item.NoiDung}
-					</div>`;
-		if(item.PhanHoi){
+	
+	let totalPage = Math.ceil(list.length / perPage);
+	list.map((item, index)=>{
+		if(index>=start && index<end){
 			html += `
-				<div class="item__reply">
-					<p class="item__reply-title">Phản Hồi Của Người Bán</p>
-					<p class="item__reply-massage">
-						${item.PhanHoi}
-					</p>
+				<div class="product-rating__item">
+					<div class="item__avatar">`;
+						if(item.AnhDaiDien){
+							html += `
+								<img src="${item.AnhDaiDien}" 
+								class="item__avatar-img" alt="loading">
+							`
+						}else{
+							html += `
+								<img src="../shared/img/user_default.png" 
+								class="item__avatar-img" alt="loading">
+							`;
+						}
+			html +=	`</div>
+					<div class="item__main">
+						<div class="item__name">
+							${item.HoTen}
+						</div>
+						<div class="item__rating">`;
+			html += renderStarRating(item.SoSao);
+			html += `	</div>
+						<div class="item__time">2022-04-18 07:54</div>
+						<div class="item__massage">
+							${item.NoiDung}
+						</div>`;
+			if(item.PhanHoi){
+				html += `
+					<div class="item__reply">
+						<p class="item__reply-title">Phản Hồi Của Người Bán</p>
+						<p class="item__reply-massage">
+							${item.PhanHoi}
+						</p>
+					</div>
+				`;
+			}
+			html += `</div>
 				</div>
 			`;
 		}
-		html += `</div>
-			</div>
-		`;
-	}
+	});
 	for(let item of data){
 		switch (item.SoSao){
 			case 5: 
@@ -211,9 +221,284 @@ function renderRatingItem(data,filter){
 		$(".overview__briefing--start").html(renderStarRating(0));
 		$(".overview__briefing--score").html(roundingRating(0));
 	}
-	
+	renderPagingBtn(totalPage,list,filter);
 }
-
+function renderPagingBtn(totalPage,listRatingRender,filter){
+	
+	let html = `
+	<div class="pagination rating-pagination">
+	<button class="pagination__btn pagination__btn--first">
+		<i class="fa-solid fa-angles-left"></i>
+	</button>
+	<button class="pagination__btn pagination__btn--prev">
+		<i class="fa-solid fa-angle-left"></i>
+	</button>
+	`;
+	if(totalPage - currentPage < 7 && totalPage - currentPage >0){
+		console.log("1.1");
+		if(currentPage>=totalPage-6 ){
+			console.log("1.2");
+			if(totalPage>6){
+				for(let i=totalPage-6; i<=totalPage; i++){
+					if(i==currentPage)
+						html += `
+							<button class="pagination__btn 
+							pagination__btn--page pagination__btn--number
+							pagination__btn--active">
+								${i}
+							</button>
+						`;
+					else html += `
+							<button class="pagination__btn 
+							pagination__btn--page pagination__btn--number">
+								${i}
+							</button>
+						`;
+				}
+			}else{
+				for(let i=1; i<=totalPage; i++){
+					if(i==currentPage)
+						html += `
+							<button class="pagination__btn 
+							pagination__btn--page pagination__btn--number
+							pagination__btn--active">
+								${i}
+							</button>
+						`;
+					else html += `
+							<button class="pagination__btn 
+							pagination__btn--page pagination__btn--number">
+								${i}
+							</button>
+						`;
+				}
+			}
+			
+		}else if(totalPage > 3){
+			console.log("1.3");
+			for(let i=1; i<=3; i++){
+				if(i==currentPage)
+					html += `
+						<button class="pagination__btn 
+						pagination__btn--page pagination__btn--number
+						pagination__btn--active">
+							${i}
+						</button>
+					`;
+				else html += `
+						<button class="pagination__btn 
+						pagination__btn--page pagination__btn--number">
+							${i}
+						</button>
+					`;
+			}
+			html += `
+			<button class="pagination__btn pagination__btn--page">
+				...
+			</button>`;
+		}else{
+			console.log("1.4");
+			for(let i=currentPage; i<=totalPage; i++){
+				if(i==currentPage)
+					html += `
+						<button class="pagination__btn 
+						pagination__btn--page pagination__btn--number
+						pagination__btn--active">
+							${i}
+						</button>
+					`;
+				else html += `
+						<button class="pagination__btn 
+						pagination__btn--page pagination__btn--number">
+							${i}
+						</button>
+					`;
+			}
+		}
+		if(totalPage>=7 && currentPage < totalPage-6 ){
+			console.log("1.5");
+			for(let i=totalPage-3; i<=totalPage; i++){
+				if(i==currentPage)
+					html += `
+						<button class="pagination__btn 
+						pagination__btn--page pagination__btn--number
+						pagination__btn--active">
+							${i}
+						</button>
+					`;
+				else html += `
+						<button class="pagination__btn 
+						pagination__btn--page pagination__btn--number">
+							${i}
+						</button>
+					`;
+			}
+		}else if(totalPage<7 && currentPage < totalPage-6){
+			console.log("1.6");
+			for(let i=1; i<=totalPage; i++){
+				if(i==currentPage)
+					html += `
+						<button class="pagination__btn 
+						pagination__btn--page pagination__btn--number
+						pagination__btn--active">
+							${i}
+						</button>
+					`;
+				else html += `
+						<button class="pagination__btn 
+						pagination__btn--page pagination__btn--number">
+							${i}
+						</button>
+					`;
+			}
+		}
+	}else {
+		console.log("2.0");
+		if(totalPage>=3){
+			console.log("2.1");
+			if(currentPage<= totalPage-7){
+				console.log("2.2");
+				for(let i=currentPage; i<=currentPage+2; i++){
+					if(i==currentPage)
+						html += `
+							<button class="pagination__btn 
+							pagination__btn--page pagination__btn--number
+							pagination__btn--active">
+								${i}
+							</button>
+						`;
+					else html += `
+							<button class="pagination__btn 
+							pagination__btn--page pagination__btn--number">
+								${i}
+							</button>
+						`;
+				}
+				html += `
+					<button class="pagination__btn pagination__btn--page">
+						...
+					</button>
+				`;
+				for(let i=totalPage-2; i<=totalPage; i++){
+					if(i==currentPage)
+						html += `
+							<button class="pagination__btn 
+							pagination__btn--page pagination__btn--number
+							pagination__btn--active">
+								${i}
+							</button>
+						`;
+					else html += `
+							<button class="pagination__btn 
+							pagination__btn--page pagination__btn--number">
+								${i}
+							</button>
+						`;
+				}
+			}else{
+				console.log("2.3");
+				if(totalPage>6){
+					for(let i=totalPage-6; i<=totalPage; i++){
+						if(i==currentPage)
+							html += `
+								<button class="pagination__btn 
+								pagination__btn--page pagination__btn--number
+								pagination__btn--active">
+									${i}
+								</button>
+							`;
+						else html += `
+								<button class="pagination__btn 
+								pagination__btn--page pagination__btn--number">
+									${i}
+								</button>
+							`;
+					}
+				}else{
+					for(let i=1; i<=totalPage; i++){
+						if(i==currentPage)
+							html += `
+								<button class="pagination__btn 
+								pagination__btn--page pagination__btn--number
+								pagination__btn--active">
+									${i}
+								</button>
+							`;
+						else html += `
+								<button class="pagination__btn 
+								pagination__btn--page pagination__btn--number">
+									${i}
+								</button>
+							`;
+					}
+				}
+			}
+			
+		}else {
+			console.log("2.4");
+			for(let i=1; i<=totalPage; i++){
+				if(i==currentPage)
+					html += `
+						<button class="pagination__btn 
+						pagination__btn--page pagination__btn--number
+						pagination__btn--active">
+							${i}
+						</button>
+					`;
+				else html += `
+						<button class="pagination__btn 
+						pagination__btn--page pagination__btn--number">
+							${i}
+						</button>
+					`;
+			}
+		}
+	}
+	html += `
+		<button class="pagination__btn pagination__btn--next">
+			<i class="fa-solid fa-angle-right"></i>
+		</button>
+		<button class="pagination__btn pagination__btn--last">
+			<i class="fa-solid fa-angles-right"></i>
+		</button>
+		</div>
+	`;
+	$(".product-rating__list").append(html);
+	$(".pagination__btn--next").click(function(){
+		currentPage++;
+		if(currentPage > totalPage)
+			currentPage = totalPage;
+		start = (currentPage-1) * perPage;
+		end = currentPage * perPage;
+		renderRatingItem(listRatingRender,filter)
+	});
+	$(".pagination__btn--prev").click(function(){
+		currentPage--;
+		if(currentPage <= 1)
+			currentPage = 1;
+		start = (currentPage-1) * perPage;
+		end = currentPage * perPage;
+		renderRatingItem(listRatingRender,filter)
+	});
+	$(".pagination__btn--number").click(function(){
+		currentPage = Number($(this).html());
+		start = (currentPage-1) * perPage;
+		end = currentPage * perPage;
+		renderRatingItem(listRatingRender,filter)
+	});
+	$(".pagination__btn--first").click(function(){
+		currentPage=1;
+		start = (currentPage-1) * perPage;
+		end = currentPage * perPage;
+		renderRatingItem(listRatingRender,filter)
+	});
+	$(".pagination__btn--last").click(function(){
+		currentPage=totalPage;
+		start = (currentPage-1) * perPage;
+		end = currentPage * perPage;
+		renderRatingItem(listRatingRender,filter)
+	});
+}
 $(".overview__filter-button").click(function(){
 	const btnId = $(this).attr('id');
 	switch(btnId){
