@@ -15,7 +15,7 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 $("#logo-link").click(function(){
-	window.location.href = BASE_URL_CLIENT+'/';
+	window.location.href = BASE_URL_CLIENT;
 })
 function renderStarRating(totalStar){
 	let html = ``;
