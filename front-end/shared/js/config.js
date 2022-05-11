@@ -1,4 +1,4 @@
-var BASE_URL = "http://localhost:80/";
+var BASE_URL = "http://localhost:3000/";
 var BASE_URL_CLIENT = "http://localhost:8080/ecommerce/front-end/";
 // API Authentication 
 var API_AUTH = "auth/";

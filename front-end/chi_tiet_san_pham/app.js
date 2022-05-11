@@ -42,12 +42,15 @@ fetch(BASE_URL+API_PRODUCT+PRODUCT_GETDETAIL+productID, {
 	.then(json)
 	.then((res)=>{
 		if(res.status==1){
+			console.log(res.data);
 			$(".info-name").html(res.data.TenSP);
 			$(".info-rating-total").html(res.data.DanhGia);
 			const ratingIcon = renderStarRating(res.data.DanhGia);
 			$(".info-rating").append(ratingIcon);
 			$(".count-rating-number").html(res.data.LuotDanhGia);
-			$(".count-sold-number").html(res.data.DaBan);
+			res.data.LuotDanhGia ? $(".count-rating-number").html(res.data.LuotDanhGia) : $(".count-rating-number").html('0');
+			res.data.DaBan ? $(".count-sold-number").html(res.data.DaBan) : $(".count-sold-number").html('0');
+			$(".amount-total").html(`${res.data.SoLuong} sản phẩm sẳn có`);
 			if(res.data.ChietKhau){
 				const price = res.data.Gia;
 				const discount = res.data.ChietKhau;
@@ -235,9 +238,7 @@ function renderPagingBtn(totalPage,listRatingRender,filter){
 	</button>
 	`;
 	if(totalPage - currentPage < 7 && totalPage - currentPage >0){
-		console.log("1.1");
 		if(currentPage>=totalPage-6 ){
-			console.log("1.2");
 			if(totalPage>6){
 				for(let i=totalPage-6; i<=totalPage; i++){
 					if(i==currentPage)
@@ -256,6 +257,7 @@ function renderPagingBtn(totalPage,listRatingRender,filter){
 						`;
 				}
 			}else{
+				console.log("4");
 				for(let i=1; i<=totalPage; i++){
 					if(i==currentPage)
 						html += `
@@ -275,7 +277,6 @@ function renderPagingBtn(totalPage,listRatingRender,filter){
 			}
 			
 		}else if(totalPage > 3){
-			console.log("1.3");
 			for(let i=1; i<=3; i++){
 				if(i==currentPage)
 					html += `
@@ -297,7 +298,6 @@ function renderPagingBtn(totalPage,listRatingRender,filter){
 				...
 			</button>`;
 		}else{
-			console.log("1.4");
 			for(let i=currentPage; i<=totalPage; i++){
 				if(i==currentPage)
 					html += `
@@ -316,7 +316,6 @@ function renderPagingBtn(totalPage,listRatingRender,filter){
 			}
 		}
 		if(totalPage>=7 && currentPage < totalPage-6 ){
-			console.log("1.5");
 			for(let i=totalPage-3; i<=totalPage; i++){
 				if(i==currentPage)
 					html += `
@@ -334,7 +333,6 @@ function renderPagingBtn(totalPage,listRatingRender,filter){
 					`;
 			}
 		}else if(totalPage<7 && currentPage < totalPage-6){
-			console.log("1.6");
 			for(let i=1; i<=totalPage; i++){
 				if(i==currentPage)
 					html += `
@@ -353,11 +351,8 @@ function renderPagingBtn(totalPage,listRatingRender,filter){
 			}
 		}
 	}else {
-		console.log("2.0");
 		if(totalPage>=3){
-			console.log("2.1");
 			if(currentPage<= totalPage-7){
-				console.log("2.2");
 				for(let i=currentPage; i<=currentPage+2; i++){
 					if(i==currentPage)
 						html += `
@@ -396,7 +391,6 @@ function renderPagingBtn(totalPage,listRatingRender,filter){
 						`;
 				}
 			}else{
-				console.log("2.3");
 				if(totalPage>6){
 					for(let i=totalPage-6; i<=totalPage; i++){
 						if(i==currentPage)
@@ -435,7 +429,6 @@ function renderPagingBtn(totalPage,listRatingRender,filter){
 			}
 			
 		}else {
-			console.log("2.4");
 			for(let i=1; i<=totalPage; i++){
 				if(i==currentPage)
 					html += `
@@ -562,33 +555,34 @@ fetch(BASE_URL+API_IMAGE+IMAGE_GETBYPRODUCT+productID, {
 	.catch(handlerError);
 
 checkLogin((data)=>{
-	fetch(BASE_URL+API_ADDRESS+ADDRESS_GETBYCUSTOMER+data.id,{
-		method: 'GET', 
-		credentials: 'include',
-		headers:{
-			'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-		}
-	})
-		.then(statusRes)
-		.then(json)
-		.then((res)=>{
-			if(res.status==1){
-				const data = res.data;
-				let address = `${data.ward.name}, ${data.district.name}, ${data.province.name}`;
-				$(".info-address").html(address);
-				$(".label_current_address").html(address);
-				getTransportCost(data.district.id, data.ward.id, weightProduct,(costRes)=>{
-					if(costRes.code==200){
-						let cost = numberWithCommas(costRes.data.total)+'đ';
-						$(".info-transport-price").html(`
-							Phí vận chuyển: ${cost}
-						`);
-					}
-				});
-
-			}else console.log(res.msg);
+	if(data)
+		fetch(BASE_URL+API_ADDRESS+ADDRESS_GETBYCUSTOMER+data.id,{
+			method: 'GET', 
+			credentials: 'include',
+			headers:{
+				'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+			}
 		})
-		.catch(handlerError);
+			.then(statusRes)
+			.then(json)
+			.then((res)=>{
+				if(res.status==1){
+					const data = res.data;
+					let address = `${data.ward.name}, ${data.district.name}, ${data.province.name}`;
+					$(".info-address").html(address);
+					$(".label_current_address").html(address);
+					getTransportCost(data.district.id, data.ward.id, weightProduct,(costRes)=>{
+						if(costRes.code==200){
+							let cost = numberWithCommas(costRes.data.total)+'đ';
+							$(".info-transport-price").html(`
+								Phí vận chuyển: ${cost}
+							`);
+						}
+					});
+
+				}else console.log(res.msg);
+			})
+			.catch(handlerError);
 });
 
 

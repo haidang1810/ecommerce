@@ -187,7 +187,7 @@ function checkLogin(isLogin){
 			}
 		})
 		.then((data)=> {
-			if(data) isLogin(data);
+			isLogin(data); 
 		})
 		.catch(handlerError);
 }
@@ -218,15 +218,17 @@ var promiseAccessToken = new Promise((resolve, reject)=>{
 });
 promiseAccessToken.then(()=>{
 	checkLogin((data)=>{
-		$("#header__item--register").addClass("hide");
-		$("#header__item--login").addClass("hide");
-		$("#header__item--user").removeClass("hide");
-		$("#header-full-name").html(data.fullName);
-		$('#modal-auth').modal('hide'); 
-		if(data.avatar){
-			$(".navbar__user--avatar").attr('src',data.avatar);
-		}else{
-			$(".navbar__user--avatar").attr('src','https://res.cloudinary.com/jwb/image/upload/v1652092431/images_default/user_default_dpsjgs.png');
+		if(data){
+			$("#header__item--register").addClass("hide");
+			$("#header__item--login").addClass("hide");
+			$("#header__item--user").removeClass("hide");
+			$("#header-full-name").html(data.fullName);
+			$('#modal-auth').modal('hide'); 
+			if(data.avatar){
+				$(".navbar__user--avatar").attr('src',data.avatar);
+			}else{
+				$(".navbar__user--avatar").attr('src','https://res.cloudinary.com/jwb/image/upload/v1652092431/images_default/user_default_dpsjgs.png');
+			}
 		}
 	});
 });

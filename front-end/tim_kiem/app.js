@@ -148,21 +148,40 @@ function renderPagingBtn(totalPage,listProductRender){
 	`;
 	if(totalPage - currentPage < 7 && totalPage - currentPage >0){
 		if(currentPage>=totalPage-6 ){
-			for(let i=totalPage-6; i<=totalPage; i++){
-				if(i==currentPage)
-					html += `
-						<button class="pagination__btn 
-						pagination__btn--page pagination__btn--number
-						pagination__btn--active">
-							${i}
-						</button>
-					`;
-				else html += `
-						<button class="pagination__btn 
-						pagination__btn--page pagination__btn--number">
-							${i}
-						</button>
-					`;
+			if(totalPage>6){
+				for(let i=totalPage-6; i<=totalPage; i++){
+					if(i==currentPage)
+						html += `
+							<button class="pagination__btn 
+							pagination__btn--page pagination__btn--number
+							pagination__btn--active">
+								${i}
+							</button>
+						`;
+					else html += `
+							<button class="pagination__btn 
+							pagination__btn--page pagination__btn--number">
+								${i}
+							</button>
+						`;
+				}
+			}else{
+				for(let i=1; i<=totalPage; i++){
+					if(i==currentPage)
+						html += `
+							<button class="pagination__btn 
+							pagination__btn--page pagination__btn--number
+							pagination__btn--active">
+								${i}
+							</button>
+						`;
+					else html += `
+							<button class="pagination__btn 
+							pagination__btn--page pagination__btn--number">
+								${i}
+							</button>
+						`;
+				}
 			}
 		}else if(totalPage > 3){
 			for(let i=1; i<=3; i++){
@@ -279,21 +298,40 @@ function renderPagingBtn(totalPage,listProductRender){
 						`;
 				}
 			}else{
-				for(let i=currentPage-6; i<=totalPage; i++){
-					if(i==currentPage)
-						html += `
-							<button class="pagination__btn 
-							pagination__btn--page pagination__btn--number
-							pagination__btn--active">
-								${i}
-							</button>
-						`;
-					else html += `
-							<button class="pagination__btn 
-							pagination__btn--page pagination__btn--number">
-								${i}
-							</button>
-						`;
+				if(totalPage>6){
+					for(let i=totalPage-6; i<=totalPage; i++){
+						if(i==currentPage)
+							html += `
+								<button class="pagination__btn 
+								pagination__btn--page pagination__btn--number
+								pagination__btn--active">
+									${i}
+								</button>
+							`;
+						else html += `
+								<button class="pagination__btn 
+								pagination__btn--page pagination__btn--number">
+									${i}
+								</button>
+							`;
+					}
+				}else{
+					for(let i=1; i<=totalPage; i++){
+						if(i==currentPage)
+							html += `
+								<button class="pagination__btn 
+								pagination__btn--page pagination__btn--number
+								pagination__btn--active">
+									${i}
+								</button>
+							`;
+						else html += `
+								<button class="pagination__btn 
+								pagination__btn--page pagination__btn--number">
+									${i}
+								</button>
+							`;
+					}
 				}
 			}
 			

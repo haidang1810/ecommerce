@@ -1,0 +1,34 @@
+body {
+    background-color: var(--background-hover-color);
+}
+
+.main-content{
+	margin-top: 20px;
+}
+.menu-bar{
+	font-size: 1.8rem;
+}
+.menu-bar__item{
+	list-style-type: none;
+	padding: 5px 0;
+	cursor: pointer;
+	display: block;
+	width: 100%;
+	position: relative;
+}
+.menu-bar__link{
+	color: var(--text-color);
+	display: block;
+}
+.menu-bar__link:hover {
+	color: var(--red-color);
+}
+.menu-bar__icon{
+	color: #4979C3;
+	margin-right: 5px;
+	display: inline-block;
+	width: 20px;
+}
+.menu-bar__icon--orange {
+	color: var(--orange-color)
+}

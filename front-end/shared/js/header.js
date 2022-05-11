@@ -1,7 +1,7 @@
 $("#btn-search").click(function(){
 	const keyword = $(".header__input").val();
 	$(".header__input").val("");
-	window.location.href = BASE_URL_CLIENT+`/tim_kiem/?keyword=${keyword}`;
+	window.location.href = BASE_URL_CLIENT+`tim_kiem/?keyword=${keyword}`;
 });
 $("#btn-show-pass-login").click(function(){
     if($("#input-password-login").attr("type") == "password"){
@@ -124,9 +124,11 @@ function getNotification(userName){
 	.catch(handlerError);
 }
 checkLogin((res)=>{
-	const userName = res.user;
-	getCart(userName);
-	getNotification(userName);
+	if(res){
+		const userName = res.user;
+		getCart(userName);
+		getNotification(userName);
+	}
 })
 
 $("#btn_logout").click(function(){
