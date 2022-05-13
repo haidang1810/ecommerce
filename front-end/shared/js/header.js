@@ -144,3 +144,4 @@ $("#btn_logout").click(function(){
 			window.location.reload();
 		})	
 })
+

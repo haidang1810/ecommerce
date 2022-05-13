@@ -19,5 +19,10 @@ class UsersController {
             res.json(response);
         })
     }
+    getVerifyCode(req,res){
+        UsersModel.getVerifyCode(req,function(response){
+            res.json(response);
+        })
+    }
 }
 module.exports = new UsersController();

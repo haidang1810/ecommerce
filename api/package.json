@@ -25,7 +25,9 @@
     "express": "^4.17.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.2",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "node-schedule": "^2.1.0",
+    "twilio": "^3.77.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

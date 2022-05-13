@@ -11,6 +11,7 @@ var AUTH_LOGOUT = 'logout/'
 var API_USER = 'users/';
 
 var USER_ADD = 'add/'
+var USER_VERIFYCODE = 'getVerifyCode/';
 
 // API category
 var API_CATEGORY = "categories/";

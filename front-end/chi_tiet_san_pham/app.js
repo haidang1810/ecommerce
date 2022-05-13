@@ -153,7 +153,7 @@ function renderRatingItem(data,filter){
 							`
 						}else{
 							html += `
-								<img src="../shared/img/user_default.png" 
+								<img src="https://res.cloudinary.com/jwb/image/upload/v1652092431/images_default/user_default_dpsjgs.png" 
 								class="item__avatar-img" alt="loading">
 							`;
 						}

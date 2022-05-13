@@ -168,8 +168,11 @@ Auth.checkLogin = (req, res) => {
     })
 }
 Auth.logout = (req, res) => {
+	const refreshToken = req.cookies.refreshToken;
 	res.clearCookie("refreshToken");
 	res.clearCookie("accessToken");
+	const deleteRefreshToken = "update tb_nguoi_dung set RefreshToken='' where RefreshToken=?";
+	pool.query(deleteRefreshToken,refreshToken);
 	res.end();
 }
 module.exports = Auth;

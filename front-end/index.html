@@ -268,12 +268,22 @@
 										rules='required'>
 										<span class="message-err"></span>
                                     </div>
-                                    <div class="auth-form__group">
+                                    <div class="auth-form__group auth-form__group--password">
                                         <input type="number" name="phone" id="input-register-phone" 
 										class="auth-form__input"
                                         placeholder="Số điện thoại" rules='required|min:10'>
+										<button class="auth-form__group--icon" 
+                                        id="btn-send-verify-code">
+										<i class="fa-solid fa-envelope"></i>
+                                        </button>
 										<span class="message-err"></span>
-                                    </div>                                    
+                                    </div>   
+									<div class="auth-form__group">
+                                        <input type="text" name="verifyCode" id="" class="auth-form__input"
+                                        placeholder="Mã xác nhận"
+										rules='required'>
+										<span class="message-err"></span>
+                                    </div>
                                     <div class="auth-form__footer">
                                         <button class="auth-form__btn auth-form__btn--close" data-dismiss="modal">Trở lại</button>
                                         <button type="submit" class="auth-form__btn auth-form__btn--submit">Đăng ký</button>

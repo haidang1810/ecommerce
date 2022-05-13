@@ -106,16 +106,6 @@ $("#btn-login").click(function(){
 		.then(json)
 		.then(data => {
 			if(data.status == 1){
-				// $("#header__item--register").addClass("hide");
-				// $("#header__item--login").addClass("hide");
-				// $("#header__item--user").removeClass("hide");
-				// $("#header-full-name").html(data.fullName);
-				// $('#modal-auth').modal('hide'); 
-				// if(data.avatar){
-				// 	$(".navbar__user--avatar").attr('src',data.avatar);
-				// }else{
-				// 	$(".navbar__user--avatar").attr('src','../shared/img/user_default.png');
-				// }
 				window.location.reload();
 			}else Toast.fire({
 				icon: 'error',
@@ -145,16 +135,6 @@ validator('.auth-form__register',{
 			.then(json)
 			.then(data => {
 				if(data.status == 1){
-					// $("#header__item--register").addClass("hide");
-					// $("#header__item--login").addClass("hide");
-					// $("#header__item--user").removeClass("hide");
-					// $("#header-full-name").html(data.fullName);
-					// $('#modal-auth').modal('hide'); 
-					// if(data.avatar){
-					// 	$(".navbar__user--avatar").attr('src',data.avatar);
-					// }else{
-					// 	$(".navbar__user--avatar").attr('src','../shared/img/user_default.png');
-					// }
 					window.location.reload();
 				}else Toast.fire({
 					icon: 'error',
@@ -167,7 +147,39 @@ validator('.auth-form__register',{
 			.catch(handlerError);
 	}
 })
-
+$("#btn-send-verify-code").click(function(){
+	const phone = $("#input-register-phone").val();
+	fetch(BASE_URL+API_USER+USER_VERIFYCODE+phone,{
+		method: 'GET', 
+		credentials: 'include',
+		headers:{
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+		}
+	})
+	.then(statusRes)
+	.then(json)
+	.then(res => {
+		if(res.status == 1){
+			Toast.fire({
+				icon: 'success',
+				title: res.msg,
+				background: 'rgba(35, 147, 67, 0.9)',
+				color: '#ffffff',
+				timer: 2000,
+			});
+		}else{
+			Toast.fire({
+				icon: 'error',
+				title: data.msg,
+				background: 'rgba(220, 52, 73, 0.9)',
+				color: '#ffffff',
+				timer: 2000
+			});
+		}
+	})
+	.catch(handlerError);
+})
 function checkLogin(isLogin){
 	fetch(BASE_URL+API_AUTH+AUTH_CHECKLOGIN,{
 		method: 'GET', 
