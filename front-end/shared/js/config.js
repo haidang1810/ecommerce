@@ -45,6 +45,10 @@ var API_CART = 'carts/';
 
 var CART_GETBYUSER = 'getByUser/';
 
+// API customer
+var API_CUSTOMER = 'customers/';
+
+var CUSTOMER_GETBYACCOUNT = 'getByAccount/';
 
 // API Notification
 var API_NOTIFICATION = 'notifications/';

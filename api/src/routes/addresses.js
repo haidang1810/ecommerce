@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const addressesController = require('../app/controllers/AddressesController');
+const AddressesController = require('../app/controllers/AddressesController');
 
-router.get('/getByCustomer/:id', addressesController.getByCustomer);
+router.get('/getByCustomer/:id', AddressesController.getByCustomer);
 module.exports = router;

@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const ratingsController = require('../app/controllers/RatingsController');
+const RatingsController = require('../app/controllers/RatingsController');
 
-router.get('/getAll', ratingsController.getAll);
-router.get('/getByProduct/:id', ratingsController.getByProduct);
+router.get('/getAll', RatingsController.getAll);
+router.get('/getByProduct/:id', RatingsController.getByProduct);
 module.exports = router;

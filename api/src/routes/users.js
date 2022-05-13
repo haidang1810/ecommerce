@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-const usersController = require('../app/controllers/UsersController');
+const UsersController = require('../app/controllers/UsersController');
 
-router.post('/add', usersController.add);
-router.get('/getAll', usersController.getAll);
-router.get('/getVerifyCode/:phone', usersController.getVerifyCode);
+router.post('/add', UsersController.add);
+router.get('/getAll', UsersController.getAll);
+router.get('/getVerifyCode/:phone', UsersController.getVerifyCode);
 module.exports = router;

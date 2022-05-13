@@ -96,7 +96,6 @@ function getNotification(userName){
 	.then(json)
 	.then(res => {
 		if(res.status == 1){
-			console.log(res.data);
 			for(let item of res.data){
 				$(".header__notify-list").append(`
 					<li class="header__notify--item">
