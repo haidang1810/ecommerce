@@ -79,8 +79,9 @@ Customer.changPhone = (req, res)=>{
 Customer.changGmail = (req, res)=>{
 	let gmail = req.params.gmail;
 	let user = req.params.user;
-	const updateGmail = 'update tb_khach_hang set Gmail=? where TaiKhoan=?';
-	pool.query(updateGmail, [gmail, user], (err)=>{
+	let password = req.params.password;
+	const checkUser = "select * from tb_khach_hang where TaiKhoan=? and MatKhau=?";
+	pool.query(checkUser, [user, password], (err, result)=>{
 		if(err){
 			res({
 				status: 0,
@@ -88,12 +89,30 @@ Customer.changGmail = (req, res)=>{
 			});
 			return;
 		}
-		res({
-			status: 1,
-			msg: "success",
-		});
-		return;
+		if(result.length<=0){
+			res({
+				status: 0,
+				msg: "Mật khẩu không chính xác"
+			});
+			return;
+		}
+		const updateGmail = 'update tb_khach_hang set Gmail=? where TaiKhoan=?';
+		pool.query(updateGmail, [gmail, user], (err)=>{
+			if(err){
+				res({
+					status: 0,
+					msg: err
+				});
+				return;
+			}
+			res({
+				status: 1,
+				msg: "success",
+			});
+			return;
+		})
 	})
+	
 }
 Customer.changAvatar = (req, res)=>{
 	let linkImg = req.params.link;
