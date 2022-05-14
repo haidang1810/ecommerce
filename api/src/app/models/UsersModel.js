@@ -3,10 +3,8 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const dotenv = require('dotenv').config();
-const accountSid = process.env.TWILIO_ACCOUNT_SID;
-const authToken = process.env.TWILIO_AUTH_TOKEN;
-const client = require('twilio')(accountSid, authToken);
 const schedule = require('node-schedule');
+const sendVerifyCode = require('../services/sendVerifyCode');
 
 const User = function(user) {
     this.TaiKhoan = user.TaiKhoan;
@@ -16,16 +14,6 @@ const User = function(user) {
 }
 
 var verifyCode = [];
-function sendVerifyCode(to,code,resolve,reject){
-	client.messages
-	.create({
-		body: `Mã xác nhận của bạn là ${code}. Mã xác nhận có thời gian sử dụng là 3 phút`,
-		from: '+19803754486',
-		to: to
-	})
-	.then(message => resolve())
-	.catch(()=>reject())
-}
 const createCode = (length) => {
     let code = "";
     let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
