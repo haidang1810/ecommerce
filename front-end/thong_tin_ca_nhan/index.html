@@ -146,23 +146,28 @@
 							<div class="col-xl-8">
 								<div class="profile__group">
 									<div class="profile__label">Tên đăng nhập</div>
-									<p class="profile__control">dang</p>
+									<p class="profile__control" id="profile-username">
+
+									</p>
 								</div>
 								<div class="profile__group">
 									<p class="profile__label">Họ và tên</p>
-									<input type="text" name="" id="" class="profile__input">
+									<input type="text" name="" id="profile-fullName" 
+									class="profile__input">
 								</div>
 								<div class="profile__group">
 									<div class="profile__label">Email</div>
 									<div class="profile__control">
-										<span>dang18101999@gmail.com</span>
+										<span id="profile-email"></span>
 										<button class="profile__btn-link text-primary">Thay đổi</button>
 									</div>
 								</div>
 								<div class="profile__group">
 									<div class="profile__label">Số điện thoại</div>
 									<div class="profile__control">
-										<span>0123456789</span>
+										<span id="profile-phone">
+
+										</span>
 										<button class="profile__btn-link text-primary">Thay đổi</button>
 									</div>
 								</div>
@@ -177,17 +182,18 @@
 								</div>
 								<div class="profile__group">
 									<div class="profile__label">Ngày sinh</div>
-									<input type="date" name="" id="" class="profile__input">
+									<input type="date" id="profile-birth" class="profile__input">
 								</div>
 								<button class="profile__submit">Lưu</button>
 							</div>
 							<div class="col-xl-4 avatar">
 								<div class="avatar__img">
-									<img src="https://res.cloudinary.com/jwb/image/upload/v1652092431/images_default/user_default_dpsjgs.png" alt="">
+									<img src="https://res.cloudinary.com/jwb/image/upload/v1652092431/images_default/user_default_dpsjgs.png" alt=""
+									id="profile-avatar">
 								</div>
 								<button class="avatar__btn">Chọn ảnh</button>
 								<p class="avatar__info">
-									Dụng lượng file tối đa 1 MB<br>
+									Dụng lượng file tối đa 4 MB<br>
 									Định dạng:.JPEG, .PNG, .JPG
 								</p>
 							</div>

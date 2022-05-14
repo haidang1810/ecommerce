@@ -21,7 +21,7 @@ Customer.getByAccount = (req, res)=>{
 		res({
 			status: 1,
 			msg: "success",
-			data: result
+			data: result[0]
 		});
 		return;
 	})
