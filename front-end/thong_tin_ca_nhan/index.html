@@ -159,7 +159,10 @@
 									<div class="profile__label">Email</div>
 									<div class="profile__control">
 										<span id="profile-email"></span>
-										<button class="profile__btn-link text-primary">Thay đổi</button>
+										<button class="profile__btn-link text-primary"
+										data-toggle="modal" data-target=".modal_change_email">
+											Thay đổi
+										</button>
 									</div>
 								</div>
 								<div class="profile__group">
@@ -206,7 +209,48 @@
 
             </footer>
         </div>
-        
+        <div class="modal fade modal_change_email" >
+            <div class="modal-dialog">
+                <div class="modal__inner modal-content">
+                    <div class="modal__header">
+                        <h3>Đổi địa chỉ gmail</h3>
+                        <div class="modal__close-btn" data-dismiss="modal">
+                            <i class="fa-solid fa-xmark"></i>
+                        </div>
+                    </div>
+                    <div class="modal__body">
+                        <form class="modal__form" id="form-change-email">
+							<div class="form-group">
+								<label for="" class="modal__form-label">
+									Gmail mới
+								</label>
+								<input type="text" class="modal__form-input"
+								rules="email" name="gmail">
+								<span class="message-err"></span>
+							</div>
+							<div class="form-group">
+								<label for="" class="modal__form-label">
+									Mật khẩu
+								</label>
+								<input type="password" class="modal__form-input"
+								rules="required" name="password">
+								<span class="message-err"></span>
+							</div>
+						</form>
+                    </div>
+                    <div class="modal__footer">
+						<button class="modal__footer-btn modal__footer-btn--cancel" 
+						data-dismiss="modal" type="buttton">
+                            Huỷ
+                        </button>
+                        <button class="modal__footer-btn modal__footer-btn--submit" 
+						id="btn_submit_change_mail" type="buttton">
+                            Xác nhận
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>

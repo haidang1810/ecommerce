@@ -1,5 +1,7 @@
+var USER = '';
 checkLogin((data)=>{
 	if(data){
+		USER = data.user;
 		fetch(BASE_URL+API_CUSTOMER+CUSTOMER_GETBYACCOUNT+data.user,{
 			method: 'GET', 
 			credentials: 'include',
@@ -53,3 +55,13 @@ checkLogin((data)=>{
 		window.location.href = BASE_URL_CLIENT;
 	}
 });
+validator('#form-change-email',{
+	formGroup: '.form-group',
+    formMessage: '.message-err',
+	onSubmit: function(formValues){
+		console.log(formValues);
+	}
+});
+$("#btn_submit_change_mail").click(function(){
+	$("#form-change-email").submit();
+})
