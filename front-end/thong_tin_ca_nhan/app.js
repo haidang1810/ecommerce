@@ -59,7 +59,39 @@ validator('#form-change-email',{
 	formGroup: '.form-group',
     formMessage: '.message-err',
 	onSubmit: function(formValues){
-		console.log(formValues);
+		formValues.user = USER;
+		fetch(BASE_URL+API_CUSTOMER+CUSTOMER_CHANGEGMAIL,{
+			method: 'POST', 
+			credentials: 'include',
+			body: JSON.stringify(formValues), 
+			headers:{
+				'Content-Type': 'application/json',
+				'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+			}
+		})
+			.then(statusRes)
+			.then(json)
+			.then(data => {
+				if(data.status == 1){
+					Toast.fire({
+						icon: 'success',
+						title: "Đã cập nhật gmail thành công",
+						background: 'rgba(35, 147, 67, 0.9)',
+						color: '#ffffff',
+						timer: 1200,
+						didClose: ()=>{
+							window.location.reload();
+						}
+					});
+				}else Toast.fire({
+					icon: 'error',
+					title: data.msg,
+					background: 'rgba(220, 52, 73, 0.9)',
+					color: '#ffffff',
+					timer: 2500
+				})
+			})
+			.catch(handlerError);
 	}
 });
 $("#btn_submit_change_mail").click(function(){

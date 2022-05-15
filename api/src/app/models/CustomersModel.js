@@ -1,4 +1,5 @@
 const pool = require('../config/connectDB');
+const bcrypt = require('bcrypt');
 const sendVerifyCode = require('../services/sendVerifyCode');
 
 const Customer = function(customer) {
@@ -58,8 +59,8 @@ Customer.getVerifyCode =  (req, res) => {
 		})
 }
 Customer.changPhone = (req, res)=>{
-	let phone = req.params.phone;
-	let user = req.params.user;
+	let phone = req.body.phone;
+	let user = req.body.user;
 	const updatePhone = 'update tb_khach_hang set SDT=? where TaiKhoan=?';
 	pool.query(updatePhone, [phone, user], (err)=>{
 		if(err){
@@ -77,27 +78,26 @@ Customer.changPhone = (req, res)=>{
 	})
 }
 Customer.changGmail = (req, res)=>{
-	let gmail = req.params.gmail;
-	let user = req.params.user;
-	let password = req.params.password;
-	const checkUser = "select * from tb_khach_hang where TaiKhoan=? and MatKhau=?";
-	pool.query(checkUser, [user, password], (err, result)=>{
+	let gmail = req.body.gmail;
+	let user = req.body.user;
+	let password = req.body.password;
+	const checkUser = "select * from tb_nguoi_dung where TaiKhoan=?";
+	pool.query(checkUser, user, (err, result)=>{
 		if(err){
 			res({
 				status: 0,
-				msg: err
+				msg: err.sqlMessage
 			});
 			return;
 		}
 		if(result.length<=0){
 			res({
 				status: 0,
-				msg: "Mật khẩu không chính xác"
+				msg: "Người dùng không tồn tại"
 			});
 			return;
 		}
-		const updateGmail = 'update tb_khach_hang set Gmail=? where TaiKhoan=?';
-		pool.query(updateGmail, [gmail, user], (err)=>{
+		bcrypt.compare(password, result[0].MatKhau, function(err, bool) {
 			if(err){
 				res({
 					status: 0,
@@ -105,18 +105,36 @@ Customer.changGmail = (req, res)=>{
 				});
 				return;
 			}
-			res({
-				status: 1,
-				msg: "success",
-			});
-			return;
-		})
+			if(bool){
+				const updateGmail = 'update tb_khach_hang set Gmail=? where TaiKhoan=?';
+				pool.query(updateGmail, [gmail, user], (err)=>{
+					if(err){
+						res({
+							status: 0,
+							msg: err.sqlMessage
+						});
+						return;
+					}
+					res({
+						status: 1,
+						msg: "success",
+					});
+					return;
+				});
+			}else{
+				res({
+					status: 0,
+					msg: "Mật khẩu không chính xác",
+				});
+				return;
+			}
+		});
 	})
 	
 }
 Customer.changAvatar = (req, res)=>{
-	let linkImg = req.params.link;
-	let user = req.params.user;
+	let linkImg = req.body.link;
+	let user = req.body.user;
 	const updateAvatar = 'update tb_khach_hang set AnhDaiDien=? where TaiKhoan=?';
 	pool.query(updateAvatar, [linkImg, user], (err)=>{
 		if(err){

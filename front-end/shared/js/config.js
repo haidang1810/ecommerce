@@ -49,6 +49,7 @@ var CART_GETBYUSER = 'getByUser/';
 var API_CUSTOMER = 'customers/';
 
 var CUSTOMER_GETBYACCOUNT = 'getByAccount/';
+var CUSTOMER_CHANGEGMAIL = 'changGmail/';
 
 // API Notification
 var API_NOTIFICATION = 'notifications/';
