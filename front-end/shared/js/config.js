@@ -49,7 +49,10 @@ var CART_GETBYUSER = 'getByUser/';
 var API_CUSTOMER = 'customers/';
 
 var CUSTOMER_GETBYACCOUNT = 'getByAccount/';
-var CUSTOMER_CHANGEGMAIL = 'changGmail/';
+var CUSTOMER_CHANGEGMAIL = 'changeGmail/';
+var CUSTOMER_GETVERIFYCODE = 'getVerifyCode/';
+var CUSTOMER_CHANGEPHONE = "changePhone/";
+var CUSTOMER_CHANGEINFO = "changeInfo/";
 
 // API Notification
 var API_NOTIFICATION = 'notifications/';

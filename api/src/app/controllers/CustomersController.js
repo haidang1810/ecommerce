@@ -11,21 +11,22 @@ class CustomersController {
             res.json(response);
         })
     }
-    changPhone(req,res){
-        CustomersModel.changPhone(req,function(response){
+    changePhone(req,res){
+        CustomersModel.changePhone(req,function(response){
             res.json(response);
         })
     }
-    changGmail(req,res){
-        CustomersModel.changGmail(req,function(response){
+    changeGmail(req,res){
+        CustomersModel.changeGmail(req,function(response){
             res.json(response);
         })
     }
-    changAvatar(req,res){
-        CustomersModel.changAvatar(req,function(response){
+    changeInfo(req,res){
+        CustomersModel.changeInfo(req,function(response){
             res.json(response);
         })
     }
+
 
 }
 module.exports = new CustomersController();

@@ -1,7 +1,7 @@
-var USER = '';
+var customerID = "";
 checkLogin((data)=>{
 	if(data){
-		USER = data.user;
+		customerID = data.id;
 		fetch(BASE_URL+API_CUSTOMER+CUSTOMER_GETBYACCOUNT+data.user,{
 			method: 'GET', 
 			credentials: 'include',
@@ -59,7 +59,6 @@ validator('#form-change-email',{
 	formGroup: '.form-group',
     formMessage: '.message-err',
 	onSubmit: function(formValues){
-		formValues.user = USER;
 		fetch(BASE_URL+API_CUSTOMER+CUSTOMER_CHANGEGMAIL,{
 			method: 'POST', 
 			credentials: 'include',
@@ -96,4 +95,267 @@ validator('#form-change-email',{
 });
 $("#btn_submit_change_mail").click(function(){
 	$("#form-change-email").submit();
+});
+$('#input-phone').on('keypress', function (event) {
+    var charCode = !event.charCode ? event.which : event.charCode;
+    if( charCode == 46 || charCode == 69 || charCode == 101 
+    || charCode == 45 || charCode == 43)
+        event.preventDefault();
+});
+$("#btn-send-code").click(function(){
+	const phone = $("#input-phone").val();
+	if(phone){
+		fetch(BASE_URL+API_CUSTOMER+CUSTOMER_GETVERIFYCODE+phone,{
+			method: 'GET', 
+			credentials: 'include',
+			headers:{
+				'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+			}
+		})
+			.then(statusRes)
+			.then(json)
+			.then((res)=>{
+				if(res.status==1){
+					Toast.fire({
+						icon: 'success',
+						title: res.msg,
+						background: 'rgba(35, 147, 67, 0.9)',
+						color: '#ffffff',
+						timer: 2000,
+					});
+				}else{
+					Toast.fire({
+						icon: 'error',
+						title: data.msg,
+						background: 'rgba(220, 52, 73, 0.9)',
+						color: '#ffffff',
+						timer: 2000
+					});
+				}
+			})
+			.catch(handlerError);
+	}
+});
+$("#btn_submit_change_phone").click(function(){
+	let data = {
+		phone: $("#input-phone").val(),
+		verifyCode: $("#verifyCode").val()
+	};
+	fetch(BASE_URL+API_CUSTOMER+CUSTOMER_CHANGEPHONE,{
+		method: 'POST', 
+		credentials: 'include',
+		body: JSON.stringify(data), 
+		headers:{
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+		}
+	})
+		.then(statusRes)
+		.then(json)
+		.then(data => {
+			if(data.status == 1){
+				Toast.fire({
+					icon: 'success',
+					title: "Đã cập nhật gmail thành công",
+					background: 'rgba(35, 147, 67, 0.9)',
+					color: '#ffffff',
+					timer: 1200,
+					didClose: ()=>{
+						window.location.reload();
+					}
+				});
+			}else Toast.fire({
+				icon: 'error',
+				title: data.msg,
+				background: 'rgba(220, 52, 73, 0.9)',
+				color: '#ffffff',
+				timer: 2500
+			})
+		})
+		.catch(handlerError);
+});
+$('#input_avatar').change(function (event) {
+    $('#profile-avatar').attr("src",URL.createObjectURL(event.target.files[0]));
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+        var img = new Image();      
+        img.src = e.target.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+}); 
+
+$("#btn_submit_change_info").click(function(){
+	let formData = new FormData();
+	formData.append('fullName', $("#profile-fullName").val());
+	formData.append('gender', $("input[name='gender']:checked").val());
+	formData.append('dateOfBirth', $("#profile-birth").val());
+	formData.append('avatar', $("#input_avatar")[0].files[0]);
+	$(".loading").toggleClass("loading_hide");
+	fetch(BASE_URL+API_CUSTOMER+CUSTOMER_CHANGEINFO,{
+		method: 'POST', 
+		credentials: 'include',
+		body: formData, 
+		headers:{
+			// 'Content-Type': 'application/x-www-form-urlencoded',
+			'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+		}
+	})
+		.then(statusRes)
+		.then(json)
+		.then(data => {
+			if(data.status == 1){
+				$(".loading").toggleClass("loading_hide");
+				Toast.fire({
+					icon: 'success',
+					title: "Đã cập nhật thông tin thành công",
+					background: 'rgba(35, 147, 67, 0.9)',
+					color: '#ffffff',
+					timer: 1200,
+					didClose: ()=>{
+						window.location.reload();
+					}
+				});
+			}else {
+				$(".loading").toggleClass("loading_hide");
+				Toast.fire({
+					icon: 'error',
+					title: data.msg,
+					background: 'rgba(220, 52, 73, 0.9)',
+					color: '#ffffff',
+					timer: 2500
+				});
+			}
+		})
+		.catch(handlerError);
+});
+fetch(API_GETPROVINCE, {
+	method: 'GET',
+	headers:{
+		'Content-Type': 'application/json',
+		'Token': TOKEN
+	}
+})
+	.then(statusRes)
+	.then(json)
+	.then((res)=>{
+		if(res.code==200){
+			for(let item of res.data){
+				$("#select_province").append(`
+					<option value="${item.ProvinceID}" id="${item.ProvinceID}">
+						${item.ProvinceName}
+					</option>
+				`);
+			}
+			$('.selectpicker').selectpicker('refresh');
+		}else console.log(res.message);
+	})
+	.catch(handlerError);
+
+$('#select_province').on('changed.bs.select', function (e) {
+	var selectedValue = $(e.currentTarget).val();
+	if(selectedValue!=-1){
+		fetch(API_GETDISTRICT+`?province_id=${selectedValue}`, {
+			method: 'GET',
+			headers:{
+				'Content-Type': 'application/json',
+				'Token': TOKEN
+			}
+		})
+			.then(statusRes)
+			.then(json)
+			.then((res)=>{
+				if(res.code==200){
+					$("#select_district").html(`
+						<option value="-1">Chọn quận huyện</option>
+					`);
+					$("#select_ward").html(`
+						<option value="-1">Chọn phường xã</option>
+					`);
+					$('.selectpicker').selectpicker('refresh');
+					for(let item of res.data){
+						$("#select_district").removeAttr("disabled");
+						$("#select_district").append(`
+							<option value="${item.DistrictID}" id="${item.DistrictID}">
+							${item.DistrictName}
+							</option>
+						`);
+					}
+					$('.selectpicker').selectpicker('refresh');
+				}else console.log(res.message);
+			})
+			.catch(handlerError);
+	}else{
+		$("#select_district").html(`
+			<option value="-1">Chọn quận huyện</option>
+		`);
+		$("#select_ward").html(`
+			<option value="-1">Chọn phường xã</option>
+		`);
+		$('.selectpicker').selectpicker('refresh');
+		$('.selectpicker').selectpicker('refresh');
+		$('.selectpicker').selectpicker('refresh');
+	}
+});
+$('#select_district').on('changed.bs.select', function (e) {
+	var selectedValue = $(e.currentTarget).val();
+	if(selectedValue!=-1){
+		fetch(API_GETWARD+`?district_id=${selectedValue}`, {
+			method: 'GET',
+			headers:{
+				'Content-Type': 'application/json',
+				'Token': TOKEN
+			}
+		})
+			.then(statusRes)
+			.then(json)
+			.then((res)=>{
+				if(res.code==200){
+					$("#select_ward").html(`
+						<option value="-1">Chọn phường xã</option>
+					`);
+					$('.selectpicker').selectpicker('refresh');
+					for(let item of res.data){
+						$("#select_ward").removeAttr("disabled");
+						$("#select_ward").append(`
+							<option value="${item.WardCode}" id="${item.WardCode}">
+								${item.WardName}
+							</option>
+						`);
+					}
+					$('.selectpicker').selectpicker('refresh');
+				}else console.log(res.message);
+			})
+			.catch(handlerError);
+	}else{
+		$("#select_ward").html(`
+			<option value="-1">Chọn phường xã</option>
+		`);
+		$('.selectpicker').selectpicker('refresh');
+		$('.selectpicker').selectpicker('refresh');
+		$('.selectpicker').selectpicker('refresh');
+	}
+});
+$("#btn_select_address").click(function(){
+	const address = $("#input-address").val();
+	if(!address){
+		Toast.fire({
+			icon: 'error',
+			title: "Bạn chưa nhập địa chỉ",
+			background: 'rgba(220, 52, 73, 0.9)',
+			color: '#ffffff',
+			timer: 2000
+		});
+		return;
+	}
+	const provinceID = $("#select_province").val();
+	const districtID = $("#select_district").val();
+	const wardID = $("#select_ward").val();
+	if(provinceID!=-1 && districtID!=-1 && wardID!=-1){
+		const provinceName = $("#select_province").children(`#${provinceID}`).html().trim();
+		const districtName = $("#select_district").children(`#${districtID}`).html().trim();
+		const wardName = $("#select_ward").children(`#${wardID}`).html().trim();
+		const address = `${wardName}, ${districtName}, ${provinceName}`;
+		
+	}
 })

@@ -203,7 +203,7 @@ function checkLogin(isLogin){
 		})
 		.catch(handlerError);
 }
-function getAccessToken(resolve, reject){
+function getAccessToken(resolve){
 	fetch(BASE_URL+API_AUTH+AUTH_REFRESHTOKEN,{
 		method: 'GET', 
 		credentials: 'include',
@@ -216,34 +216,36 @@ function getAccessToken(resolve, reject){
 		.then(json)
 		.then(data => {
 			if(data.status == 1){
+				console.log(data);
 				setTimeout(() => {
-					getAccessToken(resolve, reject);
+					getAccessToken(resolve);
 				}, 50000);
 				resolve();
-			}else reject();
+			}
 		})
 		.catch(handlerError);
 }
 
 var promiseAccessToken = new Promise((resolve, reject)=>{
-	getAccessToken(resolve, reject);
+	getAccessToken(resolve);
 });
-promiseAccessToken.then(()=>{
-	checkLogin((data)=>{
-		if(data){
-			$("#header__item--register").addClass("hide");
-			$("#header__item--login").addClass("hide");
-			$("#header__item--user").removeClass("hide");
-			$("#header-full-name").html(data.fullName);
-			$('#modal-auth').modal('hide'); 
-			if(data.avatar){
-				$(".navbar__user--avatar").attr('src',data.avatar);
-			}else{
-				$(".navbar__user--avatar").attr('src','https://res.cloudinary.com/jwb/image/upload/v1652092431/images_default/user_default_dpsjgs.png');
+promiseAccessToken
+	.then(()=>{
+		checkLogin((data)=>{
+			if(data){
+				$("#header__item--register").addClass("hide");
+				$("#header__item--login").addClass("hide");
+				$("#header__item--user").removeClass("hide");
+				$("#header-full-name").html(data.fullName);
+				$('#modal-auth').modal('hide'); 
+				if(data.avatar){
+					$(".navbar__user--avatar").attr('src',data.avatar);
+				}else{
+					$(".navbar__user--avatar").attr('src','https://res.cloudinary.com/jwb/image/upload/v1652092431/images_default/user_default_dpsjgs.png');
+				}
 			}
-		}
-	});
-});
+		});
+	})
 
 function getTransportCost(to_district_id, to_ward_code, weight, handleTransportCost){
 	let query = `?from_district_id=${1484}&service_type_id=${3}`;

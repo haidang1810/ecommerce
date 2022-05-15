@@ -1,6 +1,12 @@
 const pool = require('../config/connectDB');
 const bcrypt = require('bcrypt');
 const verifyCode = require('../services/verifyCode');
+const cloudinary = require('cloudinary').v2;
+cloudinary.config({
+	cloud_name: process.env.CLOUDINARY_NAME,
+	api_key: process.env.CLOUDINARY_API_KEY,
+	api_secret: process.env.CLOUDINARY_API_SECRET,
+})
 
 const Customer = function(customer) {
     this.TaiKhoan = user.TaiKhoan;
@@ -11,9 +17,8 @@ const Customer = function(customer) {
 
 
 Customer.getByAccount = (req, res)=>{
-	const user = req.params.user;
 	const getCustomer = 'select * from tb_khach_hang where TaiKhoan=?';
-	pool.query(getCustomer,user, (err,result)=>{
+	pool.query(getCustomer,req.username, (err,result)=>{
 		if(err){
 			res({
 				status: 0,
@@ -47,10 +52,10 @@ Customer.getVerifyCode =  (req, res) => {
 		}
 	})
 }
-Customer.changPhone = (req, res)=>{
+Customer.changePhone = (req, res)=>{
 	let phone = req.body.phone;
-	let user = req.body.user;
-	if(!verifyCode.checkCode(phone)){
+	let code = req.body.verifyCode;
+	if(!verifyCode.checkCode(code)){
 		res({
 			status: 0,
 			msg: "Mã xác nhận không chính xác hoặc đã hết hạn"
@@ -58,7 +63,7 @@ Customer.changPhone = (req, res)=>{
 		return;
 	}
 	const updatePhone = 'update tb_khach_hang set SDT=? where TaiKhoan=?';
-	pool.query(updatePhone, [phone, user], (err)=>{
+	pool.query(updatePhone, [phone, req.username], (err)=>{
 		if(err){
 			res({
 				status: 0,
@@ -73,12 +78,11 @@ Customer.changPhone = (req, res)=>{
 		return;
 	})
 }
-Customer.changGmail = (req, res)=>{
+Customer.changeGmail = (req, res)=>{
 	let gmail = req.body.gmail;
-	let user = req.body.user;
 	let password = req.body.password;
 	const checkUser = "select * from tb_nguoi_dung where TaiKhoan=?";
-	pool.query(checkUser, user, (err, result)=>{
+	pool.query(checkUser, req.username, (err, result)=>{
 		if(err){
 			res({
 				status: 0,
@@ -103,7 +107,7 @@ Customer.changGmail = (req, res)=>{
 			}
 			if(bool){
 				const updateGmail = 'update tb_khach_hang set Gmail=? where TaiKhoan=?';
-				pool.query(updateGmail, [gmail, user], (err)=>{
+				pool.query(updateGmail, [gmail, req.username], (err)=>{
 					if(err){
 						res({
 							status: 0,
@@ -128,23 +132,104 @@ Customer.changGmail = (req, res)=>{
 	})
 	
 }
-Customer.changAvatar = (req, res)=>{
-	let linkImg = req.body.link;
-	let user = req.body.user;
-	const updateAvatar = 'update tb_khach_hang set AnhDaiDien=? where TaiKhoan=?';
-	pool.query(updateAvatar, [linkImg, user], (err)=>{
-		if(err){
+var type = ['image/jpeg','image/png','image/jpg'];
+Customer.changeInfo = (req, res)=>{
+	if(!req.files){
+		const updateInfo = `update tb_khach_hang set HoTen=?, GioiTinh=?, 
+		NgaySinh=? where TaiKhoan=?`;
+		pool.query(updateInfo,[
+			req.body.fullName,
+			req.body.gender,
+			req.body.dateOfBirth,
+			req.username
+		], (err)=>{
+			if(err){
+				res({
+					status: 0,
+					msg: err.sqlMessage
+				});
+				return
+			}
+			res({
+				status: 1,
+				msg: "success"
+			});
+			return
+		});
+	}else{
+		
+		const img = req.files.avatar;
+		if(!type.includes(img.mimetype)){
 			res({
 				status: 0,
-				msg: err
+				msg: 'File không hợp lệ'
 			});
 			return;
 		}
-		res({
-			status: 1,
-			msg: "success",
+		if(img.size > 4 * 1024 * 1024){
+			res({
+				status: 0,
+				msg: 'File phải nhỏ hơn 4 MB'
+			});
+			return;
+		}
+		cloudinary.uploader.upload(img.tempFilePath, {
+			resource_type: "auto",
+			folder: "user_avatar"
+		}, (err, result)=>{
+			if(err){
+				res({
+					status: 0,
+					msg: err
+				});
+				return;
+			}
+			const findUser = "select AnhDaiDien from tb_khach_hang where TaiKhoan=?";
+			pool.query(findUser, req.username, (err, user)=>{
+				if(err){
+					res({
+						status: 0,
+						msg: 'Có lỗi vui lòng thử lại'
+					});
+					return;
+				}
+				if(user.length<=0){
+					res({
+						status: 0,
+						msg: 'Người dùng không tồn tại'
+					});
+					return;
+				}
+				let oldImgLink = user[0].AnhDaiDien;
+				const updateInfo = `update tb_khach_hang set HoTen=?, GioiTinh=?, 
+				NgaySinh=?, AnhDaiDien=? where TaiKhoan=?`;
+				pool.query(updateInfo,[
+					req.body.fullName,
+					req.body.gender,
+					req.body.dateOfBirth,
+					result.url,
+					req.username
+				], (err)=>{
+					if(err){
+						res({
+							status: 0,
+							msg: err.sqlMessage
+						});
+						return
+					}
+					if(oldImgLink){
+						let arrLink = oldImgLink.split('/');
+						let cloundPublicId = "user_avatar/"+arrLink[arrLink.length-1].split('.')[0];
+						cloudinary.uploader.destroy(cloundPublicId);
+					}
+					res({
+						status: 1,
+						msg: "success"
+					});
+				});
+			});
 		});
-		return;
-	})
+	}
+	
 }
 module.exports = Customer;

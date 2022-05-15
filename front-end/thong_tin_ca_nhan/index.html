@@ -14,6 +14,9 @@
     </head>
     <body>
         <div class="app">
+			<div class="loading loading_hide">
+				<img src="../shared/img/loading.gif" alt="">
+			</div>
             <header class="header">
                 <nav class="header__navbar container">
                     <ul class="header__navbar-list">
@@ -169,17 +172,34 @@
 									<div class="profile__label">Số điện thoại</div>
 									<div class="profile__control">
 										<span id="profile-phone">
-
 										</span>
-										<button class="profile__btn-link text-primary">Thay đổi</button>
+										<button class="profile__btn-link text-primary"
+										data-toggle="modal" data-target=".modal_change_phone">
+											Thay đổi
+										</button>
+									</div>
+								</div>
+								<div class="profile__group">
+									<div class="profile__label">Địa chỉ</div>
+									<div class="profile__control">
+										<span id="profile-address">
+											<span>
+												52/84/129 Nguyễn Huệ<br>
+												Phường 2, Thành phố Vĩnh Long, Vĩnh Long
+											</span>
+										</span>
+										<button class="profile__btn-link text-primary"
+										data-toggle="modal" data-target=".modal_change_address">
+											Thay đổi
+										</button>
 									</div>
 								</div>
 								<div class="profile__group">
 									<div class="profile__label">Giới tính</div>
 									<div class="profile__control">
-										<input type="radio" name="gender" id="male" checked class="profile__radio mr-2">
+										<input type="radio" name="gender" value="1" id="male" checked class="profile__radio mr-2">
 										<label for="male" class="profile__radio-label">Nam</label>
-										<input type="radio" name="gender" id="female" class="profile__radio mr-2 ml-4">
+										<input type="radio" name="gender" value="2" id="female" class="profile__radio mr-2 ml-4">
 										<label for="female" class="profile__radio-label">Nữ</label>
 									</div>
 								</div>
@@ -187,18 +207,19 @@
 									<div class="profile__label">Ngày sinh</div>
 									<input type="date" id="profile-birth" class="profile__input">
 								</div>
-								<button class="profile__submit">Lưu</button>
+								<button class="profile__submit" id="btn_submit_change_info">Lưu</button>
 							</div>
 							<div class="col-xl-4 avatar">
 								<div class="avatar__img">
 									<img src="https://res.cloudinary.com/jwb/image/upload/v1652092431/images_default/user_default_dpsjgs.png" alt=""
 									id="profile-avatar">
 								</div>
-								<button class="avatar__btn">Chọn ảnh</button>
+								<label class="avatar__btn" for="input_avatar">Chọn ảnh</label>
 								<p class="avatar__info">
 									Dụng lượng file tối đa 4 MB<br>
 									Định dạng:.JPEG, .PNG, .JPG
 								</p>
+								<input type="file"  id="input_avatar">
 							</div>
 						</div>
 					</div>
@@ -245,6 +266,104 @@
                         </button>
                         <button class="modal__footer-btn modal__footer-btn--submit" 
 						id="btn_submit_change_mail" type="buttton">
+                            Xác nhận
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade modal_change_phone" >
+            <div class="modal-dialog">
+                <div class="modal__inner modal-content">
+                    <div class="modal__header">
+                        <h3>Đổi số điện thoại</h3>
+                        <div class="modal__close-btn" data-dismiss="modal">
+                            <i class="fa-solid fa-xmark"></i>
+                        </div>
+                    </div>
+                    <div class="modal__body">
+                        <form class="modal__form" id="form-change-email">
+							<div class="form-group group-relative">
+								<label for="" class="modal__form-label">
+									Số điện thoại mới
+								</label>
+								<input type="number" class="modal__form-input" 
+								id="input-phone"
+								rules="required|min:10" name="phone">
+								<button id="btn-send-code" type="button">
+									<i class="fa-solid fa-envelope modal__form-icon"></i>
+								</button>
+								<span class="message-err"></span>
+							</div>
+							<div class="form-group">
+								<label for="" class="modal__form-label">
+									Mã xác nhận
+								</label>
+								<input type="text" class="modal__form-input"
+								rules="required" id="verifyCode">
+								<span class="message-err"></span>
+							</div>
+						</form>
+                    </div>
+                    <div class="modal__footer">
+						<button class="modal__footer-btn modal__footer-btn--cancel" 
+						data-dismiss="modal" type="buttton">
+                            Huỷ
+                        </button>
+                        <button class="modal__footer-btn modal__footer-btn--submit" 
+						id="btn_submit_change_phone" type="buttton">
+                            Xác nhận
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="modal fade modal_change_address" >
+            <div class="modal-dialog">
+                <div class="modal__inner modal-content">
+                    <div class="modal__header">
+                        <h3>Thay đổi địa chỉ</h3>
+                        <div class="modal__close-btn" data-dismiss="modal">
+                            <i class="fa-solid fa-xmark"></i>
+                        </div>
+                    </div>
+                    <div class="modal__body">
+                        <form action="" class="modal__form modal__form--address">
+                            <div class="row modal__form-location">
+                                <div class="col-xl-4 location-type">Địa chỉ nhà</div>
+                                <input type="text" class="modal__form-input--address"
+								id="input-address">
+                            </div>
+                            <div class="row modal__form-location">
+                                <div class="col-xl-4 location-type">Tỉnh/Thành phố</div>
+                                <select class="selectpicker col-xl-8" data-live-search="true"
+								id="select_province">
+									<option value="-1">Chọn tỉnh thành phố</option>								
+                                </select>
+                            </div>
+                            <div class="row modal__form-location">
+                                <div class="col-xl-4 location-type">Quận/Huyện</div>
+                                <select class="selectpicker col-xl-8" disabled data-live-search="true"
+								id="select_district">
+									<option value="-1">Chọn quận huyện</option>
+                                </select>
+                            </div>
+                            <div class="row modal__form-location">
+                                <div class="col-xl-4 location-type">Phường/Xã</div>
+                                <select class="selectpicker col-xl-8" disabled data-live-search="true"
+								id="select_ward">
+									<option value="-1">Chọn phường xã</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal__footer">
+						<button class="modal__footer-btn modal__footer-btn--cancel" 
+						data-dismiss="modal" type="buttton">
+                            Huỷ
+                        </button>
+                        <button class="modal__footer-btn modal__footer-btn--submit" 
+						id="btn_select_address">
                             Xác nhận
                         </button>
                     </div>

@@ -98,7 +98,8 @@ Auth.refreshToken = (req,res) => {
 							msg: err
 						});
 						return;
-					}else if(data.length>0){
+					} 
+					if(data.length>0){
 						let now = new Date();
 						const value = {
 							username: result.username,

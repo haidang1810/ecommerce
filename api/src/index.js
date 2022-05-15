@@ -7,8 +7,10 @@ const cookieParser = require('cookie-parser');
 const route = require('./routes');
 const cors = require('cors');
 const db = require('./app/config/mongooseDB');
+const fileUpload = require('express-fileupload');
+
 db.connect();
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 var corsOptions = {
@@ -16,7 +18,10 @@ var corsOptions = {
 	credentials:  true
 }
 app.use(cors(corsOptions));
-
+app.use(fileUpload({
+	limits: { fileSize: 4 * 1024 * 1024 },
+	useTempFiles: true
+}))
 
 route(app);
 
