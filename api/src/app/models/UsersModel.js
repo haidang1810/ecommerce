@@ -3,8 +3,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const dotenv = require('dotenv').config();
-const schedule = require('node-schedule');
-const sendVerifyCode = require('../services/sendVerifyCode');
+const verifyCode = require('../services/verifyCode');
 
 const User = function(user) {
     this.TaiKhoan = user.TaiKhoan;
@@ -13,16 +12,8 @@ const User = function(user) {
     this.RefreshToken = user.RefreshToken;
 }
 
-var verifyCode = [];
-const createCode = (length) => {
-    let code = "";
-    let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    for (let i = 0; i < length; i++)
-    	code += possible.charAt(Math.floor(Math.random() * possible.length));
-	if(verifyCode.includes(code))
-		createCode(length);
-	else return code;
-}
+
+
 const createCustomer = (username,fullName,phone,resolve,reject)  => {
     let code = createCode(20);
     const addCustomer = `insert into tb_khach_hang(MaKH,TaiKhoan,HoTen,SDT) 
@@ -42,14 +33,14 @@ const createCustomer = (username,fullName,phone,resolve,reject)  => {
     })
 }
 User.add = (req, res) => {
-	if(!verifyCode.includes(req.body.verifyCode)){
+	if(!verifyCode.checkCode(req.body.verifyCode)){
 		res({
 			status: 0,
-			msg: 'Mã xác nhận không chính xác hoặc hết hạn'
+			msg: "Mã xác nhận không chính xác hoặc hết hạn",
 		});
 		return;
 	}
-	verifyCode.splice(verifyCode.indexOf(req.body.verifyCode), 1);
+	verifyCode.deleteCode(req.body.verifyCode);
     pool.getConnection(function(error, db){
         let formData = req.body;
         const getUser = `select * from tb_nguoi_dung where TaiKhoan='${formData.username}'`;
@@ -176,32 +167,22 @@ User.add = (req, res) => {
     })    
 }
 User.getVerifyCode =  (req, res) => {
-	const code = createCode(6);
-	verifyCode.push(code);
 	let phone = req.params.phone;
-	let to = "+84"+phone.substr(1,phone.length-1);
-	const sendCode = new Promise((resolve,reject)=>{
-		sendVerifyCode(to,code,resolve,reject);
-	})
-	sendCode
-		.then(()=>{
+	verifyCode.getCode(phone, (isSuccess)=>{
+		if(isSuccess){
 			res({
 				status: 1,
 				msg: 'Mã xác nhận đã được gửi đến số điện thoại của bạn.'
 			});
-			const expires = new Date(Date.now()+3*60*1000);
-			schedule.scheduleJob(expires,()=>{
-				verifyCode.splice(verifyCode.indexOf(code), 1);
-			})
 			return;
-		})
-		.catch(()=>{
+		}else{
 			res({
 				status: 0,
 				msg: 'Số điện thoại không hợp lệ.'
 			});
 			return;
-		})
+		}
+	})
 }
 User.getAll = (req,res) => {
     pool.query("select * from tb_nguoi_dung", function(err,result){

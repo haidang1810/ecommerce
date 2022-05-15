@@ -1,6 +1,6 @@
 const pool = require('../config/connectDB');
 const bcrypt = require('bcrypt');
-const sendVerifyCode = require('../services/sendVerifyCode');
+const verifyCode = require('../services/verifyCode');
 
 const Customer = function(customer) {
     this.TaiKhoan = user.TaiKhoan;
@@ -9,7 +9,6 @@ const Customer = function(customer) {
     this.RefreshToken = user.RefreshToken;
 }
 
-var verifyCode = [];
 
 Customer.getByAccount = (req, res)=>{
 	const user = req.params.user;
