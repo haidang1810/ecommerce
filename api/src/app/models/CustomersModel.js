@@ -30,36 +30,33 @@ Customer.getByAccount = (req, res)=>{
 	})
 }
 Customer.getVerifyCode =  (req, res) => {
-	const code = createCode(6);
-	verifyCode.push(code);
 	let phone = req.params.phone;
-	let to = "+84"+phone.substr(1,phone.length-1);
-	const sendCode = new Promise((resolve,reject)=>{
-		sendVerifyCode(to,code,resolve,reject);
-	})
-	sendCode
-		.then(()=>{
+	verifyCode.getCode(phone, (isSuccess)=>{
+		if(isSuccess){
 			res({
 				status: 1,
 				msg: 'Mã xác nhận đã được gửi đến số điện thoại của bạn.'
 			});
-			const expires = new Date(Date.now()+3*60*1000);
-			schedule.scheduleJob(expires,()=>{
-				verifyCode.splice(verifyCode.indexOf(code), 1);
-			})
 			return;
-		})
-		.catch(()=>{
+		}else{
 			res({
 				status: 0,
 				msg: 'Số điện thoại không hợp lệ.'
 			});
 			return;
-		})
+		}
+	})
 }
 Customer.changPhone = (req, res)=>{
 	let phone = req.body.phone;
 	let user = req.body.user;
+	if(!verifyCode.checkCode(phone)){
+		res({
+			status: 0,
+			msg: "Mã xác nhận không chính xác hoặc đã hết hạn"
+		});
+		return;
+	}
 	const updatePhone = 'update tb_khach_hang set SDT=? where TaiKhoan=?';
 	pool.query(updatePhone, [phone, user], (err)=>{
 		if(err){
