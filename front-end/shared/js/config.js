@@ -39,6 +39,7 @@ var IMAGE_GETBYPRODUCT = 'getByProduct/';
 var API_ADDRESS = 'addresses/';
 
 var ADDRESS_GETBYCUSTOMER = 'getByCustomer/';
+var ADDRESS_UPDATEBYCUSTOMER = 'updateByCustomer/';
 
 //API Cart
 var API_CART = 'carts/';
