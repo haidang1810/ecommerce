@@ -217,7 +217,6 @@ function getAccessToken(resolve){
 		.then(json)
 		.then(data => {
 			if(data.status == 1){
-				console.log(data);
 				setTimeout(() => {
 					getAccessToken(resolve);
 				}, 50000);

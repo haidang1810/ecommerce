@@ -315,6 +315,8 @@
     z-index: 2;
     border-radius: 2px;
     display: none;
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
 .header__cart-list--null{
     text-align: center;
@@ -376,9 +378,13 @@
     object-fit: cover;
 }
 .header__cart-item--name {
-    white-space: nowrap;
+    /* white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis; */
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
 }
 .header__cart-item--price {
     color: var(--red-color);

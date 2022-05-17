@@ -21,8 +21,8 @@ $("#btn-show-pass-register").click(function(){
         $("#input-password-register").attr("type","password");
     }
 })
-function getCart(userName){
-	fetch(BASE_URL+API_CART+CART_GETBYUSER+userName,{
+function getCart(){
+	fetch(BASE_URL+API_CART+CART_GETBYUSER,{
 		method: 'GET', 
 		credentials: 'include',
 		headers:{
@@ -40,6 +40,7 @@ function getCart(userName){
 					if(data.data.length>99)
 						$(".cart__badge").html("99+");
 					else $(".cart__badge").html(data.data.length);
+					$(".header__cart-list-item").html("");
 					for(let item of data.data){
 						let html = ``;
 						html += `
@@ -48,9 +49,11 @@ function getCart(userName){
 								class="header__cart-item-warper row align-items-center">
 									<img src="${item.AnhBia}" alt="loading" 
 									class="header__cart-item--img col-xl-2">
-									<p class="header__cart-item--name col-7">
-										${item.TenSP} 
-									</p>`;
+									<div class="col-7">
+										<p class="header__cart-item--name">
+											${item.TenSP} 
+										</p>
+									</div>`;
 						if(item.ChietKhau){
 							let price = item.Gia;
 							let discount = item.ChietKhau;
@@ -84,7 +87,7 @@ function getCart(userName){
 		.catch(handlerError);
 }
 function getNotification(userName){
-	fetch(BASE_URL+API_NOTIFICATION+NOTI_GETBYUSER+userName,{
+	fetch(BASE_URL+API_NOTIFICATION+NOTI_GETBYUSER,{
 		method: 'GET', 
 		credentials: 'include',
 		headers:{
@@ -124,9 +127,8 @@ function getNotification(userName){
 }
 checkLogin((res)=>{
 	if(res){
-		const userName = res.user;
-		getCart(userName);
-		getNotification(userName);
+		getCart();
+		getNotification();
 	}
 })
 

@@ -6,5 +6,10 @@ class CartsController {
             res.json(response);
         })
     }
+    add(req,res){
+        CartsModel.add(req,function(response){
+            res.json(response);
+        })
+    }
 }
 module.exports = new CartsController();

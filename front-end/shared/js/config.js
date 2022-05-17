@@ -1,5 +1,5 @@
 var BASE_URL = "http://localhost:3000/";
-var BASE_URL_CLIENT = "http://localhost:81/ecommerce/front-end/";
+var BASE_URL_CLIENT = "http://localhost:8080/ecommerce/front-end/";
 // API Authentication 
 var API_AUTH = "auth/";
 
@@ -45,6 +45,7 @@ var ADDRESS_UPDATEBYCUSTOMER = 'updateByCustomer/';
 var API_CART = 'carts/';
 
 var CART_GETBYUSER = 'getByUser/';
+var CART_ADD = 'add/';
 
 // API customer
 var API_CUSTOMER = 'customers/';

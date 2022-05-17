@@ -177,7 +177,6 @@ Cart:
 		-Method: post
 		-Request: {
 			MaSP: '',
-			TaiKhoan: 'dang',
 			SoLuong: 2
 		}
 		-Response: {

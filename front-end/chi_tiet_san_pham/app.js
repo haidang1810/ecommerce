@@ -42,7 +42,6 @@ fetch(BASE_URL+API_PRODUCT+PRODUCT_GETDETAIL+productID, {
 	.then(json)
 	.then((res)=>{
 		if(res.status==1){
-			console.log(res.data);
 			$(".info-name").html(res.data.TenSP);
 			$(".info-rating-total").html(res.data.DanhGia);
 			const ratingIcon = renderStarRating(res.data.DanhGia);
@@ -730,3 +729,42 @@ $("#btn_select_addres").click(function(){
 		}
 	}
 });
+
+$(".btn-add-cart").click(function(){
+	const data = {
+		MaSP: productID,
+		SoLuong: $(".amount-input").val()
+	};
+	fetch(BASE_URL+API_CART+CART_ADD,{
+		method: 'POST', 
+		credentials: 'include',
+		body: JSON.stringify(data), 
+		headers:{
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+		}
+	})
+		.then(statusRes)
+		.then(json)
+		.then((res)=>{
+			if(res.status==1){
+				Toast.fire({
+					icon: 'success',
+					title: "Đã giỏ hàng thành công",
+					background: 'rgba(35, 147, 67, 0.9)',
+					color: '#ffffff',
+					timer: 2000
+				});
+				getCart();
+			}else{
+				Toast.fire({
+					icon: 'error',
+					title: res.msg,
+					background: 'rgba(220, 52, 73, 0.9)',
+					color: '#ffffff',
+					timer: 2000
+				});
+			}
+		})
+		.catch(handlerError);
+})

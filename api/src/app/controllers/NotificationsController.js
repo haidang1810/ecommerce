@@ -1,7 +1,7 @@
 const Notification = require('../models/NotificationsModel');
 class NotificationsController {
     getByUser(req,res){
-        const user = req.params.user;
+        const user = req.username;
 		Notification.find({user},(err, notification) => {
 			if(err) return res.json({
 					status: 0,
