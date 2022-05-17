@@ -12,7 +12,13 @@ const User = function(user) {
     this.RefreshToken = user.RefreshToken;
 }
 
-
+const createCode = (length) => {
+    let code = "";
+    let possible = "abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    for (let i = 0; i < length; i++)
+    	code += possible.charAt(Math.floor(Math.random() * possible.length));
+    return code;
+}
 
 const createCustomer = (username,fullName,phone,resolve,reject)  => {
     let code = createCode(20);
@@ -33,6 +39,7 @@ const createCustomer = (username,fullName,phone,resolve,reject)  => {
     })
 }
 User.add = (req, res) => {
+    console.log(req.body.verifyCode);
 	if(!verifyCode.checkCode(req.body.verifyCode)){
 		res({
 			status: 0,
@@ -40,7 +47,7 @@ User.add = (req, res) => {
 		});
 		return;
 	}
-	verifyCode.deleteCode(req.body.verifyCode);
+	
     pool.getConnection(function(error, db){
         let formData = req.body;
         const getUser = `select * from tb_nguoi_dung where TaiKhoan='${formData.username}'`;
@@ -117,15 +124,18 @@ User.add = (req, res) => {
                                         pool.releaseConnection(db);
                                         return;
                                     }
+                                    verifyCode.deleteCode(req.body.verifyCode);
                                     res({
                                         status: 1,
                                         msg: "Tạo tài khoản thành công !",
                                         fullName: formData.fullName,
                                     },accessToken,refreshToken);
+                                    
                                     pool.releaseConnection(db);
                                     return;
                                 })
                             }else {
+                                verifyCode.deleteCode(req.body.verifyCode);
                                 const checkCustomerExistAcc = `select * from tb_khach_hang where
                                 SDT='${formData.phone}' and TaiKhoan is not NULL`
                                 db.query(checkCustomerExistAcc, function(err,result){
