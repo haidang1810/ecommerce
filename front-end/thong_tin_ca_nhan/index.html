@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Website mua bán trang sức số 1 Việt Nam</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+        <script src="https://kit.fontawesome.com/a009e9706c.js"></script>
+        <link rel="stylesheet" href="../shared/css/base.css">   
+        <link rel="stylesheet" href="../shared/css/header.css">
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <div class="app">
+			<div class="loading loading_hide">
+				<img src="../shared/img/loading.gif" alt="">
+			</div>
+            <header class="header">
+                <nav class="header__navbar container">
+                    <ul class="header__navbar-list">
+                        <li class="header__navbar-item">
+                            Kết nối
+                            <a href="https://www.facebook.com/profile.php?id=100009041341840" class="header__navbar-item--icon-link">
+                                <i class="header__navbar--icon fa-brands fa-facebook"></i>
+                            </a>
+                            <a href="#" class="header__navbar-item--icon-link">
+                                <i class="header__navbar--icon fa-brands fa-instagram"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="header__navbar-list">
+                        <li class="header__navbar-item header__navbar-item__has-nofi">
+                            <div class="header__navbar-item-link">
+                                <i class="header__navbar--icon far fa-bell"></i>
+                                Thông báo
+                            </div>
+                            <div class="header__notify">
+                                <header class="header__notify--header">
+                                    <h3>Thông báo mới nhận</h3>
+                                </header>
+                                <ul class="header__notify-list">
+                                    
+                                </ul>
+                                <footer class="header__notify--footer">
+                                    <a href="#" class="header__notify--footer-btn">
+                                        Xem tất cả
+                                    </a>
+                                </footer>
+                            </div>
+                        </li>
+                        <li class="header__navbar-item">
+                            <a href="#" class="header__navbar-item-link">
+                                <i class="header__navbar--icon fa-solid fa-circle-question"></i>
+                                Hỗ trợ
+                            </a>
+                        </li>
+                        <li class="header__navbar-item navbar__user hide"
+						id="header__item--user">
+                            <img src="https://picsum.photos/200" alt="" 
+                            class="navbar__user--avatar">
+                            <span class="navbar__user--info" id="header-full-name">
+                                <!-- full name customer -->
+                            </span>
+                            <div class="navbar__user--menu">
+                                <ul class="navbar__user--menu-list">
+                                    <li class="navbar__user--menu-item">
+                                        <a href="./">Tài khoản của tôi</a>
+                                    </li>
+                                    <li class="navbar__user--menu-item">
+                                        <a href="#">Đơn mua</a>
+                                    </li>
+                                    <li class="navbar__user--menu-item">
+                                        <a id="btn_logout">Đăng xuất</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="header-search container row align-items-center">
+                    <a class="col-xl-2 header__logo" id="logo-link">
+                        JWB Shop
+                    </a>
+                    <div class="col-xl-8 header__searchBar">
+                        <input type="text" name="" class="header__input" 
+                        placeholder="Tìm kiếm sản phẩm">
+                        <button class="header__button" id="btn-search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                    <div class="header__cart col-xl-2">
+                        <button class="cart__button">
+                            <i class="bi bi-cart"></i>
+                        </button>
+                        <span class="cart__badge hide"></span>
+                        <!--add class header__cart-list--null while list cart null   -->
+                        <div class="header__cart-list header__cart-list--null">
+                            <img src="../shared/img/no-cart.png" alt="loading" 
+                            class="header__cart--img">
+                            <p class="header__cart-list--null-title">Chưa có sản phẩm</p>
+                            <h3 class="header__cart-heading">
+                                Sản phẩm đã thêm
+                            </h3>
+                            <ul class="header__cart-list-item">
+                                
+                            </ul>
+                            <button class="header__cart-footer">
+                                Xem giỏ hàng
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="container">
+                <div class="row main-content">
+					<div class="col-xl-2">
+						<ul class="menu-bar">
+							<li class="menu-bar__item">
+								<a href="" class="menu-bar__link">
+									<i class="fa-regular fa-user menu-bar__icon"></i>
+									Tài khoản của tôi
+								</a>
+							</li>
+							<li class="menu-bar__item">
+								<a href="" class="menu-bar__link">
+									<i class="fa-solid fa-clipboard-list menu-bar__icon"></i>
+									Đơn mua
+								</a>
+							</li>
+							<li class="menu-bar__item">
+								<a href="" class="menu-bar__link">
+									<i class="far fa-bell menu-bar__icon  menu-bar__icon--orange"></i>
+									Thông báo
+								</a>
+							</li>
+							<li class="menu-bar__item">
+								<a href="" class="menu-bar__link">
+									<i class="fa-solid fa-ticket menu-bar__icon menu-bar__icon--orange"></i>
+									Kho khuyến mãi
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-xl-10 profile">
+						<h3 class="profile__header">Hồ sơ của tôi</h3>
+						<div class="row">
+							<div class="col-xl-8">
+								<div class="profile__group">
+									<div class="profile__label">Tên đăng nhập</div>
+									<p class="profile__control" id="profile-username">
+
+									</p>
+								</div>
+								<div class="profile__group">
+									<p class="profile__label">Họ và tên</p>
+									<input type="text" name="" id="profile-fullName" 
+									class="profile__input">
+								</div>
+								<div class="profile__group">
+									<div class="profile__label">Email</div>
+									<div class="profile__control">
+										<span id="profile-email"></span>
+										<button class="profile__btn-link text-primary"
+										data-toggle="modal" data-target=".modal_change_email">
+											Thay đổi
+										</button>
+									</div>
+								</div>
+								<div class="profile__group">
+									<div class="profile__label">Số điện thoại</div>
+									<div class="profile__control">
+										<span id="profile-phone">
+										</span>
+										<button class="profile__btn-link text-primary"
+										data-toggle="modal" data-target=".modal_change_phone">
+											Thay đổi
+										</button>
+									</div>
+								</div>
+								<div class="profile__group">
+									<div class="profile__label">Địa chỉ</div>
+									<div class="profile__control">
+										<span id="profile-address">
+											
+										</span>
+										<button class="profile__btn-link text-primary"
+										data-toggle="modal" data-target=".modal_change_address"
+										id="btn-open-modal-addres">
+											Thay đổi
+										</button>
+									</div>
+								</div>
+								<div class="profile__group">
+									<div class="profile__label">Giới tính</div>
+									<div class="profile__control">
+										<input type="radio" name="gender" value="1" id="male" checked class="profile__radio mr-2">
+										<label for="male" class="profile__radio-label">Nam</label>
+										<input type="radio" name="gender" value="2" id="female" class="profile__radio mr-2 ml-4">
+										<label for="female" class="profile__radio-label">Nữ</label>
+									</div>
+								</div>
+								<div class="profile__group">
+									<div class="profile__label">Ngày sinh</div>
+									<input type="date" id="profile-birth" class="profile__input">
+								</div>
+								<button class="profile__submit" id="btn_submit_change_info">Lưu</button>
+							</div>
+							<div class="col-xl-4 avatar">
+								<div class="avatar__img">
+									<img src="https://res.cloudinary.com/jwb/image/upload/v1652092431/images_default/user_default_dpsjgs.png" alt=""
+									id="profile-avatar">
+								</div>
+								<label class="avatar__btn" for="input_avatar">Chọn ảnh</label>
+								<p class="avatar__info">
+									Dụng lượng file tối đa 4 MB<br>
+									Định dạng:.JPEG, .PNG, .JPG
+								</p>
+								<input type="file"  id="input_avatar">
+							</div>
+						</div>
+					</div>
+				</div>
+            </div>
+			
+            <footer class="footer">
+
+            </footer>
+        </div>
+        <div class="modal fade modal_change_email" >
+            <div class="modal-dialog">
+                <div class="modal__inner modal-content">
+                    <div class="modal__header">
+                        <h3>Đổi địa chỉ gmail</h3>
+                        <div class="modal__close-btn" data-dismiss="modal">
+                            <i class="fa-solid fa-xmark"></i>
+                        </div>
+                    </div>
+                    <div class="modal__body">
+                        <form class="modal__form" id="form-change-email">
+							<div class="form-group">
+								<label for="" class="modal__form-label">
+									Gmail mới
+								</label>
+								<input type="text" class="modal__form-input"
+								rules="email" name="gmail">
+								<span class="message-err"></span>
+							</div>
+							<div class="form-group">
+								<label for="" class="modal__form-label">
+									Mật khẩu
+								</label>
+								<input type="password" class="modal__form-input"
+								rules="required" name="password">
+								<span class="message-err"></span>
+							</div>
+						</form>
+                    </div>
+                    <div class="modal__footer">
+						<button class="modal__footer-btn modal__footer-btn--cancel" 
+						data-dismiss="modal" type="buttton">
+                            Huỷ
+                        </button>
+                        <button class="modal__footer-btn modal__footer-btn--submit" 
+						id="btn_submit_change_mail" type="buttton">
+                            Xác nhận
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade modal_change_phone" >
+            <div class="modal-dialog">
+                <div class="modal__inner modal-content">
+                    <div class="modal__header">
+                        <h3>Đổi số điện thoại</h3>
+                        <div class="modal__close-btn" data-dismiss="modal">
+                            <i class="fa-solid fa-xmark"></i>
+                        </div>
+                    </div>
+                    <div class="modal__body">
+                        <form class="modal__form" id="form-change-email">
+							<div class="form-group group-relative">
+								<label for="" class="modal__form-label">
+									Số điện thoại mới
+								</label>
+								<input type="number" class="modal__form-input" 
+								id="input-phone"
+								rules="required|min:10" name="phone">
+								<button id="btn-send-code" type="button">
+									<i class="fa-solid fa-envelope modal__form-icon"></i>
+								</button>
+								<span class="message-err"></span>
+							</div>
+							<div class="form-group">
+								<label for="" class="modal__form-label">
+									Mã xác nhận
+								</label>
+								<input type="text" class="modal__form-input"
+								rules="required" id="verifyCode">
+								<span class="message-err"></span>
+							</div>
+						</form>
+                    </div>
+                    <div class="modal__footer">
+						<button class="modal__footer-btn modal__footer-btn--cancel" 
+						data-dismiss="modal" type="buttton">
+                            Huỷ
+                        </button>
+                        <button class="modal__footer-btn modal__footer-btn--submit" 
+						id="btn_submit_change_phone" type="buttton">
+                            Xác nhận
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="modal fade modal_change_address" >
+            <div class="modal-dialog">
+                <div class="modal__inner modal-content">
+                    <div class="modal__header">
+                        <h3>Thay đổi địa chỉ</h3>
+                        <div class="modal__close-btn" data-dismiss="modal">
+                            <i class="fa-solid fa-xmark"></i>
+                        </div>
+                    </div>
+                    <div class="modal__body">
+                        <form action="" class="modal__form modal__form--address">
+                            <div class="row modal__form-location">
+                                <div class="col-xl-4 location-type">Địa chỉ nhà</div>
+                                <input type="text" class="modal__form-input--address"
+								id="input-address">
+                            </div>
+                            <div class="row modal__form-location">
+                                <div class="col-xl-4 location-type">Tỉnh/Thành phố</div>
+                                <select class="selectpicker col-xl-8" data-live-search="true"
+								id="select_province">
+									<option value="-1">Chọn tỉnh thành phố</option>								
+                                </select>
+                            </div>
+                            <div class="row modal__form-location">
+                                <div class="col-xl-4 location-type">Quận/Huyện</div>
+                                <select class="selectpicker col-xl-8" disabled data-live-search="true"
+								id="select_district">
+									<option value="-1">Chọn quận huyện</option>
+                                </select>
+                            </div>
+                            <div class="row modal__form-location">
+                                <div class="col-xl-4 location-type">Phường/Xã</div>
+                                <select class="selectpicker col-xl-8" disabled data-live-search="true"
+								id="select_ward">
+									<option value="-1">Chọn phường xã</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal__footer">
+						<button class="modal__footer-btn modal__footer-btn--cancel" 
+						data-dismiss="modal" type="buttton">
+                            Huỷ
+                        </button>
+                        <button class="modal__footer-btn modal__footer-btn--submit" 
+						id="btn_select_address">
+                            Lưu lại
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.all.min.js"></script>
+		<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/decoupled-document/ckeditor.js"></script>
+		<script src="../shared/js/validator.js"></script>
+		<script src="../shared/js/config.js"></script>
+		<script src="../shared/js/base.js"></script>
+		<script src="../shared/js/header.js"></script>
+		<script src="./app.js"></script>
+    </body>
+</html>

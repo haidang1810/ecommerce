@@ -14,5 +14,20 @@ class AddressesController {
 			});			
 		})
     }
+	updateByCustomer(req,res){
+		Address.updateOne({customer: req.body.customer},req.body)
+			.then(()=>{
+				res.json({
+					status: 1,
+					msg: 'success !!!'
+				});	
+			})
+			.catch(()=>{
+				res.json({
+					status: 0,
+					msg: 'Có lỗi vui lòng thử lại !!!'
+				});	
+			})
+	}
 }
 module.exports = new AddressesController();

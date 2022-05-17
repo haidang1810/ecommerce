@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const checkLogin = require('../app/middleware/checkLogin');
+const AddressesController = require('../app/controllers/AddressesController');
 
-const addressesController = require('../app/controllers/AddressesController');
+router.get('/getByCustomer/:id', AddressesController.getByCustomer);
+router.post('/updateByCustomer/', checkLogin, AddressesController.updateByCustomer);
 
-router.get('/getByCustomer/:id', addressesController.getByCustomer);
 module.exports = router;

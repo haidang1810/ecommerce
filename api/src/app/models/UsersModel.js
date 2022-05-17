@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const dotenv = require('dotenv').config();
+const verifyCode = require('../services/verifyCode');
 
 const User = function(user) {
     this.TaiKhoan = user.TaiKhoan;
@@ -11,13 +12,8 @@ const User = function(user) {
     this.RefreshToken = user.RefreshToken;
 }
 
-const createCode = (length) => {
-    let code = "";
-    let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    for (let i = 0; i < length; i++)
-    code += possible.charAt(Math.floor(Math.random() * possible.length));
-    return code;
-}
+
+
 const createCustomer = (username,fullName,phone,resolve,reject)  => {
     let code = createCode(20);
     const addCustomer = `insert into tb_khach_hang(MaKH,TaiKhoan,HoTen,SDT) 
@@ -37,6 +33,14 @@ const createCustomer = (username,fullName,phone,resolve,reject)  => {
     })
 }
 User.add = (req, res) => {
+	if(!verifyCode.checkCode(req.body.verifyCode)){
+		res({
+			status: 0,
+			msg: "Mã xác nhận không chính xác hoặc hết hạn",
+		});
+		return;
+	}
+	verifyCode.deleteCode(req.body.verifyCode);
     pool.getConnection(function(error, db){
         let formData = req.body;
         const getUser = `select * from tb_nguoi_dung where TaiKhoan='${formData.username}'`;
@@ -162,9 +166,28 @@ User.add = (req, res) => {
         })
     })    
 }
+User.getVerifyCode =  (req, res) => {
+	let phone = req.params.phone;
+	verifyCode.getCode(phone, (isSuccess)=>{
+		if(isSuccess){
+			res({
+				status: 1,
+				msg: 'Mã xác nhận đã được gửi đến số điện thoại của bạn.'
+			});
+			return;
+		}else{
+			res({
+				status: 0,
+				msg: 'Số điện thoại không hợp lệ.'
+			});
+			return;
+		}
+	})
+}
 User.getAll = (req,res) => {
     pool.query("select * from tb_nguoi_dung", function(err,result){
         res(result);
     })
 }
+
 module.exports = User;

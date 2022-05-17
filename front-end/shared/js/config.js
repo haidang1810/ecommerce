@@ -11,6 +11,7 @@ var AUTH_LOGOUT = 'logout/'
 var API_USER = 'users/';
 
 var USER_ADD = 'add/'
+var USER_VERIFYCODE = 'getVerifyCode/';
 
 // API category
 var API_CATEGORY = "categories/";
@@ -38,12 +39,21 @@ var IMAGE_GETBYPRODUCT = 'getByProduct/';
 var API_ADDRESS = 'addresses/';
 
 var ADDRESS_GETBYCUSTOMER = 'getByCustomer/';
+var ADDRESS_UPDATEBYCUSTOMER = 'updateByCustomer/';
 
 //API Cart
 var API_CART = 'carts/';
 
 var CART_GETBYUSER = 'getByUser/';
 
+// API customer
+var API_CUSTOMER = 'customers/';
+
+var CUSTOMER_GETBYACCOUNT = 'getByAccount/';
+var CUSTOMER_CHANGEGMAIL = 'changeGmail/';
+var CUSTOMER_GETVERIFYCODE = 'getVerifyCode/';
+var CUSTOMER_CHANGEPHONE = "changePhone/";
+var CUSTOMER_CHANGEINFO = "changeInfo/";
 
 // API Notification
 var API_NOTIFICATION = 'notifications/';
