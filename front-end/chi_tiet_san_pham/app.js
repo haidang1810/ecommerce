@@ -492,7 +492,14 @@ function renderPagingBtn(totalPage,listRatingRender,filter){
 		renderRatingItem(listRatingRender,filter)
 	});
 }
+function reActiveBtnRatingFilter(){
+	$(".overview__filter-button").each(function(){
+		$(this).removeClass("overview__filter-button--active");
+	})
+}
 $(".overview__filter-button").click(function(){
+	reActiveBtnRatingFilter();
+	$(this).addClass("overview__filter-button--active");
 	const btnId = $(this).attr('id');
 	switch(btnId){
 		case 'fiveStar': 

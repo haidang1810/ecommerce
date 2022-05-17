@@ -390,8 +390,9 @@ fetch(BASE_URL+API_PRODUCT+PRODUCT_GETALL,{
 	.then(data => {
 		if(data.status == 1){
 			product_list = data.data;
+			console.log(product_list)
 			renderProduct(product_list);
-		}
+		}else console.log(data.msg);
 	})
 	.catch(handlerError);
 

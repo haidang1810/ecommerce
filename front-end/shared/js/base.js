@@ -2,6 +2,7 @@ function statusRes(response) {
 	if (response.status >= 200 && response.status < 300) {
 		return Promise.resolve(response)
 	} else {
+		console.log(response);
 		return Promise.reject(new Error(response.status))
 	}
 }
@@ -248,16 +249,17 @@ promiseAccessToken
 	})
 
 function getTransportCost(to_district_id, to_ward_code, weight, handleTransportCost){
-	let query = `?from_district_id=${1484}&service_type_id=${3}`;
+	let query = `?from_district_id=${1484}&service_type_id=${2}`;
 	query += `&to_district_id=${to_district_id}&to_ward_code=${to_ward_code}`;
 	query += `&height=${HEIGHT_BOX}&length=${LENGHT_BOX}&weight=${WEIGHT_BOX+weight}`;
-	query += `&width${WIDTH_BOX}&insurance_value=0&coupon=`
+	query += `&width=${WIDTH_BOX}&insurance_value=0&coupon=`
 	fetch(API_GETCOSTTRANSPORT+query, {
 		method: 'GET',
 		headers:{
 			'Content-Type': 'application/json',
 			'Token': TOKEN,
-			'ShopId': SHOPID
+			'ShopId': SHOPID,
+			'Content-Type': 'text/plain'
 		}
 	})
 		.then(statusRes)
