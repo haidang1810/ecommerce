@@ -520,3 +520,85 @@ auth:
 		-Request:
 		-Response: 
 
+Orders:
+	API: getAll:
+		-URL: http://localhost:3000/orders/getAll
+		-Method: get
+		-Request:
+		-Response: {
+			status: 1,
+			msg: 'success',
+			data: [
+				{
+					MaKH: '',
+					DiaChiNhanHang: '', (Bỏ chống nếu dùng địa chỉ trong database)
+					PhiVanChuyen: 10000,
+					TrangThai: 0, (là 1 nếu dùng chức năng duyệt ngay khi tạo của admin)
+					SanPham: [
+						{
+							MaSP: '',
+							SoLuong: 1,
+							DonGia: 123
+						}
+					],
+					MaGiamGia: ['fdsf','fdsfds','hgfhgf']
+				}
+			]
+		}
+		API: getByCustomer:
+		-URL: http://localhost:3000/orders/getByCustomer
+		-Method: get
+		-Request: {
+			MaKH: '',
+		}
+		-Response: {
+			status: 1,
+			msg: 'success',
+			data: [
+				{
+					MaKH: '',
+					DiaChiNhanHang: '', (Bỏ chống nếu dùng địa chỉ trong database)
+					PhiVanChuyen: 10000,
+					TrangThai: 0, (là 1 nếu dùng chức năng duyệt ngay khi tạo của admin)
+					SanPham: [
+						{
+							MaSP: '',
+							SoLuong: 1,
+							DonGia: 123
+						}
+					],
+					MaGiamGia: ['fdsf','fdsfds','hgfhgf']
+				}
+			]
+		}
+	API createOrder:
+		-URL: http://localhost:3000/orders/createOrder
+		-Method: post
+		-Request: {
+			MaKH: '',
+			DiaChiNhanHang: '', (Bỏ chống nếu dùng địa chỉ trong database)
+			PhiVanChuyen: 10000,
+			TrangThai: 0, (là 1 nếu dùng chức năng duyệt ngay khi tạo của admin)
+			SanPham: [
+				{
+					MaSP: '',
+					SoLuong: 1,
+					DonGia: 123
+				}
+			],
+			MaGiamGia: ['fdsf','fdsfds','hgfhgf']
+		}
+		-Response: {
+			status: 1,
+			msg: 'success'
+		}
+	API changeStatus: 
+		-URL: http://localhost:3000/orders/changeStatus
+		-Method: post
+		-Request: {
+			TrangThai: 1 (0: chờ duyệt, 1: đã duyệt, 2: đang vận chuyển, 3: giao thành công. 4: giao thất bại, 5: Đã huỷ)
+		}
+		-Response: {
+			status: 1,
+			msg: 'success'
+		}
