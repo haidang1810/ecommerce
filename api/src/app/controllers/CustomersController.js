@@ -26,6 +26,11 @@ class CustomersController {
             res.json(response);
         })
     }
+    add(req,res){
+        CustomersModel.add(req,function(response){
+            res.json(response);
+        })
+    }
 
 
 }

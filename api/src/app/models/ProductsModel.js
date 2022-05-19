@@ -1,4 +1,10 @@
 const pool = require('../config/connectDB');
+const cloudinary = require('cloudinary').v2;
+cloudinary.config({
+	cloud_name: process.env.CLOUDINARY_NAME,
+	api_key: process.env.CLOUDINARY_API_KEY,
+	api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 const Product = function (product) {
     this.MaSP = product.MaSP;
@@ -119,6 +125,185 @@ Product.getDetail = (req, res) => {
 			data: result[0]
 		});
 		return;
+	});
+}
+var type = ['image/jpeg','image/png','image/jpg'];
+Product.add = (req, res) => {
+	let MaSP = req.body.MaSP;
+	let LoaiSP = req.body.LoaiSP;
+	let TenSP = req.body.TenSP;
+	let MoTa = req.body.MoTa;
+	let KhoiLuong = req.body.KhoiLuong;
+	let Gia = req.body.Gia;
+	let SoLuong = req.body.SoLuong;
+	let AnhBia = req.files.AnhBia;
+	let NgayDang = req.body.NgayDang;
+	const checkProduct = 'select MaSP from tb_san_pham where MaSP=?';
+	pool.query(checkProduct, MaSP, (err,result) => {
+		if(err){
+			res({
+				status: 0,
+				msg: err.sqlMessage
+			});
+			return;
+		}
+		if(result.length>0){
+			res({
+				status: 0,
+				msg: 'Mã sản phâm đã tồn tại'
+			});
+			return;
+		}
+		cloudinary.uploader.upload(AnhBia.tempFilePath, {
+			resource_type: "auto",
+			folder: "product_avatar"
+		}, (err, avatar)=>{
+			if(err){
+				res({
+					status: 0,
+					msg: err
+				});
+				return;
+			}
+			const addProduct = `insert into tb_san_pham values(?,?,?,?,?,?,?,?,?)`;
+			const params = [MaSP,LoaiSP,TenSP,MoTa,KhoiLuong,Gia,SoLuong,avatar.url,NgayDang];
+			pool.query(addProduct, params, (err)=>{
+				if(err){
+					res({
+						status: 0,
+						msg: err.sqlMessage
+					});
+					return;
+				}
+				res({
+					status: 1,
+					msg: 'success'
+				});
+				return;
+			});
+		});
+	});
+	
+	
+}
+Product.edit = (req, res) => {
+	let MaSP = req.body.MaSP;
+	let LoaiSP = req.body.LoaiSP;
+	let TenSP = req.body.TenSP;
+	let MoTa = req.body.MoTa;
+	let KhoiLuong = req.body.KhoiLuong;
+	let Gia = req.body.Gia;
+	let SoLuong = req.body.SoLuong;
+	let AnhBia = req.files.AnhBia;
+	let NgayDang = req.body.NgayDang;
+	const editProduct = ``;
+	const params = [];
+	const checkProduct = 'select MaSP,AnhBia from tb_san_pham where MaSP=?';
+	pool.query(checkProduct, MaSP, (err,result) => {
+		if(err){
+			res({
+				status: 0,
+				msg: err.sqlMessage
+			});
+			return;
+		}
+		if(result.length<=0){
+			res({
+				status: 0,
+				msg: 'Mã sản phâm không tồn tại'
+			});
+			return;
+		}
+		cloudinary.uploader.upload(AnhBia.tempFilePath, {
+			resource_type: "auto",
+			folder: "product_avatar"
+		}, (err, avatar)=>{
+			if(err){
+				res({
+					status: 0,
+					msg: err
+				});
+				return;
+			}
+			if(AnhBia){
+				editProduct = `update tb_san_pham set LoaiSP=?,TenSP=?,
+				MoTa=?,KhoiLuong=?,Gia=?,SoLuong=?,AnhBia=?,NgayDang=? where MaSP=?`;
+				params = [LoaiSP,TenSP,MoTa,KhoiLuong,Gia,SoLuong,avatar.url,NgayDang,MaSP];
+				if(!type.includes(img.mimetype)){
+					res({
+						status: 0,
+						msg: 'File không hợp lệ'
+					});
+					return;
+				}
+				if(img.size > 4 * 1024 * 1024){
+					res({
+						status: 0,
+						msg: 'File phải nhỏ hơn 4 MB'
+					});
+					return;
+				}
+			}else{
+				editProduct = `update tb_san_pham set LoaiSP=?,TenSP=?,
+				MoTa=?,KhoiLuong=?,Gia=?,SoLuong=?,NgayDang=? where MaSP=?`;
+				params = [LoaiSP,TenSP,MoTa,KhoiLuong,Gia,SoLuong,NgayDang,MaSP];
+			}
+			
+			pool.query(editProduct, params, (err)=>{
+				if(err){
+					res({
+						status: 0,
+						msg: err.sqlMessage
+					});
+					return;
+				}
+				let oldImgLink = result[0].AnhBia;
+				let arrLink = oldImgLink.split('/');
+				let cloundPublicId = "product_avatar/"+arrLink[arrLink.length-1].split('.')[0];
+				cloudinary.uploader.destroy(cloundPublicId);
+				res({
+					status: 1,
+					msg: 'success'
+				});
+				return;
+			});
+		});
+	});
+	
+}
+Product.delete = (req, res) => {
+	let MaSP = req.body.MaSP;
+	const checkProduct = 'select MaSP,AnhBia from tb_san_pham where MaSP=?';
+	pool.query(checkProduct, MaSP, (err,result) => {
+		if(err){
+			res({
+				status: 0,
+				msg: err.sqlMessage
+			});
+			return;
+		}
+		if(result.length<=0){
+			res({
+				status: 0,
+				msg: 'Mã sản phâm không tồn tại'
+			});
+			return;
+		}
+		const deleteProduct = `delete from tb_san_pham where MaSP=?`;
+		pool.query(deleteProduct, MaSP, (err)=>{
+			if(err){
+				res({
+					status: 0,
+					msg: err.sqlMessage
+				});
+				return;
+			}
+			let oldImgLink = result[0].AnhDaiDien;
+			let arrLink = oldImgLink.split('/');
+			let cloundPublicId = "product_avatar/"+arrLink[arrLink.length-1].split('.')[0];
+			cloudinary.uploader.destroy(cloundPublicId);
+		});
+		
 	});
 }
 module.exports = Product;

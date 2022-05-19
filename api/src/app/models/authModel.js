@@ -14,8 +14,7 @@ const Auth = function(auth) {
 
 Auth.login = (req,res) => {
     let formData = req.body;
-    const getUser = `select * from tb_nguoi_dung, tb_khach_hang where tb_khach_hang.TaiKhoan=?
-        and tb_nguoi_dung.TaiKhoan=tb_khach_hang.TaiKhoan`;
+    const getUser = `select * from tb_nguoi_dung where TaiKhoan=?`;
         pool.query(getUser, formData.username, (err, result) =>{
             if(err){
                 res({
@@ -55,17 +54,39 @@ Auth.login = (req,res) => {
 							if(err){
 								res({
 									status: 0,
-									msg: err
+									msg: err.sqlMessage
 								});
 								return;
 							}
-							res({
-								status: 1,
-								msg: "Đăng nhập thành công",
-								fullName: result[0].HoTen,
-								avatar: result[0].AnhDaiDien
-							},accessToken,refreshToken);
-							return;
+							if(result[0].LoaiND==1){
+								const getInfo = `select HoTen, AnhDaiDien from tb_khach_hang
+									where TaiKhoan=?`;
+								pool.query(getInfo,formData.username,(err,info)=>{
+									if(err){
+										res({
+											status: 0,
+											msg: err.sqlMessage
+										});
+										return;
+									}
+									res({
+										status: 1,
+										msg: "Đăng nhập thành công",
+										rule: 1,
+										fullName: info[0].HoTen,
+										avatar: info[0].AnhDaiDien
+									},accessToken,refreshToken);
+									return;
+								})
+							}else if(result[0].LoaiND==2){
+								res({
+									status: 1,
+									msg: "Đăng nhập thành công",
+									rule: 2,
+								},accessToken,refreshToken);
+								return;
+							}
+							
 						})
                         
                     }else{
@@ -154,14 +175,40 @@ Auth.checkLogin = (req, res) => {
 						fullName: data[0].HoTen,
 						avatar: data[0].AnhDaiDien,
 						id: data[0].MaKH,
+						rule: 1,
 						user: result.username
 					});
 				else{
-					res({
-                        status: 0,
-                        msg: 'User không tồn tại'
-                    });
-                    return;
+					const checkToken = `select HoTen, AnhDaiDien, MaNV
+					from tb_thong_tin_nhan_vien 
+					where TaiKhoan=?`
+					pool.query(checkToken,result.username,
+					(err, data)=>{
+						if(err){
+							res({
+								status: 0,
+								msg: err
+							});
+							return;
+						}  
+						if(data.length>0)  
+							res({
+								status: 1,
+								msg: 'Đã đăng nhập',
+								fullName: data[0].HoTen,
+								avatar: data[0].AnhDaiDien,
+								id: data[0].MaKH,
+								rule: 2,
+								user: result.username
+							});
+						else{
+							res({
+								status: 0,
+								msg: "User không tồn tại"
+							});
+							return;
+						}
+					})
 				}
             })
             
