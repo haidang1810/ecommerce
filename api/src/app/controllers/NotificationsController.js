@@ -14,5 +14,6 @@ class NotificationsController {
 			});			
 		});
     }
+
 }
 module.exports = new NotificationsController();

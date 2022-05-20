@@ -183,17 +183,7 @@ Cart:
 			status: 1,
 			msg: 'success',
 		}
-	API editQuantity: 
-		-URL: http://localhost:3000/carts/editQuantity
-		-Method: post
-		-Request: {
-			id: 1,
-			SoLuong: 2
-		}
-		-Response: {
-			status: 1,
-			msg: 'success',
-		}
+
 	API delete:
 		-URL: http://localhost:3000/carts/delete
 		-Method: post
@@ -271,10 +261,26 @@ Customer:
 		-Method: post
 		-Request: {
 			HoTen: '',
-			GioiTinh: '1',
+			GioiTinh: 1,
 			NgaySinh: '',
 			SDT: '',
-			Gmail: ''
+			Gmail: '',
+			DiaChi: {
+				address : "52/84/129 Nguyễn Huệ",
+				customer : "7OHL6sAnH4UKUXqBAq0o",
+				province : {
+					id : 215,
+					name : "Vĩnh Long"
+				},
+				district : {
+					id : 1562,
+					name : "Thành phố Vĩnh Long"
+				},
+				ward : {
+					id : 570102,
+					name : "Phường 2"
+				}
+			}
 		}
 		-Response: {
 			status: 1,
@@ -305,14 +311,17 @@ Images:
 		}
 		-Response: {
 			status: 1,
-			msg: 'success'
+			msg: 'success',
+			countUploadSuccess: 5,
+			listImgError: [
+				'hinhA.png',
+				'hinhB.png'
+			]
 		}
 	API delete:
-		-URL: http://localhost:3000/images/delete
-		-Method: post
-		-Request: {
-			Id: ''
-		}
+		-URL: http://localhost:3000/images/delete/1
+		-Method: get
+		-Request:
 		-Response: {
 			status: 1,
 			msg: 'success'
@@ -335,20 +344,7 @@ notification:
 				}
 			]
 		}
-	API add:
-		-URL: http://localhost:3000/notifications/add
-		-Method: post
-		-Request: {
-					user: 'TaiKhoan',
-					name: 'TenCuaThongBao',
-					image: file,
-					description: 'Mô tả',
-					time: 'ThoiGianTaoThongBao'
-				}
-		-Response: {
-			status: 1,
-			msg: 'success'
-		}
+
 rating:
 	APi getAll:
 		-URL: http://localhost:3000/ratings/getAll
@@ -359,6 +355,7 @@ rating:
 			msg: 'success',
 			data: [
 				{
+					Id: '',
 					HoTen: '',
 					NoiDung: '',
 					ThoiGian: '',
@@ -377,6 +374,7 @@ rating:
 			msg: 'success',
 			data: [
 				{
+					Id: '',
 					HoTen: '',
 					NoiDung: '',
 					ThoiGian: '',
@@ -390,8 +388,8 @@ rating:
 		-URL: http://localhost:3000/ratings/add
 		-Method: post
 		-Request: {
-			TaiKhoan: '',
 			MaSP: '',
+			MaDon: '',
 			NoiDung: '',
 			SoSao: ''
 		}
@@ -403,8 +401,7 @@ rating:
 		-URL: http://localhost:3000/ratings/replyByAdmin
 		-Method: post
 		-Request: {
-			MaSP: '',
-			TaiKhoan: 'user dc phản hồi'
+			id: '',
 			PhanHoi: 'nội dung'
 		}
 		-Response: {

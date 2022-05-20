@@ -194,13 +194,18 @@ function checkLogin(isLogin){
 		.then(json)
 		.then(data => {
 			if(data.status == 1){
-				return data
+				return data;
 			}else{
 				return false
 			}
 		})
 		.then((data)=> {
-			isLogin(data); 
+			console.log(data);
+			if(data.rule==1)
+				isLogin(data); 
+			else if(data.rule==2){
+				window.location.href=BASE_URL_CLIENT+'admin/trang_chu/';
+			}
 		})
 		.catch(handlerError);
 }
@@ -226,7 +231,7 @@ function getAccessToken(resolve){
 		.catch(handlerError);
 }
 
-var promiseAccessToken = new Promise((resolve, reject)=>{
+var promiseAccessToken = new Promise((resolve)=>{
 	getAccessToken(resolve);
 });
 promiseAccessToken

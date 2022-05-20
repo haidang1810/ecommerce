@@ -29,52 +29,49 @@ Image.getByProduct = (req, res) => {
     });
 }
 
-function uploadProducts(images, productID){
-	return new Promise((resolve)=>{
-		let countUploadSuccess = 0;
-		let listImgError = [];
-		images.forEach(async (image) => {
-			if(!type.includes(image.mimetype) || image.size > 4 * 1024 * 1024){
-				listImgError.push(image.name);
-			}else{
-				await cloudinary.uploader.upload(image.tempFilePath, {
-					resource_type: "auto",
-					folder: "images"
-				}, (err, result)=>{
-					if(!err){
-						const addImg = `insert into tb_hinh_anh(MaSP,DuongDan)
-							values(?,?)`;
-						pool.query(addImg,[result.url, productID],(err)=>{
-							if(err){
-								listImgError.push(image.name);
-							}else{
-								countUploadSuccess++;
-							}
-						});
-					}else listImgError.push(image.name);
-				});
-			}
-		});
-		resolve({
-			countUploadSuccess,
-			listImgError
-		});
-	})
+async function uploadImageProduct(image, productID){
+	return await (await cloudinary.uploader.upload(image.tempFilePath, {
+		resource_type: "auto",
+		folder: "images"
+	}, (err, result)=>{
+		if(!err){
+			const addImg = `insert into tb_hinh_anh(MaSP,DuongDan)
+				values(?,?)`;
+			pool.query(addImg,[result.url, productID],(err)=>{
+				if(err){
+					cloudinary.uploader.destroy(result.public_id);
+					return false;
+				}else{
+					return true;
+				}
+			});
+		}else return false;
+	}))
 }
 
 var type = ['image/jpeg','image/png','image/jpg'];
-Image.add = (req, res) => {
+Image.add = async (req, res) => {
 	const images = req.files.Anh;
 	const productID = req.body.MaSP;
-	uploadProducts(images,productID)
-		.then((data)=>{
-			res({
-				status: 1,
-				msg: 'success',
-				countUploadSuccess: data.countUploadSuccess,
-				listImgError: data.listImgError
-			});
-		})
+	let countUploadSuccess = 0;
+	let listImgError = [];
+	for(let image of images){
+		if(!type.includes(image.mimetype) || image.size > 4 * 1024 * 1024){
+			listImgError.push(image.name);
+		}else{
+			let isSuccess = await uploadImageProduct(image, productID);
+			if(isSuccess)
+				countUploadSuccess++;
+			else
+				listImgError.push(image.name);
+		}
+	}
+	res({
+		status: 1,
+		msg: 'success',
+		countUploadSuccess: data.countUploadSuccess,
+		listImgError: data.listImgError
+	});
 }
 Image.delete = (req, res) => {
 	const id = req.params.id;
