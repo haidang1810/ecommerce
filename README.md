@@ -527,13 +527,18 @@ Orders:
 			msg: 'success',
 			data: [
 				{
+					MaDon: '',
+					HoTen: '',
 					MaKH: '',
-					DiaChiNhanHang: '', (Bỏ chống nếu dùng địa chỉ trong database)
+					DiaChiNhanHang: '', (Bỏ chống nếu dùng địa chỉ trong database),
+					DiaChi: '',
 					PhiVanChuyen: 10000,
+					TongTienHang: 321321,
 					TrangThai: 0, (là 1 nếu dùng chức năng duyệt ngay khi tạo của admin)
 					SanPham: [
 						{
 							MaSP: '',
+							TenSP: '',
 							SoLuong: 1,
 							DonGia: 123
 						}
@@ -553,9 +558,11 @@ Orders:
 			msg: 'success',
 			data: [
 				{
+					MaDon: '',
 					MaKH: '',
 					DiaChiNhanHang: '', (Bỏ chống nếu dùng địa chỉ trong database)
 					PhiVanChuyen: 10000,
+					TongTienHang: 321321,
 					TrangThai: 0, (là 1 nếu dùng chức năng duyệt ngay khi tạo của admin)
 					SanPham: [
 						{
