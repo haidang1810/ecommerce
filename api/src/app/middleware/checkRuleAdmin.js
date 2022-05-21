@@ -3,7 +3,7 @@ const pool = require('../config/connectDB');
 
 const checkRuleAdmin = (req, res, next) => {
     let user = req.username;
-	pool("Select LoaiND from tb_nguoi_dung where TaiKhoan=?",user,
+	pool.query("Select LoaiND from tb_nguoi_dung where TaiKhoan=?",user,
 	(err, result)=>{
 		if(err){
 			res({

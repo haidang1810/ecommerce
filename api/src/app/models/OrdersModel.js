@@ -1,4 +1,6 @@
 const pool = require('../config/connectDB');
+const poolAwait = require('../config/connectDBAwait');
+const Address = require('../models/AddressesModel');
 
 const Order = function (order) {
     this.TaiKhoan = order.TaiKhoan;
@@ -8,39 +10,31 @@ const Order = function (order) {
     this.SoSao = order.SoSao;
     this.PhanHoi = order.PhanHoi;
 }
-async function getProductByOrder(orderId){
-	const getProduct = `select tb_chi_tiet_don.MaSP, TenSP, 
-		tb_chi_tiet_don.SoLuong, tb_chi_tiet_don.Gia
-		from tb_chi_tiet_don, tb_san_pham
-		where tb_chi_tiet_don.MaSP=tb_san_pham.MaSP and
-		MaDon=?`;
-	return await (await pool.query(getProduct,orderId, (err,orderDetail)=>{
-		if(err) return false;
-		return orderDetail
-	}));
-}
-async function getAddressByOrder(customer){
-	return await (await Address.findOne({customer},(err, address) => {
-		if(err) return false;
-		return address;		
-	}));
-}
-Order.getAll = async (req, res) => {
-    const getAllOrder = `select tb_don_hang.MaDon, MaKH, HoTen, DiaChiNhanHang,
-		TrangThai, PhiVanChuyen, TongTienHang`;
 
-    pool.query(getAllOrder, (err, order)=>{
-        if(err){
-			res({
-				status: 0,
-				msg: err
-			});
-			return;
-		}
+async function getAddressByOrder(customer){
+	return await (await Address.findOne({customer}));
+}
+
+Order.getAll = async (req, res) => {
+    const getAllOrder = `select tb_don_hang.MaDon, tb_don_hang.MaKH, HoTen, DiaChiNhanHang,
+		TrangThai, PhiVanChuyen, TongTienHang
+			from tb_don_hang, tb_khach_hang
+			where tb_don_hang.MaKH=tb_khach_hang.MaKH`;
+    try{
+		let [order,fields] = await poolAwait.query(getAllOrder);
 		for(let i=0; i<order.length; i++){
-			let orderDetail = await getProductByOrder(order[i].MaDon);
-			if(orderDetail){
-				order[i].SanPham = orderDetail;
+			const getProduct = `select tb_chi_tiet_don.MaSP, TenSP, 
+				tb_chi_tiet_don.SoLuong, tb_chi_tiet_don.Gia
+				from tb_chi_tiet_don, tb_san_pham
+				where tb_chi_tiet_don.MaSP=tb_san_pham.MaSP and
+					MaDon=?`;
+			try {
+				let [orderDetail, fields] = await poolAwait.query(getProduct,order[i].MaDon);
+				if(orderDetail){
+					order[i].SanPham = orderDetail;
+				}
+			} catch (error) {
+				
 			}
 			let address = await getAddressByOrder(order[i].MaKH);
 			if(address){
@@ -53,6 +47,147 @@ Order.getAll = async (req, res) => {
 			data: order
 		});
 		return;
-    });
+	}catch (error){
+		res({
+			status: 0,
+			msg: error,
+		});
+		return;
+	}
 }
+
+const createOrderID = async (length) => {
+    let code = "";
+    let possible = "abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    for (let i = 0; i < length; i++)
+    	code += possible.charAt(Math.floor(Math.random() * possible.length));
+	let [orders, fields] = await poolAwait.query('select * from tb_don_hang where MaDon=?',code);
+	if(orders.length>0){
+		createOrderID(length);
+	}else
+		return code;
+    
+}
+let isThreadCreateOrder = false;
+async function addOrder(req, res){
+	if(!isThreadCreateOrder){
+		isThreadCreateOrder = true;
+		const customerID = req.body.MaKH;
+		const tempAddress = req.body.DiaChiNhanHang;
+		const transportCost = req.body.PhiVanChuyen;
+		const status = req.body.TrangThai;
+		const totalPrice = req.body.TongTienHang;
+		const products = req.body.SanPham;
+		const discountCode = req.body.MaGiamGia;
+		const orderID = await createOrderID(30);
+		const insertOrder = `insert into tb_don_hang values(?,?,?,?,?,?)`;
+		const params = [orderID,customerID,tempAddress,status,totalPrice,transportCost];
+		pool.query(insertOrder, params, async (err)=>{
+			if(err){
+				res({
+					status: 0,
+					msg: `Lỗi thêm đơn hàng ${err.sqlMessage}`,
+				});
+				return;
+			}
+			const checkAmount = `select SoLuong, TenSP from tb_san_pham where MaSP=?`;
+			for(let product of products){
+				let [amount, fields] = await poolAwait.query(checkAmount,product.MaSP);
+				if(amount[0].SoLuong >= product.SoLuong){
+					const insertOrderDetail = `insert into tb_chi_tiet_don
+						values(?,?,?,?)`;
+					const updateAmout = `update tb_san_pham set SoLuong=SoLuong-? where
+						MaSP=?`; 
+					const insertDiscountCode = `insert into tb_don_hang_ma_giam(MaDon,MaGiamGia)
+						values(?,?)`;
+					try {
+						let [order] = await poolAwait.query(insertOrderDetail,
+							[orderID,product.MaSP,product.SoLuong,product.DonGia]);
+						let [isUpdate] = await poolAwait.query(updateAmout,
+							[product.SoLuong, product.MaSP]);
+						if(discountCode)
+							for(item of discountCode){
+								let [discount] = await poolAwait.query(insertDiscountCode,[orderID,item]);
+							}
+					} catch (error) {
+						await poolAwait.query(`delete from tb_don_hang where MaDon=?`,orderID);
+						isThreadCreateOrder = false;
+						res({
+							status: 0,
+							msg: `Có lỗi vui lòng thử lại ${error}`,
+						});
+						return;
+					}
+				}else{
+					isThreadCreateOrder = false;
+					await poolAwait.query(`delete from tb_don_hang where MaDon=?`,orderID);
+					await poolAwait.query(`delete from tb_chi_tiet_don where MaDon=?`,orderID);
+					res({
+						status: 0,
+						msg: `Sản phẩm ${amount[0].TenSP} đã hết hàng`
+					});
+					return;
+				}
+			}
+			isThreadCreateOrder = false;
+			res({
+				status: 1,
+				msg: `success`
+			});
+			return;
+		})
+	}else{
+		setTimeout(() => {
+			addOrder(req, res);
+		}, 0);
+	}
+	
+}
+Order.createOrder = (req, res) => {
+	addOrder(req, res);
+}
+Order.changeStatus = (req, res) =>{
+	const orderID = req.body.MaDon;
+	const statusOrder = req.body.TrangThai;
+	if(statusOrder<0 || statusOrder>5){
+		res({
+			status: 0,
+			msg: 'Trạng thái không chính xác',
+		});
+		return;
+	}
+	const findOrder = `select * from tb_don_hang where MaDon=?`;
+	pool.query(findOrder, orderID, (err,result)=>{
+		if(err){
+			res({
+				status: 0,
+				msg: err.sqlMessage,
+			});
+			return;
+		}
+		if(result.length<=0){
+			res({
+				status: 0,
+				msg: 'Đơn hàng không tồn tại',
+			});
+			return;
+		}
+		const updateStatus = `update tb_don_hang set TrangThai=? where MaDon=?`;
+		pool.query(updateStatus, [statusOrder,orderID],(err)=>{
+			if(err){
+				res({
+					status: 0,
+					msg: err.sqlMessage,
+				});
+				return;
+			}
+			res({
+				status: 1,
+				msg: 'success',
+			});
+			return;
+		})
+	})
+}
+
 module.exports = Order;
