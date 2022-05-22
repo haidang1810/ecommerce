@@ -35,3 +35,11 @@ html {
     margin-right: 10px;
     object-fit: contain;
 }
+.message-err {
+	font-size: 14px;
+	color: #fd1336 !important;
+}
+.input-mass::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

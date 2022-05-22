@@ -6,4 +6,5 @@ const ImagesController = require('../app/controllers/ImagesController');
 
 router.get('/getByProduct/:id', ImagesController.getByProduct);
 router.post('/add/', checkLogin, checkRuleAdmin, ImagesController.add);
+router.get('/delete/:id', checkLogin, checkRuleAdmin, ImagesController.delete);
 module.exports = router;

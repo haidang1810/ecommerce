@@ -144,6 +144,11 @@ Auth.refreshToken = (req,res) => {
 			}
 		})
 		
+	}else{
+		res({
+			status: 0,
+			msg: 'RefreshToken hết hạn hoặc không chính xác'
+		});
 	}
     
 }

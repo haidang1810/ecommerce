@@ -75,8 +75,7 @@ Product
 			KhoiLuong: 100, (đv gram)
 			Gia: 100000,
 			SoLuong: 300,
-			AnhBia: file, (dùng phương thức FormData để gửi request)
-			NgayDang: '2022-12-01'
+			AnhBia: file (dùng phương thức FormData để gửi request)
 		}
 		-Response: {
 			status: 1, (1 thành công, 2 thất bại)
@@ -94,7 +93,6 @@ Product
 			Gia: 100000,
 			SoLuong: 300,
 			AnhBia: file, (dùng phương thức FormData để gửi request)
-			NgayDang: '2022-12-01'
 		}
 		-Response: {
 			status: 1, (1 thành công, 2 thất bại)
@@ -307,7 +305,7 @@ Images:
 		-Method: post
 		-Request: {
 			MaSP: '',
-			Anh: file
+			Anh: files
 		}
 		-Response: {
 			status: 1,

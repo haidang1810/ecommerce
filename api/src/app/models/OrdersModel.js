@@ -189,7 +189,7 @@ Order.changeStatus = (req, res) =>{
 		})
 	})
 }
-Order.getByCustomer = (req, res) => {
+Order.getByCustomer = async (req, res) => {
 	const customerID = req.body.MaKH;
 	const getOrder = `select tb_don_hang.MaDon, tb_don_hang.MaKH, HoTen, DiaChiNhanHang,
 		TrangThai, PhiVanChuyen, TongTienHang
@@ -197,7 +197,7 @@ Order.getByCustomer = (req, res) => {
 			where tb_don_hang.MaKH=tb_khach_hang.MaKH
 			and MaKH=?`;
 			try{
-				let [order,fields] = await poolAwait.query(getOrder);
+				let [order,fields] = await poolAwait.query(getOrder,customerID);
 				for(let i=0; i<order.length; i++){
 					const getProduct = `select tb_chi_tiet_don.MaSP, TenSP, 
 						tb_chi_tiet_don.SoLuong, tb_chi_tiet_don.Gia

@@ -24,6 +24,8 @@ var API_PRODUCT = 'products/';
 var PRODUCT_GETALL = "getAll/";
 var PRODUCT_GETBYKEYWORD = 'getByKeyword/';
 var PRODUCT_GETDETAIL = 'getDetail/'
+var PRODUCT_ADD = 'add/';
+var PRODUCT_EDIT = 'edit/';
 
 // API Rating
 var API_RATING = 'ratings/';
@@ -34,6 +36,8 @@ var RATING_GETBYPRODUCT = 'getByProduct/';
 var API_IMAGE = 'images/';
 
 var IMAGE_GETBYPRODUCT = 'getByProduct/';
+var IMAGE_ADD = 'add/';
+var IMAGE_DELETE = 'delete/';
 
 //API Address
 var API_ADDRESS = 'addresses/';

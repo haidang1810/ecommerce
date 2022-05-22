@@ -6,14 +6,14 @@ const checkRuleAdmin = (req, res, next) => {
 	pool.query("Select LoaiND from tb_nguoi_dung where TaiKhoan=?",user,
 	(err, result)=>{
 		if(err){
-			res({
+			res.json({
 				status: 0,
 				msg: err.sqlMessage
 			});
 			return;
 		}
-		if(result.LoaiND!=2){
-			res({
+		if(result[0].LoaiND!=2){
+			res.json({
 				status: 0,
 				msg: "Bạn không có quyền này"
 			});

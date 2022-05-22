@@ -93,8 +93,9 @@ Product.getDetail = (req, res) => {
 	const productID = req.params.id;
 	const getDetailProduct = `select tb_san_pham.MaSP, tb_loai_san_pham.TenLoai, TenSP, 
 	tb_san_pham.Gia, tb_san_pham.SoLuong, tb_san_pham.MoTa, tb_san_pham.KhoiLuong,
-	AnhBia, AVG(SoSao) as DanhGia, tb_dot_khuyen_mai.ChietKhau, 
-	tb_san_pham.NgayDang, tb_chi_tiet_don.SoLuong as DaBan, COUNT(tb_danh_gia.TaiKhoan) as LuotDanhGia
+	AnhBia, AVG(SoSao) as DanhGia, tb_dot_khuyen_mai.ChietKhau, LoaiSP,
+	tb_san_pham.NgayDang, tb_chi_tiet_don.SoLuong as DaBan, COUNT(tb_danh_gia.TaiKhoan) as LuotDanhGia,
+	tb_san_pham.TrangThai
 		from tb_san_pham
 		LEFT JOIN tb_danh_gia
 		ON tb_san_pham.MaSP = tb_danh_gia.MaSP
@@ -129,6 +130,13 @@ Product.getDetail = (req, res) => {
 }
 var type = ['image/jpeg','image/png','image/jpg'];
 Product.add = (req, res) => {
+	if(!req.files){
+		res({
+			status: 0,
+			msg: 'Chưa chọn ảnh bìa'
+		});
+		return;
+	}
 	let MaSP = req.body.MaSP;
 	let LoaiSP = req.body.LoaiSP;
 	let TenSP = req.body.TenSP;
@@ -136,8 +144,7 @@ Product.add = (req, res) => {
 	let KhoiLuong = req.body.KhoiLuong;
 	let Gia = req.body.Gia;
 	let SoLuong = req.body.SoLuong;
-	let AnhBia = req.files.AnhBia;
-	let NgayDang = req.body.NgayDang;
+	let AnhBia = req.files.AnhBia;	
 	const checkProduct = 'select MaSP from tb_san_pham where MaSP=?';
 	pool.query(checkProduct, MaSP, (err,result) => {
 		if(err){
@@ -165,8 +172,8 @@ Product.add = (req, res) => {
 				});
 				return;
 			}
-			const addProduct = `insert into tb_san_pham values(?,?,?,?,?,?,?,?,?)`;
-			const params = [MaSP,LoaiSP,TenSP,MoTa,KhoiLuong,Gia,SoLuong,avatar.url,NgayDang];
+			const addProduct = `insert into tb_san_pham values(?,?,?,?,?,?,?,?,NOW())`;
+			const params = [MaSP,LoaiSP,TenSP,MoTa,KhoiLuong,Gia,SoLuong,avatar.url];
 			pool.query(addProduct, params, (err)=>{
 				if(err){
 					res({
@@ -194,10 +201,9 @@ Product.edit = (req, res) => {
 	let KhoiLuong = req.body.KhoiLuong;
 	let Gia = req.body.Gia;
 	let SoLuong = req.body.SoLuong;
-	let AnhBia = req.files.AnhBia;
-	let NgayDang = req.body.NgayDang;
-	const editProduct = ``;
-	const params = [];
+	
+	let editProduct = ``;
+	let params = [];
 	const checkProduct = 'select MaSP,AnhBia from tb_san_pham where MaSP=?';
 	pool.query(checkProduct, MaSP, (err,result) => {
 		if(err){
@@ -214,41 +220,59 @@ Product.edit = (req, res) => {
 			});
 			return;
 		}
-		cloudinary.uploader.upload(AnhBia.tempFilePath, {
-			resource_type: "auto",
-			folder: "product_avatar"
-		}, (err, avatar)=>{
-			if(err){
+		if(req.files){
+			let AnhBia = req.files.AnhBia;
+			if(!type.includes(AnhBia.mimetype)){
 				res({
 					status: 0,
-					msg: err
+					msg: 'File không hợp lệ'
 				});
 				return;
 			}
-			if(AnhBia){
-				editProduct = `update tb_san_pham set LoaiSP=?,TenSP=?,
-				MoTa=?,KhoiLuong=?,Gia=?,SoLuong=?,AnhBia=?,NgayDang=? where MaSP=?`;
-				params = [LoaiSP,TenSP,MoTa,KhoiLuong,Gia,SoLuong,avatar.url,NgayDang,MaSP];
-				if(!type.includes(img.mimetype)){
-					res({
-						status: 0,
-						msg: 'File không hợp lệ'
-					});
-					return;
-				}
-				if(img.size > 4 * 1024 * 1024){
-					res({
-						status: 0,
-						msg: 'File phải nhỏ hơn 4 MB'
-					});
-					return;
-				}
-			}else{
-				editProduct = `update tb_san_pham set LoaiSP=?,TenSP=?,
-				MoTa=?,KhoiLuong=?,Gia=?,SoLuong=?,NgayDang=? where MaSP=?`;
-				params = [LoaiSP,TenSP,MoTa,KhoiLuong,Gia,SoLuong,NgayDang,MaSP];
+			if(AnhBia.size > 4 * 1024 * 1024){
+				res({
+					status: 0,
+					msg: 'File phải nhỏ hơn 4 MB'
+				});
+				return;
 			}
-			
+			cloudinary.uploader.upload(AnhBia.tempFilePath, {
+				resource_type: "auto",
+				folder: "product_avatar"
+			}, (err, avatar)=>{
+				if(err){
+					res({
+						status: 0,
+						msg: err
+					});
+					return;
+				}
+				editProduct = `update tb_san_pham set LoaiSP=?,TenSP=?,
+					MoTa=?,KhoiLuong=?,Gia=?,SoLuong=?,AnhBia=? where MaSP=?`;
+				params = [LoaiSP,TenSP,MoTa,KhoiLuong,Gia,SoLuong,avatar.url,MaSP];
+				pool.query(editProduct, params, (err)=>{
+					if(err){
+						res({
+							status: 0,
+							msg: err.sqlMessage
+						});
+						return;
+					}
+					let oldImgLink = result[0].AnhBia;
+					let arrLink = oldImgLink.split('/');
+					let cloundPublicId = "product_avatar/"+arrLink[arrLink.length-1].split('.')[0];
+					cloudinary.uploader.destroy(cloundPublicId);
+					res({
+						status: 1,
+						msg: 'success'
+					});
+					return;
+				});
+			});
+		}else{
+			editProduct = `update tb_san_pham set LoaiSP=?,TenSP=?,
+				MoTa=?,KhoiLuong=?,Gia=?,SoLuong=? where MaSP=?`;
+			params = [LoaiSP,TenSP,MoTa,KhoiLuong,Gia,SoLuong,MaSP];
 			pool.query(editProduct, params, (err)=>{
 				if(err){
 					res({
@@ -267,9 +291,8 @@ Product.edit = (req, res) => {
 				});
 				return;
 			});
-		});
+		}
 	});
-	
 }
 Product.delete = (req, res) => {
 	let MaSP = req.body.MaSP;

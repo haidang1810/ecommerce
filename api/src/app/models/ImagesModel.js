@@ -1,5 +1,11 @@
 const pool = require('../config/connectDB');
-
+const poolAwait = require('../config/connectDBAwait');
+const cloudinary = require('cloudinary').v2;
+cloudinary.config({
+	cloud_name: process.env.CLOUDINARY_NAME,
+	api_key: process.env.CLOUDINARY_API_KEY,
+	api_secret: process.env.CLOUDINARY_API_SECRET,
+})
 const Image = function (image) {
     this.id = image.id;
     this.MaSP = image.MaSP;
@@ -30,47 +36,45 @@ Image.getByProduct = (req, res) => {
 }
 
 async function uploadImageProduct(image, productID){
-	return await (await cloudinary.uploader.upload(image.tempFilePath, {
+	let result = await cloudinary.uploader.upload(image.tempFilePath, {
 		resource_type: "auto",
 		folder: "images"
-	}, (err, result)=>{
-		if(!err){
-			const addImg = `insert into tb_hinh_anh(MaSP,DuongDan)
-				values(?,?)`;
-			pool.query(addImg,[result.url, productID],(err)=>{
-				if(err){
-					cloudinary.uploader.destroy(result.public_id);
-					return false;
-				}else{
-					return true;
-				}
-			});
-		}else return false;
-	}))
+	});
+	const addImg = `insert into tb_hinh_anh(MaSP,DuongDan)
+		values(?,?)`;
+	try{
+		let [rows, fields] = await poolAwait.query(addImg,[productID,result.url]);
+		return true;
+	}catch(error){
+		console.log("error",error);
+		cloudinary.uploader.destroy(result.public_id);
+		return false;
+	}
 }
 
 var type = ['image/jpeg','image/png','image/jpg'];
 Image.add = async (req, res) => {
-	const images = req.files.Anh;
+	const images = [];
+	images.push(req.files.Anh);
 	const productID = req.body.MaSP;
 	let countUploadSuccess = 0;
 	let listImgError = [];
-	for(let image of images){
-		if(!type.includes(image.mimetype) || image.size > 4 * 1024 * 1024){
-			listImgError.push(image.name);
+	for(let i=0; i<images.length;i++){
+		if(!type.includes(images[i].mimetype) || images[i].size > 4 * 1024 * 1024){
+			listImgError.push(images[i].name);
 		}else{
-			let isSuccess = await uploadImageProduct(image, productID);
+			let isSuccess = await uploadImageProduct(images[i], productID);
 			if(isSuccess)
 				countUploadSuccess++;
 			else
-				listImgError.push(image.name);
+				listImgError.push(images[i].name);
 		}
 	}
 	res({
 		status: 1,
 		msg: 'success',
-		countUploadSuccess: data.countUploadSuccess,
-		listImgError: data.listImgError
+		countUploadSuccess: countUploadSuccess,
+		listImgError: listImgError
 	});
 }
 Image.delete = (req, res) => {
@@ -99,7 +103,7 @@ Image.delete = (req, res) => {
 				});
 				return;
 			}
-			let oldImgLink = user[0].DuongDan;
+			let oldImgLink = result[0].DuongDan;
 			let arrLink = oldImgLink.split('/');
 			let cloundPublicId = "images/"+arrLink[arrLink.length-1].split('.')[0];
 			cloudinary.uploader.destroy(cloundPublicId);
@@ -109,6 +113,6 @@ Image.delete = (req, res) => {
 			});
 			return;
 		})
-	})
+	});
 }
 module.exports = Image;
