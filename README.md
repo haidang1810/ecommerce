@@ -609,21 +609,3 @@ Orders:
 			status: 1,
 			msg: 'success'
 		}
-	API getProductOrder: 
-		-URL: http://localhost:3000/orders/getProductOrder
-		-Method: get
-		-Request: {
-			MaDon: ''
-		}
-		-Response: {
-			status: 1,
-			msg: 'success',
-			data: [
-				{
-					MaSP: '',
-					TenSP: '',
-					SoLuong: 1,
-					DonGia: 123
-				}
-			]
-		}

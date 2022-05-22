@@ -16,5 +16,10 @@ class OrdersController {
             res.json(response);
         })
     }
+    getByCustomer(req,res){
+        OrdersModel.getByCustomer(req,function(response){
+            res.json(response);
+        })
+    }
 }
 module.exports = new OrdersController();

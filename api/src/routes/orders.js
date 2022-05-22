@@ -6,6 +6,7 @@ const OrdersController = require('../app/controllers/OrdersController');
 
 router.get('/getAll', checkLogin, checkRuleAdmin, OrdersController.getAll);
 router.post('/createOrder', checkLogin, OrdersController.createOrder);
-router.post('/changeStatus',  OrdersController.changeStatus);
+router.post('/changeStatus',  checkLogin, OrdersController.changeStatus);
+router.post('/getByCustomer', checkLogin,  checkRuleAdmin, OrdersController.getByCustomer);
 
 module.exports = router;

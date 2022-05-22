@@ -189,5 +189,46 @@ Order.changeStatus = (req, res) =>{
 		})
 	})
 }
-
+Order.getByCustomer = (req, res) => {
+	const customerID = req.body.MaKH;
+	const getOrder = `select tb_don_hang.MaDon, tb_don_hang.MaKH, HoTen, DiaChiNhanHang,
+		TrangThai, PhiVanChuyen, TongTienHang
+			from tb_don_hang, tb_khach_hang
+			where tb_don_hang.MaKH=tb_khach_hang.MaKH
+			and MaKH=?`;
+			try{
+				let [order,fields] = await poolAwait.query(getOrder);
+				for(let i=0; i<order.length; i++){
+					const getProduct = `select tb_chi_tiet_don.MaSP, TenSP, 
+						tb_chi_tiet_don.SoLuong, tb_chi_tiet_don.Gia
+						from tb_chi_tiet_don, tb_san_pham
+						where tb_chi_tiet_don.MaSP=tb_san_pham.MaSP and
+							MaDon=?`;
+					try {
+						let [orderDetail, fields] = await poolAwait.query(getProduct,order[i].MaDon);
+						if(orderDetail){
+							order[i].SanPham = orderDetail;
+						}
+					} catch (error) {
+						
+					}
+					let address = await getAddressByOrder(order[i].MaKH);
+					if(address){
+						order[i].DiaChi = `${address.address}, ${address.ward.name}, ${address.district.name}, ${address.province.name}`
+					}
+				}
+				res({
+					status: 1,
+					msg: 'success',
+					data: order
+				});
+				return;
+			}catch (error){
+				res({
+					status: 0,
+					msg: error,
+				});
+				return;
+			}
+}
 module.exports = Order;
