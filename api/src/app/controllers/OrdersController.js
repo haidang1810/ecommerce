@@ -21,5 +21,10 @@ class OrdersController {
             res.json(response);
         })
     }
+    getById(req,res){
+        OrdersModel.getById(req,function(response){
+            res.json(response);
+        })
+    }
 }
 module.exports = new OrdersController();

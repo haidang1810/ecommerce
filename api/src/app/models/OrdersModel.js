@@ -17,14 +17,14 @@ async function getAddressByOrder(customer){
 
 Order.getAll = async (req, res) => {
     const getAllOrder = `select tb_don_hang.MaDon, tb_don_hang.MaKH, HoTen, DiaChiNhanHang,
-		TrangThai, PhiVanChuyen, TongTienHang
+		TrangThai, PhiVanChuyen, TongTienHang, PhuongThucThanhToan
 			from tb_don_hang, tb_khach_hang
 			where tb_don_hang.MaKH=tb_khach_hang.MaKH`;
     try{
 		let [order,fields] = await poolAwait.query(getAllOrder);
 		for(let i=0; i<order.length; i++){
 			const getProduct = `select tb_chi_tiet_don.MaSP, TenSP, 
-				tb_chi_tiet_don.SoLuong, tb_chi_tiet_don.Gia
+				tb_chi_tiet_don.SoLuong, tb_chi_tiet_don.Gia, AnhBia
 				from tb_chi_tiet_don, tb_san_pham
 				where tb_chi_tiet_don.MaSP=tb_san_pham.MaSP and
 					MaDon=?`;
@@ -45,6 +45,46 @@ Order.getAll = async (req, res) => {
 			status: 1,
 			msg: 'success',
 			data: order
+		});
+		return;
+	}catch (error){
+		res({
+			status: 0,
+			msg: error,
+		});
+		return;
+	}
+}
+Order.getById = async (req, res) => {
+	const orderID = req.params.id;
+    const getOrder = `select tb_don_hang.MaDon, tb_don_hang.MaKH, HoTen, DiaChiNhanHang,
+			TrangThai, PhiVanChuyen, TongTienHang, SDT, Gmail, PhuongThucThanhToan
+		from tb_don_hang, tb_khach_hang
+		where tb_don_hang.MaKH=tb_khach_hang.MaKH and
+			tb_don_hang.MaDon=?`;
+    try{
+		let [order,fields] = await poolAwait.query(getOrder,orderID);
+		const getProduct = `select tb_chi_tiet_don.MaSP, TenSP, 
+			tb_chi_tiet_don.SoLuong, tb_chi_tiet_don.Gia, AnhBia
+			from tb_chi_tiet_don, tb_san_pham
+			where tb_chi_tiet_don.MaSP=tb_san_pham.MaSP and
+			tb_chi_tiet_don.MaDon=?`;
+		try {
+			let [orderDetail, fields] = await poolAwait.query(getProduct,orderID);
+			if(orderDetail){
+				order[0].SanPham = orderDetail;
+			}
+		} catch (error) {
+			
+		}
+		let address = await getAddressByOrder(order[0].MaKH);
+		if(address){
+			order[0].DiaChi = `${address.address}, ${address.ward.name}, ${address.district.name}, ${address.province.name}`
+		}
+		res({
+			status: 1,
+			msg: 'success',
+			data: order[0]
 		});
 		return;
 	}catch (error){
@@ -172,6 +212,13 @@ Order.changeStatus = (req, res) =>{
 			});
 			return;
 		}
+		if(result[0].TrangThai>statusOrder){
+			res({
+				status: 0,
+				msg: 'Trạng thái không chính xác',
+			});
+			return;
+		}
 		const updateStatus = `update tb_don_hang set TrangThai=? where MaDon=?`;
 		pool.query(updateStatus, [statusOrder,orderID],(err)=>{
 			if(err){
@@ -200,7 +247,7 @@ Order.getByCustomer = async (req, res) => {
 				let [order,fields] = await poolAwait.query(getOrder,customerID);
 				for(let i=0; i<order.length; i++){
 					const getProduct = `select tb_chi_tiet_don.MaSP, TenSP, 
-						tb_chi_tiet_don.SoLuong, tb_chi_tiet_don.Gia
+						tb_chi_tiet_don.SoLuong, tb_chi_tiet_don.Gia, AnhBia
 						from tb_chi_tiet_don, tb_san_pham
 						where tb_chi_tiet_don.MaSP=tb_san_pham.MaSP and
 							MaDon=?`;

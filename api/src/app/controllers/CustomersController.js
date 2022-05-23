@@ -1,6 +1,21 @@
 const CustomersModel = require('../models/CustomersModel');
 class CustomersController {
 
+    getAll(req,res){
+        CustomersModel.getAll(req,function(response){
+            res.json(response);
+        })
+    }
+    searchByPhone(req,res){
+        CustomersModel.searchByPhone(req,function(response){
+            res.json(response);
+        })
+    }
+    searchByName(req,res){
+        CustomersModel.searchByName(req,function(response){
+            res.json(response);
+        })
+    }
     getByAccount(req,res){
         CustomersModel.getByAccount(req,function(response){
             res.json(response);

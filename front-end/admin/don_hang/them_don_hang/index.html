@@ -268,33 +268,10 @@
                                         <div class="col-6 select-search">
                                             <div class="select-search__searchBar">
                                                 <input type="text" class="form-control shadow-none select-search__input"
-                                                placeholder="Chọn khách hàng">
+                                                placeholder="Chọn khách hàng" id="input-search-customer">
                                                 <i class="fa-solid fa-magnifying-glass select-search__icon"></i>
-                                                <div class="select-search__list">
-                                                    <div class="select-search__item">
-                                                        <p class="select-search__info">
-                                                            Nguyễn Sang
-                                                        </p>
-                                                        <p class="select-search__info">
-                                                            0231524689
-                                                        </p>
-                                                    </div>
-                                                    <div class="select-search__item">
-                                                        <p class="select-search__info">
-                                                            Anh tứ
-                                                        </p>
-                                                        <p class="select-search__info">
-                                                            0231524689
-                                                        </p>
-                                                    </div>
-                                                    <div class="select-search__item">
-                                                        <p class="select-search__info">
-                                                            Chị Phương
-                                                        </p>
-                                                        <p class="select-search__info">
-                                                            0231524689
-                                                        </p>
-                                                    </div>
+                                                <div class="select-search__list select-search__list--customer">
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -325,12 +302,12 @@
                                         <div class="col-5">
                                             <label for="">Số điện thoại</label>
                                             <input type="text" class="form-control shadow-none" 
-                                            value="" readonly>
+                                            value="" readonly id="input-phone-customer">
                                         </div>
                                         <div class="col-7">
                                             <label for="">Gmail</label>
                                             <input type="text" class="form-control shadow-none" 
-                                            value="" readonly>
+                                            value="" readonly id="input-gmail-customer">
                                         </div>
                                     </div>
                                 </div>
@@ -344,8 +321,7 @@
                                 </div>
                                 <div class="card-body">
                                     Đơn vị giao hàng mặc định: <p>Ghn Express</p>
-                                    Phí vận chuyển: <p class="transport__cost">20.000đ</p>
-                                    Thời gian dự kiến: <p class="transport__lead-time">Trước ngày 25/05/2020</p>
+                                    Phí vận chuyển: <p class="transport__cost"></p>
                                 </div>
                             </div>
                         </div>
@@ -363,30 +339,10 @@
                                         <div class="col-8 select-search">
                                             <div class="select-search__searchBar">
                                                 <input type="text" class="form-control shadow-none select-search__input"
-                                                placeholder="Tìm kiếm sản phẩm">
+                                                placeholder="Tìm kiếm sản phẩm" id="input-search-product">
                                                 <i class="fa-solid fa-magnifying-glass select-search__icon"></i>
                                                 <div class="select-search__list select-search__list--product">
-                                                    <div class="select-search__item select-search__item--product">
-                                                        <div class="row">
-                                                            <div class="col-2">
-                                                                <img src="https://picsum.photos/200" alt="" 
-                                                                class="select-search__img product-img">
-                                                            </div>
-                                                            <div class="col-7">
-                                                                <p class="select-search__info--product product-name">
-                                                                    Vòng Tay Mạ Bạc Hình Trái Tim/Bướm/Ngọc Trai Phong Cách Retro Hàn Quốc
-                                                                </p>
-                                                            </div>
-                                                            <div class="col-3">
-                                                                <p class="select-search__info--product product-price">
-                                                                    999.000đ
-                                                                </p>
-                                                                <p class="select-search__info--product product-amout">
-                                                                    Có thể bán: 3000
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -490,9 +446,9 @@
                                             <p class="payment__info">Tổng thanh toán:</p>
                                         </div>
                                         <div class="col-67">
-                                            <p class="payment__info">90.000đ</p>
-                                            <p class="payment__info">20.000đ</p>
-                                            <p class="payment__info">110.000đ</p>
+                                            <p class="payment__info"></p>
+                                            <p class="payment__info" id="transport-cost"></p>
+                                            <p class="payment__info"></p>
                                         </div>
                                     </div>                                    
                                 </div>

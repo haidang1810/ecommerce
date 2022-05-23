@@ -1,6 +1,4 @@
-$(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-})
+
 
 
 fetch(BASE_URL+API_PRODUCT+PRODUCT_GETALL,{
@@ -119,6 +117,9 @@ function eventDeleteProduct(){
 	});
 }
 function nextPage(){
+	$(function () {
+		$('[data-toggle="tooltip"]').tooltip()
+	})
     $(".paginate_button").click(function(){
         eventDeleteProduct();
         nextPage();

@@ -254,9 +254,9 @@
                                     <div class="row form-group">
                                         <div class="col-6">
                                             <label for="">Tên khách hàng</label>
-                                            <input type="text" readonly
+                                            <input type="text" readonly id="input-name-customer"
                                             class="form-control shadow-none"
-                                            value="Nguyễn Sang">
+                                            value="">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -264,7 +264,7 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 <input type="text" class="form-control shadow-none" 
-                                                value="Nguyễn Huệ, P2, TP. Vĩnh Long" readonly id="input-address">
+                                                value="" readonly id="input-address">
                                             </div>
                                         </div>
                                     </div>
@@ -272,12 +272,12 @@
                                         <div class="col-5">
                                             <label for="">Số điện thoại</label>
                                             <input type="text" class="form-control shadow-none" 
-                                            value="0321524895" readonly>
+                                            value="" readonly id="input-phone">
                                         </div>
                                         <div class="col-7">
                                             <label for="">Gmail</label>
                                             <input type="text" class="form-control shadow-none" 
-                                            value="exampelEmail@gmail.com" readonly>
+                                            value="" readonly id="input-gmail">
                                         </div>
                                     </div>
                                 </div>
@@ -291,8 +291,7 @@
                                 </div>
                                 <div class="card-body">
                                     Đơn vị giao hàng mặc định: <p>Ghn Express</p>
-                                    Phí vận chuyển: <p class="transport__cost">20.000đ</p>
-                                    Thời gian dự kiến: <p class="transport__lead-time">Trước ngày 25/05/2020</p>
+                                    Phí vận chuyển: <p class="transport__cost"></p>
                                 </div>
                             </div>
                         </div>
@@ -311,6 +310,7 @@
                                         id="product-list" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
+                                                    <th>STT</th>
                                                     <th>Ảnh bìa</th>
                                                     <th>Tên sản phẩm</th>
                                                     <th>Giá bán</th>
@@ -319,17 +319,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td><img src="../../../shared/img/img_info_2.jpg" class="table-product-img" alt=""></td>
-                                                    <td>
-                                                        Vòng Tay Mạ Bạc Hình Trái Tim/Bướm/Ngọc Trai Phong Cách Retro Hàn Quốc
-                                                    </td>
-                                                    <td>90.000đ</td>
-                                                    <td>
-                                                        1
-                                                    </td>
-                                                    <td>90.000đ</td>
-                                                </tr>
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -344,16 +334,9 @@
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">Phương thức thanh toán</h6>
                                 </div>
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <!-- <label for="">Thanh toán khi nhận hàng COD</label> -->
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Thanh toán trực tuyến</label>
-                                        <div class="payment__item">
-                                            <img src="../../../shared/img/ZaloPay_Logo.png" alt="">
-                                        </div>
-                                    </div>
+                                <div class="card-body payment">
+                                    
+                                    
                                 </div>
                             </div>
                         </div>
@@ -371,9 +354,15 @@
                                             <p class="payment__info">Tổng thanh toán:</p>
                                         </div>
                                         <div class="col-67">
-                                            <p class="payment__info">90.000đ</p>
-                                            <p class="payment__info">20.000đ</p>
-                                            <p class="payment__info">110.000đ</p>
+                                            <p class="payment__info" id="price">
+												
+											</p>
+                                            <p class="payment__info" id="transport-cost">
+
+											</p>
+                                            <p class="payment__info" id="total-cost">
+												
+											</p>
                                         </div>
                                     </div>                                    
                                 </div>
@@ -447,9 +436,9 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.all.min.js"></script>
 
 	<!-- Page level custom scripts -->
-	<script src="..././../shared/js/validator.js"></script>
+	<script src="../../../shared/js/validator.js"></script>
     <!-- Page level custom scripts -->
-	<script src=".././../shared/js/config.js"></script>
+	<script src="../../../shared/js/config.js"></script>
 	<script src="../../../shared/js/base.js"></script>
 	<script src="../../../shared/js/baseAdmin.js"></script>	
     <script src="./app.js"></script>

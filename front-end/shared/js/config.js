@@ -58,11 +58,21 @@ var CART_ADD = 'add/';
 // API customer
 var API_CUSTOMER = 'customers/';
 
+var CUSTOMER_GETALL = 'getAll/';
 var CUSTOMER_GETBYACCOUNT = 'getByAccount/';
 var CUSTOMER_CHANGEGMAIL = 'changeGmail/';
 var CUSTOMER_GETVERIFYCODE = 'getVerifyCode/';
 var CUSTOMER_CHANGEPHONE = "changePhone/";
 var CUSTOMER_CHANGEINFO = "changeInfo/";
+var CUSTOMER_SEARCHBYNAME= "searchByName/";
+var CUSTOMER_SEARCHBYPHONE = "searchByPhone/";
+
+// API Orders
+var API_ORDER = 'orders/';
+
+var ORDER_GETALL = 'getAll/';
+var ORDER_CHANGESTATUS = 'changeStatus/';
+var ORDER_GETBYID = 'getById/';
 
 // API Notification
 var API_NOTIFICATION = 'notifications/';

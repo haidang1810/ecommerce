@@ -32,7 +32,62 @@ const createCode = () => {
 	})
     return code;
 }
-
+Customer.getAll = (req, res) => {
+	const getCustomer = 'select * from tb_khach_hang';
+	pool.query(getCustomer, (err,result)=>{
+		if(err){
+			res({
+				status: 0,
+				msg: err
+			});
+			return;
+		}
+		res({
+			status: 1,
+			msg: "success",
+			data: result
+		});
+		return;
+	})
+}
+Customer.searchByPhone = (req, res) => {
+	const phone = '%'+req.params.phone+'%';
+	const getCustomer = 'select * from tb_khach_hang where SDT LIKE ?';
+	pool.query(getCustomer,phone, (err,result)=>{
+		if(err){
+			res({
+				status: 0,
+				msg: err
+			});
+			return;
+		}
+		res({
+			status: 1,
+			msg: "success",
+			data: result
+		});
+		return;
+	});
+}
+Customer.searchByName = (req, res) => {
+	const name = '%'+req.params.name+'%';
+	const getCustomer = 'select * from tb_khach_hang where HoTen LIKE ?';
+	pool.query(getCustomer,name, (err,result)=>{
+		if(err){
+			res({
+				status: 0,
+				msg: err
+			});
+			return;
+		}
+		res({
+			status: 1,
+			msg: "success",
+			data: result
+		});
+		return;
+	});
+}
 Customer.getByAccount = (req, res)=>{
 	const getCustomer = 'select * from tb_khach_hang where TaiKhoan=?';
 	pool.query(getCustomer,req.username, (err,result)=>{
