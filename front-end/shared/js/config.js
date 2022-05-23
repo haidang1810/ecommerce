@@ -17,6 +17,9 @@ var USER_VERIFYCODE = 'getVerifyCode/';
 var API_CATEGORY = "categories/";
 
 var CATEGORY_GETALL = "getAll/";
+var CATEGORY_ADD = "add/";
+var CATEGORY_EDIT = "edit/";
+var CATEGORY_DELETE = 'delete/';
 
 // API Product
 var API_PRODUCT = 'products/';

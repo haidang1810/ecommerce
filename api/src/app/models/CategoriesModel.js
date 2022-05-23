@@ -123,7 +123,7 @@ Category.delete = (req, res) => {
 				});
 				return;
 			}
-			pool('delete from tb_loai_san_pham where MaLoai=?',categoryID,(err)=>{
+			pool.query('delete from tb_loai_san_pham where MaLoai=?',categoryID,(err)=>{
 				if(err){
 					res({
 						status: 0,

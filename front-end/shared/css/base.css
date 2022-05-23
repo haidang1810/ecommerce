@@ -115,3 +115,7 @@ textarea {
 .loading_hide {
 	display: none;
 }
+.message-err {
+	font-size: 14px;
+	color: #fd1336 !important;
+}
