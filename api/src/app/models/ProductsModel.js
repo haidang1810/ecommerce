@@ -35,6 +35,7 @@ Product.getAll = (req, res) => {
 									FROM tb_dot_khuyen_mai
 									WHERE tb_dot_khuyen_mai.ThoiGianBD<=NOW()
 									AND tb_dot_khuyen_mai.ThoiGianKT>=NOW())
+		WHERE tb_san_pham.TrangThai=1
 		GROUP BY tb_san_pham.MaSP;`;
     pool.query(getAllProduct, (err, result)=>{
         if(err){
@@ -71,7 +72,8 @@ Product.getByKeyword = (req, res) => {
 									FROM tb_dot_khuyen_mai
 									WHERE tb_dot_khuyen_mai.ThoiGianBD<=NOW()
 									AND tb_dot_khuyen_mai.ThoiGianKT>=NOW())
-		WHERE TenSP LIKE ?
+		WHERE TenSP LIKE ? and
+		tb_san_pham.TrangThai=1
 		GROUP BY tb_san_pham.MaSP;`;
 		pool.query(getAllProduct, keyword,(err, result)=>{
         if(err){
@@ -172,7 +174,7 @@ Product.add = (req, res) => {
 				});
 				return;
 			}
-			const addProduct = `insert into tb_san_pham values(?,?,?,?,?,?,?,?,NOW())`;
+			const addProduct = `insert into tb_san_pham values(?,?,?,?,?,?,?,?,NOW(),1)`;
 			const params = [MaSP,LoaiSP,TenSP,MoTa,KhoiLuong,Gia,SoLuong,avatar.url];
 			pool.query(addProduct, params, (err)=>{
 				if(err){
@@ -295,7 +297,7 @@ Product.edit = (req, res) => {
 	});
 }
 Product.delete = (req, res) => {
-	let MaSP = req.body.MaSP;
+	let MaSP = req.params.id;
 	const checkProduct = 'select MaSP,AnhBia from tb_san_pham where MaSP=?';
 	pool.query(checkProduct, MaSP, (err,result) => {
 		if(err){
@@ -312,7 +314,7 @@ Product.delete = (req, res) => {
 			});
 			return;
 		}
-		const deleteProduct = `delete from tb_san_pham where MaSP=?`;
+		const deleteProduct = `update tb_san_pham set TrangThai=0 where MaSP=?`;
 		pool.query(deleteProduct, MaSP, (err)=>{
 			if(err){
 				res({
@@ -321,10 +323,11 @@ Product.delete = (req, res) => {
 				});
 				return;
 			}
-			let oldImgLink = result[0].AnhDaiDien;
-			let arrLink = oldImgLink.split('/');
-			let cloundPublicId = "product_avatar/"+arrLink[arrLink.length-1].split('.')[0];
-			cloudinary.uploader.destroy(cloundPublicId);
+			res({
+				status: 1,
+				msg: 'success'
+			});
+			return;
 		});
 		
 	});

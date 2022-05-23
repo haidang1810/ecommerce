@@ -9,4 +9,5 @@ router.get('/getByKeyword', ProductsController.getByKeyword);
 router.get('/getDetail/:id', ProductsController.getDetail);
 router.post('/add', checkLogin, checkRuleAdmin, ProductsController.add);
 router.post('/edit', checkLogin, checkRuleAdmin, ProductsController.edit);
+router.get('/delete/:id', checkLogin, checkRuleAdmin, ProductsController.delete);
 module.exports = router;

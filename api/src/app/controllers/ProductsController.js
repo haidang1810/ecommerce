@@ -26,5 +26,10 @@ class ProductsController {
             res.json(response);
         })
     }
+    delete(req,res){
+        ProductsModel.delete(req,function(response){
+            res.json(response);
+        })
+    }
 }
 module.exports = new ProductsController();

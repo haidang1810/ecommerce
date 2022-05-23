@@ -26,6 +26,7 @@ var PRODUCT_GETBYKEYWORD = 'getByKeyword/';
 var PRODUCT_GETDETAIL = 'getDetail/'
 var PRODUCT_ADD = 'add/';
 var PRODUCT_EDIT = 'edit/';
+var PRODUCT_DELETE = 'delete/';
 
 // API Rating
 var API_RATING = 'ratings/';
