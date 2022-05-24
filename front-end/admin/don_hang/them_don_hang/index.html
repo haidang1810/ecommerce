@@ -236,12 +236,12 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Thêm đơn hàng</h1>
                         <div>
-                            <button 
+                            <button id="btn-create-order"
                             class="btn btn-primary shadow-sm px-3 py-2 mr-2">
                                 <i class="fa-solid fa-plus"></i>
                                 Tạo đơn
                             </button>
-                            <button 
+                            <button id="btn-create-accept-order"
                             class="btn btn-primary shadow-sm px-3 py-2">
                                 <i class="fa-solid fa-plus"></i>
                                 Tạo và duyệt đơn
@@ -353,6 +353,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>Ảnh bìa</th>
+                                                    <th>Mã sản phẩm</th>
                                                     <th>Tên sản phẩm</th>
                                                     <th>Giá bán</th>
                                                     <th>Số lượng</th>
@@ -361,31 +362,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td><img src="../../../shared/img/img_info_2.jpg" class="table-product-img" alt=""></td>
-                                                    <td>
-                                                        Vòng Tay Mạ Bạc Hình Trái Tim/Bướm/Ngọc Trai Phong Cách Retro Hàn Quốc
-                                                    </td>
-                                                    <td>90.000đ</td>
-                                                    <td>
-                                                        <div class="amount-control">
-                                                            <button class="btn-sub">
-                                                                <img src="../../../shared/img/icons-remove.svg" alt="loading">
-                                                            </button>
-                                                            <input type="number" class="amount-input" value="1"
-                                                            min="1" step="1">
-                                                            <button class="btn-add">
-                                                                <img src="../../../shared/img/icons-add.svg" alt="loading">
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                    <td>90.000đ</td>
-                                                    <td>
-                                                        <button class="btn btn-action btn-danger" >
-                                                            <i class="fa-solid fa-trash-can"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
+												
                                             </tbody>
                                         </table>
                                     </div>
@@ -403,14 +380,14 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <input class="payment__radio" type="radio" name="payment" 
-                                        checked id="COD">
+                                        checked id="COD" value="1">
                                         <label for="COD" class="payment__label">
                                             Thanh toán khi nhận hàng COD
                                         </label><br>
                                     </div>
                                     <div class="form-group">
                                         <input class="payment__radio" type="radio" name="payment" 
-                                        id="online-payment">
+                                        id="online-payment" value="2">
                                         <label for="online-payment" class="payment__label">
                                             Thanh toán trực tuyến
                                         </label>
@@ -446,9 +423,9 @@
                                             <p class="payment__info">Tổng thanh toán:</p>
                                         </div>
                                         <div class="col-67">
-                                            <p class="payment__info"></p>
-                                            <p class="payment__info" id="transport-cost"></p>
-                                            <p class="payment__info"></p>
+                                            <p class="payment__info" id="price-all-product">0đ</p>
+                                            <p class="payment__info" id="transport-cost">0đ</p>
+                                            <p class="payment__info" id="total-price">0đ</p>
                                         </div>
                                     </div>                                    
                                 </div>
@@ -493,37 +470,36 @@
                 </div>
                 <div class="modal__body">
                     <form action="" class="modal__form">
+						<div class="row modal__form-location">
+							<div class="col-xl-4 location-type">Địa chỉ nhà</div>
+							<input type="text" class="modal__form-input--address"
+							id="input-address-change">
+						</div>
                         <div class="row form-group">
                             <label for="" class="col-4">Tỉnh/Thành phố</label>
-                            <select class="selectpicker col-xl-8" data-live-search="true">
-                                <!-- data-tokens are short keywords to search. you can ignore it -->
-                                <option data-tokens="hcm">TP. HCM</option>
-                                <option data-tokens="hn">Hà Nội</option>
-                                <option data-tokens="vl">Vĩnh Long</option>
+                            <select class="selectpicker col-xl-8" data-live-search="true"
+							id="select-province-address">
+								<option value="-1">Chọn tỉnh thành phố</option>
                             </select>                            
                         </div>
                         <div class="row form-group">
                             <label for="" class="col-4">Quận/Huyện</label>
-                            <select class="selectpicker col-xl-8" disabled data-live-search="true">
-                                <option data-tokens="q1">Quận 1</option>
-                                <option data-tokens="q2">Quận 2</option>
-                                <option data-tokens="q3">Quận 3</option>
-                                <option data-tokens="q4">Quận 4</option>
+                            <select class="selectpicker col-xl-8" disabled data-live-search="true"
+							id="select-district-address">
+								<option value="-1">Chọn quận huyện</option>
                             </select>
                         </div>
                         <div class="row form-group">
                             <label for="" class="col-4">Phường/Xã</label>
-                            <select class="selectpicker col-xl-8" disabled data-live-search="true">
-                                <option data-tokens="p1">Phường 1</option>
-                                <option data-tokens="p2">Phường 2</option>
-                                <option data-tokens="p3">Phường 3</option>
-                                <option data-tokens="p4">Phường 4</option>
+                            <select class="selectpicker col-xl-8" disabled data-live-search="true"
+							id="select-ward-address">
+								<option value="-1">Chọn phường xã</option>
                             </select>
                         </div>
                     </form>
                 </div>
                 <div class="modal__footer d-flex justify-content-center">
-                    <button class="modal__footer-btn--red" data-dismiss="modal">
+                    <button class="modal__footer-btn--red" id="btn-change-address">
                         GIAO ĐẾN ĐỊA CHỈ NÀY
                     </button>
                 </div>
@@ -540,51 +516,46 @@
                     </div>
                 </div>
                 <div class="modal__body">
-                    <form action="" class="modal__form">
+                    <form id="form-add-customer" class="modal__form">
                         <div class="row">
-                            <div class="form-group col-6">
-                                <label for="">Mã khách hàng</label>
-                                <input type="text" class="form-control" name="" id="">
-                            </div>
                             <div class="form-group col-6">
                                 <label for="">Tên khách hàng</label>
-                                <input type="text" class="form-control" name="" id="">
+                                <input type="text" class="form-control" name="HoTen" id=""
+								rules="required">
+								<span class="message-err"></span>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-6">
-                                <label for="">Ngày sinh</label>
-                                <input type="date" class="form-control" name="" id="">
-                            </div>
-                            <div class="form-group col-6">
-                                <label for="">Giới tính</label>
-                                <div class="form-check">
-                                    <label class="form-check-label modal__label">
-                                    <input type="radio" class="form-check-input modal__radio" 
-                                    name="gender" id="" value="checkedValue" checked>
-                                    Nam
-                                    </label>
-                                    <label class="form-check-label ml-5 modal__label">
-                                    <input type="radio" class="form-check-input modal__radio" 
-                                    name="gender" id="" value="checkedValue">
-                                    Nữ
-                                    </label>
-                                </div>
+							<div class="form-group col-6">
+                                <label for="">Số điện thoại</label>
+                                <input type="number" class="form-control" name="SDT" id="phone-add-customer"
+								rules="required|min:10">
+								<span class="message-err"></span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="">Địa chỉ</label>
-                            <input type="text" class="form-control" name="" id="">
+                            <input type="text" class="form-control" name="DiaChi" rules="required">
+							<span class="message-err"></span>
                         </div>
-                        <div class="row">
-                            <div class="form-group col-5">
-                                <label for="">Số điện thoại</label>
-                                <input type="number" class="form-control" name="" id="phone-add-customer">
-                            </div>
-                            <div class="form-group col-7">
-                                <label for="">Gmail</label>
-                                <input type="text" class="form-control" name="" id="">
-                            </div>
+						<div class="row form-group">
+                            <label for="" class="col-4">Tỉnh/Thành phố</label>
+                            <select class="selectpicker col-xl-8" data-live-search="true"
+							id="select-province-customer">
+								<option value="-1">Chọn tỉnh thành phố</option>
+                            </select>                            
+                        </div>
+                        <div class="row form-group">
+                            <label for="" class="col-4">Quận/Huyện</label>
+                            <select class="selectpicker col-xl-8" disabled data-live-search="true"
+							id="select-district-customer">
+								<option value="-1">Chọn quận huyện</option>
+                            </select>
+                        </div>
+                        <div class="row form-group">
+                            <label for="" class="col-4">Phường/Xã</label>
+                            <select class="selectpicker col-xl-8" disabled data-live-search="true"
+							id="select-ward-customer">
+                                <option value="-1">Chọn phường xã</option>
+                            </select>
                         </div>
                     </form>
                 </div>
@@ -592,7 +563,8 @@
                     <button class="modal__footer-btn btn btn-danger" data-dismiss="modal">
                         Huỷ
                     </button>
-                    <button class="modal__footer-btn btn btn-primary" data-dismiss="modal">
+                    <button class="modal__footer-btn btn btn-primary"
+					id="btn-add-customer">
                         Lưu
                     </button>
                 </div>

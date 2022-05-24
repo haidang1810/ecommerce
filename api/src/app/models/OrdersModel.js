@@ -117,11 +117,12 @@ async function addOrder(req, res){
 		const transportCost = req.body.PhiVanChuyen;
 		const status = req.body.TrangThai;
 		const totalPrice = req.body.TongTienHang;
+		const payment = req.body.PhuongThucThanhToan;
 		const products = req.body.SanPham;
 		const discountCode = req.body.MaGiamGia;
 		const orderID = await createOrderID(30);
-		const insertOrder = `insert into tb_don_hang values(?,?,?,?,?,?)`;
-		const params = [orderID,customerID,tempAddress,status,totalPrice,transportCost];
+		const insertOrder = `insert into tb_don_hang values(?,?,?,?,?,?,?)`;
+		const params = [orderID,customerID,tempAddress,status,totalPrice,transportCost,payment];
 		pool.query(insertOrder, params, async (err)=>{
 			if(err){
 				res({
@@ -142,7 +143,7 @@ async function addOrder(req, res){
 						values(?,?)`;
 					try {
 						let [order] = await poolAwait.query(insertOrderDetail,
-							[orderID,product.MaSP,product.SoLuong,product.DonGia]);
+							[orderID,product.MaSP,product.SoLuong,product.Gia]);
 						let [isUpdate] = await poolAwait.query(updateAmout,
 							[product.SoLuong, product.MaSP]);
 						if(discountCode)

@@ -108,3 +108,55 @@ function getTransportCost(to_district_id, to_ward_code, weight, handleTransportC
 		})
 		.catch(handlerError);
 }
+
+function getProvince(handle){
+	fetch(API_GETPROVINCE, {
+		method: 'GET',
+		headers:{
+			'Content-Type': 'application/json',
+			'Token': TOKEN
+		}
+	})
+		.then(statusRes)
+		.then(json)
+		.then((res)=>{
+			if(res.code==200){
+				handle(res.data);
+			}else console.log(res.message);
+		})
+		.catch(handlerError);
+}
+function getDistrict(provinceID, handle){
+	fetch(API_GETDISTRICT+`?province_id=${provinceID}`, {
+		method: 'GET',
+		headers:{
+			'Content-Type': 'application/json',
+			'Token': TOKEN
+		}
+	})
+		.then(statusRes)
+		.then(json)
+		.then((res)=>{
+			if(res.code==200){
+				handle(res.data);
+			}else console.log(res.message);
+		})
+		.catch(handlerError);
+}
+function getWard(districtIĐ,handle){
+	fetch(API_GETWARD+`?district_id=${districtIĐ}`, {
+		method: 'GET',
+		headers:{
+			'Content-Type': 'application/json',
+			'Token': TOKEN
+		}
+	})
+		.then(statusRes)
+		.then(json)
+		.then((res)=>{
+			if(res.code==200){
+				handle(res.data);
+			}else console.log(res.message);
+		})
+		.catch(handlerError);
+}

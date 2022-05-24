@@ -66,6 +66,7 @@ var CUSTOMER_CHANGEPHONE = "changePhone/";
 var CUSTOMER_CHANGEINFO = "changeInfo/";
 var CUSTOMER_SEARCHBYNAME= "searchByName/";
 var CUSTOMER_SEARCHBYPHONE = "searchByPhone/";
+var CUSTOMER_ADD = "add/";
 
 // API Orders
 var API_ORDER = 'orders/';
@@ -73,6 +74,7 @@ var API_ORDER = 'orders/';
 var ORDER_GETALL = 'getAll/';
 var ORDER_CHANGESTATUS = 'changeStatus/';
 var ORDER_GETBYID = 'getById/';
+var ORDER_CREATE = 'createOrder/';
 
 // API Notification
 var API_NOTIFICATION = 'notifications/';

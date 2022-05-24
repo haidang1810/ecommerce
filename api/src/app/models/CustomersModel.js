@@ -307,10 +307,7 @@ Customer.changeInfo = (req, res)=>{
 Customer.add = (req, res) => {
 	let customerID = createCode();
 	let name = req.body.HoTen;
-	let gender = req.body.GioiTinh;
-	let dateOfBirth = req.body.NgaySinh;
 	let phone = req.body.SDT;
-	let gmail = req.body.Gmail;
 	pool.query("select MaKH from tb_khach_hang where SDT=?",phone,(err,result)=>{
 		if(err){
 			res({
@@ -326,24 +323,9 @@ Customer.add = (req, res) => {
 			});
 		}
 	});
-	pool.query("select MaKH from tb_khach_hang where Gmail=?",gmail,(err,result)=>{
-		if(err){
-			res({
-				status: 0,
-				msg: err.sqlMessage
-			});
-			return;
-		}
-		if(result.length>0){
-			res({
-				status: 0,
-				msg: 'Gmail đã có người đăng ký'
-			});
-		}
-	});
-	const addCustomer = `insert into tb_khach_hang(MaKH,HoTen,GioiTinh,NgaySinh,SDT,Gmail)
-		values(?,?,?,?,?,?)`;
-	pool.query(addCustomer,[customerID,name,gender,dateOfBirth,phone,gmail],
+	const addCustomer = `insert into tb_khach_hang(MaKH,HoTen,SDT)
+		values(?,?,?)`;
+	pool.query(addCustomer,[customerID,name,phone],
 		(err)=>{
 			if(err){
 				res({
@@ -352,12 +334,15 @@ Customer.add = (req, res) => {
 				});
 				return;
 			}
-			const address = new Address(req.body.DiaChi);
+			let addressCustomer = req.body.DiaChi;
+			addressCustomer.customer = customerID;
+			const address = new Address(addressCustomer);
 			address.save()
 				.then(()=>{
 					res({
 						status: 1,
-						msg: "Thêm thànhg công"
+						msg: "Thêm thànhg công",
+						customerID
 					});
 				})
 				.catch(()=>{
