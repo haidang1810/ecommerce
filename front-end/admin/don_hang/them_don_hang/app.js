@@ -637,7 +637,7 @@ function addCustomer(data){
 			if(res.status==1){
 				Toast.fire({
 					icon: 'success',
-					title: "Đã cập nhật địa chỉ thành công",
+					title: "Đã thêm khách hàng thành công.",
 					background: 'rgba(35, 147, 67, 0.9)',
 					color: '#ffffff',
 					timer: 1200

@@ -81,6 +81,14 @@ var API_NOTIFICATION = 'notifications/';
 
 var NOTI_GETBYUSER = 'getByUser/';
 
+
+// API group customer
+var API_GROUP = 'groups/';
+
+var GROUP_GETALL = 'getAll/';
+var GROUP_DELETE = 'delete/';
+
+
 var LENGHT_BOX = 50;
 var WIDTH_BOX = 35;
 var HEIGHT_BOX = 15;

@@ -1,4 +1,5 @@
 const pool = require('../config/connectDB');
+const poolAwait = require('../config/connectDBAwait');
 const bcrypt = require('bcrypt');
 const verifyCode = require('../services/verifyCode');
 const cloudinary = require('cloudinary').v2;
@@ -19,6 +20,10 @@ const Customer = function(customer) {
     this.Gmail = staff.Gmail;
     this.AnhDaiDien = staff.AnhDaiDien;
 }
+async function getAddressByCustomer(customer){
+	return await (await Address.findOne({customer}));
+}
+
 const createCode = () => {
     let code = "";
     let possible = "abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -34,7 +39,7 @@ const createCode = () => {
 }
 Customer.getAll = (req, res) => {
 	const getCustomer = 'select * from tb_khach_hang';
-	pool.query(getCustomer, (err,result)=>{
+	pool.query(getCustomer, async (err,result)=>{
 		if(err){
 			res({
 				status: 0,
@@ -42,10 +47,30 @@ Customer.getAll = (req, res) => {
 			});
 			return;
 		}
+		let customers = result;
+		for(let i=0; i<customers.length;i++){
+			const getGroup = `select TenNhom from tb_nhom_khach_hang where MaKH=?`
+			try {
+				let [groups, fields] = await poolAwait.query(getGroup,customers[i].MaKH);
+				if(groups)
+					customers[i].NhomKH = groups;
+				else customers[i].NhomKH = [];
+				let address = await getAddressByCustomer(customers[i].MaKH);
+				if(address){
+					customers[i].DiaChi = `${address.address}, ${address.ward.name}, ${address.district.name}, ${address.province.name}`
+				}
+			} catch (error) {
+				res({
+					status: 0,
+					msg: error
+				});
+				return;
+			}
+		}
 		res({
 			status: 1,
 			msg: "success",
-			data: result
+			data: customers
 		});
 		return;
 	})
@@ -308,6 +333,8 @@ Customer.add = (req, res) => {
 	let customerID = createCode();
 	let name = req.body.HoTen;
 	let phone = req.body.SDT;
+	let gender = req.body.GioiTinh;
+	let gmail = req.body.Gmail;
 	pool.query("select MaKH from tb_khach_hang where SDT=?",phone,(err,result)=>{
 		if(err){
 			res({
@@ -323,9 +350,9 @@ Customer.add = (req, res) => {
 			});
 		}
 	});
-	const addCustomer = `insert into tb_khach_hang(MaKH,HoTen,SDT)
-		values(?,?,?)`;
-	pool.query(addCustomer,[customerID,name,phone],
+	const addCustomer = `insert into tb_khach_hang(MaKH,HoTen,SDT,GioiTinh,Gmail)
+		values(?,?,?,?,?)`;
+	pool.query(addCustomer,[customerID,name,phone,gender,gmail],
 		(err)=>{
 			if(err){
 				res({

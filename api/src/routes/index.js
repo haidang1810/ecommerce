@@ -9,6 +9,7 @@ const cartsRouter = require('./carts');
 const notificationsRouter = require('./notifications');
 const customersRouter = require('./customers');
 const ordersRouter = require('./orders');
+const groupsRouter = require('./groups');
 function route(app){
     app.use('/users', usersRouter);
     app.use('/auth', authRouter);
@@ -21,5 +22,6 @@ function route(app){
     app.use('/notifications', notificationsRouter);
     app.use('/customers', customersRouter);
     app.use('/orders', ordersRouter);
+    app.use('/groups', groupsRouter);
 }
 module.exports = route;
