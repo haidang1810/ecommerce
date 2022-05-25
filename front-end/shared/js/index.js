@@ -400,8 +400,8 @@ $(".filterBar__select--price").change(function(){
 	const sortProductWithPriceDec = (list)=> {
 		let newList = [...list];
 		newList.sort((a,b)=>{
-			if(a.Gia>b.Gia) return 1;
-			if(a.Gia<b.Gia) return -1;
+			if(a.Gia>b.Gia) return -1;
+			if(a.Gia<b.Gia) return 1;
 			return 0;
 		});
 		renderProduct(newList);
@@ -409,8 +409,8 @@ $(".filterBar__select--price").change(function(){
 	const sortProductWithPriceEsc = (list)=> {
 		let newList = [...list];
 		newList.sort((a,b)=>{
-			if(a.Gia<b.Gia) return 1;
-			if(a.Gia>b.Gia) return -1;
+			if(a.Gia<b.Gia) return -1;
+			if(a.Gia>b.Gia) return 1;
 			return 0;
 		});
 		renderProduct(newList);
@@ -487,7 +487,7 @@ $(".filterBar__select--info").change(function(){
 		case 'rating-dec':
 			sortProductWithRatingDec(product_list);
 			break;
-		case 'date-dec':
+		case 'date-desc':
 			sortProductWithDateDec(product_list);
 			break;
 		case 'date-esc':
