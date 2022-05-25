@@ -2,6 +2,7 @@ const pool = require('../config/connectDB');
 const bcrypt = require('bcrypt');
 const verifyCode = require('../services/verifyCode');
 const cloudinary = require('cloudinary').v2;
+const Address = require('./AddressesModel');
 cloudinary.config({
 	cloud_name: process.env.CLOUDINARY_NAME,
 	api_key: process.env.CLOUDINARY_API_KEY,
@@ -9,13 +10,84 @@ cloudinary.config({
 })
 
 const Customer = function(customer) {
-    this.TaiKhoan = user.TaiKhoan;
-    this.LoaiND = user.LoaiND;
-    this.MatKhau = user.MatKhau;
-    this.RefreshToken = user.RefreshToken;
+    this.MaKH = staff.MaKH;
+    this.HoTen = staff.HoTen;
+    this.TaiKhoan = staff.TaiKhoan;
+    this.GioiTinh = staff.GioiTinh;
+    this.NgaySinh = staff.NgaySinh;
+    this.SDT = staff.SDT;
+    this.Gmail = staff.Gmail;
+    this.AnhDaiDien = staff.AnhDaiDien;
 }
-
-
+const createCode = () => {
+    let code = "";
+    let possible = "abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    for (let i = 0; i < 20; i++)
+    	code += possible.charAt(Math.floor(Math.random() * possible.length));
+	pool.query("select MaKh from tb_khach_hang where MaKH=?",code,(err,result)=>{
+		if(err||result.length>0){
+			createCode();
+		}else
+			return code;
+	})
+    return code;
+}
+Customer.getAll = (req, res) => {
+	const getCustomer = 'select * from tb_khach_hang';
+	pool.query(getCustomer, (err,result)=>{
+		if(err){
+			res({
+				status: 0,
+				msg: err
+			});
+			return;
+		}
+		res({
+			status: 1,
+			msg: "success",
+			data: result
+		});
+		return;
+	})
+}
+Customer.searchByPhone = (req, res) => {
+	const phone = '%'+req.params.phone+'%';
+	const getCustomer = 'select * from tb_khach_hang where SDT LIKE ?';
+	pool.query(getCustomer,phone, (err,result)=>{
+		if(err){
+			res({
+				status: 0,
+				msg: err
+			});
+			return;
+		}
+		res({
+			status: 1,
+			msg: "success",
+			data: result
+		});
+		return;
+	});
+}
+Customer.searchByName = (req, res) => {
+	const name = '%'+req.params.name+'%';
+	const getCustomer = 'select * from tb_khach_hang where HoTen LIKE ?';
+	pool.query(getCustomer,name, (err,result)=>{
+		if(err){
+			res({
+				status: 0,
+				msg: err
+			});
+			return;
+		}
+		res({
+			status: 1,
+			msg: "success",
+			data: result
+		});
+		return;
+	});
+}
 Customer.getByAccount = (req, res)=>{
 	const getCustomer = 'select * from tb_khach_hang where TaiKhoan=?';
 	pool.query(getCustomer,req.username, (err,result)=>{
@@ -231,5 +303,55 @@ Customer.changeInfo = (req, res)=>{
 		});
 	}
 	
+}
+Customer.add = (req, res) => {
+	let customerID = createCode();
+	let name = req.body.HoTen;
+	let phone = req.body.SDT;
+	pool.query("select MaKH from tb_khach_hang where SDT=?",phone,(err,result)=>{
+		if(err){
+			res({
+				status: 0,
+				msg: err.sqlMessage
+			});
+			return;
+		}
+		if(result.length>0){
+			res({
+				status: 0,
+				msg: 'Số điện thoại đã có người đăng ký'
+			});
+		}
+	});
+	const addCustomer = `insert into tb_khach_hang(MaKH,HoTen,SDT)
+		values(?,?,?)`;
+	pool.query(addCustomer,[customerID,name,phone],
+		(err)=>{
+			if(err){
+				res({
+					status: 0,
+					msg: err.sqlMessage
+				});
+				return;
+			}
+			let addressCustomer = req.body.DiaChi;
+			addressCustomer.customer = customerID;
+			const address = new Address(addressCustomer);
+			address.save()
+				.then(()=>{
+					res({
+						status: 1,
+						msg: "Thêm thànhg công",
+						customerID
+					});
+				})
+				.catch(()=>{
+					pool.query("delete from tb_khach_hang where MaKH=?",customerID);
+					res({
+						status: 0,
+						msg: "Có lỗi khi thêm địa chỉ vui lòng thử lại"
+					});
+				})
+		})
 }
 module.exports = Customer;

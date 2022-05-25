@@ -75,8 +75,7 @@ Product
 			KhoiLuong: 100, (đv gram)
 			Gia: 100000,
 			SoLuong: 300,
-			AnhBia: file, (dùng phương thức FormData để gửi request)
-			NgayDang: '2022-12-01'
+			AnhBia: file (dùng phương thức FormData để gửi request)
 		}
 		-Response: {
 			status: 1, (1 thành công, 2 thất bại)
@@ -94,7 +93,6 @@ Product
 			Gia: 100000,
 			SoLuong: 300,
 			AnhBia: file, (dùng phương thức FormData để gửi request)
-			NgayDang: '2022-12-01'
 		}
 		-Response: {
 			status: 1, (1 thành công, 2 thất bại)
@@ -183,17 +181,7 @@ Cart:
 			status: 1,
 			msg: 'success',
 		}
-	API editQuantity: 
-		-URL: http://localhost:3000/carts/editQuantity
-		-Method: post
-		-Request: {
-			id: 1,
-			SoLuong: 2
-		}
-		-Response: {
-			status: 1,
-			msg: 'success',
-		}
+
 	API delete:
 		-URL: http://localhost:3000/carts/delete
 		-Method: post
@@ -242,12 +230,378 @@ Customer:
 			status: 1,
 			msg: 'success'
 		}
-	API changePchangeGmailhone: 
+	API changeGmail: 
 		-URL: http://localhost:3000/customers/changeGmail
 		-Method: post
 		-Request: {
 			gmail: 'dsadsa@dsdsa.com',
 			password: 'dsadsa'
+		}
+		-Response: {
+			status: 1,
+			msg: 'success'
+		}
+		API changeInfo:
+		-URL: http://localhost:3000/customers/changeInfo
+		-Method: post
+		-Request: {
+			fullName: '',
+			gender: '',
+			dateOfBirth: '',
+			avatar: files
+		}
+		-Response: {
+			status: 1,
+			msg: 'success'
+		}
+	API add:
+		-URL: http://localhost:3000/customers/add
+		-Method: post
+		-Request: {
+			HoTen: '',
+			GioiTinh: 1,
+			NgaySinh: '',
+			SDT: '',
+			Gmail: '',
+			DiaChi: {
+				address : "52/84/129 Nguyễn Huệ",
+				customer : "7OHL6sAnH4UKUXqBAq0o",
+				province : {
+					id : 215,
+					name : "Vĩnh Long"
+				},
+				district : {
+					id : 1562,
+					name : "Thành phố Vĩnh Long"
+				},
+				ward : {
+					id : 570102,
+					name : "Phường 2"
+				}
+			}
+		}
+		-Response: {
+			status: 1,
+			msg: 'success'
+		}
+Images:
+	API getByProduct:
+		-URL: http://localhost:3000/images/getByProduct/SP001
+		-Method: get
+		-Request: 
+		-Response: {
+			status: 1,
+			msg: 'success',
+			data: [
+				{
+					Id: 1,
+					MaSP: '',
+					DuongDan: 'link ảnh'
+				}
+			]
+		}
+	API add: 
+		-URL: http://localhost:3000/images/add
+		-Method: post
+		-Request: {
+			MaSP: '',
+			Anh: files
+		}
+		-Response: {
+			status: 1,
+			msg: 'success',
+			countUploadSuccess: 5,
+			listImgError: [
+				'hinhA.png',
+				'hinhB.png'
+			]
+		}
+	API delete:
+		-URL: http://localhost:3000/images/delete/1
+		-Method: get
+		-Request:
+		-Response: {
+			status: 1,
+			msg: 'success'
+		}
+notification:
+	API getByUser: 
+		-URL: http://localhost:3000/notifications/getByUser
+		-Method: get
+		-Request: 
+		-Response: {
+			status: 1,
+			msg: 'success',
+			data: [
+				{
+					user: 'TaiKhoan',
+					name: 'TenCuaThongBao',
+					image: 'link anh',
+					description: 'Mô tả',
+					time: 'ThoiGianTaoThongBao'
+				}
+			]
+		}
+
+rating:
+	APi getAll:
+		-URL: http://localhost:3000/ratings/getAll
+		-Method: get
+		-Request: 
+		-Response: {
+			status: 1,
+			msg: 'success',
+			data: [
+				{
+					Id: '',
+					HoTen: '',
+					NoiDung: '',
+					ThoiGian: '',
+					SoSao: 5,
+					PhanHoi: '',
+					AnhDaiDien: 'link anh đại diện của user nếu có'
+				}
+			]
+		}
+	API getByProduct:
+		-URL: http://localhost:3000/ratings/getByProduct/SP001
+		-Method: get
+		-Request: 
+		-Response: {
+			status: 1,
+			msg: 'success',
+			data: [
+				{
+					Id: '',
+					HoTen: '',
+					NoiDung: '',
+					ThoiGian: '',
+					SoSao: 5,
+					PhanHoi: '',
+					AnhDaiDien: 'link anh đại diện của user nếu có'
+				}
+			]
+		}
+	API add: 
+		-URL: http://localhost:3000/ratings/add
+		-Method: post
+		-Request: {
+			MaSP: '',
+			MaDon: '',
+			NoiDung: '',
+			SoSao: ''
+		}
+		-Response: {
+			status: 1,
+			msg: 'success'
+		}
+	API replyByAdmin:
+		-URL: http://localhost:3000/ratings/replyByAdmin
+		-Method: post
+		-Request: {
+			id: '',
+			PhanHoi: 'nội dung'
+		}
+		-Response: {
+			status: 1,
+			msg: 'success'
+		}
+User:
+	API getVerifyCode:
+		-URL: http://localhost:3000/users/getVerifyCode/0981234718
+		-Method: get
+		-Request: 
+		-Response: {
+			status: 1,
+			msg: 'success'
+		}
+	API add:
+		-URL: http://localhost:3000/users/add
+		-Method: post
+		-Request: {
+			username: '',
+			password: '',
+			fullName: '',
+			phone: '',
+			verifyCode: ''
+		}
+		-Response: {
+			status: 1,
+			msg: 'success'
+		}
+addresses:
+	API getByCustomer: 
+		-URL: http://localhost:3000/addresses/getByCustomer/MaKH
+		-Method: get
+		-Request:
+		-Response: {
+			status: 1,
+			msg: 'success',
+			data: {
+				_id : 6277d697e7fb9dd5f0a81f2d,
+				address : "52/84/129 Nguyễn Huệ",
+				customer : "7OHL6sAnH4UKUXqBAq0o",
+				province : {
+					id : 215,
+					name : "Vĩnh Long"
+				},
+				district : {
+					id : 1562,
+					name : "Thành phố Vĩnh Long"
+				},
+				ward : {
+					id : 570102,
+					name : "Phường 2"
+				}
+			}
+		}
+	API updateByCustomer: 
+		-URL: http://localhost:3000/addresses/updateByCustomer
+		-Method: post
+		-Request: {
+			address : "52/84/129 Nguyễn Huệ",
+			customer : "7OHL6sAnH4UKUXqBAq0o",
+			province : {
+				id : 215,
+				name : "Vĩnh Long"
+			},
+			district : {
+				id : 1562,
+				name : "Thành phố Vĩnh Long"
+			},
+			ward : {
+				id : 570102,
+				name : "Phường 2"
+			}
+		}
+		-Response: {
+			status: 1,
+			msg: 'success'
+		}
+auth:
+	API login:
+		-URL: http://localhost:3000/auth/login
+		-Method: post
+		-Request: {
+			username: '',
+			password: ''
+		}
+		-Response: {
+			status: 1,
+			msg: "Đăng nhập thành công",
+			fullName: 'HoTen',
+			avatar: 'link avatar'
+		}
+	API refreshToken:
+		-URL: http://localhost:3000/auth/refreshToken
+		-Method: get
+		-Request: 
+		-Response: 
+	API checkLogin: 
+		-URL: http://localhost:3000/auth/checkLogin
+		-Method: get
+		-Request:
+		-Response: {
+			status: 1,
+			msg: 'Đã đăng nhập',
+			fullName: data[0].HoTen,
+			avatar: data[0].AnhDaiDien,
+			id: data[0].MaKH,
+			user: result.username
+		}
+	API logout:
+		-URL: http://localhost:3000/auth/logout
+		-Method: get
+		-Request:
+		-Response: 
+
+Orders:
+	API: getAll:
+		-URL: http://localhost:3000/orders/getAll
+		-Method: get
+		-Request:
+		-Response: {
+			status: 1,
+			msg: 'success',
+			data: [
+				{
+					MaDon: '',
+					HoTen: '',
+					MaKH: '',
+					DiaChiNhanHang: '', (Bỏ trống nếu dùng địa chỉ trong database),
+					DiaChi: '',
+					PhiVanChuyen: 10000,
+					TongTienHang: 321321,
+					SanPham: [
+						{
+							MaSP: '',
+							TenSP: '',
+							SoLuong: 133,
+							Gia: 1321
+						}
+					],
+					TrangThai: 0, (là 1 nếu dùng chức năng duyệt ngay khi tạo của admin)
+					MaGiamGia: ['fdsf','fdsfds','hgfhgf']
+				}
+			]
+		}
+	API: getByCustomer:
+		-URL: http://localhost:3000/orders/getByCustomer
+		-Method: get
+		-Request: {
+			MaKH: '',
+		}
+		-Response: {
+			status: 1,
+			msg: 'success',
+			data: [
+				{
+					MaDon: '',
+					MaKH: '',
+					DiaChiNhanHang: '', (Bỏ chống nếu dùng địa chỉ trong database)
+					PhiVanChuyen: 10000,
+					TongTienHang: 321321,
+					SanPham: [
+						{
+							MaSP: '',
+							TenSP: '',
+							SoLuong: 133,
+							Gia: 1321
+						}
+					],
+					TrangThai: 0, (là 1 nếu dùng chức năng duyệt ngay khi tạo của admin)
+					MaGiamGia: ['fdsf','fdsfds','hgfhgf']
+				}
+			]
+		}
+	API createOrder:
+		-URL: http://localhost:3000/orders/createOrder
+		-Method: post
+		-Request: {
+			MaKH: '',
+			DiaChiNhanHang: '', (Bỏ trống nếu dùng địa chỉ trong database)
+			PhiVanChuyen: 10000,
+			TongTienHang: 10000,
+			TrangThai: 0, (là 1 nếu dùng chức năng duyệt ngay khi tạo của admin)
+			SanPham: [
+				{
+					MaSP: '',
+					SoLuong: 1,
+					DonGia: 123
+				}
+			],
+			MaGiamGia: ['fdsf','fdsfds','hgfhgf']
+		}
+		-Response: {
+			status: 1,
+			msg: 'success'
+		}
+	API changeStatus: 
+		-URL: http://localhost:3000/orders/changeStatus
+		-Method: post
+		-Request: {
+			MaDon: '',
+			TrangThai: 1 (0: chờ duyệt, 1: đã duyệt, 2: đang vận chuyển, 3: giao thành công. 4: giao thất bại, 5: Đã huỷ)
 		}
 		-Response: {
 			status: 1,

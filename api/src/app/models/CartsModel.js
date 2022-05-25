@@ -90,4 +90,37 @@ Cart.add = (req, res) => {
 		}
 	});
 }
+Cart.delete = (req ,res) => {
+	const id = req.params.id;
+	pool.query('select * from tb_gio_hang where id=?',id, (err, result)=>{
+		if(err){
+			res({
+				status: 0,
+				msg: err.sqlMessage
+			});
+			return;
+		}
+		if(result.length<=0){
+			res({
+				status: 0,
+				msg: 'Sản phẩm không tồn tại'
+			});
+			return;
+		}
+		pool.query('delete from tb_gio_hang where id=?',id,(err)=>{
+			if(err){
+				res({
+					status: 0,
+					msg: err.sqlMessage
+				});
+				return;
+			}
+			res({
+				status: 1,
+				msg: 'success'
+			});
+			return;
+		})
+	})
+}
 module.exports = Cart;

@@ -197,7 +197,10 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-800 font-weight-bold small">Hải Đăng</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-800 font-weight-bold small"
+								id="fullname-user">
+									
+								</span>
                                 <img class="img-profile rounded-circle"
                                     src="https://picsum.photos/200">
                             </a>
@@ -211,7 +214,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    Đăng xuất
                                 </a>
                             </div>
                         </li>
@@ -272,91 +275,11 @@
                                             <th>Tên khách hàng</th>
                                             <th>Tổng tiền</th>
                                             <th>Trạng thái</th>
-                                            <th>Thao tác</th>
+                                            <th>Hành động</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>d32hg7df3i24jk</td>
-                                            <td>Chị Nguyệt</td>
-                                            <td>299.000đ</td>
-                                            <td>
-                                                <span class="status-text bg-warning">
-                                                    Chờ duyệt
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <a href="./chi_tiet_don_hang/" class="btn btn-primary">Chi tiết</a>
-                                                <button class="btn btn-success" data-toggle="modal" data-target=".modal_adit_status">
-                                                    Trạng thái
-                                                </button>
-                                                
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>t4dgfg7df3i24jk</td>
-                                            <td>Chị Ánh</td>
-                                            <td>349.000đ</td>
-                                            <td>
-                                                <span class="status-text bg-info">
-                                                    Đang vận chuyển
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <a href="./chi_tiet_don_hang/" class="btn btn-primary">Chi tiết</a>
-                                                <button class="btn btn-success" data-toggle="modal" data-target=".modal_adit_status">
-                                                    Trạng thái
-                                                </button>                                                
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>54retghg7df3i24jk</td>
-                                            <td>Công Minh</td>
-                                            <td>149.000đ</td>
-                                            <td>
-                                                <span class="status-text bg-success">
-                                                    Giao thành công
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <a href="./chi_tiet_don_hang/" class="btn btn-primary">Chi tiết</a>
-                                                <button class="btn btn-success" data-toggle="modal" data-target=".modal_adit_status">
-                                                    Trạng thái
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>tre453f3i24jk</td>
-                                            <td>Nguyễn Sang</td>
-                                            <td>399.000đ</td>
-                                            <td>
-                                                <span class="status-text bg-danger">
-                                                    Giao thất bại
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <a href="./chi_tiet_don_hang/" class="btn btn-primary">Chi tiết</a>
-                                                <button class="btn btn-success" data-toggle="modal" data-target=".modal_adit_status">
-                                                    Trạng thái
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>gf54rtd43543i24jk</td>
-                                            <td>Anh Hùng</td>
-                                            <td>299.000đ</td>
-                                            <td>
-                                                <span class="status-text bg-primary">
-                                                    Đã duyệt
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <a href="./chi_tiet_don_hang/" class="btn btn-primary">Chi tiết</a>
-                                                <button class="btn btn-success" data-toggle="modal" data-target=".modal_adit_status">
-                                                    Trạng thái
-                                                </button>
-                                            </td>
-                                        </tr>
+                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -401,14 +324,15 @@
                 </div>
                 <div class="modal__body">
                     <form action="" class="modal__form">
+						<input type="hidden" id="input-order-id">
                         <div class="form-group">
                             <label for="">Trạng thái</label>
-                            <select name="" id="" class="form-control">
-                                <option value="">Chọn trạng thái</option>
-                                <option value="">Đã duyệt</option>
-                                <option value="">Đang vận chuyển</option>
-                                <option value="">Giao thành công</option>
-                                <option value="">Giao thất bại</option>
+                            <select name="" id="select-status" class="form-control">
+                                <option value="1">Đã duyệt</option>
+                                <option value="2">Đang vận chuyển</option>
+                                <option value="3">Giao thành công</option>
+                                <option value="4">Giao thất bại</option>
+                                <option value="5">Đã huỷ</option>
                             </select>
                         </div>
                     </form>
@@ -417,7 +341,7 @@
                     <button class="modal__footer-btn btn btn-danger" data-dismiss="modal">
                         Huỷ
                     </button>
-                    <button class="modal__footer-btn btn btn-primary" data-dismiss="modal">
+                    <button class="modal__footer-btn btn btn-primary" id="btn-edit-status">
                         Lưu
                     </button>
                 </div>
@@ -460,9 +384,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/1.0.0/chartjs-plugin-datalabels.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.all.min.js"></script>
 
+	<!-- Page level custom scripts -->
+	<script src="../../shared/js/validator.js"></script>
     <!-- Page level custom scripts -->
-    <script src="./app.js"></script>
+	<script src="../../shared/js/config.js"></script>
+	<script src="../../shared/js/base.js"></script>
+	<script src="../../shared/js/baseAdmin.js"></script>	
+    <script src="./app.js"></script>>
 
 </body>
 </html>

@@ -194,10 +194,6 @@ User.getVerifyCode =  (req, res) => {
 		}
 	})
 }
-User.getAll = (req,res) => {
-    pool.query("select * from tb_nguoi_dung", function(err,result){
-        res(result);
-    })
-}
+
 
 module.exports = User;

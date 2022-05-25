@@ -14,11 +14,7 @@ class UsersController {
             res.json(response);
         })
     }
-    getAll(req,res){
-        UsersModel.getAll(req,function(response){
-            res.json(response);
-        })
-    }
+
     getVerifyCode(req,res){
         UsersModel.getVerifyCode(req,function(response){
             res.json(response);

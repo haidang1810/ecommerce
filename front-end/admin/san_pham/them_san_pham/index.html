@@ -23,11 +23,13 @@
 
 </head>
 
+<div class="loading loading_hide">
+	<img src="../../../shared/img/loading.gif" alt="">
+</div>
 <body id="page-top">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-
         <!-- Sidebar -->
         <ul class="navbar-nav sidebar-admin sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -201,7 +203,10 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-800 font-weight-bold small">Hải Đăng</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-800 font-weight-bold small"
+								id="fullname-user">
+									
+								</span>
                                 <img class="img-profile rounded-circle"
                                     src="https://picsum.photos/200">
                             </a>
@@ -215,7 +220,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    Đăng xuất
                                 </a>
                             </div>
                         </li>
@@ -232,10 +237,11 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Thêm mới sản phẩm</h1>
                         <button 
-                        class="btn btn-primary shadow-sm px-3 py-2">
+                        class="btn btn-primary shadow-sm px-3 py-2"
+						id="btn-add-product">
                             <i class="fa-solid fa-plus"></i>
                             Lưu 
-                        </but>
+                        </button>
                     </div>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
@@ -253,26 +259,26 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Thông tin sản phẩm</h6>
                                 </div>
                                 <div class="card-body">
-                                    <form action="">
+                                    <form action="" class="info-product">
                                         <div class="form-group">
                                             <label for="">Tên sản phẩm</label>
-                                            <input type="text" class="form-control" name="" 
-                                            placeholder="Nhập tên sản phẩm...">
+                                            <input type="text" class="form-control" name="TenSP" 
+                                            placeholder="Nhập tên sản phẩm..."
+											rules="required|max:150">
+											<span class="message-err"></span>
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-6">
                                                 <label for="">Mã sản phẩm</label>
-                                                <input type="text" class="form-control" name="" 
-                                                placeholder="Nhập mã sản phẩm...">
+                                                <input type="text" class="form-control" name="MaSP" 
+                                                placeholder="Nhập mã sản phẩm..."
+												rules="required|max:10">
+												<span class="message-err"></span>
                                             </div>
                                             <div class="form-group col-6">
                                                 <label for="">Danh mục</label>
-                                                <select name="" id="" class="form-control">
-                                                    <option value="">Chọn danh mục sản phẩm</option>
-                                                    <option value="">Vòng cổ</option>
-                                                    <option value="">Dây chuyền</option>
-                                                    <option value="">Nhẫn</option>
-                                                    <option value="">Lắc tay</option>
+                                                <select name="LoaiSP" id="select-category" class="form-control">
+
                                                 </select>
                                             </div>
                                         </div>
@@ -280,13 +286,26 @@
                                             <div class="form-group col-6">
                                                 <label for="">Giá bán</label>
                                                 <input type="text" class="form-control input-price" 
-                                                name="" placeholder="Nhập giá bán..." id="">
+                                                name="Gia" placeholder="Nhập giá bán..." id=""
+												rules="required">
+												<span class="message-err"></span>
                                             </div>
                                             <div class="form-group col-6">
                                                 <label for="">Số lượng</label>
                                                 <input type="number" class="form-control input-amount" 
-                                                name="" placeholder="Nhập số lượng..." id=""
-                                                min="0" step="1">
+                                                name="SoLuong" placeholder="Nhập số lượng..." id=""
+                                                min="0" step="1"
+												rules="required">
+												<span class="message-err"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-6">
+                                                <label for="">Khối lượng</label>
+                                                <input type="number" class="form-control input-amount input-mass" 
+                                                name="KhoiLuong" placeholder="Nhập khối lượng đơn vị gram..."
+												id="" rules="required">
+												<span class="message-err"></span>
                                             </div>
                                         </div>
                                     </form>
@@ -307,6 +326,23 @@
                                     <div class="avatar_img_size">
                                         <span id="width">0</span>x<span id="height">0</span>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- content row -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card shadow mb-4">
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Mô tả sản phẩm</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div id="toolbar-container"></div>
+									<div id="editor">
+
+									</div>
                                 </div>
                             </div>
                         </div>
@@ -392,7 +428,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/1.0.0/chartjs-plugin-datalabels.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.all.min.js"></script>
+	<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/decoupled-document/ckeditor.js"></script>
+
+
+	<!-- Page level custom scripts -->
+	<script src="../../../shared/js/validator.js"></script>
     <!-- Page level custom scripts -->
+	<script src="../../../shared/js/config.js"></script>
+	<script src="../../../shared/js/base.js"></script>
+	<script src="../../../shared/js/baseAdmin.js"></script>	
     <script src="./app.js"></script>
     
 </body>

@@ -17,6 +17,9 @@ var USER_VERIFYCODE = 'getVerifyCode/';
 var API_CATEGORY = "categories/";
 
 var CATEGORY_GETALL = "getAll/";
+var CATEGORY_ADD = "add/";
+var CATEGORY_EDIT = "edit/";
+var CATEGORY_DELETE = 'delete/';
 
 // API Product
 var API_PRODUCT = 'products/';
@@ -24,6 +27,9 @@ var API_PRODUCT = 'products/';
 var PRODUCT_GETALL = "getAll/";
 var PRODUCT_GETBYKEYWORD = 'getByKeyword/';
 var PRODUCT_GETDETAIL = 'getDetail/'
+var PRODUCT_ADD = 'add/';
+var PRODUCT_EDIT = 'edit/';
+var PRODUCT_DELETE = 'delete/';
 
 // API Rating
 var API_RATING = 'ratings/';
@@ -34,6 +40,8 @@ var RATING_GETBYPRODUCT = 'getByProduct/';
 var API_IMAGE = 'images/';
 
 var IMAGE_GETBYPRODUCT = 'getByProduct/';
+var IMAGE_ADD = 'add/';
+var IMAGE_DELETE = 'delete/';
 
 //API Address
 var API_ADDRESS = 'addresses/';
@@ -50,11 +58,23 @@ var CART_ADD = 'add/';
 // API customer
 var API_CUSTOMER = 'customers/';
 
+var CUSTOMER_GETALL = 'getAll/';
 var CUSTOMER_GETBYACCOUNT = 'getByAccount/';
 var CUSTOMER_CHANGEGMAIL = 'changeGmail/';
 var CUSTOMER_GETVERIFYCODE = 'getVerifyCode/';
 var CUSTOMER_CHANGEPHONE = "changePhone/";
 var CUSTOMER_CHANGEINFO = "changeInfo/";
+var CUSTOMER_SEARCHBYNAME= "searchByName/";
+var CUSTOMER_SEARCHBYPHONE = "searchByPhone/";
+var CUSTOMER_ADD = "add/";
+
+// API Orders
+var API_ORDER = 'orders/';
+
+var ORDER_GETALL = 'getAll/';
+var ORDER_CHANGESTATUS = 'changeStatus/';
+var ORDER_GETBYID = 'getById/';
+var ORDER_CREATE = 'createOrder/';
 
 // API Notification
 var API_NOTIFICATION = 'notifications/';

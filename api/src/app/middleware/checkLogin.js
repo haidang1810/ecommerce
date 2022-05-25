@@ -1,8 +1,5 @@
 const pool = require('../config/connectDB');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
-const dotenv = require('dotenv').config();
 
 
 const checkLogin = (req, res, next) => {
@@ -14,13 +11,13 @@ const checkLogin = (req, res, next) => {
                 msg: 'Chưa đăng nhập'
             });
         }else{
-			const checkToken = `select HoTen, AnhDaiDien, MaKH 
-			from tb_khach_hang 
+			const checkToken = `select * 
+			from tb_nguoi_dung 
 			where TaiKhoan=?`
             pool.query(checkToken,result.username,
             (err, data)=>{
                 if(err){
-                    res({
+                    res.json({
                         status: 0,
                         msg: err
                     });
@@ -29,8 +26,7 @@ const checkLogin = (req, res, next) => {
 				if(data.length>0){
 					req.username = result.username;
 					next();
-				}  
-				else{
+				}else{
 					res.json({
                         status: 0,
                         msg: 'User không tồn tại'
