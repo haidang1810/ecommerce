@@ -66,3 +66,8 @@ html {
 .modal__radio {
     cursor: pointer;
 }
+#phone-add-customer::-webkit-outer-spin-button,
+#phone-add-customer::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

@@ -30,7 +30,8 @@
     "mysql2": "^2.3.3",
     "node-schedule": "^2.1.0",
     "twilio": "^3.77.0",
-    "winston": "^3.7.2"
+    "winston": "^3.7.2",
+    "winston-daily-rotate-file": "^4.6.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

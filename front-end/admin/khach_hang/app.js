@@ -1,4 +1,18 @@
 
+$('#phone-add-customer').on('keypress', function (event) {
+    var charCode = !event.charCode ? event.which : event.charCode;
+    if( charCode == 46 || charCode == 69 || charCode == 101 
+    || charCode == 45 || charCode == 43)
+        event.preventDefault();
+});
+
+const convertObjGroupToArr = (obj) => {
+	let arr = [];
+	for(let i=0; i<obj.length; i++){
+		arr.push(obj[i].TenNhom);
+	}
+	return arr;
+}
 fetch(BASE_URL+API_CUSTOMER+CUSTOMER_GETALL,{
 	method: 'GET', 
 	credentials: 'include',
@@ -19,7 +33,7 @@ fetch(BASE_URL+API_CUSTOMER+CUSTOMER_GETALL,{
 					HoTen: item.HoTen,
 					GioiTinh,
 					NgaySinh: item.NgaySinh,
-					NhomKH: item.NhomKH.join(", "),
+					NhomKH: convertObjGroupToArr(item.NhomKH).join(", "),
 					SDT: item.SDT,
 					Gmail: item.Gmail,
 					DiaChi: item.DiaChi,

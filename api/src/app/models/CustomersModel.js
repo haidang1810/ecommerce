@@ -4,6 +4,8 @@ const bcrypt = require('bcrypt');
 const verifyCode = require('../services/verifyCode');
 const cloudinary = require('cloudinary').v2;
 const Address = require('./AddressesModel');
+const autoJoinGroup = require('../services/autoJoinGroup');
+
 cloudinary.config({
 	cloud_name: process.env.CLOUDINARY_NAME,
 	api_key: process.env.CLOUDINARY_API_KEY,
@@ -49,7 +51,10 @@ Customer.getAll = (req, res) => {
 		}
 		let customers = result;
 		for(let i=0; i<customers.length;i++){
-			const getGroup = `select TenNhom from tb_nhom_khach_hang where MaKH=?`
+			const getGroup = `select TenNhom 
+			from tb_nhom_khach_hang, tb_kh_nhom_kh 
+			where tb_kh_nhom_kh.MaNhom=tb_nhom_khach_hang.MaNhom and 
+			MaKH=?`
 			try {
 				let [groups, fields] = await poolAwait.query(getGroup,customers[i].MaKH);
 				if(groups)
@@ -58,7 +63,7 @@ Customer.getAll = (req, res) => {
 				let address = await getAddressByCustomer(customers[i].MaKH);
 				if(address){
 					customers[i].DiaChi = `${address.address}, ${address.ward.name}, ${address.district.name}, ${address.province.name}`
-				}
+				}else customers[i].DiaChi = '';
 			} catch (error) {
 				res({
 					status: 0,
@@ -251,6 +256,7 @@ Customer.changeInfo = (req, res)=>{
 				status: 1,
 				msg: "success"
 			});
+			autoJoinGroup();
 			return
 		});
 	}else{
@@ -371,13 +377,16 @@ Customer.add = (req, res) => {
 						msg: "Thêm thànhg công",
 						customerID
 					});
+					autoJoinGroup();
+					return;
 				})
-				.catch(()=>{
+				.catch((err)=>{
 					pool.query("delete from tb_khach_hang where MaKH=?",customerID);
 					res({
 						status: 0,
 						msg: "Có lỗi khi thêm địa chỉ vui lòng thử lại"
 					});
+					return;
 				})
 		})
 }

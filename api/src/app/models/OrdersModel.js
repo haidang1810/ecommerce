@@ -233,6 +233,9 @@ Order.changeStatus = (req, res) =>{
 				status: 1,
 				msg: 'success',
 			});
+			if(statusOrder==3){
+				autoJoinGroup();
+			}
 			return;
 		})
 	})

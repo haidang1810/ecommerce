@@ -92,6 +92,7 @@ Group.add = async (req, res) => {
 			status: 1,
 			msg: 'success!'
 		});
+		const autoJoinGroup = require('../services/autoJoinGroup');
 		return;
 	} catch (error) {
 		const deleteConditions = 'delete from tb_dieu_kien_nhom where MaNhom=?';
