@@ -217,10 +217,11 @@ var products = [];
 var productIdWithSearch = '';
 fetch(BASE_URL+API_PRODUCT+PRODUCT_GETALL,{
 	method: 'GET', 
-	credentials: 'include',
-	headers:{
-		'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-	}
+		credentials: 'include',
+		headers:{
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+		}
 })
 	.then(statusRes)
 	.then(json)
@@ -353,24 +354,64 @@ $("#input-search-product").focusout(function(){
 			Gia,
 			SoLuong: 1,
 			ThanhTien: Gia,
-			KhoiLuong: products[index].KhoiLuong
+			KhoiLuong: products[index].KhoiLuong,
+			LuaChon: []
 		});
 	}else{
 		listProductOrder[isExist].SoLuong++;
 	}
+	productIdWithSearch = '';
 	loadProductOrder();
 });
 function loadProductOrder(){
 	tableProduct.clear().draw();
 	totalPrice = 0;
 	totalWeight = 0;
-	listProductOrder.map((item)=>{
-		totalWeight += item.KhoiLuong;
+	listProductOrder.map(async (item)=>{
+		totalWeight += Number(item.KhoiLuong);
 		totalPrice += item.ThanhTien;
+		let response = await fetch(BASE_URL+API_VARIATION+VARIATION_GETBYPRODUCT+item.MaSP,{
+			method: 'GET', 
+			credentials: 'include',
+			headers:{
+				'Content-Type': 'application/json',
+				'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+			}
+		});
+		let option = await response.json();
+		let html = ``;
+		for(let variation of option.data){
+			html+= `
+					<div class="modify__name">
+						${variation.TenPL}
+					</div>
+					<div class="modify__option ml-3">
+			`;
+			for(let option of variation.LuaChon){
+				if(option.TrangThai==1){
+					html += `
+						<div class="modify__option-item modify__option-item--normal" 
+						id="${item.MaSP}" optProduct="${option.Id}" 
+						variationName="${variation.TenPL}">
+							${option.TenLC}
+						</div>
+					`;
+				}else{
+					html += `
+						<div class="modify__option-item modify__option-item--disable">
+							${option.TenLC}
+						</div>
+					`;
+				}
+			}
+			html += `
+				</div>
+			`;
+		}
 		tableProduct.row.add([
-			`<img src="${item.AnhBia}" class="table-product-img" alt="">`,
 			item.MaSP,
 			item.TenSP,
+			html,
 			`${numberWithCommas(item.Gia)}đ`,
 			`
 				<div class="amount-control">
@@ -407,6 +448,30 @@ var tableProduct = $('#product-list').DataTable({
 });
 
 
+$('#product-list tbody').on('click', '.modify__option-item--normal', function() {
+	$(".modify__option-item--normal").each(function(){
+		$(this).removeClass('modify__option-item--active');
+	});
+	$(this).addClass('modify__option-item--active');
+});
+$('#product-list tbody').on('click', '.modify__option-item--normal', function() {
+	const index = listProductOrder.findIndex( (item) => item.MaSP == $(this).attr('id'));
+	const optionIndex = listProductOrder[index].LuaChon.findIndex((item)=> 
+		item.TenPL = $(this).attr('variationName')
+	);
+	if(optionIndex==-1){
+		listProductOrder[index].LuaChon.push({
+			TenPL: $(this).attr('variationName'),
+			MaLC: $(this).attr('optProduct')
+		});
+	}else{
+		listProductOrder[index].LuaChon.splice(optionIndex,1);
+		listProductOrder[index].LuaChon.push({
+			TenPL: $(this).attr('variationName'),
+			MaLC: $(this).attr('optProduct')
+		});
+	}
+});
 $('#product-list tbody').on('click', '.btn-remove-product', function() {
 	const index = listProductOrder.findIndex( (item) => item.MaSP == $(this).attr('id'));
 	listProductOrder.splice(index,1);
@@ -695,6 +760,18 @@ $("#btn-create-accept-order").click(function(){
 	addOrder(1);
 });
 function addOrder(status){
+	for(let item of listProductOrder){
+		if(item.LuaChon.length<=0){
+			Toast.fire({
+				icon: 'error',
+				title: 'Chưa chọn phân loại cho sản phẩm',
+				background: 'rgba(220, 52, 73, 0.9)',
+				color: '#ffffff',
+				timer: 2000
+			});
+			return;
+		}
+	}
 	let data = {
 		MaKH: customerIdWithSearch,
 		DiaChiNhanHang: $("#input-address").val(),
@@ -705,7 +782,6 @@ function addOrder(status){
 		SanPham: listProductOrder,
 		MaGiamGia: []
 	}
-	
 	fetch(BASE_URL+API_ORDER+ORDER_CREATE,{
 		method: 'POST', 
 		credentials: 'include',

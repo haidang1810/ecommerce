@@ -35,6 +35,7 @@ fetch(BASE_URL+API_PRODUCT+PRODUCT_GETDETAIL+productID, {
 	method: 'GET', 
 	credentials: 'include',
 	headers:{
+		'Content-Type': 'application/json',
 		'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
 	}
 })
@@ -83,10 +84,11 @@ fetch(BASE_URL+API_PRODUCT+PRODUCT_GETDETAIL+productID, {
 
 fetch(BASE_URL+API_RATING+RATING_GETBYPRODUCT+productID, {
 	method: 'GET', 
-	credentials: 'include',
-	headers:{
-		'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-	}
+		credentials: 'include',
+		headers:{
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+		}
 })
 	.then(statusRes)
 	.then(json)
@@ -527,10 +529,11 @@ $(".overview__filter-button").click(function(){
 
 fetch(BASE_URL+API_IMAGE+IMAGE_GETBYPRODUCT+productID, {
 	method: 'GET', 
-	credentials: 'include',
-	headers:{
-		'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-	}
+		credentials: 'include',
+		headers:{
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+		}
 })
 .then(statusRes)
 	.then(json)
@@ -768,3 +771,55 @@ $(".btn-add-cart").click(function(){
 		})
 		.catch(handlerError);
 })
+
+fetch(BASE_URL+API_VARIATION+VARIATION_GETBYPRODUCT+productID,{
+	method: 'GET', 
+	credentials: 'include',
+	headers:{
+		'Content-Type': 'application/json',
+		'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+	}
+})
+	.then(statusRes)
+	.then(json)
+	.then((res)=>{
+		if(res.status==1){
+			let html = ``;
+			for(let variation of res.data){
+				html+= `
+					<div class="modify__item row">
+						<div class="modify__name col-2">
+							${variation.TenPL}
+						</div>
+						<div class="modify__option col-10 row">
+				`;
+				for(let option of variation.LuaChon){
+					if(option.TrangThai==1){
+						html += `
+							<div class="modify__option-item modify__option-item--normal" id="${option.Id}">
+								${option.TenLC}
+							</div>
+						`;
+					}else{
+						html += `
+							<div class="modify__option-item modify__option-item--disable">
+								${option.TenLC}
+							</div>
+						`;
+					}
+				}
+				html += `
+						</div>
+					</div>
+				`;
+			}
+			$(".info-modify").html(html);
+			$(".modify__option-item--normal").click(function(){
+				$(".modify__option-item--normal").each(function(){
+					$(this).removeClass('modify__option-item--active');
+				});
+				$(this).addClass('modify__option-item--active');
+			})
+		}
+	})
+	.catch(handlerError);

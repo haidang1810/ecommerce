@@ -31,6 +31,21 @@ Order.getAll = async (req, res) => {
 			try {
 				let [orderDetail, fields] = await poolAwait.query(getProduct,order[i].MaDon);
 				if(orderDetail){
+					const getOption = `select MaLC, TenLC, TenPL
+					from tb_ct_don_lua_chon, tb_lua_chon, tb_phan_loai
+					where tb_ct_don_lua_chon.MaLC=tb_lua_chon.Id and
+						tb_phan_loai.MaPL=tb_lua_chon.MaPL and
+						tb_ct_don_lua_chon.MaDon=? and
+						tb_ct_don_lua_chon.MaSP=?`;
+					for(let j=0; j<orderDetail.length; j++){
+						let [options, fields] = await poolAwait.query(getOption,[
+							order[i].MaDon,
+							orderDetail[j].MaSP
+						]);
+						if(options.length>0){
+							orderDetail[j].LuaChon = options;
+						}
+					}
 					order[i].SanPham = orderDetail;
 				}
 			} catch (error) {
@@ -72,6 +87,21 @@ Order.getById = async (req, res) => {
 		try {
 			let [orderDetail, fields] = await poolAwait.query(getProduct,orderID);
 			if(orderDetail){
+				const getOption = `select MaLC, TenLC, TenPL
+					from tb_ct_don_lua_chon, tb_lua_chon, tb_phan_loai
+					where tb_ct_don_lua_chon.MaLC=tb_lua_chon.Id and
+						tb_phan_loai.MaPL=tb_lua_chon.MaPL and
+						tb_ct_don_lua_chon.MaDon=? and
+						tb_ct_don_lua_chon.MaSP=?`;
+				for(let j=0; j<orderDetail.length; j++){
+					let [options, fields] = await poolAwait.query(getOption,[
+						orderID,
+						orderDetail[j].MaSP
+					]);
+					if(options.length>0){
+						orderDetail[j].LuaChon = options;
+					}
+				}
 				order[0].SanPham = orderDetail;
 			}
 		} catch (error) {
@@ -150,7 +180,13 @@ async function addOrder(req, res){
 							for(item of discountCode){
 								let [discount] = await poolAwait.query(insertDiscountCode,[orderID,item]);
 							}
+						const insertOption = `insert into tb_ct_don_lua_chon(MaDon,MaSP,MaLC)
+							values(?,?,?)`;
+						for(let option of product.LuaChon){
+							await poolAwait.query(insertOption,[orderID,product.MaSP,option.MaLC]);
+						}
 					} catch (error) {
+						await poolAwait.query(`delete from tb_chi_tiet_don where MaDon=?`,orderID);
 						await poolAwait.query(`delete from tb_don_hang where MaDon=?`,orderID);
 						isThreadCreateOrder = false;
 						res({

@@ -20,7 +20,7 @@ const Product = function (product) {
 Product.getAll = (req, res) => {
     const getAllProduct = `select tb_san_pham.MaSP, tb_loai_san_pham.TenLoai, TenSP, tb_san_pham.Gia, tb_san_pham.SoLuong, 
 	AnhBia, AVG(SoSao) as DanhGia, tb_dot_khuyen_mai.ChietKhau, 
-	tb_san_pham.NgayDang, tb_chi_tiet_don.SoLuong as DaBan
+	tb_san_pham.NgayDang, tb_chi_tiet_don.SoLuong as DaBan, KhoiLuong
 		from tb_san_pham
 		LEFT JOIN tb_danh_gia
 		ON tb_san_pham.MaSP = tb_danh_gia.MaSP
@@ -57,7 +57,7 @@ Product.getByKeyword = (req, res) => {
 	const keyword = '%'+req.query.keyword+'%';
 	const getAllProduct = `select tb_san_pham.MaSP, tb_loai_san_pham.TenLoai, TenSP, tb_san_pham.Gia, tb_san_pham.SoLuong, 
 	AnhBia, AVG(SoSao) as DanhGia, tb_dot_khuyen_mai.ChietKhau, 
-	tb_san_pham.NgayDang, tb_chi_tiet_don.SoLuong as DaBan
+	tb_san_pham.NgayDang, tb_chi_tiet_don.SoLuong as DaBan, KhoiLuong
 		from tb_san_pham
 		LEFT JOIN tb_danh_gia
 		ON tb_san_pham.MaSP = tb_danh_gia.MaSP

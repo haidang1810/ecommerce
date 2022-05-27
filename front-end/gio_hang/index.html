@@ -6,11 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"> 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
         <script src="https://kit.fontawesome.com/a009e9706c.js"></script>
         <link rel="stylesheet" href="../shared/css/base.css">   
-        <link rel="stylesheet" href="../shared/css/header.css">
+        <link rel="stylesheet" href="../shared/css/index.css">
         <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="../shared/css/header.css">
     </head>
     <body>
         <div class="app">
@@ -128,130 +128,9 @@
                 </div>
             </header>
             <div class="container">
-                <div class="row product-info">
-                    <div class="col-xl-4 img-info">
-                        <div class="main-img">
-                            
-                        </div>
-                        <div class="list-img">
-                            <button class="button-control" id="btn-pre"><i class="fa fa-angle-left"></i></button>
-                            <div class="list-img-item">
-								
-                            </div>
-                            <button class="button-control" id="btn-next"><i class="fa fa-angle-right"></i></button>
-                        </div>
-                    </div>
-                    <div class="col-xl-8 product-info-main">
-                        <h3 class="info-name">
-                            
-                        </h3>
-                        <div class="below-title">
-                            <div class="info-rating">
-                                <span class="info-rating-total"> </span>
-                            </div>
-                            <div class="info-count-rating">
-                                <span class="count-rating-number"> </span>
-                                <span class="count-rating-title">Đánh Giá</span>
-                            </div>
-                            <div class="info-count-sold">
-                                <span class="count-sold-number"> </span>
-                                <span class="count-sold-title">Đã bán</span>
-                            </div>
-                        </div>
-                        <div class="info-price">
-                            <span class="old-price"> </span>
-                            <span class="current-price"> </span>
-                            <div class="info-discount"> </div>
-                        </div>
-                        <div class="info-transport" data-toggle="modal" data-target=".modal_change_address">
-                            Giao đến
-                            <span class="info-address">Chưa chọn địa chỉ</span>
-                            <span class="change-address"> - Đổi địa chỉ</span>
-                            <p class="info-transport-price">Phí vận chuyển </p>
-                        </div>
-						<div class="info-modify">
-							
-						</div>
-                        <div class="info-amount">
-                            <span class="amount-title">Số lượng</span>
-                            <div class="amount-control">
-                                <button class="btn-sub">
-                                    <img src="../shared/img/icons-remove.svg" alt="loading">
-                                </button>
-                                <input type="number" class="amount-input" value="1"
-                                min="1" step="1">
-                                <button class="btn-add">
-                                    <img src="../shared/img/icons-add.svg" alt="loading">
-                                </button>
-                                <span class="amount-total"></span>
-                            </div>
-                        </div>
-                        <div class="info-purchase">
-                            <button class="btn-add-cart">
-                                <i class="bi bi-cart"></i>
-                                Thêm vào giỏ hàng
-                            </button>
-                            <button class="btn-purchase">
-                                Mua ngay
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="row product-desc">
-                    <div class="col-12 product-desc__detail">
-                        <div id="editor_detail_product">
-			
-						</div>
-                    </div>
-                </div>
-                <div class="row product-rating">
-                    <h3 class="product-rating__header">
-                        ĐÁNH GIÁ SẢN PHẨM
-                    </h3>
-                    <div class="col-12 product-rating__overview">
-                        <div class="row product-rating__overview--wrapper">
-                            <div class="overview__briefing col-xl-2">
-                                <span class="overview__briefing--score">
-									0
-								</span>
-                                <span class="overview__briefing--score-out-of"> trên 5</span>
-                                <div class="overview__briefing--start">
-
-                                </div>
-                            </div>
-                            <div class="overview__filter col-xl-10">
-                                <button class="overview__filter-button overview__filter-button--active"
-								id="totalStar">
-                                    Tất cả (100)
-                                </button>
-                                <button class="overview__filter-button" id="fiveStar">
-                                    5 Sao (100)
-                                </button>
-                                <button class="overview__filter-button" id="fourStar">
-                                    4 Sao (20)
-                                </button>
-                                <button class="overview__filter-button" id="threeStar">
-                                    3 Sao (0)
-                                </button>
-                                <button class="overview__filter-button" id="twoStar">
-                                    2 Sao (0)
-                                </button>
-                                <button class="overview__filter-button" id="oneStar">
-                                    1 Sao (0)
-                                </button>
-                                <button class="overview__filter-button" id="zeroStar">
-                                    0 Sao (0)
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 product-rating__list">
-                        
-						
-                    </div>
-                </div>
+                
             </div>
-			<div class="modal" id="modal-auth">
+            <div class="modal" id="modal-auth">
                 <div class="modal-dialog ">
                     <div class="modal__body modal-content">
                         <div class="auth-form">
@@ -341,7 +220,7 @@
                                         placeholder="Mã xác nhận"
 										rules='required'>
 										<span class="message-err"></span>
-                                    </div>                                 
+                                    </div>                                   
                                     <div class="auth-form__footer">
                                         <button class="auth-form__btn auth-form__btn--close" data-dismiss="modal">Trở lại</button>
                                         <button type="submit" class="auth-form__btn auth-form__btn--submit">Đăng ký</button>
@@ -356,73 +235,15 @@
 
             </footer>
         </div>
-        <div class="modal fade modal_change_address" >
-            <div class="modal-dialog">
-                <div class="modal__inner modal-content">
-                    <div class="modal__header">
-                        <h3>Địa chỉ giao hàng</h3>
-                        <div class="modal__close-btn" data-dismiss="modal">
-                            <i class="fa-solid fa-xmark"></i>
-                        </div>
-                    </div>
-                    <div class="modal__body">
-                        <p class="modal__title">
-                            Hãy chọn địa chỉ nhận hàng để được dự báo 
-                            phí đóng gói, vận chuyển một cách chính xác nhất.
-                        </p>
-                        <input class="modal__radio" type="radio" name="radio_address" 
-                        checked id="current_address">
-                        <label for="current_address" class="modal__label label_current_address">
-                            Chưa chọn địa chỉ
-                        </label><br>
-                        <input class="modal__radio new_address" type="radio" name="radio_address" 
-                        id="new_address">
-                        <label for="new_address" class="modal__label">
-                            Chọn khu vực giao hàng khác
-                        </label>
-                        <form action="" class="modal__form">
-                            <div class="row modal__form-location">
-                                <div class="col-xl-4 location-type">Tỉnh/Thành phố</div>
-                                <select class="selectpicker col-xl-8" data-live-search="true"
-								id="select_province">
-									<option value="-1">Chọn tỉnh thành phố</option>								
-                                </select>
-                            </div>
-                            <div class="row modal__form-location">
-                                <div class="col-xl-4 location-type">Quận/Huyện</div>
-                                <select class="selectpicker col-xl-8" disabled data-live-search="true"
-								id="select_district">
-									<option value="-1">Chọn quận huyện</option>
-                                </select>
-                            </div>
-                            <div class="row modal__form-location">
-                                <div class="col-xl-4 location-type">Phường/Xã</div>
-                                <select class="selectpicker col-xl-8" disabled data-live-search="true"
-								id="select_ward">
-									<option value="-1">Chọn phường xã</option>
-                                </select>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal__footer">
-                        <button class="modal__footer-btn" id="btn_select_addres">
-                            GIAO ĐẾN ĐỊA CHỈ NÀY
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.all.min.js"></script>
-		<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/decoupled-document/ckeditor.js"></script>
 		<script src="../shared/js/validator.js"></script>
 		<script src="../shared/js/config.js"></script>
 		<script src="../shared/js/base.js"></script>
 		<script src="../shared/js/header.js"></script>
-		<script src="./app.js"></script>
+        <script src="./app.js"></script>
     </body>
 </html>

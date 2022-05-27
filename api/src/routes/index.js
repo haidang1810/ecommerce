@@ -10,6 +10,7 @@ const notificationsRouter = require('./notifications');
 const customersRouter = require('./customers');
 const ordersRouter = require('./orders');
 const groupsRouter = require('./groups');
+const variationsRouter = require('./variations');
 function route(app){
     app.use('/users', usersRouter);
     app.use('/auth', authRouter);
@@ -23,5 +24,6 @@ function route(app){
     app.use('/customers', customersRouter);
     app.use('/orders', ordersRouter);
     app.use('/groups', groupsRouter);
+    app.use('/variations', variationsRouter);
 }
 module.exports = route;

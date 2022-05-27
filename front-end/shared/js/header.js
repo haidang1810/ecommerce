@@ -310,4 +310,9 @@ $("#btn_logout").click(function(){
 			window.location.reload();
 		})	
 })
-
+$(".cart__button").click(function(){
+	window.location.href = BASE_URL_CLIENT+'gio_hang/';
+});
+$(".header__cart-footer").click(function(){
+	window.location.href = BASE_URL_CLIENT+'gio_hang/';
+});

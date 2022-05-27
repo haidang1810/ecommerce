@@ -88,6 +88,10 @@ var API_GROUP = 'groups/';
 var GROUP_GETALL = 'getAll/';
 var GROUP_DELETE = 'delete/';
 
+// API Variation: 
+var API_VARIATION = 'variations/'
+var VARIATION_GETBYPRODUCT = 'getByProduct/';
+
 
 var LENGHT_BOX = 50;
 var WIDTH_BOX = 35;
