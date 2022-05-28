@@ -128,76 +128,169 @@
                 </div>
             </header>
             <div class="container">
-                <div class="cart__header">
-					<div class="cart__header-product">
-						Sản phẩm
-					</div>
-					<div class="cart__header-price">
-						Đơn giá
-					</div>
-					<div class="cart__header-amount">
-						Số lượng
-					</div>
-					<div class="cart__header-total">
-						Thành tiền
-					</div>
-					<div class="cart__header-action">
-						Thao tác
+                <div class="header-payment">
+					<div class="header-payment__line"></div>
+					<div class="header-payment__main">
+						<h2 class="header-payment__heading">
+							<i class="fa-solid fa-location-dot"></i>
+							Địa chỉ nhận hàng
+						</h2>
+						<div class="header-payment__info">
+							<span class="header-payment__customer">Huỳnh Hải Đăng 0832248959</span>
+							<span class="header-payment__address">
+								52/84/129 nguyễn huệ, Phường 2, Thành Phố Vĩnh Long, Vĩnh Long
+							</span>
+							<span class="header-payment__btn">Thay đổi</span>
+						</div>
 					</div>
 				</div>
-				<div class="cart__list">
-					<div class="cart__item">
-						<div class="cart__item-info">
-							<input type="checkbox" name="cart__check" id="">
-							<img src="https://res.cloudinary.com/jwb/image/upload/v1653387310/product_avatar/1f95b450eb9d5a3a18b7567324673a3d_lose8l.jpg" alt="Loading" class="cart__img">
-							<div class="cart__name">
-								<p>Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức
-									Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức
-									Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức
-								</p>
-							</div>
-							<div class="cart__variation">
-								<p class="cart__variation--item">
-									Size đá: 16mm
-								</p>
-								<p class="cart__variation--item">
-									Mặt: tròn
-								</p>
-							</div>
+				<div class="product">
+					<div class="product__title">
+						<div class="product__title-product">
+							Sản phẩm
 						</div>
-						<div class="cart__price">
-							<div class="cart__old-price">
-								700.000đ
+						<div class="product__title-price">
+							Đơn giá
+						</div>
+						<div class="product__title-amount">
+							Số lượng
+						</div>
+						<div class="product__title-total">
+							Thành tiền
+						</div>
+					</div>
+					<div class="product__list">
+						<div class="product__item">
+							<div class="product_info">
+								<img src="https://res.cloudinary.com/jwb/image/upload/v1653387310/product_avatar/1f95b450eb9d5a3a18b7567324673a3d_lose8l.jpg" class="product__img" alt="">
+								<div class="product__name">
+									<p>Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức</p>
+								</div>
+								<div class="product__variation">
+									Size đá: 17
+								</div>
 							</div>
-							<div class="cart__new-price">
+							<div class="product__price">
+								500.000đ
+							</div>
+							<div class="product__amount">
+								1
+							</div>
+							<div class="product__money">
 								500.000đ
 							</div>
 						</div>
-						<div class="cart__amount">
-							<div class="amount-control">
-                                <button class="btn-sub">
-                                    <img src="../shared/img/icons-remove.svg" alt="loading">
-                                </button>
-                                <input type="number" class="amount-input" value="1"
-                                min="1" step="1">
-                                <button class="btn-add">
-                                    <img src="../shared/img/icons-add.svg" alt="loading">
-                                </button>
-                            </div>
-						</div>
-						<p class="cart__total-price">500.000đ</p>
-						<div class="cart__action">
-							<button class="cart__delete">Xoá</button>
+						<div class="product__item">
+							<div class="product_info">
+								<img src="https://res.cloudinary.com/jwb/image/upload/v1653387310/product_avatar/1f95b450eb9d5a3a18b7567324673a3d_lose8l.jpg" class="product__img" alt="">
+								<div class="product__name">
+									<p>Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức</p>
+								</div>
+								<div class="product__variation">
+									Size đá: 17
+								</div>
+							</div>
+							<div class="product__price">
+								500.000đ
+							</div>
+							<div class="product__amount">
+								1
+							</div>
+							<div class="product__money">
+								500.000đ
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class="cart__payment">
-					Tổng thanh toán
-					<span id="total-product">(1 Sản phâm):</span>
-					<span class="cart__payment-total">500.000đ</span>
-					<button class="cart__submit">
-						Mua hàng
-					</button>
+				<div class="voucher">
+					<div class="voucher__header">
+						<div class="voucher__heading">Voucher</div>
+						<button class="voucher__btn">
+							Chọn voucher
+						</button>
+					</div>
+					<div class="voucher__list">
+						<div class="voucher__item">
+							<div class="voucher__name">Ưu đãi 30/4</div>
+							<div class="voucher__description">
+								Nhân dịp ưu đãi 30/4 giảm 30k cho đơn hàng
+							</div>
+							<div class="voucher__discount">
+								-30.000đ
+							</div>
+						</div>
+						<div class="voucher__item">
+							<div class="voucher__name">Sinh nhật tháng 4</div>
+							<div class="voucher__description">
+								Nhân ngày kỷ niệm 30/4 1/5 giảm 40k cho khách hàng sinh vào tháng 4
+							</div>
+							<div class="voucher__discount">
+								-30.000đ
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="payment">
+					<div class="payment__header">
+						Phương thức thanh toán
+					</div>
+					<div class="payment__main">
+						<div class="form-group">
+							<input class="payment__radio" type="radio" name="payment" 
+							checked id="COD" value="1">
+							<label for="COD" class="payment__label">
+								Thanh toán khi nhận hàng COD
+							</label><br>
+						</div>
+						<div class="form-group">
+							<input class="payment__radio" type="radio" name="payment" 
+							id="online-payment" value="2">
+							<label for="online-payment" class="payment__label">
+								Thanh toán trực tuyến
+							</label>
+							<div class="payment__list">
+								<div class="payment__item payment__item--active">
+									<img src="../shared/img/MoMo_Logo.png" alt="">
+								</div>
+								<div class="payment__item">
+									<img src="../shared/img/ZaloPay_Logo.png" alt="">
+								</div>
+								<div class="payment__item">
+									<img src="../shared/img/ACB_Logo.png" alt="">
+								</div>
+								<div class="payment__item">
+									<img src="../shared/img/ViettelPay_Logo.png" alt="">
+								</div>
+							</div>
+						</div>
+						<div class="payment__info">
+							<div class="payment__info-item">
+								<div class="payment__col"></div>
+								<p class="payment__info-title">Tổng tiền hàng</p>
+								<p class="payment__info-value">1.000.000đ</p>
+							</div>
+							<div class="payment__info-item">
+								<div class="payment__col"></div>
+								<p class="payment__info-title">Phí vận chuyển</p>
+								<p class="payment__info-value">60.000đ</p>
+							</div>
+							<div class="payment__info-item">
+								<div class="payment__col"></div>
+								<p class="payment__info-title">Voucher giảm giá</p>
+								<p class="payment__info-value">30.000đ</p>
+							</div>
+							<div class="payment__info-item">
+								<div class="payment__col"></div>
+								<p class="payment__info-title">Tổng thanh toán</p>
+								<p class="payment__info-value payment__info-value--red">1.030.000đ</p>
+							</div>
+						</div>
+						<div class="payment__footer">
+							<div class="payment__footer--col"></div>
+							<button class="payment__submit">Đặt hàng</button>
+						</div>
+						
+					</div>
 				</div>
             </div>
             <div class="modal" id="modal-auth">
