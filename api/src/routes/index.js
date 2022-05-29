@@ -11,6 +11,7 @@ const customersRouter = require('./customers');
 const ordersRouter = require('./orders');
 const groupsRouter = require('./groups');
 const variationsRouter = require('./variations');
+const discountsRouter = require('./discounts');
 function route(app){
     app.use('/users', usersRouter);
     app.use('/auth', authRouter);
@@ -25,5 +26,6 @@ function route(app){
     app.use('/orders', ordersRouter);
     app.use('/groups', groupsRouter);
     app.use('/variations', variationsRouter);
+    app.use('/discounts', discountsRouter);
 }
 module.exports = route;
