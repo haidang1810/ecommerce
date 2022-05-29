@@ -40,3 +40,60 @@ html {
     -webkit-appearance: none;
     margin: 0;
 }
+
+.variation {
+	width: 60%;
+}
+.variation__item {
+	margin-bottom: 4px;
+}
+.variation__header{
+	padding: 10px 20px;
+	border: 1px solid #ccc;
+	background-color: #DDF3FE;
+	cursor: pointer;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.variation__name {
+	height: 100%;
+	width: 80%;
+}
+.variation__control {
+	width: 20%;
+	text-align: right;
+}
+.variation__btn {
+	border: none;
+	background-color: transparent;
+	margin: 0 10px;
+	padding: 5px 10px;
+	font-size: 14px;
+	
+}
+.variation__btn--add {
+	color: #007BFF;
+}
+.variation__btn--delete {
+	color: #DC3545;
+}
+.variation__option-list {
+	height: 0;
+	overflow: hidden;
+}
+
+.variation__option-list--show{
+	height: auto !important;
+}
+.variation__option-item{
+	padding: 10px 20px;
+	border: 1px solid #ccc;
+	background-color: #DDEBC8;
+	margin-top: 4px;
+	margin-left: 40px;
+	overflow: hidden;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}

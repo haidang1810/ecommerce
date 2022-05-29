@@ -36,7 +36,8 @@ Order.getAll = async (req, res) => {
 					where tb_ct_don_lua_chon.MaLC=tb_lua_chon.Id and
 						tb_phan_loai.MaPL=tb_lua_chon.MaPL and
 						tb_ct_don_lua_chon.MaDon=? and
-						tb_ct_don_lua_chon.MaSP=?`;
+						tb_ct_don_lua_chon.MaSP=? and
+						tb_phan_loai.TrangThai=1`;
 					for(let j=0; j<orderDetail.length; j++){
 						let [options, fields] = await poolAwait.query(getOption,[
 							order[i].MaDon,
@@ -92,7 +93,8 @@ Order.getById = async (req, res) => {
 					where tb_ct_don_lua_chon.MaLC=tb_lua_chon.Id and
 						tb_phan_loai.MaPL=tb_lua_chon.MaPL and
 						tb_ct_don_lua_chon.MaDon=? and
-						tb_ct_don_lua_chon.MaSP=?`;
+						tb_ct_don_lua_chon.MaSP=? and 
+						tb_phan_loai.TrangThai=1`;
 				for(let j=0; j<orderDetail.length; j++){
 					let [options, fields] = await poolAwait.query(getOption,[
 						orderID,
@@ -155,6 +157,7 @@ async function addOrder(req, res){
 		const params = [orderID,customerID,tempAddress,status,totalPrice,transportCost,payment];
 		pool.query(insertOrder, params, async (err)=>{
 			if(err){
+				isThreadCreateOrder = false;
 				res({
 					status: 0,
 					msg: `Lỗi thêm đơn hàng ${err.sqlMessage}`,
@@ -172,6 +175,18 @@ async function addOrder(req, res){
 					const insertDiscountCode = `insert into tb_don_hang_ma_giam(MaDon,MaGiamGia)
 						values(?,?)`;
 					try {
+						const check = 'select * from tb_phan_loai where MaSP=? and TrangThai=1';
+						let [checkVariation, fields] = await poolAwait.query(check,product.MaSP);
+						if(checkVariation.length > product.LuaChon.length){
+							await poolAwait.query(`delete from tb_chi_tiet_don where MaDon=?`,orderID);
+							await poolAwait.query(`delete from tb_don_hang where MaDon=?`,orderID);
+							isThreadCreateOrder = false;
+							res({
+								status: 0,
+								msg: `Chưa chọn phân loại hàng`,
+							});
+							return;
+						}
 						let [order] = await poolAwait.query(insertOrderDetail,
 							[orderID,product.MaSP,product.SoLuong,product.Gia]);
 						let [isUpdate] = await poolAwait.query(updateAmout,

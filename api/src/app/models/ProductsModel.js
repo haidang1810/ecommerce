@@ -1,4 +1,5 @@
 const pool = require('../config/connectDB');
+const poolAwait = require('../config/connectDBAwait');
 const cloudinary = require('cloudinary').v2;
 cloudinary.config({
 	cloud_name: process.env.CLOUDINARY_NAME,
@@ -146,7 +147,8 @@ Product.add = (req, res) => {
 	let KhoiLuong = req.body.KhoiLuong;
 	let Gia = req.body.Gia;
 	let SoLuong = req.body.SoLuong;
-	let AnhBia = req.files.AnhBia;	
+	let AnhBia = req.files.AnhBia;
+	let PhanLoai = JSON.parse(req.body.PhanLoai);
 	const checkProduct = 'select MaSP from tb_san_pham where MaSP=?';
 	pool.query(checkProduct, MaSP, (err,result) => {
 		if(err){
@@ -176,13 +178,23 @@ Product.add = (req, res) => {
 			}
 			const addProduct = `insert into tb_san_pham values(?,?,?,?,?,?,?,?,NOW(),1)`;
 			const params = [MaSP,LoaiSP,TenSP,MoTa,KhoiLuong,Gia,SoLuong,avatar.url];
-			pool.query(addProduct, params, (err)=>{
+			pool.query(addProduct, params, async (err)=>{
 				if(err){
 					res({
 						status: 0,
 						msg: err.sqlMessage
 					});
 					return;
+				}
+				const addVariation = `insert into tb_phan_loai(MaSP, TenPL, TrangThai) 
+					values(?,?,1)`;
+				const addOpt = `insert into tb_lua_chon(MaPL,TenLC, TrangThai)
+					values(?,?,1)`;
+				for(let variation of PhanLoai){
+					let [id, fields] = await poolAwait.query(addVariation,[MaSP,variation.TenPL]);
+					for(let option of variation.LuaChon){
+						await poolAwait.query(addOpt,[id.insertId,option]);
+					}
 				}
 				res({
 					status: 1,

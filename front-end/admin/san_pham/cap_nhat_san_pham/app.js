@@ -263,3 +263,280 @@ function deleteImage(id){
 	})
 	.catch(handlerError);
 }
+let variation = [];
+function genderVariation(){
+	$(".variation").html("");
+	for(let i=0; i<variation.length; i++){
+		let html = ``;
+		html += `
+			<div class="variation__item">
+				<div class="variation__header">
+					<div class="variation__name">
+						${variation[i].TenPL}
+					</div>
+					<div class="variation__control">
+						<button class="variation__btn variation__btn--add add-variation" 
+						id="${variation[i].MaPL}">
+							<i class="fa-solid fa-plus"></i>
+						</button>
+						<button  class="variation__btn variation__btn--delete delete-variation" 
+						id="${variation[i].MaPL}">
+							<i class="fa-solid fa-trash-can"></i>
+						</button>
+					</div>
+				</div>
+				<div class="variation__option-list variation__option-list--show">
+		`;
+		if(variation[i].LuaChon)
+			for(let j=0; j<variation[i].LuaChon.length; j++){
+				if(variation[i].LuaChon[j].TrangThai==1){
+					html += `
+						<div class="variation__option-item">
+							<div>${variation[i].LuaChon[j].TenLC}</div>
+							<div class="variation__control">
+								<button  class="variation__btn variation__btn--delete disable-option" 
+								id="${variation[i].LuaChon[j].Id}">
+									<i class="fa-solid fa-circle-xmark"></i>
+								</button>
+								<button  class="variation__btn variation__btn--delete delete-option" 
+								id="${variation[i].LuaChon[j].Id}">
+									<i class="fa-solid fa-trash-can"></i>
+								</button>
+							</div>
+						</div>
+					`;
+				}
+				else {
+					html += `
+						<div class="variation__option-item variation__option-item--disable">
+							<div>${variation[i].LuaChon[j].TenLC}</div>
+							<div class="variation__control">
+								<button  class="variation__btn variation__btn--active active-option" 
+								id="${variation[i].LuaChon[j].Id}">
+									<i class="fa-solid fa-circle-check"></i>
+								</button>
+								<button  class="variation__btn variation__btn--delete delete-option" 
+								id="${variation[i].LuaChon[j].Id}">
+								<i class="fa-solid fa-trash-can"></i>
+								</button>
+							</div>
+						</div>
+					`;
+				}
+			}
+		html += `
+				</div>
+			</div>
+		`;
+		$(".variation").append(html);
+	}
+}
+$("#btn-add-varition").click(async function(){
+	const { value: varitionName } = await Swal.fire({
+		title: 'Thêm phân loại',
+		input: 'text',
+		inputPlaceholder: 'Nhập tên phân loại'
+	})	
+	if(varitionName)
+		addVariation(varitionName);
+});
+$(".variation").on("click", ".add-variation", async function(){
+	const { value: optionName } = await Swal.fire({
+		title: 'Thêm lựa chọn',
+		input: 'text',
+		inputPlaceholder: 'Nhập tên lựa chọn'
+	});
+	if(optionName){
+		let id = $(this).attr("id");
+		addOption(id,optionName);
+	}
+})
+$(".variation").on("click", ".delete-variation", async function(){
+	let id = $(this).attr("id");
+	deleteVariation(id);
+})
+$(".variation").on("click", ".disable-option", async function(){
+	let id = $(this).attr("id");
+	changeStatusOption(id,0);
+});
+$(".variation").on("click", ".active-option", async function(){
+	let id = $(this).attr("id");
+	changeStatusOption(id,1);
+});
+$(".variation").on("click", ".delete-option", async function(){
+	let id = $(this).attr("id");
+	deleteOption(id);
+});
+getAllVariation();
+function getAllVariation(){
+	fetch(BASE_URL+API_VARIATION+VARIATION_GETBYPRODUCT+productID,{
+		method: 'GET', 
+		credentials: 'include',
+		headers:{
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+		}
+	})
+		.then(statusRes)
+		.then(json)
+		.then((res)=>{
+			if(res.status==1){
+				variation = res.data;
+				genderVariation();
+			}
+		})
+		.catch(handlerError);
+}
+function addVariation(name){
+	let data = {
+		MaSP: productID,
+		TenPL: name
+	}
+	fetch(BASE_URL+API_VARIATION+VARIATION_ADD,{
+		method: 'POST', 
+		credentials: 'include',
+		body: JSON.stringify(data), 
+		headers:{
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+		}
+	})
+		.then(statusRes)
+		.then(json)
+		.then(res => {
+			if(res.status == 1){
+				getAllVariation();
+			}else{
+				Toast.fire({
+					icon: 'error',
+					title: res.msg,
+					background: 'rgba(220, 52, 73, 0.9)',
+					color: '#ffffff',
+					timer: 2500
+				})
+			}
+		})
+		.catch(handlerError);
+}
+function addOption(id,name){
+	let data = {
+		MaPL: id,
+		TenLC: name
+	}
+	fetch(BASE_URL+API_VARIATION+VARIATION_ADDOPT,{
+		method: 'POST', 
+		credentials: 'include',
+		body: JSON.stringify(data), 
+		headers:{
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+		}
+	})
+		.then(statusRes)
+		.then(json)
+		.then(res => {
+			if(res.status == 1){
+				getAllVariation();
+			}else{
+				Toast.fire({
+					icon: 'error',
+					title: res.msg,
+					background: 'rgba(220, 52, 73, 0.9)',
+					color: '#ffffff',
+					timer: 2500
+				})
+			}
+		})
+		.catch(handlerError);
+}
+function deleteVariation(id){
+	let data = {
+		id: id,
+	}
+	fetch(BASE_URL+API_VARIATION+VARIATION_DELETE,{
+		method: 'POST', 
+		credentials: 'include',
+		body: JSON.stringify(data), 
+		headers:{
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+		}
+	})
+		.then(statusRes)
+		.then(json)
+		.then(res => {
+			if(res.status == 1){
+				getAllVariation();
+			}else{
+				Toast.fire({
+					icon: 'error',
+					title: res.msg,
+					background: 'rgba(220, 52, 73, 0.9)',
+					color: '#ffffff',
+					timer: 2500
+				})
+			}
+		})
+		.catch(handlerError);
+}
+function changeStatusOption(id,status){
+	let data = {
+		id: id,
+		TrangThai: status
+	}
+	fetch(BASE_URL+API_VARIATION+VARIATION_STATUSOPT,{
+		method: 'POST', 
+		credentials: 'include',
+		body: JSON.stringify(data), 
+		headers:{
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+		}
+	})
+		.then(statusRes)
+		.then(json)
+		.then(res => {
+			if(res.status == 1){
+				getAllVariation();
+			}else{
+				Toast.fire({
+					icon: 'error',
+					title: res.msg,
+					background: 'rgba(220, 52, 73, 0.9)',
+					color: '#ffffff',
+					timer: 2500
+				})
+			}
+		})
+		.catch(handlerError);
+}
+function deleteOption(id){
+	let data = {
+		id: id,
+	}
+	fetch(BASE_URL+API_VARIATION+VARIATION_DELETEOPT,{
+		method: 'POST', 
+		credentials: 'include',
+		body: JSON.stringify(data), 
+		headers:{
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+		}
+	})
+		.then(statusRes)
+		.then(json)
+		.then(res => {
+			if(res.status == 1){
+				getAllVariation();
+			}else{
+				Toast.fire({
+					icon: 'error',
+					title: res.msg,
+					background: 'rgba(220, 52, 73, 0.9)',
+					color: '#ffffff',
+					timer: 2500
+				})
+			}
+		})
+		.catch(handlerError);
+}

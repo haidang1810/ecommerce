@@ -91,7 +91,11 @@ var GROUP_DELETE = 'delete/';
 // API Variation: 
 var API_VARIATION = 'variations/'
 var VARIATION_GETBYPRODUCT = 'getByProduct/';
-
+var VARIATION_ADD = 'add/';
+var VARIATION_ADDOPT = 'addOption/';
+var VARIATION_DELETE = 'delete/';
+var VARIATION_STATUSOPT = 'changeStatusOption/';
+var VARIATION_DELETEOPT = 'deleteOption/';
 
 var LENGHT_BOX = 50;
 var WIDTH_BOX = 35;

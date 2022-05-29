@@ -409,7 +409,7 @@ function loadProductOrder(){
 			`;
 		}
 		tableProduct.row.add([
-			item.MaSP,
+			`<img src="${item.AnhBia}" class="table-product-img" alt="">`,
 			item.TenSP,
 			html,
 			`${numberWithCommas(item.Gia)}đ`,
@@ -449,15 +449,15 @@ var tableProduct = $('#product-list').DataTable({
 
 
 $('#product-list tbody').on('click', '.modify__option-item--normal', function() {
-	$(".modify__option-item--normal").each(function(){
+	$(this).parent(".modify__option").children(".modify__option-item--normal").each(function(){
 		$(this).removeClass('modify__option-item--active');
 	});
 	$(this).addClass('modify__option-item--active');
 });
 $('#product-list tbody').on('click', '.modify__option-item--normal', function() {
-	const index = listProductOrder.findIndex( (item) => item.MaSP == $(this).attr('id'));
-	const optionIndex = listProductOrder[index].LuaChon.findIndex((item)=> 
-		item.TenPL = $(this).attr('variationName')
+	let index = listProductOrder.findIndex( (item) => item.MaSP == $(this).attr('id'));
+	let optionIndex = listProductOrder[index].LuaChon.findIndex((item)=> 
+		item.TenPL == $(this).attr('variationName')
 	);
 	if(optionIndex==-1){
 		listProductOrder[index].LuaChon.push({
@@ -473,7 +473,7 @@ $('#product-list tbody').on('click', '.modify__option-item--normal', function() 
 	}
 });
 $('#product-list tbody').on('click', '.btn-remove-product', function() {
-	const index = listProductOrder.findIndex( (item) => item.MaSP == $(this).attr('id'));
+	let index = listProductOrder.findIndex( (item) => item.MaSP == $(this).attr('id'));
 	listProductOrder.splice(index,1);
 	loadProductOrder();
 });
@@ -502,7 +502,7 @@ $('#product-list tbody').on('input', '.amount-input', function() {
 	updateAmount($(this).attr('id'), $(this).val());
 });
 function updateAmount(id, value){
-	const index = listProductOrder.findIndex( (item) => item.MaSP == id);
+	let index = listProductOrder.findIndex( (item) => item.MaSP == id);
 	listProductOrder[index].SoLuong = Number(value);
 	listProductOrder[index].ThanhTien = listProductOrder[index].Gia * listProductOrder[index].SoLuong;
 	loadProductOrder();
@@ -760,17 +760,25 @@ $("#btn-create-accept-order").click(function(){
 	addOrder(1);
 });
 function addOrder(status){
-	for(let item of listProductOrder){
-		if(item.LuaChon.length<=0){
-			Toast.fire({
-				icon: 'error',
-				title: 'Chưa chọn phân loại cho sản phẩm',
-				background: 'rgba(220, 52, 73, 0.9)',
-				color: '#ffffff',
-				timer: 2000
-			});
-			return;
-		}
+	if(!customerIdWithSearch){
+		Toast.fire({
+			icon: 'error',
+			title: 'Chưa chọn khách hàng',
+			background: 'rgba(220, 52, 73, 0.9)',
+			color: '#ffffff',
+			timer: 1500
+		});
+		return;
+	}
+	if(listProductOrder.length<=0){
+		Toast.fire({
+			icon: 'error',
+			title: 'Chưa chọn sản phẩm',
+			background: 'rgba(220, 52, 73, 0.9)',
+			color: '#ffffff',
+			timer: 1500
+		});
+		return;
 	}
 	let data = {
 		MaKH: customerIdWithSearch,

@@ -738,6 +738,11 @@ $(".btn-add-cart").click(function(){
 		MaSP: productID,
 		SoLuong: $(".amount-input").val()
 	};
+	let variation = [];
+	$(".modify__option-item--active").each(function(){
+		variation.push($(this).attr("id"));
+	});
+	data.LuaChon = variation;
 	fetch(BASE_URL+API_CART+CART_ADD,{
 		method: 'POST', 
 		credentials: 'include',
@@ -815,7 +820,7 @@ fetch(BASE_URL+API_VARIATION+VARIATION_GETBYPRODUCT+productID,{
 			}
 			$(".info-modify").html(html);
 			$(".modify__option-item--normal").click(function(){
-				$(".modify__option-item--normal").each(function(){
+				$(this).parent(".modify__option").children(".modify__option-item--normal").each(function(){
 					$(this).removeClass('modify__option-item--active');
 				});
 				$(this).addClass('modify__option-item--active');
