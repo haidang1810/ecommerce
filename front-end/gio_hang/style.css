@@ -145,6 +145,9 @@
 	text-align: right;
 	font-size: 1.6rem;
 	padding: 15px 0;
+	position: sticky;
+	bottom: 0;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .cart__payment-total{
@@ -160,4 +163,7 @@
 }
 .cart__submit:hover {
 	opacity: 0.9;
+}
+.cart__check {
+	transform: scale(1.2);
 }

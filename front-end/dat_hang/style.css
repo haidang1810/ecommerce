@@ -242,3 +242,104 @@
 .payment__submit:hover{
 	opacity: 0.9;
 }
+.modal__inner{
+    background-color: var(--background-hover-color);
+    margin-top: 10%;
+    padding: 15px;
+    z-index: 10;
+    width: 600px;
+    padding-bottom: 0;
+    border-radius: 2px;
+}
+.modal__header{
+    background-color: var(--white-color);
+    padding: 15px 20px;
+    position: relative;
+    border-bottom: 1px solid #eeeeee;
+}
+.modal__header h3 {
+    text-align: center;
+    margin: 0;
+    font-size: 2rem;
+}
+.modal__close-btn{
+    position: absolute;
+    top: -25px;
+    right: -25px;
+    font-size: 1.6rem;
+    width: 25px;
+    height: 25px;
+    background-color: var(--white-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.modal__body{
+    background-color: var(--white-color);
+    margin: 0;
+    font-size: 1.5rem;
+    padding: 15px 20px;
+	padding-bottom: 0;
+}
+.modal__form {
+	width: 80%;
+	margin: 0 auto;
+}
+.modal__form--address {
+	width: 90%;
+}
+.modal__form-location{
+	margin-bottom: 15px;
+}
+.modal__form-input {
+	width: 100%;
+	font-size: 1.4rem;
+	padding: 10px 20px;
+	border: 1px solid #a2a2a2;
+	border-radius: 2px;
+	outline: none;
+}
+.modal__form-input--address {
+	width: calc(66.666667% - 30px) !important;
+	margin: 0 15px;
+	border: 1px solid #ccc;
+	font-size: 1.6rem;
+	padding: 5px 10px;
+	outline: none;
+}
+.modal__form-label {
+	display: block;
+	color: #a2a2a2;
+}
+.modal__footer{
+    padding: 15px 0;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+.modal__footer-btn{
+    width: 100px;
+    height: 40px;
+    font-size: 1.4rem;
+    border: none;
+    border-radius: 2px;
+}
+
+.modal__footer-btn--cancel {
+	color: var(--text-color);
+	border: 1px solid #a3a3a3;
+	background-color: var(--white-color);
+}
+.modal__footer-btn--cancel:hover {
+	background-color: var(--background-hover-color);
+}
+.modal__footer-btn--submit {
+	color: var(--white-color);
+    background-color: rgba(255, 66, 78);
+	margin-left: 15px;	
+}
+.modal__footer-btn--submit:hover {
+    background-color: rgba(255, 66, 78, 0.8);
+}

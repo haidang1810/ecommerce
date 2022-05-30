@@ -136,6 +136,25 @@ Customer.getByAccount = (req, res)=>{
 		return;
 	})
 }
+Customer.getMyAccount = (req, res) => {
+	const username = req.username;
+	const getCustomer = `select * from tb_khach_hang where TaiKhoan=?`;
+	pool.query(getCustomer, username, (err, result)=>{
+		if(err){
+			res({
+				status: 0,
+				msg: err
+			});
+			return;
+		}
+		res({
+			status: 1,
+			msg: "success",
+			data: result[0]
+		});
+		return;
+	})
+}
 Customer.getVerifyCode =  (req, res) => {
 	let phone = req.params.phone;
 	verifyCode.getCode(phone, (isSuccess)=>{

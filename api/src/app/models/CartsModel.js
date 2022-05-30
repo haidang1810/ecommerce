@@ -163,4 +163,24 @@ Cart.delete = (req ,res) => {
 		})
 	})
 }
+Cart.updateAmount = (req, res) => {
+	let id = req.body.id;
+	let amount = req.body.SoLuong;
+	const query = `update tb_gio_hang set SoLuong=? where id=?`;
+	pool.query(query,[amount,id],(err)=>{
+		if(err){
+			res({
+				status: 0,
+				msg: err.sqlMessage
+			});
+			return;
+		}
+		res({
+			status: 1,
+			msg: 'success'
+		});
+		return;
+	})
+
+}
 module.exports = Cart;

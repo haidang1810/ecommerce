@@ -54,12 +54,15 @@ var API_CART = 'carts/';
 
 var CART_GETBYUSER = 'getByUser/';
 var CART_ADD = 'add/';
+var CART_DELETE = 'delete/';
+var CART_UPDATE = 'updateAmount/';
 
 // API customer
 var API_CUSTOMER = 'customers/';
 
 var CUSTOMER_GETALL = 'getAll/';
 var CUSTOMER_GETBYACCOUNT = 'getByAccount/';
+var CUSTOMER_GETMYACCOUNT = 'getMyAccount/';
 var CUSTOMER_CHANGEGMAIL = 'changeGmail/';
 var CUSTOMER_GETVERIFYCODE = 'getVerifyCode/';
 var CUSTOMER_CHANGEPHONE = "changePhone/";
