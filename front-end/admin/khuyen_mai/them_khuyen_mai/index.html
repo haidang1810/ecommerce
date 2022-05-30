@@ -235,7 +235,7 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Thêm khuyến mãi</h1>
-                        <button 
+                        <button id="btn-save-discount"
                         class="btn btn-primary shadow-sm px-3 py-2 mr-2">
                             <i class="fa-solid fa-plus"></i>
                             Lưu
@@ -261,19 +261,19 @@
                                         <div class="form-group col-6">
                                             <label for="">Thời gian bắt đầu</label>
                                             <input type="datetime-local" class="form-control" 
-                                            name="" id="" placeholder="">
+                                            name="" id="input_start">
                                         </div>
                                         <div class="form-group col-6">
                                             <label for="">Thời gian kết thúc</label>
                                             <input type="datetime-local" class="form-control" 
-                                            name="" id="" placeholder="">
+                                            name="" id="input_end" >
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-6">
                                             <label for="">Chiết khấu</label>
                                             <input type="number" class="form-control" 
-                                            name="" id="input_discount" placeholder="">
+                                            name="" id="input_discount" placeholder="Đơn vị %">
                                         </div>
                                     </div>
                                 </div>
@@ -293,30 +293,10 @@
                                         <div class="col-8 select-search">
                                             <div class="select-search__searchBar">
                                                 <input type="text" class="form-control shadow-none select-search__input"
-                                                placeholder="Tìm kiếm sản phẩm">
+                                                placeholder="Tìm kiếm sản phẩm" id="input-search-product">
                                                 <i class="fa-solid fa-magnifying-glass select-search__icon"></i>
                                                 <div class="select-search__list select-search__list--product">
-                                                    <div class="select-search__item select-search__item--product">
-                                                        <div class="row">
-                                                            <div class="col-2">
-                                                                <img src="https://picsum.photos/200" alt="" 
-                                                                class="select-search__img product-img">
-                                                            </div>
-                                                            <div class="col-7">
-                                                                <p class="select-search__info--product product-name">
-                                                                    Vòng Tay Mạ Bạc Hình Trái Tim/Bướm/Ngọc Trai Phong Cách Retro Hàn Quốc
-                                                                </p>
-                                                            </div>
-                                                            <div class="col-3">
-                                                                <p class="select-search__info--product product-price">
-                                                                    999.000đ
-                                                                </p>
-                                                                <p class="select-search__info--product product-amout">
-                                                                    Có thể bán: 3000
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -324,10 +304,8 @@
                                     <div class="row mb-3">
                                         <div class="col-8">
                                             <select class="selectpicker" multiple data-width="100%"
-                                            title="Thêm theo danh mục"  data-actions-box="true">
-                                                <option>Vòng tay</option>
-                                                <option>Nhẫn</option>
-                                                <option>Dây chuyền</option>
+                                            title="Thêm theo danh mục"  data-actions-box="true" id="select-category">
+
                                             </select>
                                         </div>
                                     </div>
@@ -346,51 +324,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td><img src="../../../shared/img/img_info_2.jpg" class="img-product" alt=""></td>
-                                                    <td>SP001</td>
-                                                    <td>
-                                                        Vòng Tay Mạ Bạc Hình Trái Tim/Bướm/Ngọc Trai Phong Cách Retro Hàn Quốc
-                                                    </td>
-                                                    <td>Vòng tay</td>
-                                                    <td>90.000đ</td>
-                                                    <td>500</td>
-                                                    <td>
-                                                        <button class="btn btn-action btn-danger" >
-                                                            <i class="fa-solid fa-trash-can"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><img src="../../../shared/img/img_info_1.jpg" class="img-product" alt=""></td>
-                                                    <td>SP002</td>
-                                                    <td>
-                                                        Nhẫn đeo tay kim cương
-                                                    </td>
-                                                    <td>Nhẫn</td>
-                                                    <td>1.000.000đ</td>
-                                                    <td>300</td>
-                                                    <td>
-                                                        <button class="btn btn-action btn-danger" >
-                                                            <i class="fa-solid fa-trash-can"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><img src="../../../shared/img/img_info_3.jpg" class="img-product" alt=""></td>
-                                                    <td>SP003</td>
-                                                    <td>
-                                                        Bông tay bạc trẻ trung
-                                                    </td>
-                                                    <td>Bông tay</td>
-                                                    <td>120.000đ</td>
-                                                    <td>460</td>
-                                                    <td>
-                                                        <button class="btn btn-action btn-danger" >
-                                                            <i class="fa-solid fa-trash-can"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
+                                                
                                             </tbody>
                                         </table>
                                     </div>

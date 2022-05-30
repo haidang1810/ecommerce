@@ -1,6 +1,5 @@
 const pool = require('../config/connectDB');
 const poolAwait = require('../config/connectDBAwait');
-const logger = require('../services/logger');
 
 
 const createQuery = (property, condition, value) => {

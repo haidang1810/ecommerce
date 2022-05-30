@@ -37,13 +37,30 @@ Discount.getById = (req, res) => {
 			});
 			return;
 		}
-		res({
-			status: 1,
-			msg: 'success',
-			data: result[0]
-		});
-		return;
-	})
+		let discount = result[0];
+		const getAllProduct = `select tb_san_pham.MaSP, AnhBia, TenSP, TenLoai, Gia, SoLuong
+			from tb_san_pham, tb_san_pham_khuyen_mai, tb_loai_san_pham
+			where tb_san_pham.MaSP=tb_san_pham_khuyen_mai.MaSP and
+				tb_san_pham.LoaiSP=tb_loai_san_pham.MaLoai and
+				MaDotKM=?`;
+		pool.query(getAllProduct,discount.Id, (err, products)=>{
+			if(err){
+				res({
+					status: 0,
+					msg: err.sqlMessage
+				});
+				return;
+			}
+			discount.SanPham = products;
+			res({
+				status: 1,
+				msg: 'success',
+				data: discount
+			});
+			return;
+		})
+		
+	});
 }
 Discount.add = (req, res) => {
 	const start = req.body.ThoiGianBD;
@@ -75,6 +92,11 @@ Discount.add = (req, res) => {
 				return;
 			}
 		}
+		res({
+			status: 1,
+			msg: `success`
+		});
+		return;
 	})
 }
 Discount.delete = async (req, res) => {

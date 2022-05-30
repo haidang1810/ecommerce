@@ -97,6 +97,15 @@ var VARIATION_DELETE = 'delete/';
 var VARIATION_STATUSOPT = 'changeStatusOption/';
 var VARIATION_DELETEOPT = 'deleteOption/';
 
+
+// API Discount
+var API_DISCOUNT = 'discounts/';
+
+var DISCOUNT_GETALL = 'getAll/';
+var DISCOUNT_DELETE = 'delete/';
+var DISCOUNT_ADD = 'add/';
+var DISCOUNT_GETBYID = 'getById/';
+
 var LENGHT_BOX = 50;
 var WIDTH_BOX = 35;
 var HEIGHT_BOX = 15;
