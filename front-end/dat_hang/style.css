@@ -1,3 +1,6 @@
+p {
+	margin: 0;
+}
 .header-payment{
 	background-color: var(--white-color);
 	padding-bottom: 20px;
@@ -135,16 +138,18 @@
 	display: flex;
 	justify-content: left;
 	align-items: center;
+	padding: 0 15px;
 }
-.voucher__name{
-	margin-left: 20px;
-	width: 20%;
-}
+
 .voucher__description{
 	width: 70%;
 }
 .voucher__discount{
 	width: 10%;
+}
+.voucher__time {
+	width: 20%;
+	text-align: right;
 }
 .payment{
 	background-color: var(--white-color);
@@ -342,4 +347,72 @@
 }
 .modal__footer-btn--submit:hover {
     background-color: rgba(255, 66, 78, 0.8);
+}
+
+.modal__voucher-list {
+	height: 400px;
+	overflow-y: scroll;
+}
+.modal__voucher-search {
+	width: calc(75% - 13px);
+	display: block;
+	margin: 0 auto;	
+	transform: translateX(-9px);
+	padding: 10px 20px;
+	font-size: 1.5rem;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+	outline: none;
+}
+.modal__voucher-item{
+	margin: 10px auto;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+	padding: 10px;
+	width: 75%;
+	height: 80px;
+	display: flex;
+	align-items: center;
+}
+.modal__voucher-info {
+	width: 70%;
+}
+.modal__voucher-desc {
+	font-weight: 500;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.modal__voucher-time{
+	font-size: 1.4rem;
+	color: #868686;
+}
+.modal__voucher-control {
+	width: 30%;
+	text-align: center;
+	position: relative;
+}
+.modal__voucher-add {
+	color: var(--orange-color);
+	border: 1px solid var(--orange-color);
+	border-radius: 2px;
+	background-color: transparent;
+	padding: 2px 4px;
+}
+.modal__voucher-add:hover {
+	background-color: var(--orange-color);
+	color: var(--white-color);
+}
+.modal__voucher-delete {
+	position: absolute;
+	color: var(--white-color);
+	background-color: #919191;
+	border: none;
+	padding: 4px 10px;
+	font-size: 1rem;
+	bottom: 16px;
+	right: -10px;
+	border-bottom-left-radius: 15px;
 }

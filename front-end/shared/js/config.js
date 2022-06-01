@@ -109,6 +109,12 @@ var DISCOUNT_DELETE = 'delete/';
 var DISCOUNT_ADD = 'add/';
 var DISCOUNT_GETBYID = 'getById/';
 
+
+// API voucher
+var API_VOUCHER = 'vouchers/';
+
+var VOUCHER_GETALL = 'getAll/';
+
 var LENGHT_BOX = 50;
 var WIDTH_BOX = 35;
 var HEIGHT_BOX = 15;

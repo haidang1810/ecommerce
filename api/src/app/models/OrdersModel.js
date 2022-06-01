@@ -74,7 +74,7 @@ Order.getAll = async (req, res) => {
 Order.getById = async (req, res) => {
 	const orderID = req.params.id;
     const getOrder = `select tb_don_hang.MaDon, tb_don_hang.MaKH, HoTen, DiaChiNhanHang,
-			TrangThai, PhiVanChuyen, TongTienHang, SDT, Gmail, PhuongThucThanhToan
+			TrangThai, PhiVanChuyen, TongTienHang, SDT, Gmail, PhuongThucThanhToan, TienDuocGiam
 		from tb_don_hang, tb_khach_hang
 		where tb_don_hang.MaKH=tb_khach_hang.MaKH and
 			tb_don_hang.MaDon=?`;
@@ -147,14 +147,20 @@ async function addOrder(req, res){
 		const customerID = req.body.MaKH;
 		const tempAddress = req.body.DiaChiNhanHang;
 		const transportCost = req.body.PhiVanChuyen;
-		const status = req.body.TrangThai;
+		let status = 0;
+		if(req.body.TrangThai)
+			status = req.body.TrangThai;
 		const totalPrice = req.body.TongTienHang;
 		const payment = req.body.PhuongThucThanhToan;
 		const products = req.body.SanPham;
 		const discountCode = req.body.MaGiamGia;
+		let discount = 0;
+		if(req.body.TienGiam){
+			discount = req.body.TienGiam;
+		}
 		const orderID = await createOrderID(30);
-		const insertOrder = `insert into tb_don_hang values(?,?,?,?,?,?,?)`;
-		const params = [orderID,customerID,tempAddress,status,totalPrice,transportCost,payment];
+		const insertOrder = `insert into tb_don_hang values(?,?,?,?,?,?,?,?)`;
+		const params = [orderID,customerID,tempAddress,status,totalPrice,transportCost,discount,payment];
 		pool.query(insertOrder, params, async (err)=>{
 			if(err){
 				isThreadCreateOrder = false;
@@ -192,7 +198,7 @@ async function addOrder(req, res){
 						let [isUpdate] = await poolAwait.query(updateAmout,
 							[product.SoLuong, product.MaSP]);
 						if(discountCode)
-							for(item of discountCode){
+							for(let item of discountCode){
 								let [discount] = await poolAwait.query(insertDiscountCode,[orderID,item]);
 							}
 						const insertOption = `insert into tb_ct_don_lua_chon(MaDon,MaSP,MaLC)
@@ -226,6 +232,18 @@ async function addOrder(req, res){
 				status: 1,
 				msg: `success`
 			});
+			const deleteCart = `delete from tb_gio_hang where TaiKhoan=? and MaSP=?`;
+			const deleteOption = `delete from tb_gio_hang_lua_chon where MaGH=?`;
+			const getCart = `select id from tb_gio_hang where TaiKhoan=? and MaSP=?`;
+			for(let product of products){
+				let [cart,fields] = await poolAwait.query(getCart,[req.username,product.MaSP]);
+				await poolAwait.query(deleteOption,cart[0].id);
+				await poolAwait.query(deleteCart,[req.username,product.MaSP]);
+			}
+			const updateDiscountCode = `update tb_ma_giam_gia set TrangThai=0 where MaGiamGia=?`;
+			for(let item of discountCode){
+				await poolAwait.query(updateDiscountCode,item);
+			}
 			return;
 		})
 	}else{

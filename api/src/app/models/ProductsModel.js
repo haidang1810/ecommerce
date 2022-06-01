@@ -123,6 +123,7 @@ Product.getDetail = (req, res) => {
 			});
 			return;
 		}
+		
 		res({
 			status: 1,
 			msg: 'success!',

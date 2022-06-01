@@ -25,7 +25,8 @@ fetch(BASE_URL+API_ORDER+ORDER_GETBYID+orderID,{
 			$(".transport__cost").html(`${numberWithCommas(res.data.PhiVanChuyen)}đ`);
 			$("#price").html(`${numberWithCommas(res.data.TongTienHang)}đ`);
 			$("#transport-cost").html(`${numberWithCommas(res.data.PhiVanChuyen)}đ`);
-			$("#total-cost").html(`${numberWithCommas(Number(res.data.PhiVanChuyen)+Number(res.data.TongTienHang))}đ`);
+			$("#discount").html(`-${numberWithCommas(res.data.TienDuocGiam)}đ`);
+			$("#total-cost").html(`${numberWithCommas(Number(res.data.PhiVanChuyen)+Number(res.data.TongTienHang)-Number(res.data.TienDuocGiam))}đ`);
 			if(res.data.PhuongThucThanhToan==1){
 				$(".payment").html(`
 					<div class="form-group">

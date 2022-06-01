@@ -113,7 +113,8 @@ function genderCart(){
 			listProductPayment.push({
 				MaSP: products[index].MaSP,
 				SoLuong: products[index].SoLuong,
-				Gia: currentPrice
+				Gia: currentPrice,
+				LuaChon: products[index].LuaChon,
 			});
 			updateTotalPayment();
 		}else{
@@ -215,14 +216,49 @@ function updateAmount(id, amount,handle){
 	})
 	.catch(handlerError);
 }
+$(".cart__list").on("click", '.cart__delete',function(){
+	let index = $(this).attr("id");
+	deleteCart(index,()=>{
+		let indexPay = listProductPayment.findIndex(item => item.MaSP == products[index].MaSP);
+		listProductPayment.splice(indexPay,1);
+		products.splice(index,1);
+		updateTotalPayment();
+		genderCart();
+	});
+});
+function deleteCart(index,handle){
+	let cartID = products[index].id;
+	$(".loading").toggleClass("loading_hide");
+	fetch(BASE_URL+API_CART+CART_DELETE+cartID,{
+		method: 'GET', 
+		credentials: 'include',
+		headers:{
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+		}
+	})
+	.then(statusRes)
+	.then(json)
+	.then((res)=>{
+		if(res.status==1){
+			$(".loading").toggleClass("loading_hide");
+			handle();
+		}else{
+			$(".loading").toggleClass("loading_hide");
+		}
+	})
+	.catch(handlerError);
+}
 $(".cart__submit").click(function(){
 	if(listProductPayment.length>0){
 		let listProduct = listProductPayment.map(item => {
 			return {
 				MaSP: item.MaSP,
-				SoLuong: item.SoLuong
+				SoLuong: item.SoLuong,
+				LuaChon: item.LuaChon
 			}
 		});
+		console.log(products);
 		window.location.href = BASE_URL_CLIENT+'dat_hang/?url='+encodeURIComponent(JSON.stringify(listProduct));
 	}else{
 		Toast.fire({
