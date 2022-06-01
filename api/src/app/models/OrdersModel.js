@@ -14,7 +14,20 @@ const Order = function (order) {
 async function getAddressByOrder(customer){
 	return await (await Address.findOne({customer}));
 }
-
+const createCode = async () => {
+    let code = "";
+    let possible = "abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    for (let i = 0; i < 20; i++)
+    	code += possible.charAt(Math.floor(Math.random() * possible.length));
+	try {
+		let [customer,fields] = await poolAwait.query("select MaKh from tb_khach_hang where MaKH=?",code);
+		if(customer.length>0){
+			createCode();
+		}else  return code;
+	} catch (error) {
+		createCode();
+	}
+}
 Order.getAll = async (req, res) => {
     const getAllOrder = `select tb_don_hang.MaDon, tb_don_hang.MaKH, HoTen, DiaChiNhanHang,
 		TrangThai, PhiVanChuyen, TongTienHang, PhuongThucThanhToan
@@ -144,7 +157,30 @@ let isThreadCreateOrder = false;
 async function addOrder(req, res){
 	if(!isThreadCreateOrder){
 		isThreadCreateOrder = true;
-		const customerID = req.body.MaKH;
+		let customerID = '';
+		if(req.body.MaKH){
+			customerID = req.body.MaKH;
+		}else{
+			let getCustomer = 'select MaKH from tb_khach_hang where SDT=?';
+			try {
+				let [customer, fields] = await poolAwait.query(getCustomer,req.body.SDT);
+				if(customer.length>0){
+					customerID = customer[0].MaKH;
+				}else{
+					let addCustomer = `insert into tb_khach_hang(MaKH,HoTen,SDT)
+						values(?,?,?)`;
+					customerID = await createCode();
+					await poolAwait.query(addCustomer,[customerID,req.body.HoTen,req.body.SDT]);
+				}
+			} catch (error) {
+				isThreadCreateOrder = false;
+				res({
+					status: 0,
+					msg: `Lỗi thêm đơn hàng ${error}`,
+				});
+				return;
+			}
+		}
 		const tempAddress = req.body.DiaChiNhanHang;
 		const transportCost = req.body.PhiVanChuyen;
 		let status = 0;
@@ -237,8 +273,10 @@ async function addOrder(req, res){
 			const getCart = `select id from tb_gio_hang where TaiKhoan=? and MaSP=?`;
 			for(let product of products){
 				let [cart,fields] = await poolAwait.query(getCart,[req.username,product.MaSP]);
-				await poolAwait.query(deleteOption,cart[0].id);
-				await poolAwait.query(deleteCart,[req.username,product.MaSP]);
+				if(cart.length>0){
+					await poolAwait.query(deleteOption,cart[0].id);
+					await poolAwait.query(deleteCart,[req.username,product.MaSP]);
+				}
 			}
 			const updateDiscountCode = `update tb_ma_giam_gia set TrangThai=0 where MaGiamGia=?`;
 			for(let item of discountCode){

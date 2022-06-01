@@ -26,19 +26,7 @@ async function getAddressByCustomer(customer){
 	return await (await Address.findOne({customer}));
 }
 
-const createCode = () => {
-    let code = "";
-    let possible = "abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    for (let i = 0; i < 20; i++)
-    	code += possible.charAt(Math.floor(Math.random() * possible.length));
-	pool.query("select MaKh from tb_khach_hang where MaKH=?",code,(err,result)=>{
-		if(err||result.length>0){
-			createCode();
-		}else
-			return code;
-	})
-    return code;
-}
+
 Customer.getAll = (req, res) => {
 	const getCustomer = 'select * from tb_khach_hang';
 	pool.query(getCustomer, async (err,result)=>{
@@ -354,8 +342,8 @@ Customer.changeInfo = (req, res)=>{
 	}
 	
 }
-Customer.add = (req, res) => {
-	let customerID = createCode();
+Customer.add = async (req, res) => {
+	let customerID = await createCode();
 	let name = req.body.HoTen;
 	let phone = req.body.SDT;
 	let gender = req.body.GioiTinh;

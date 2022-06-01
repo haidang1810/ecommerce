@@ -27,6 +27,17 @@ p {
 	font-size: 1.6rem;
 	margin-right: 10px;
 }
+.header-payment__input--hide {
+	display: none;
+}
+.header-payment__input {
+	font-size: 1.6rem;
+	padding: 5px 10px;
+	outline: none;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+	margin-right: 5px;
+}
 .header-payment__info{
 	font-size: 1.6rem;
 }
@@ -123,6 +134,7 @@ p {
 	color: var(--red-color);
 	font-weight: 500;
 }
+
 .voucher__btn{
 	background-color: transparent;
 	border: none;
@@ -415,4 +427,10 @@ p {
 	bottom: 16px;
 	right: -10px;
 	border-bottom-left-radius: 15px;
+}
+
+#info-phone::-webkit-outer-spin-button,
+#info-phone::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }

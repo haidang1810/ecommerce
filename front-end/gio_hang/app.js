@@ -258,7 +258,6 @@ $(".cart__submit").click(function(){
 				LuaChon: item.LuaChon
 			}
 		});
-		console.log(products);
 		window.location.href = BASE_URL_CLIENT+'dat_hang/?url='+encodeURIComponent(JSON.stringify(listProduct));
 	}else{
 		Toast.fire({

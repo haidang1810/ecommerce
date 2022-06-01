@@ -776,7 +776,7 @@ $(".btn-add-cart").click(function(){
 		})
 		.catch(handlerError);
 })
-
+let variations =[];
 fetch(BASE_URL+API_VARIATION+VARIATION_GETBYPRODUCT+productID,{
 	method: 'GET', 
 	credentials: 'include',
@@ -790,7 +790,8 @@ fetch(BASE_URL+API_VARIATION+VARIATION_GETBYPRODUCT+productID,{
 	.then((res)=>{
 		if(res.status==1){
 			let html = ``;
-			for(let variation of res.data){
+			variations = res.data;
+			for(let variation of variations){
 				html+= `
 					<div class="modify__item row">
 						<div class="modify__name col-2">
@@ -828,3 +829,31 @@ fetch(BASE_URL+API_VARIATION+VARIATION_GETBYPRODUCT+productID,{
 		}
 	})
 	.catch(handlerError);
+
+$(".btn-purchase").click(function(){
+	let listVariation = [];
+	$(".modify__option-item--active").each(function(){
+		let name = $(this).parent(".modify__option").prev().html().trim();
+		listVariation.push({
+			MaLC: $(this).attr("id"),
+			TenLC: $(this).html().trim(),
+			TenPL: name
+		});
+	});
+	if(listVariation.length != $(".modify__item").length){
+		Toast.fire({
+			icon: 'error',
+			title: "Bạn chưa chọn phân loại hàng",
+			background: 'rgba(220, 52, 73, 0.9)',
+			color: '#ffffff',
+			timer: 2000
+		});
+		return;
+	}
+	data = [{
+		MaSP: productID,
+		SoLuong: $(".amount-input").val(),
+		LuaChon: listVariation
+	}];
+	window.location.href = BASE_URL_CLIENT+'dat_hang/?url='+encodeURIComponent(JSON.stringify(data));
+})

@@ -1,3 +1,9 @@
+$('#info-phone').on('keypress', function (event) {
+    var charCode = !event.charCode ? event.which : event.charCode;
+    if( charCode == 46 || charCode == 69 || charCode == 101 
+    || charCode == 45 || charCode == 43)
+        event.preventDefault();
+});
 $(".payment__item").click(function(){
 	$(".payment__item").each(function(){
 		$(this).removeClass("payment__item--active");
@@ -15,6 +21,7 @@ let transportCost = 0;
 let totalDiscount = 0;
 let vouchers = [];
 let customerID = '';
+let currentAddress;
 try {
 	products = JSON.parse(params.url);
 } catch (error) {
@@ -64,84 +71,90 @@ fetch(BASE_URL+API_CUSTOMER+CUSTOMER_GETMYACCOUNT,{
 				$(".header-payment__address").html(`
 					${address.address}, ${address.ward.name}, ${address.district.name}, ${address.province.name}
 				`);
+				currentAddress = address;
 				getProducts(address);
 			})
 		}else{
-			window.location.href = BASE_URL_CLIENT;
+			$(".header-payment__input").toggle("header-payment__input--hide");
+			getProducts('');
 		}
 	})
 	.catch(handlerError);
 
 
 $("#btn-open-modal-address").click(function(){
-	$("#select_province").val(currentAddres.province.id);
-	$('.selectpicker').selectpicker('refresh');
-	$('.selectpicker').selectpicker('refresh');
+	try {
+		$("#select_province").val(currentAddress.province.id);
+		$('.selectpicker').selectpicker('refresh');
+		$('.selectpicker').selectpicker('refresh');
 
-	fetch(API_GETDISTRICT+`?province_id=${currentAddres.province.id}`, {
-		method: 'GET',
-		headers:{
-			'Content-Type': 'application/json',
-			'Token': TOKEN
-		}
-	})
-		.then(statusRes)
-		.then(json)
-		.then((res)=>{
-			if(res.code==200){
-				$("#select_district").html(`
-					<option value="-1">Chọn quận huyện</option>
-				`);
-				$('.selectpicker').selectpicker('refresh');
-				$('.selectpicker').selectpicker('refresh');
-				for(let item of res.data){
-					$("#select_district").removeAttr("disabled");
-					$("#select_district").append(`
-						<option value="${item.DistrictID}" id="${item.DistrictID}">
-						${item.DistrictName}
-						</option>
-					`);
-				}
-				$("#select_district").val(currentAddres.district.id);
-				$('.selectpicker').selectpicker('refresh');
-				$('.selectpicker').selectpicker('refresh');
-			}else console.log(res.message);
+		fetch(API_GETDISTRICT+`?province_id=${currentAddress.province.id}`, {
+			method: 'GET',
+			headers:{
+				'Content-Type': 'application/json',
+				'Token': TOKEN
+			}
 		})
-		.catch(handlerError);
-	fetch(API_GETWARD+`?district_id=${currentAddres.district.id}`, {
-		method: 'GET',
-		headers:{
-			'Content-Type': 'application/json',
-			'Token': TOKEN
-		}
-	})
-		.then(statusRes)
-		.then(json)
-		.then((res)=>{
-			if(res.code==200){
-				$("#select_ward").html(`
-					<option value="-1">Chọn phường xã</option>
-				`);
-				$('.selectpicker').selectpicker('refresh');
-				$('.selectpicker').selectpicker('refresh');
-				for(let item of res.data){
-					$("#select_ward").removeAttr("disabled");
-					$("#select_ward").append(`
-						<option value="${item.WardCode}" id="${item.WardCode}">
-							${item.WardName}
-						</option>
+			.then(statusRes)
+			.then(json)
+			.then((res)=>{
+				if(res.code==200){
+					$("#select_district").html(`
+						<option value="-1">Chọn quận huyện</option>
 					`);
-				}
-				$("#select_ward").val(currentAddres.ward.id);
-				$('.selectpicker').selectpicker('refresh');
-				$('.selectpicker').selectpicker('refresh');
-			}else console.log(res.message);
+					$('.selectpicker').selectpicker('refresh');
+					$('.selectpicker').selectpicker('refresh');
+					for(let item of res.data){
+						$("#select_district").removeAttr("disabled");
+						$("#select_district").append(`
+							<option value="${item.DistrictID}" id="${item.DistrictID}">
+							${item.DistrictName}
+							</option>
+						`);
+					}
+					$("#select_district").val(currentAddress.district.id);
+					$('.selectpicker').selectpicker('refresh');
+					$('.selectpicker').selectpicker('refresh');
+				}else console.log(res.message);
+			})
+			.catch(handlerError);
+		fetch(API_GETWARD+`?district_id=${currentAddress.district.id}`, {
+			method: 'GET',
+			headers:{
+				'Content-Type': 'application/json',
+				'Token': TOKEN
+			}
 		})
-		.catch(handlerError);
-	setTimeout(() => {
-		$('.selectpicker').selectpicker('refresh');
-		$('.selectpicker').selectpicker('refresh');
-	}, 700);
+			.then(statusRes)
+			.then(json)
+			.then((res)=>{
+				if(res.code==200){
+					$("#select_ward").html(`
+						<option value="-1">Chọn phường xã</option>
+					`);
+					$('.selectpicker').selectpicker('refresh');
+					$('.selectpicker').selectpicker('refresh');
+					for(let item of res.data){
+						$("#select_ward").removeAttr("disabled");
+						$("#select_ward").append(`
+							<option value="${item.WardCode}" id="${item.WardCode}">
+								${item.WardName}
+							</option>
+						`);
+					}
+					$("#select_ward").val(currentAddress.ward.id);
+					$('.selectpicker').selectpicker('refresh');
+					$('.selectpicker').selectpicker('refresh');
+				}else console.log(res.message);
+			})
+			.catch(handlerError);
+		setTimeout(() => {
+			$('.selectpicker').selectpicker('refresh');
+			$('.selectpicker').selectpicker('refresh');
+		}, 700);
+	} catch (error) {
+		
+	}
 })
 fetch(API_GETPROVINCE, {
 	method: 'GET',
@@ -250,28 +263,30 @@ $('#select_district').on('changed.bs.select', function (e) {
 		$('.selectpicker').selectpicker('refresh');
 	}
 });
-fetch(BASE_URL+API_VOUCHER+VOUCHER_GETALL, {
-	method: 'GET', 
-	credentials: 'include',
-	headers:{
-		'Content-Type': 'application/json',
-		'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-	}
-})
-	.then(statusRes)
-	.then(json)
-	.then((res)=>{
-		if(res.status==1){
-			if(res.data){
-				vouchers = res.data;
-				for(let i=0; i<vouchers.length; i++){
-					vouchers[i].ApDung = false;
-				}
-				genderVoucherList();
-			}
-		}else console.log("Lỗi",res.message);
+function getAllVoucher(){
+	fetch(BASE_URL+API_VOUCHER+VOUCHER_GETALL, {
+		method: 'GET', 
+		credentials: 'include',
+		headers:{
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+		}
 	})
-	.catch(handlerError);
+		.then(statusRes)
+		.then(json)
+		.then((res)=>{
+			if(res.status==1){
+				if(res.data){
+					vouchers = res.data;
+					for(let i=0; i<vouchers.length; i++){
+						vouchers[i].ApDung = false;
+					}
+					genderVoucherList();
+				}
+			}
+		})
+		.catch(handlerError);
+}
 function genderVoucherList(){
 	$(".modal__voucher-list").html("");
 	for(let voucher of vouchers){
@@ -434,17 +449,60 @@ function genderProduct(address){
 		`;
 		$(".product__list").append(html);
 	});
-	getTransportCost(address.district.id, address.ward.id, totalWeight,(costRes)=>{
-		if(costRes.code==200){
-			transportCost = costRes.data.total;
-			let cost = numberWithCommas(transportCost)+'đ';
-			$("#transport-cost").html(cost);
-			updateTotalPrice();
-		}
-	});
+	if(address)
+		getTransportCost(address.district.id, address.ward.id, totalWeight,(costRes)=>{
+			if(costRes.code==200){
+				transportCost = costRes.data.total;
+				let cost = numberWithCommas(transportCost)+'đ';
+				$("#transport-cost").html(cost);
+				updateTotalPrice();
+			}
+		});
 	$("#total-price").html(`${numberWithCommas(totalPrice)}đ`);
 	updateTotalPrice();
 }
+$("#btn_select_address").click(function(){
+	const address = $("#input-address").val();
+	if(!address){
+		Toast.fire({
+			icon: 'error',
+			title: "Bạn chưa nhập địa chỉ",
+			background: 'rgba(220, 52, 73, 0.9)',
+			color: '#ffffff',
+			timer: 2000
+		});
+		return;
+	}
+	const provinceID = $("#select_province").val();
+	const districtID = $("#select_district").val();
+	const wardID = $("#select_ward").val();
+	if(provinceID!=-1 && districtID!=-1 && wardID!=-1){
+		const provinceName = $("#select_province").children(`#${provinceID}`).html().trim();
+		const districtName = $("#select_district").children(`#${districtID}`).html().trim();
+		const wardName = $("#select_ward").children(`#${wardID}`).html().trim();
+		$(".header-payment__address").html(`
+			${address}, ${wardName}, ${districtName}, ${provinceName}
+		`);
+		getTransportCost(districtID, wardID, totalWeight,(costRes)=>{
+			if(costRes.code==200){
+				transportCost = costRes.data.total;
+				let cost = numberWithCommas(transportCost)+'đ';
+				$("#transport-cost").html(cost);
+				updateTotalPrice();
+			}
+		});
+		$(".modal__close-btn").click();
+	}else{
+		Toast.fire({
+			icon: 'error',
+			title: "Chưa chọn đầy đủ thông tin",
+			background: 'rgba(220, 52, 73, 0.9)',
+			color: '#ffffff',
+			timer: 2000
+		});
+	}
+})
+
 $(".payment__submit").click(function(){
 	let listVoucher = [];
 	for(let voucher of vouchers){
@@ -452,16 +510,73 @@ $(".payment__submit").click(function(){
 			listVoucher.push(voucher.MaGiamGia);
 		}
 	}
-	let data = {
-		MaKH: customerID,
-		DiaChiNhanHang: $(".header-payment__address").html().trim(),
-		PhiVanChuyen: transportCost,
-		TongTienHang: totalPrice,
-		PhuongThucThanhToan: $('input[name="payment"]:checked').val(),
-		SanPham: products,
-		MaGiamGia: listVoucher,
-		TienGiam: totalDiscount
+	
+	if($(".header-payment__address").html().trim()==''){
+		Toast.fire({
+			icon: 'error',
+			title: "Bạn chưa chọn địa chỉ giao hàng",
+			background: 'rgba(220, 52, 73, 0.9)',
+			color: '#ffffff',
+			timer: 2500
+		});
+		return;
 	}
+	let data;
+	if(!customerID){
+		if(!$("#info-name").val().trim()){
+			Toast.fire({
+				icon: 'error',
+				title: "Bạn chưa nhập họ và tên",
+				background: 'rgba(220, 52, 73, 0.9)',
+				color: '#ffffff',
+				timer: 2500
+			});
+			return;
+		}
+		if(!$("#info-phone").val().trim()){
+			Toast.fire({
+				icon: 'error',
+				title: "Bạn chưa nhập số điện thoại",
+				background: 'rgba(220, 52, 73, 0.9)',
+				color: '#ffffff',
+				timer: 2500
+			});
+			return;
+		}
+		if($("#info-phone").val().trim().length<10 || $("#info-phone").val()[0]!="0"){
+			Toast.fire({
+				icon: 'error',
+				title: "Số điện thoại không đúng định dạng",
+				background: 'rgba(220, 52, 73, 0.9)',
+				color: '#ffffff',
+				timer: 2500
+			});
+			return;
+		}
+		data = {
+			HoTen: $("#info-name").val().trim(),
+			SDT: $("#info-phone").val().trim(),
+			DiaChiNhanHang: $(".header-payment__address").html().trim(),
+			PhiVanChuyen: transportCost,
+			TongTienHang: totalPrice,
+			PhuongThucThanhToan: $('input[name="payment"]:checked').val(),
+			SanPham: products,
+			MaGiamGia: listVoucher,
+			TienGiam: totalDiscount
+		};
+	}else{
+		data = {
+			MaKH: customerID,
+			DiaChiNhanHang: $(".header-payment__address").html().trim(),
+			PhiVanChuyen: transportCost,
+			TongTienHang: totalPrice,
+			PhuongThucThanhToan: $('input[name="payment"]:checked').val(),
+			SanPham: products,
+			MaGiamGia: listVoucher,
+			TienGiam: totalDiscount
+		};
+	}
+	
 	fetch(BASE_URL+API_ORDER+ORDER_CREATE,{
 		method: 'POST', 
 		credentials: 'include',
