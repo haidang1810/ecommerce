@@ -132,7 +132,7 @@ Cart.add = async (req, res) => {
 }
 Cart.delete = (req ,res) => {
 	const id = req.params.id;
-	pool.query('select * from tb_gio_hang where id=?',id, (err, result)=>{
+	pool.query('select * from tb_gio_hang where id=?',id, async (err, result)=>{
 		if(err){
 			res({
 				status: 0,
@@ -147,6 +147,8 @@ Cart.delete = (req ,res) => {
 			});
 			return;
 		}
+		const deleteOption = `delete from tb_gio_hang_lua_chon where MaGH=?`;
+		await poolAwait.query(deleteOption,id);
 		pool.query('delete from tb_gio_hang where id=?',id,(err)=>{
 			if(err){
 				res({

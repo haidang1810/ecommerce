@@ -35,6 +35,7 @@ var PRODUCT_DELETE = 'delete/';
 var API_RATING = 'ratings/';
 
 var RATING_GETBYPRODUCT = 'getByProduct/';
+var RATING_ADD = 'add/';
 
 //API images
 var API_IMAGE = 'images/';
@@ -78,6 +79,7 @@ var ORDER_GETALL = 'getAll/';
 var ORDER_CHANGESTATUS = 'changeStatus/';
 var ORDER_GETBYID = 'getById/';
 var ORDER_CREATE = 'createOrder/';
+var ORDER_GETBYCUSTOMER = 'getByCustomer/';
 
 // API Notification
 var API_NOTIFICATION = 'notifications/';

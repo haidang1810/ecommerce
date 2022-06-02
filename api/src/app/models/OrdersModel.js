@@ -160,6 +160,8 @@ async function addOrder(req, res){
 		let customerID = '';
 		if(req.body.MaKH){
 			customerID = req.body.MaKH;
+			let [user, fields] = await poolAwait.query("select TaiKhoan from tb_khach_hang where MaKH=?",customerID);
+			req.username = user[0].TaiKhoan;
 		}else{
 			let getCustomer = 'select MaKH from tb_khach_hang where SDT=?';
 			try {
@@ -271,11 +273,11 @@ async function addOrder(req, res){
 			const deleteCart = `delete from tb_gio_hang where TaiKhoan=? and MaSP=?`;
 			const deleteOption = `delete from tb_gio_hang_lua_chon where MaGH=?`;
 			const getCart = `select id from tb_gio_hang where TaiKhoan=? and MaSP=?`;
-			for(let product of products){
-				let [cart,fields] = await poolAwait.query(getCart,[req.username,product.MaSP]);
+			for(let item of products){
+				let [cart,fields] = await poolAwait.query(getCart,[req.username,item.MaSP]);
 				if(cart.length>0){
 					await poolAwait.query(deleteOption,cart[0].id);
-					await poolAwait.query(deleteCart,[req.username,product.MaSP]);
+					await poolAwait.query(deleteCart,[req.username,item.MaSP]);
 				}
 			}
 			const updateDiscountCode = `update tb_ma_giam_gia set TrangThai=0 where MaGiamGia=?`;
@@ -336,57 +338,75 @@ Order.changeStatus = (req, res) =>{
 				});
 				return;
 			}
+			if(statusOrder==3){
+				autoJoinGroup();
+			}
 			res({
 				status: 1,
 				msg: 'success',
 			});
-			if(statusOrder==3){
-				autoJoinGroup();
-			}
 			return;
 		})
 	})
 }
 Order.getByCustomer = async (req, res) => {
-	const customerID = req.body.MaKH;
+	let user = req.username;
+	let [customer, fields] = await poolAwait.query("select MaKH from tb_khach_hang where TaiKhoan=?",user);
+	const customerID = customer[0].MaKH;
 	const getOrder = `select tb_don_hang.MaDon, tb_don_hang.MaKH, HoTen, DiaChiNhanHang,
-		TrangThai, PhiVanChuyen, TongTienHang
+		TrangThai, PhiVanChuyen, TongTienHang, TienDuocGiam
 			from tb_don_hang, tb_khach_hang
 			where tb_don_hang.MaKH=tb_khach_hang.MaKH
-			and MaKH=?`;
-			try{
-				let [order,fields] = await poolAwait.query(getOrder,customerID);
-				for(let i=0; i<order.length; i++){
-					const getProduct = `select tb_chi_tiet_don.MaSP, TenSP, 
-						tb_chi_tiet_don.SoLuong, tb_chi_tiet_don.Gia, AnhBia
-						from tb_chi_tiet_don, tb_san_pham
-						where tb_chi_tiet_don.MaSP=tb_san_pham.MaSP and
-							MaDon=?`;
-					try {
-						let [orderDetail, fields] = await poolAwait.query(getProduct,order[i].MaDon);
-						if(orderDetail){
-							order[i].SanPham = orderDetail;
+			and tb_don_hang.MaKH=?`;
+	try{
+		let [order,fields] = await poolAwait.query(getOrder,customerID);
+		for(let i=0; i<order.length; i++){
+			const getProduct = `select tb_chi_tiet_don.MaSP, TenSP, 
+				tb_chi_tiet_don.SoLuong, tb_chi_tiet_don.Gia, AnhBia
+				from tb_chi_tiet_don, tb_san_pham
+				where tb_chi_tiet_don.MaSP=tb_san_pham.MaSP and
+					MaDon=?`;
+			try {
+				let [orderDetail, fields] = await poolAwait.query(getProduct,order[i].MaDon);
+				if(orderDetail){
+					const getOption = `select MaLC, TenLC, TenPL
+					from tb_ct_don_lua_chon, tb_lua_chon, tb_phan_loai
+					where tb_ct_don_lua_chon.MaLC=tb_lua_chon.Id and
+						tb_phan_loai.MaPL=tb_lua_chon.MaPL and
+						tb_ct_don_lua_chon.MaDon=? and
+						tb_ct_don_lua_chon.MaSP=? and
+						tb_phan_loai.TrangThai=1`;
+					for(let j=0; j<orderDetail.length; j++){
+						let [options, fields] = await poolAwait.query(getOption,[
+							order[i].MaDon,
+							orderDetail[j].MaSP
+						]);
+						if(options.length>0){
+							orderDetail[j].LuaChon = options;
 						}
-					} catch (error) {
-						
 					}
-					let address = await getAddressByOrder(order[i].MaKH);
-					if(address){
-						order[i].DiaChi = `${address.address}, ${address.ward.name}, ${address.district.name}, ${address.province.name}`
-					}
+					order[i].SanPham = orderDetail;
 				}
-				res({
-					status: 1,
-					msg: 'success',
-					data: order
-				});
-				return;
-			}catch (error){
-				res({
-					status: 0,
-					msg: error,
-				});
-				return;
+			} catch (error) {
+				
 			}
+			let address = await getAddressByOrder(order[i].MaKH);
+			if(address){
+				order[i].DiaChi = `${address.address}, ${address.ward.name}, ${address.district.name}, ${address.province.name}`
+			}
+		}
+		res({
+			status: 1,
+			msg: 'success',
+			data: order
+		});
+		return;
+	}catch (error){
+		res({
+			status: 0,
+			msg: error,
+		});
+		return;
+	}
 }
 module.exports = Order;

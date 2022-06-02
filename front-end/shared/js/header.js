@@ -140,6 +140,8 @@ function checkLogin(isLogin){
 				isLogin(data); 
 			else if(data.rule==2){
 				window.location.href=BASE_URL_CLIENT+'admin/trang_chu/';
+			}else{
+				return false
 			}
 		})
 		.catch(handlerError);
@@ -316,3 +318,6 @@ $(".cart__button").click(function(){
 $(".header__cart-footer").click(function(){
 	window.location.href = BASE_URL_CLIENT+'gio_hang/';
 });
+$("#btn-link-order-list").click(function(){
+	window.location.href = BASE_URL_CLIENT+'don_hang/';
+})

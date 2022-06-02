@@ -73,6 +73,7 @@ fetch(BASE_URL+API_CUSTOMER+CUSTOMER_GETMYACCOUNT,{
 				`);
 				currentAddress = address;
 				getProducts(address);
+				getAllVoucher();
 			})
 		}else{
 			$(".header-payment__input").toggle("header-payment__input--hide");

@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Website mua bán trang sức số 1 Việt Nam</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+        <script src="https://kit.fontawesome.com/a009e9706c.js"></script>
+        <link rel="stylesheet" href="../shared/css/base.css">   
+        <link rel="stylesheet" href="../shared/css/header.css">
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <div class="app">
+			<div class="loading loading_hide">
+				<img src="../shared/img/loading.gif" alt="">
+			</div>
+            <header class="header">
+                <nav class="header__navbar container">
+                    <ul class="header__navbar-list">
+                        <li class="header__navbar-item">
+                            Kết nối
+                            <a href="https://www.facebook.com/profile.php?id=100009041341840" class="header__navbar-item--icon-link">
+                                <i class="header__navbar--icon fa-brands fa-facebook"></i>
+                            </a>
+                            <a href="#" class="header__navbar-item--icon-link">
+                                <i class="header__navbar--icon fa-brands fa-instagram"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="header__navbar-list">
+                        <li class="header__navbar-item header__navbar-item__has-nofi">
+                            <div class="header__navbar-item-link">
+                                <i class="header__navbar--icon far fa-bell"></i>
+                                Thông báo
+                            </div>
+                            <div class="header__notify">
+                                <header class="header__notify--header">
+                                    <h3>Thông báo mới nhận</h3>
+                                </header>
+                                <ul class="header__notify-list">
+                                    
+                                </ul>
+                                <footer class="header__notify--footer">
+                                    <a href="#" class="header__notify--footer-btn">
+                                        Xem tất cả
+                                    </a>
+                                </footer>
+                            </div>
+                        </li>
+                        <li class="header__navbar-item">
+                            <a href="#" class="header__navbar-item-link">
+                                <i class="header__navbar--icon fa-solid fa-circle-question"></i>
+                                Hỗ trợ
+                            </a>
+                        </li>
+                        <li class="header__navbar-item navbar__user hide"
+						id="header__item--user">
+                            <img src="https://picsum.photos/200" alt="" 
+                            class="navbar__user--avatar">
+                            <span class="navbar__user--info" id="header-full-name">
+                                <!-- full name customer -->
+                            </span>
+                            <div class="navbar__user--menu">
+                                <ul class="navbar__user--menu-list">
+                                    <li class="navbar__user--menu-item">
+                                        <a href="./">Tài khoản của tôi</a>
+                                    </li>
+                                    <li class="navbar__user--menu-item" id="btn-link-order-list">
+                                        <a href="#">Đơn mua</a>
+                                    </li>
+                                    <li class="navbar__user--menu-item">
+                                        <a id="btn_logout">Đăng xuất</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="header-search container row align-items-center">
+                    <a class="col-xl-2 header__logo" id="logo-link">
+                        JWB Shop
+                    </a>
+                    <div class="col-xl-8 header__searchBar">
+                        <input type="text" name="" class="header__input" 
+                        placeholder="Tìm kiếm sản phẩm">
+                        <button class="header__button" id="btn-search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                    <div class="header__cart col-xl-2">
+                        <button class="cart__button">
+                            <i class="bi bi-cart"></i>
+                        </button>
+                        <span class="cart__badge hide"></span>
+                        <!--add class header__cart-list--null while list cart null   -->
+                        <div class="header__cart-list header__cart-list--null">
+                            <img src="../shared/img/no-cart.png" alt="loading" 
+                            class="header__cart--img">
+                            <p class="header__cart-list--null-title">Chưa có sản phẩm</p>
+                            <h3 class="header__cart-heading">
+                                Sản phẩm đã thêm
+                            </h3>
+                            <ul class="header__cart-list-item">
+                                
+                            </ul>
+                            <button class="header__cart-footer">
+                                Xem giỏ hàng
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="container">
+                <div class="row main-content">
+					<div class="col-xl-2">
+						<ul class="menu-bar">
+							<li class="menu-bar__item">
+								<a href="../thong_tin_ca_nhan/" class="menu-bar__link">
+									<i class="fa-regular fa-user menu-bar__icon"></i>
+									Tài khoản của tôi
+								</a>
+							</li>
+							<li class="menu-bar__item">
+								<a href="./" class="menu-bar__link">
+									<i class="fa-solid fa-clipboard-list menu-bar__icon"></i>
+									Đơn mua
+								</a>
+							</li>
+							<li class="menu-bar__item">
+								<a href="../thong_bao/" class="menu-bar__link">
+									<i class="far fa-bell menu-bar__icon  menu-bar__icon--orange"></i>
+									Thông báo
+								</a>
+							</li>
+							<li class="menu-bar__item">
+								<a href="../voucher/" class="menu-bar__link">
+									<i class="fa-solid fa-ticket menu-bar__icon menu-bar__icon--orange"></i>
+									Kho khuyến mãi
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-xl-10">
+						<div class="header-order">
+							<div class="header-order__item header-order__item--active"
+							id="-1">
+								Tất cả
+							</div>
+							<div class="header-order__item"
+							id="0">
+								Chờ xác nhận
+							</div>
+							<div class="header-order__item"
+							id="1">
+								Chờ lấy hàng
+							</div>							
+							<div class="header-order__item"
+							id="2">
+								Đang giao
+							</div>
+							<div class="header-order__item"
+							id="3">
+								Đã giao
+							</div>
+							<div class="header-order__item"
+							id="5">
+								Đã huỷ
+							</div>
+						</div>
+						<div class="order-list">
+							
+						</div>
+					</div>
+				</div>
+            </div>
+			<div class="modal fade modal_rating" >
+				<div class="modal-dialog">
+					<div class="modal__inner modal-content">
+						<div class="modal__header">
+							<h3>Đánh giá</h3>
+							<div class="modal__close-btn" data-dismiss="modal">
+								<i class="fa-solid fa-xmark"></i>
+							</div>
+						</div>
+						<div class="modal__body">
+							<div class="from-rating">
+								<input type="hidden" id="input-order-id">
+								<div class="start-rating">
+									<i class="fa fa-star start-item" id="1"></i>
+									<i class="fa fa-star start-item" id="2"></i>
+									<i class="fa fa-star start-item" id="3"></i>
+									<i class="fa fa-star start-item" id="4"></i>
+									<i class="fa fa-star start-item" id="5"></i>
+								</div>
+								<textarea class="comment-rating" id="input-comment" rows="8"
+								placeholder="Nhập đánh giá"></textarea>
+							</div>
+						</div>
+						<div class="modal__footer">
+							<button class="modal__footer-btn modal__footer-btn--cancel" 
+							data-dismiss="modal" type="buttton">
+								Huỷ
+							</button>
+							<button class="modal__footer-btn modal__footer-btn--submit" 
+							id="btn_submit-rating">
+								Xác nhận
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+            <footer class="footer">
+
+            </footer>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.all.min.js"></script>
+		<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/decoupled-document/ckeditor.js"></script>
+		<script src="../shared/js/validator.js"></script>
+		<script src="../shared/js/config.js"></script>
+		<script src="../shared/js/base.js"></script>
+		<script src="../shared/js/header.js"></script>
+		<script src="./app.js"></script>
+    </body>
+</html>
