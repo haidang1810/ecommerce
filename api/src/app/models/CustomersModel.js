@@ -108,7 +108,7 @@ Customer.searchByName = (req, res) => {
 }
 Customer.getByAccount = (req, res)=>{
 	const getCustomer = 'select * from tb_khach_hang where TaiKhoan=?';
-	pool.query(getCustomer,req.username, (err,result)=>{
+	pool.query(getCustomer,req.params.user, (err,result)=>{
 		if(err){
 			res({
 				status: 0,

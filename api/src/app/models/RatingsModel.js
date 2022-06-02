@@ -11,7 +11,11 @@ const Rating = function (rating) {
 }
 
 Rating.getAll =  (req, res) => {
-    const getAllRating = `select * from tb_danh_gia`;
+    const getAllRating = `select tb_danh_gia.*, HoTen, TenSP, tb_san_pham.AnhBia as AnhSP,
+		tb_khach_hang.AnhDaiDien
+		from tb_danh_gia, tb_khach_hang, tb_san_pham
+		where tb_danh_gia.TaiKhoan=tb_khach_hang.TaiKhoan and
+		tb_danh_gia.MaSP=tb_san_pham.MaSP`;
     pool.query(getAllRating, (err, result)=>{
         if(err){
 			res({

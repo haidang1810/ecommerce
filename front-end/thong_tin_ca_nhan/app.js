@@ -3,7 +3,7 @@ var currentAddres = {};
 checkLogin((data)=>{
 	if(data){
 		customerID = data.id;
-		fetch(BASE_URL+API_CUSTOMER+CUSTOMER_GETBYACCOUNT+data.user,{
+		fetch(BASE_URL+API_CUSTOMER+CUSTOMER_GETMYACCOUNT,{
 			method: 'GET', 
 			credentials: 'include',
 			headers:{

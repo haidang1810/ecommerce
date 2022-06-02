@@ -34,6 +34,7 @@ var PRODUCT_DELETE = 'delete/';
 // API Rating
 var API_RATING = 'ratings/';
 
+var RATING_GETALL = 'getAll/';
 var RATING_GETBYPRODUCT = 'getByProduct/';
 var RATING_ADD = 'add/';
 
