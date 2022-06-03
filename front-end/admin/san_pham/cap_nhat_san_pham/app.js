@@ -531,7 +531,7 @@ function deleteOption(id){
 			}else{
 				Toast.fire({
 					icon: 'error',
-					title: res.msg,
+					title: 'Lựa chọn đã bán không thể xoá',
 					background: 'rgba(220, 52, 73, 0.9)',
 					color: '#ffffff',
 					timer: 2500

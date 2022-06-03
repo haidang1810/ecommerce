@@ -6,5 +6,6 @@ const GroupsController = require('../app/controllers/GroupsController');
 
 router.get('/getAll', checkLogin, checkRuleAdmin, GroupsController.getAll);
 router.get('/delete/:id', checkLogin, checkRuleAdmin, GroupsController.delete);
+router.post('/add/', checkLogin, checkRuleAdmin, GroupsController.add);
 
 module.exports = router;

@@ -94,6 +94,7 @@ var API_GROUP = 'groups/';
 
 var GROUP_GETALL = 'getAll/';
 var GROUP_DELETE = 'delete/';
+var GROUP_ADD= 'add/';
 
 // API Variation: 
 var API_VARIATION = 'variations/'
@@ -113,6 +114,9 @@ var DISCOUNT_DELETE = 'delete/';
 var DISCOUNT_ADD = 'add/';
 var DISCOUNT_GETBYID = 'getById/';
 
+// API Campaign
+var API_CAMPAIGN = 'campaigns/';
+var CAMPAIGN_ADD = 'add/';
 
 // API voucher
 var API_VOUCHER = 'vouchers/';

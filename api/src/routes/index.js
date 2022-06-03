@@ -13,6 +13,7 @@ const groupsRouter = require('./groups');
 const variationsRouter = require('./variations');
 const discountsRouter = require('./discounts');
 const vouchersRouter = require('./vouchers');
+const campaignsRouter = require('./campaigns');
 function route(app){
     app.use('/users', usersRouter);
     app.use('/auth', authRouter);
@@ -29,5 +30,6 @@ function route(app){
     app.use('/variations', variationsRouter);
     app.use('/discounts', discountsRouter);
     app.use('/vouchers', vouchersRouter);
+    app.use('/campaigns', campaignsRouter);
 }
 module.exports = route;

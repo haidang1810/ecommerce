@@ -11,5 +11,10 @@ class GroupsController {
             res.json(response);
         })
     }
+    add(req,res){
+        GroupsModel.add(req,function(response){
+            res.json(response);
+        })
+    }
 }
 module.exports = new GroupsController();

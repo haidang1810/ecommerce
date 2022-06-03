@@ -1,6 +1,6 @@
 const pool = require('../config/connectDB');
 const poolAwait = require('../config/connectDBAwait');
-
+const autoJoinGroup = require('../services/autoJoinGroup');
 const Group = function (group) {
     this.MaLoai = group.MaLoai;
     this.TenLoai = group.TenLoai;
@@ -73,7 +73,7 @@ Group.add = async (req, res) => {
 	let id = req.body.MaNhom;
 	let name = req.body.TenNhom;
 	let description = req.body.MoTa;
-	let conditions = req.DieuKien;
+	let conditions = req.body.DieuKien;
 	const addGroup = `insert into tb_nhom_khach_hang 
 		values(?,?,?,DATE(NOW()))`;
 	const addConditions = `insert into tb_dieu_kien_nhom(MaNhom,ThuocTinh,DieuKien,GiaTri)
@@ -92,9 +92,10 @@ Group.add = async (req, res) => {
 			status: 1,
 			msg: 'success!'
 		});
-		const autoJoinGroup = require('../services/autoJoinGroup');
+		autoJoinGroup();
 		return;
 	} catch (error) {
+		console.log(error);
 		const deleteConditions = 'delete from tb_dieu_kien_nhom where MaNhom=?';
 		const deleteGroup = `delete from tb_nhom_khach_hang where MaNhom=?`;
 		await poolAwait.query(deleteConditions,id);
