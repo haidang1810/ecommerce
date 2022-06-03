@@ -117,6 +117,8 @@ var DISCOUNT_GETBYID = 'getById/';
 // API Campaign
 var API_CAMPAIGN = 'campaigns/';
 var CAMPAIGN_ADD = 'add/';
+var CAMPAIGN_GETALL = 'getAll/';
+var CAMPAIGN_GETBYID = 'getById/';
 
 // API voucher
 var API_VOUCHER = 'vouchers/';

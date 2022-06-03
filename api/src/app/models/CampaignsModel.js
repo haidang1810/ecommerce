@@ -71,14 +71,17 @@ Campaign.add = async (req, res) => {
 					}else{
 						const expires = new Date(timeActive);
 						schedule.scheduleJob(expires, async ()=>{
-							try {
-								await sendMail(customer.Gmail,name,content);
-								status = 1;
-							} catch (error) {
-								status = 2;
-							}		
-							let detailCamp = `update tb_chi_tiet_chien_dich set TrangThai=? where MaCD=? and MaKH=?`;
-							await poolAwait.query(detailCamp,[status,code,customer.MaKH]);			
+							sendMail(customer.Gmail,name,content)
+									.then(async ()=>{
+										status = 1;
+										let detailCamp = `update tb_chi_tiet_chien_dich set TrangThai=? where MaCD=? and MaKH=?`;
+										await poolAwait.query(detailCamp,[status,code,customer.MaKH]);							
+									})
+									.catch(async ()=>{
+										status = 2;
+										let detailCamp = `update tb_chi_tiet_chien_dich set TrangThai=? where MaCD=? and MaKH=?`;
+										await poolAwait.query(detailCamp,[status,code,customer.MaKH]);
+									})		
 						})
 					}
 					addDtail(code,customer.MaKH,status,discount);					
@@ -101,14 +104,17 @@ Campaign.add = async (req, res) => {
 						let detailCamp = `update tb_chi_tiet_chien_dich set TrangThai=? where MaCD=? and MaKH=?`;
 						await poolAwait.query(detailCamp,[status,code,customer.MaKH]);
 					}else{
-						try {
-							await sendMail(customer.Gmail,name,content);
-							status = 1;
-						} catch (error) {
-							status = 2;
-						}
-						let detailCamp = `update tb_chi_tiet_chien_dich set TrangThai=? where MaCD=? and MaKH=?`;
-						await poolAwait.query(detailCamp,[status,code,customer.MaKH]);
+						sendMail(customer.Gmail,name,content)
+							.then(async ()=>{
+								status = 1;
+								let detailCamp = `update tb_chi_tiet_chien_dich set TrangThai=? where MaCD=? and MaKH=?`;
+								await poolAwait.query(detailCamp,[status,code,customer.MaKH]);							
+							})
+							.catch(async ()=>{
+								status = 2;
+								let detailCamp = `update tb_chi_tiet_chien_dich set TrangThai=? where MaCD=? and MaKH=?`;
+								await poolAwait.query(detailCamp,[status,code,customer.MaKH]);
+							})
 					}
 					addDtail(code,customer.MaKH,status,discount);	
 				}
@@ -147,12 +153,17 @@ Campaign.add = async (req, res) => {
 							status = 2;
 						}
 					}else{
-						try {
-							await sendMail(customer.Gmail,name,content);
-							status = 1;
-						} catch (error) {
-							status = 2;
-						}
+						sendMail(customer.Gmail,name,content)
+							.then(async ()=>{
+								status = 1;
+								let detailCamp = `update tb_chi_tiet_chien_dich set TrangThai=? where MaCD=? and MaKH=?`;
+								await poolAwait.query(detailCamp,[status,code,customer.MaKH]);							
+							})
+							.catch(async ()=>{
+								status = 2;
+								let detailCamp = `update tb_chi_tiet_chien_dich set TrangThai=? where MaCD=? and MaKH=?`;
+								await poolAwait.query(detailCamp,[status,code,customer.MaKH]);
+							})
 					}
 					addDtail(code,customer.MaKH,status,discount);
 				}
@@ -172,12 +183,17 @@ Campaign.add = async (req, res) => {
 							status = 2;
 						}
 					}else{
-						try {
-							await sendMail(customer.Gmail,name,content);
-							status = 1;
-						} catch (error) {
-							status = 2;
-						}
+						sendMail(customer.Gmail,name,content)
+							.then(async ()=>{
+								status = 1;
+								let detailCamp = `update tb_chi_tiet_chien_dich set TrangThai=? where MaCD=? and MaKH=?`;
+								await poolAwait.query(detailCamp,[status,code,customer.MaKH]);							
+							})
+							.catch(async ()=>{
+								status = 2;
+								let detailCamp = `update tb_chi_tiet_chien_dich set TrangThai=? where MaCD=? and MaKH=?`;
+								await poolAwait.query(detailCamp,[status,code,customer.MaKH]);
+							})
 					}
 					addDtail(code,customer.MaKH,status,discount);
 				}
@@ -230,5 +246,61 @@ async function sendMail(to,subject,content) {
         subject: subject, // Subject line
         html: content
     });
+}
+Campaign.getAll = (req, res) => {
+	const getAll = `select tb_chien_dich.*, TenNhom
+		from tb_chien_dich
+		LEFT JOIN tb_nhom_khach_hang
+		ON tb_chien_dich.NhomKH = tb_nhom_khach_hang.MaNhom;`;
+	pool.query(getAll,(err, result)=>{
+		if(err){
+			res({
+				status: 0,
+				msg: err.sqlMessage
+			});
+			return;
+		}
+		res({
+			status: 1,
+			msg: 'success',
+			data: result
+		});
+		return;
+	})
+}
+Campaign.getById = (req, res) => {
+	let id = req.params.id;
+	const get = `select * from tb_chien_dich where MaCD=?`;
+	pool.query(get,id, (err,result) => {
+		if(err){
+			res({
+				status: 0,
+				msg: err.sqlMessage
+			});
+			return;
+		}
+		let campaigns = result[0];
+		const getCustomer = `select tb_chi_tiet_chien_dich.MaKH, HoTen, SDT, Gmail, TrangThai
+			from tb_chi_tiet_chien_dich, tb_khach_hang
+			where tb_chi_tiet_chien_dich.MaKH=tb_khach_hang.MaKH and
+			MaCD=?`;
+		pool.query(getCustomer,id, (err,customers)=>{
+			if(err){
+				res({
+					status: 0,
+					msg: err.sqlMessage
+				});
+				return;
+			}
+			campaigns.KhachHang = customers;
+			res({
+				status: 1,
+				msg: 'success',
+				data: campaigns
+			});
+			return;
+		})
+
+	})
 }
 module.exports = Campaign;

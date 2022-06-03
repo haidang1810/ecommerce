@@ -228,11 +228,6 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Chi tiết chiến dịch</h1>
-                        <button 
-                        class="btn btn-primary shadow-sm px-3 py-2 mr-2">
-                            <i class="fa-solid fa-plus"></i>
-                            Lưu
-                        </button>
                     </div>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
@@ -253,49 +248,33 @@
                                     <div class="row">
                                         <div class="form-group col-6">
                                             <label for="">Tên chiến dịch</label>
-                                            <input type="text" class="form-control" name=""  
+                                            <input type="text" class="form-control" id="input-name"  
                                             readonly>
                                         </div>
                                         <div class="form-group col-6">
                                             <label for="">Mã chiến dịch</label>
-                                            <input type="text" class="form-control" name=""   
+                                            <input type="text" class="form-control" id="input-id"   
                                             readonly>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-6">
                                             <label for="">Loại tin nhắn</label>
-                                            <p class="type-massage">SMS</p>
+                                            <p class="type-massage">
+
+											</p>
                                         </div>
                                         <div class="form-group col-6">
                                             <label for="">Thời gian kích hoạt</label>
-                                            <p class="time-active">01/06/2022 01:00:00</p>
+                                            <p class="time-active">
+
+											</p>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="">Nội dung</label>
-                                        <textarea class="form-control" name="" 
-                                         rows="7" readonly></textarea>
-                                    </div>
-                                    <div class="">
-                                        <label for="">Gửi kèm mã giảm giá</label>
-                                        <div class="discount">
-                                            <div class="form-group">
-                                                <label for="">Mô tả</label>
-                                                <textarea class="form-control" name=""  
-                                                readonly rows="7"></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="">Số tiền giảm</label>
-                                                <input type="number" class="form-control discount__input--number" 
-                                                name=""  readonly>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="">Hạn sử dụng</label>
-                                                <input type="datetime-local" class="form-control" 
-                                                name=""  readonly>
-                                            </div>
-                                        </div>
+                                        <textarea class="form-control" id="input-content" 
+                                        rows="7" readonly></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -317,40 +296,12 @@
                                                     <th>Mã khách hàng</th>
                                                     <th>Tên khách hàng</th>
                                                     <th>SDT</th>
+                                                    <th>Gmail</th>
                                                     <th style="max-width: 100px;">Trang Thái</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>KH0001</td>
-                                                    <td>Nguyễn Quang Sáng</td>
-                                                    <td>0325489563</td>
-                                                    <td>
-                                                        <div class="bg-primary text-white rounded text-center">
-                                                            Gửi thành công
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>KH0002</td>
-                                                    <td>Tú Xương</td>
-                                                    <td>0213658452</td>
-                                                    <td>
-                                                        <div class="bg-danger text-white rounded text-center">
-                                                            Gửi thất bại
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>KH0003</td>
-                                                    <td>Nguyễn Minh Châu</td>
-                                                    <td>0852132647</td>
-                                                    <td>
-                                                        <div class="bg-info text-white rounded text-center">
-                                                        Chưa kích hoạt
-                                                        </div>
-                                                    </td>
-                                                </tr>
+												
                                             </tbody>
                                         </table>
                                     </div>
