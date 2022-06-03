@@ -37,6 +37,7 @@ var API_RATING = 'ratings/';
 var RATING_GETALL = 'getAll/';
 var RATING_GETBYPRODUCT = 'getByProduct/';
 var RATING_ADD = 'add/';
+var RATING_REPLY = 'replyByAdmin/';
 
 //API images
 var API_IMAGE = 'images/';

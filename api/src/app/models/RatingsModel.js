@@ -15,7 +15,8 @@ Rating.getAll =  (req, res) => {
 		tb_khach_hang.AnhDaiDien
 		from tb_danh_gia, tb_khach_hang, tb_san_pham
 		where tb_danh_gia.TaiKhoan=tb_khach_hang.TaiKhoan and
-		tb_danh_gia.MaSP=tb_san_pham.MaSP`;
+		tb_danh_gia.MaSP=tb_san_pham.MaSP
+		ORDER BY tb_danh_gia.Id DESC`;
     pool.query(getAllRating, (err, result)=>{
         if(err){
 			res({
@@ -111,7 +112,7 @@ Rating.add = async (req, res)=> {
 Rating.replyByAdmin = (req, res) => {
 	const id = req.body.id;
 	const content = req.body.PhanHoi;
-	pool(`select * from tb_danh_gia where Id=?`,id, (err,rating)=>{
+	pool.query(`select * from tb_danh_gia where Id=?`,id, (err,rating)=>{
 		if(err){
 			res({
 				status: 0,
@@ -126,7 +127,7 @@ Rating.replyByAdmin = (req, res) => {
 			});
 			return;
 		}
-		pool.query(`update set PhanHoi=? where Id=?`,[content,id],(err)=>{
+		pool.query(`update tb_danh_gia set PhanHoi=? where Id=?`,[content,id],(err)=>{
 			if(err){
 				res({
 					status: 0,
