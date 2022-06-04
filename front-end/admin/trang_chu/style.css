@@ -7,3 +7,14 @@ html {
 .chart-area-products {
     height: auto !important;
 }
+.label-filter {
+	cursor: pointer;
+}
+.group-filter {
+	width: 30% ;
+	display: none;
+	margin-left: 50px;
+}
+.radio-filter:checked ~ .group-filter {
+	display: block;
+}

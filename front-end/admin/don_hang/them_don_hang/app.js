@@ -342,7 +342,7 @@ $("#input-search-product").focusout(function(){
 		let Gia = 0;
 		if(products[index].ChietKhau){
 			price = products[index].Gia;
-			let discount = Number(product.ChietKhau);
+			let discount = Number(products[index].ChietKhau);
 			Gia = price - (price * discount / 100);
 		}else{
 			Gia = products[index].Gia;
@@ -380,34 +380,35 @@ function loadProductOrder(){
 		});
 		let option = await response.json();
 		let html = ``;
-		for(let variation of option.data){
-			html+= `
-					<div class="modify__name">
-						${variation.TenPL}
-					</div>
-					<div class="modify__option ml-3">
-			`;
-			for(let option of variation.LuaChon){
-				if(option.TrangThai==1){
-					html += `
-						<div class="modify__option-item modify__option-item--normal" 
-						id="${item.MaSP}" optProduct="${option.Id}" 
-						variationName="${variation.TenPL}">
-							${option.TenLC}
+		if(option.data)
+			for(let variation of option.data){
+				html+= `
+						<div class="modify__name">
+							${variation.TenPL}
 						</div>
-					`;
-				}else{
-					html += `
-						<div class="modify__option-item modify__option-item--disable">
-							${option.TenLC}
-						</div>
-					`;
+						<div class="modify__option ml-3">
+				`;
+				for(let option of variation.LuaChon){
+					if(option.TrangThai==1){
+						html += `
+							<div class="modify__option-item modify__option-item--normal" 
+							id="${item.MaSP}" optProduct="${option.Id}" 
+							variationName="${variation.TenPL}">
+								${option.TenLC}
+							</div>
+						`;
+					}else{
+						html += `
+							<div class="modify__option-item modify__option-item--disable">
+								${option.TenLC}
+							</div>
+						`;
+					}
 				}
+				html += `
+					</div>
+				`;
 			}
-			html += `
-				</div>
-			`;
-		}
 		tableProduct.row.add([
 			`<img src="${item.AnhBia}" class="table-product-img" alt="">`,
 			item.TenSP,

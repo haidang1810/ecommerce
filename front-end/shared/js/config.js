@@ -125,6 +125,17 @@ var API_VOUCHER = 'vouchers/';
 
 var VOUCHER_GETALL = 'getAll/';
 
+
+// API report
+
+var API_REPORT = 'reports/';
+
+var REPORT_BASEINFO = 'baseInfo/';
+var REPORT_SALES = 'reportSales/';
+var REPORT_ORDER = 'reportOrder/';
+var REPORT_PRODUCT = 'reportProduct/';
+var REPORT_BESTSALES = 'reportBestSales/';
+
 var LENGHT_BOX = 50;
 var WIDTH_BOX = 35;
 var HEIGHT_BOX = 15;

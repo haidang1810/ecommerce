@@ -1,7 +1,7 @@
 const pool = require('../config/connectDB');
 const poolAwait = require('../config/connectDBAwait');
 const Address = require('../models/AddressesModel');
-
+const autoJoinGroup = require('../services/autoJoinGroup');
 const Order = function (order) {
     this.TaiKhoan = order.TaiKhoan;
     this.MaSP = order.MaSP;
@@ -30,7 +30,7 @@ const createCode = async () => {
 }
 Order.getAll = async (req, res) => {
     const getAllOrder = `select tb_don_hang.MaDon, tb_don_hang.MaKH, HoTen, DiaChiNhanHang,
-		TrangThai, PhiVanChuyen, TongTienHang, PhuongThucThanhToan
+		TrangThai, PhiVanChuyen, TongTienHang, PhuongThucThanhToan, NgayLap
 			from tb_don_hang, tb_khach_hang
 			where tb_don_hang.MaKH=tb_khach_hang.MaKH`;
     try{
@@ -87,7 +87,8 @@ Order.getAll = async (req, res) => {
 Order.getById = async (req, res) => {
 	const orderID = req.params.id;
     const getOrder = `select tb_don_hang.MaDon, tb_don_hang.MaKH, HoTen, DiaChiNhanHang,
-			TrangThai, PhiVanChuyen, TongTienHang, SDT, Gmail, PhuongThucThanhToan, TienDuocGiam
+			TrangThai, PhiVanChuyen, TongTienHang, SDT, Gmail, PhuongThucThanhToan, 
+			TienDuocGiam, NgayLap
 		from tb_don_hang, tb_khach_hang
 		where tb_don_hang.MaKH=tb_khach_hang.MaKH and
 			tb_don_hang.MaDon=?`;
@@ -197,7 +198,7 @@ async function addOrder(req, res){
 			discount = req.body.TienGiam;
 		}
 		const orderID = await createOrderID(30);
-		const insertOrder = `insert into tb_don_hang values(?,?,?,?,?,?,?,?)`;
+		const insertOrder = `insert into tb_don_hang values(?,?,?,?,?,?,?,?,NOW())`;
 		const params = [orderID,customerID,tempAddress,status,totalPrice,transportCost,discount,payment];
 		pool.query(insertOrder, params, async (err)=>{
 			if(err){

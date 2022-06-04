@@ -70,6 +70,7 @@ fetch(BASE_URL+API_ORDER+ORDER_GETALL,{
 					MaDon: item.MaDon,
 					HoTen: item.HoTen,
 					TongTienHang: item.TongTienHang,
+					NgayLap: item.NgayLap,
 					TrangThai: statusOrder,
 					HanhDong: action
 				}
@@ -82,8 +83,9 @@ fetch(BASE_URL+API_ORDER+ORDER_GETALL,{
 					{data: 'MaDon'},
 					{data: 'HoTen'},
 					{data: 'TongTienHang'},
-					{data: 'TrangThai'},
-					{data: 'HanhDong'}
+					{data: 'NgayLap'},
+					{data: 'TrangThai', "width": "125px"},
+					{data: 'HanhDong', "width": "180px"}
 				]
 			});
 			eventEditCategory();
