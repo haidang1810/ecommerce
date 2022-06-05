@@ -2,6 +2,8 @@ const pool = require('../config/connectDB');
 const poolAwait = require('../config/connectDBAwait');
 const Address = require('../models/AddressesModel');
 const autoJoinGroup = require('../services/autoJoinGroup');
+const Notification = require('../models/NotificationsModel');
+
 const Order = function (order) {
     this.TaiKhoan = order.TaiKhoan;
     this.MaSP = order.MaSP;
@@ -331,7 +333,7 @@ Order.changeStatus = (req, res) =>{
 			return;
 		}
 		const updateStatus = `update tb_don_hang set TrangThai=? where MaDon=?`;
-		pool.query(updateStatus, [statusOrder,orderID],(err)=>{
+		pool.query(updateStatus, [statusOrder,orderID], async (err)=>{
 			if(err){
 				res({
 					status: 0,
@@ -339,8 +341,58 @@ Order.changeStatus = (req, res) =>{
 				});
 				return;
 			}
-			if(statusOrder==3){
+			let user = await poolAwait.query('select * from tb_khach_hang where MaKH=?',result[0].MaKH);
+			if(statusOrder==1){
+				if(user[0].length>0){
+					const notification = new Notification({
+						user: user[0][0].TaiKhoan,
+						name: "Xác nhận đơn hàng",
+						image: "https://res.cloudinary.com/jwb/image/upload/v1654437468/img_notification/ghn_gieswu.png",
+						description: "Đơn hàng của bạn đã được xác nhận thành công",
+					});
+					notification.save()
+				}
+			}else if(statusOrder==2){
+				if(user[0].length>0){
+					const notification = new Notification({
+						user: user[0][0].TaiKhoan,
+						name: "Xác nhận đơn hàng",
+						image: "https://res.cloudinary.com/jwb/image/upload/v1654437468/img_notification/ghn_gieswu.png",
+						description: "Đơn hàng của bạn đang được vận chuyển",
+					});
+					notification.save()
+				}
+			}else if(statusOrder==3){
+				if(user[0].length>0){
+					const notification = new Notification({
+						user: user[0][0].TaiKhoan,
+						name: "Xác nhận đơn hàng",
+						image: "https://res.cloudinary.com/jwb/image/upload/v1654437468/img_notification/ghn_gieswu.png",
+						description: "Đơn hàng đã được giao thành công bạn có thể đánh giá đơn hàng",
+					});
+					notification.save()
+				}
 				autoJoinGroup();
+			}else if(statusOrder==4){
+				if(user[0].length>0){
+					const notification = new Notification({
+						user: user[0][0].TaiKhoan,
+						name: "Đơn hàng đã huỷ",
+						image: "https://res.cloudinary.com/jwb/image/upload/v1654437468/img_notification/ghn_gieswu.png",
+						description: "Đơn vị giao hàng khong thể liên lạc với bạn",
+					});
+					notification.save()
+				}
+			}else if(statusOrder==5){
+				if(user[0].length>0){
+					const notification = new Notification({
+						user: user[0][0].TaiKhoan,
+						name: "Đơn hàng đã huỷ",
+						image: "https://res.cloudinary.com/jwb/image/upload/v1654437468/img_notification/ghn_gieswu.png",
+						description: "Bạn đã huỷ đơn hàng",
+					});
+					notification.save()
+				}
 			}
 			res({
 				status: 1,

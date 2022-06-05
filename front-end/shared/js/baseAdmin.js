@@ -67,3 +67,17 @@ promiseAccessToken
 			}
 		});
 	})
+
+$("#btn-logout-admin").click(function(){
+	fetch(BASE_URL+API_AUTH+AUTH_LOGOUT,{
+		method: 'GET', 
+		credentials: 'include',
+		headers:{
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+		}
+	})
+		.then(()=>{
+			window.location.reload();
+		})	
+})

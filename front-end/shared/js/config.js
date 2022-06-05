@@ -12,6 +12,8 @@ var API_USER = 'users/';
 
 var USER_ADD = 'add/'
 var USER_VERIFYCODE = 'getVerifyCode/';
+var USER_CHANGEPASS = 'changePassword/';
+var USER_FORGOT = 'forgotPassword/';
 
 // API category
 var API_CATEGORY = "categories/";

@@ -20,5 +20,15 @@ class UsersController {
             res.json(response);
         })
     }
+    changePassword(req,res){
+        UsersModel.changePassword(req,function(response){
+            res.json(response);
+        })
+    }
+    forgotPassword(req,res){
+        UsersModel.forgotPassword(req,function(response){
+            res.json(response);
+        })
+    }
 }
 module.exports = new UsersController();

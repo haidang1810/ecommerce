@@ -1,11 +1,6 @@
 var product_list = [];
 
-$('#input-register-phone').on('keypress', function (event) {
-    var charCode = !event.charCode ? event.which : event.charCode;
-    if( charCode == 46 || charCode == 69 || charCode == 101 
-    || charCode == 45 || charCode == 43)
-        event.preventDefault();
-});
+
 fetch(BASE_URL+API_CATEGORY+CATEGORY_GETALL,{
 	method: 'GET', 
 	credentials: 'include',

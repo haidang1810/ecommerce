@@ -5,6 +5,7 @@ const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = require('twilio')(accountSid, authToken);
 const schedule = require('node-schedule');
 const nodemailer = require("nodemailer");
+const Notification = require('../models/NotificationsModel');
 
 const Campaign = function (campaign) {
     this.Id = campaign.Id;
@@ -84,7 +85,7 @@ Campaign.add = async (req, res) => {
 									})		
 						})
 					}
-					addDtail(code,customer.MaKH,status,discount);					
+					addDetail(code,customer.MaKH,status,discount);					
 				}
 			}
 		}else{
@@ -116,7 +117,7 @@ Campaign.add = async (req, res) => {
 								await poolAwait.query(detailCamp,[status,code,customer.MaKH]);
 							})
 					}
-					addDtail(code,customer.MaKH,status,discount);	
+					addDetail(code,customer.MaKH,status,discount);	
 				}
 			}
 		}
@@ -165,7 +166,7 @@ Campaign.add = async (req, res) => {
 								await poolAwait.query(detailCamp,[status,code,customer.MaKH]);
 							})
 					}
-					addDtail(code,customer.MaKH,status,discount);
+					addDetail(code,customer.MaKH,status,discount);
 				}
 			}
 		}else{
@@ -195,7 +196,7 @@ Campaign.add = async (req, res) => {
 								await poolAwait.query(detailCamp,[status,code,customer.MaKH]);
 							})
 					}
-					addDtail(code,customer.MaKH,status,discount);
+					addDetail(code,customer.MaKH,status,discount);
 				}
 			}
 		}
@@ -206,9 +207,10 @@ Campaign.add = async (req, res) => {
 		return;
 	}
 }
-async function addDtail(code,customerID,status,discount){
+async function addDetail(code,customerID,status,discount){
 	let detailCamp = `insert into tb_chi_tiet_chien_dich values(?,?,?)`;
 	await poolAwait.query(detailCamp,[code,customerID,status]);
+	let user = await poolAwait.query('select * from tb_khach_hang where MaKH=?',customerID);
 	if(discount){
 		let discountID = await createCode(15);
 		let addDiscount = `insert into tb_ma_giam_gia values(?,?,?,?,?,1)`;
@@ -219,6 +221,13 @@ async function addDtail(code,customerID,status,discount){
 			discount.TienGiam,
 			discount.HanSuDung
 		]);
+		const notification = new Notification({
+			user: user[0][0].TaiKhoan,
+			name: "Tặng bạn mã giảm giá",
+			image: "https://res.cloudinary.com/jwb/image/upload/v1654438074/img_notification/voucher_bcxehf.jpg",
+			description: discount.MoTa,
+		});
+		notification.save()
 	}
 }
 

@@ -512,3 +512,61 @@ $("#btn_select_address").click(function(){
 		});
 	}
 })
+$(".btn-show-pass-change").click(function(){
+	if($(this).prev(".input-password-change").attr("type") == "password"){
+        $(this).html(`<i class="fa-solid fa-eye-slash"></i>`);
+        $(this).prev(".input-password-change").attr("type","text");
+    }else {
+        $(this).html(`<i class="fa-solid fa-eye"></i>`);
+        $(this).prev(".input-password-change").attr("type","password");
+    }
+})
+$("#btn_submit_change_pass").click(function(){
+	$(".modal__form--password").submit();
+	console.log('click');
+})
+validator('.modal__form--password',{
+	formGroup: '.auth-form__group',
+    formMessage: '.message-err',
+	onSubmit: function(formValues){
+		if(formValues.newPassword!=formValues.confirmPass){
+			Toast.fire({
+				icon: 'error',
+				title: 'Nhập lại mật khảu không chính xác',
+				background: 'rgba(220, 52, 73, 0.9)',
+				color: '#ffffff',
+				timer: 2500
+			});
+			return;
+		}
+		fetch(BASE_URL+API_USER+USER_CHANGEPASS,{
+			method: 'POST', 
+			credentials: 'include',
+			body: JSON.stringify(formValues), 
+			headers:{
+				'Content-Type': 'application/json',
+				'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+			}
+		})
+			.then(statusRes)
+			.then(json)
+			.then(data => {
+				if(data.status == 1){
+					Toast.fire({
+						icon: 'success',
+						title: "Đổi mật khẩu thành công",
+						background: 'rgba(35, 147, 67, 0.9)',
+						color: '#ffffff',
+						timer: 1200
+					});
+				}else Toast.fire({
+					icon: 'error',
+					title: data.msg,
+					background: 'rgba(220, 52, 73, 0.9)',
+					color: '#ffffff',
+					timer: 2500
+				})
+			})
+			.catch(handlerError);
+	}
+});
