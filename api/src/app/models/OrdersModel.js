@@ -34,7 +34,8 @@ Order.getAll = async (req, res) => {
     const getAllOrder = `select tb_don_hang.MaDon, tb_don_hang.MaKH, HoTen, DiaChiNhanHang,
 		TrangThai, PhiVanChuyen, TongTienHang, PhuongThucThanhToan, NgayLap
 			from tb_don_hang, tb_khach_hang
-			where tb_don_hang.MaKH=tb_khach_hang.MaKH`;
+			where tb_don_hang.MaKH=tb_khach_hang.MaKH
+			order by NgayLap desc`;
     try{
 		let [order,fields] = await poolAwait.query(getAllOrder);
 		for(let i=0; i<order.length; i++){
