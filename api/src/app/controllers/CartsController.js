@@ -11,5 +11,15 @@ class CartsController {
             res.json(response);
         })
     }
+    delete(req,res){
+        CartsModel.delete(req,function(response){
+            res.json(response);
+        })
+    }
+    updateAmount(req,res){
+        CartsModel.updateAmount(req,function(response){
+            res.json(response);
+        })
+    }
 }
 module.exports = new CartsController();

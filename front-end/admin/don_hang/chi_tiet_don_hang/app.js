@@ -25,7 +25,8 @@ fetch(BASE_URL+API_ORDER+ORDER_GETBYID+orderID,{
 			$(".transport__cost").html(`${numberWithCommas(res.data.PhiVanChuyen)}đ`);
 			$("#price").html(`${numberWithCommas(res.data.TongTienHang)}đ`);
 			$("#transport-cost").html(`${numberWithCommas(res.data.PhiVanChuyen)}đ`);
-			$("#total-cost").html(`${numberWithCommas(Number(res.data.PhiVanChuyen)+Number(res.data.TongTienHang))}đ`);
+			$("#discount").html(`-${numberWithCommas(res.data.TienDuocGiam)}đ`);
+			$("#total-cost").html(`${numberWithCommas(Number(res.data.PhiVanChuyen)+Number(res.data.TongTienHang)-Number(res.data.TienDuocGiam))}đ`);
 			if(res.data.PhuongThucThanhToan==1){
 				$(".payment").html(`
 					<div class="form-group">
@@ -43,10 +44,20 @@ fetch(BASE_URL+API_ORDER+ORDER_GETBYID+orderID,{
 				`)
 			}
 			let products = res.data.SanPham.map((product,index)=>{
+				let luaChon = ``;
+				if(product.LuaChon)
+					for(let i=0; i<product.LuaChon.length; i++){
+						if(i==0){
+							luaChon += `${product.LuaChon[i].TenPL}: ${product.LuaChon[i].TenLC}`;
+						}else{
+							luaChon += `, ${product.LuaChon[i].TenPL}: ${product.LuaChon[i].TenLC}`
+						}
+					}
 				return {
 					STT: index+1,
 					AnhBia: `<img src="${product.AnhBia}" class="table-product-img" alt="">`,
 					TenSP: product.TenSP,
+					PhanLoai: luaChon,
 					Gia: `${numberWithCommas(product.Gia)}đ`,
 					SoLuong: product.SoLuong,
 					ThanhTien: `${numberWithCommas(Number(product.Gia)*Number(product.SoLuong))}đ`
@@ -57,9 +68,9 @@ fetch(BASE_URL+API_ORDER+ORDER_GETBYID+orderID,{
 				data: products,
 				"processing": true,
 				columns: [
-					{data: 'STT'},
 					{data: 'AnhBia'},
 					{data: 'TenSP'},
+					{data: 'PhanLoai'},
 					{data: 'Gia'},
 					{data: 'SoLuong'},
 					{data: 'ThanhTien'}

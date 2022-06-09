@@ -113,17 +113,10 @@
             
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse_feedback"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fa-solid fa-comments"></i>
-                    <span>Phản hồi</span>
+                <a class="nav-link" href="../../danh_gia/">
+                    <i class="fa-solid fa-comment"></i>
+                    <span>Đánh giá</span>
                 </a>
-                <div id="collapse_feedback" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="../../danh_gia/">Đánh giá</a>
-                        <a class="collapse-item" href="../../tin_nhan/">Tin nhắn</a>
-                    </div>
-                </div>
             </li>
             <hr class="sidebar-divider">
 
@@ -236,7 +229,8 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Thêm nhóm khách hàng</h1>
                         <button 
-                        class="btn btn-primary shadow-sm px-3 py-2 mr-2">
+                        class="btn btn-primary shadow-sm px-3 py-2 mr-2"
+						id="btn-save-group">
                             <i class="fa-solid fa-plus"></i>
                             Lưu
                         </button>
@@ -260,89 +254,40 @@
                                     <div class="row">
                                         <div class="form-group col-6">
                                             <label for="">Tên nhóm</label>
-                                            <input type="text" name="" id="" class="form-control" 
-                                            placeholder="Nhập tên nhóm..." >
+                                            <input type="text" id="group-name"  class="form-control" >
                                         </div>
                                         <div class="form-group col-6">
                                             <label for="">Mã nhóm</label>
-                                            <input type="text" name="" id="" class="form-control" 
-                                            placeholder="Nhập mã nhóm..." >
+                                            <input type="text" id="group-id"  class="form-control"  >
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="">Mô tả</label>
-                                        <textarea class="form-control" name="" id="" rows="5"></textarea>
+                                        <textarea class="form-control" id="group-desc"  rows="5"></textarea>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card shadow mb-4">
+                        </div>
+                        <div class="col-xl-6">
+							<div class="card shadow mb-4">
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">Điều khiện</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="condition__list">
-                                        <div class="condition__item">
-                                            <div class="condition__info">
-                                                Giới tính bằng nữ
-                                            </div>
-                                            <div class="condition__control">
-                                                <button class="condition__btn condition__btn--gray">
-                                                    <i class="fa-solid fa-pen"></i>
-                                                </button>
-                                                <button class="condition__btn">
-                                                    <i class="fa-solid fa-trash-can condition__btn--gray"></i>
-                                                </button>
-                                            </div>
-                                        </div>
+                                        
                                     </div>
-                                    <button data-toggle="modal" data-target=".modal_add_condition"
+									<button data-toggle="modal" data-target=".modal_add_condition"
                                     class="condition__btn text-primary float-right">
                                         Thêm điều kiện
                                     </button>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xl-6 col-sm-12">
-                            <div class="card shadow mb-4">
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Danh sách khách hàng thoả điều khiện</h6>
-                                </div>
-                                <div class="card-body card-customer">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered"
-                                        id="table-customer" cellspacing="0">
-                                            <thead>
-                                                <tr>
-                                                    <th>Mã khách hàng</th>
-                                                    <th>Tên khách hàng</th>
-                                                    <th>Số điện thoại</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>KH001</td>
-                                                    <td>Trang Trần</td>
-                                                    <td>0253185964</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>KH002</td>
-                                                    <td>Chí Nguyên</td>
-                                                    <td>0253185964</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+						</div>
                     </div>
                 </div>
-                <!-- /.container-fluid -->
-
             </div>
-            <!-- End of Main Content -->
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
@@ -378,34 +323,32 @@
                     <form action="" class="modal__form">
                         <div class="form-group">
                             <label for="">Thuộc tính</label>
-                            <select name="" class="form-control" id="">
-                                <option value="">Chọn thuộc tính</option>
-                                <option value="">Ngày sinh</option>
-                                <option value="">Tháng sinh</option>
-                                <option value="">Năm sinh</option>
-                                <option value="">Tuổi</option>
-                                <option value="">Giới tính</option>
-                                <option value="">Địa chỉ</option>
-                                <option value="">Tên</option>
-                                <option value="">Tổng số đơn đã mua</option>
-                                <option value="">Tổng chi tiêu</option>
-                                <option value="">Đơn hàng cao nhất</option>
+                            <select name="" class="form-control" id="property">
+                                <option value="-1">Chọn thuộc tính</option>
+                                <option value="Ngày sinh">Ngày sinh</option>
+                                <option value="Tháng sinh">Tháng sinh</option>
+                                <option value="Năm sinh">Năm sinh</option>
+                                <option value="Tuổi">Tuổi</option>
+                                <option value="Giới tính">Giới tính</option>
+                                <option value="Tên">Tên</option>
+                                <option value="Số đơn hàng">Số đơn hàng</option>
+                                <option value="ổng chi tiêu">Tổng chi tiêu</option>
+                                <option value="Đơn hàng cao nhất">Đơn hàng cao nhất</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="">Điều kiện</label>
-                            <select name="" class="form-control" id="">
-                                <option value="">Chọn điều kiện</option>
-                                <option value="">Bằng</option>
-                                <option value="">Lớn hơn</option>
-                                <option value="">Nhỏ hơn</option>
-                                <option value="">Khác</option>
+                            <select name="" class="form-control" id="condition">
+                                <option value="-1">Chọn điều kiện</option>
+                                <option value="bằng">bằng</option>
+                                <option value="lớn hơn">lớn hơn</option>
+                                <option value="lớn hơn">nhỏ hơn</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="">Giá trị</label>
                             <input type="text" class="form-control" placeholder="Nhập giá trị"
-                            name="" id="">
+                            name="" id="value">
                         </div>
                     </form>
                 </div>
@@ -413,7 +356,7 @@
                     <button class="modal__footer-btn btn btn-danger" data-dismiss="modal">
                         Huỷ
                     </button>
-                    <button class="modal__footer-btn btn btn-primary" data-dismiss="modal">
+                    <button class="modal__footer-btn btn btn-primary" id="btn-add-condition">
                         Xác nhận
                     </button>
                 </div>
@@ -427,15 +370,15 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Đăng xuất</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Ấn đăng xuất nếu bạn muốn thoát khỏi trang quản lý</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="">Logout</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Huỷ</button>
+                    <a class="btn btn-primary" id="btn-logout-admin">Đăng xuất</a>
                 </div>
             </div>
         </div>

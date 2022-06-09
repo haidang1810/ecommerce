@@ -81,7 +81,7 @@
                                     <li class="navbar__user--menu-item">
                                         <a href="./thong_tin_ca_nhan/">Tài khoản của tôi</a>
                                     </li>
-                                    <li class="navbar__user--menu-item">
+                                    <li class="navbar__user--menu-item" id="btn-link-order-list">
                                         <a href="#">Đơn mua</a>
                                     </li>
                                     <li class="navbar__user--menu-item">
@@ -218,18 +218,18 @@
                                     <div class="auth-form__group auth-form__group--password">
                                         <input type="password" name="" id="input-password-login" 
                                         class="auth-form__input auth-form__input--password"
-                                        placeholder="Mật khẩu">
+                                        placeholder="Mật khẩu" autocomplete="false">
                                         <button class="auth-form__group--icon" 
                                         id="btn-show-pass-login">
                                             <i class="fa-solid fa-eye"></i>
                                         </button>
                                     </div>
                                     <div class="auth-form__group auth-form__group--right">
-                                        <a href="#" class="auth-form__link auth-form__link--forgot">Quên mật khẩu</a>
+                                        <a  class="auth-form__link auth-form__link--forgot">Quên mật khẩu</a>
                                     </div>
                                     <div class="auth-form__footer">
                                         <button class="auth-form__btn auth-form__btn--close" data-dismiss="modal">Trở lại</button>
-                                        <button class="auth-form__btn auth-form__btn--submit"
+                                        <button class="auth-form__btn auth-form__btn--submit" type="button"
 										id="btn-login">
 											Đăng nhập
 										</button>
@@ -246,7 +246,7 @@
                                 </div>
                                 <div class="auth-form__form">
                                     <div class="auth-form__group">
-                                        <input type="text" name="username" id="" rules='required|min:4|max:30'
+                                        <input type="text" name="username"  rules='required|min:4|max:30'
 										class="auth-form__input"
                                         placeholder="Tài khoản">
 										<span class="message-err"></span>
@@ -255,7 +255,7 @@
                                         <input type="password" name="password" id="input-password-register" 
 										rules='required|min:8|max:30'
                                         class="auth-form__input auth-form__input--password"
-                                        placeholder="Mật khẩu">
+                                        placeholder="Mật khẩu" autocomplete="false">
                                         <button class="auth-form__group--icon" 
                                         id="btn-show-pass-register">
                                             <i class="fa-solid fa-eye"></i>
@@ -263,7 +263,7 @@
 										<span class="message-err"></span>
                                     </div>
                                     <div class="auth-form__group">
-                                        <input type="text" name="fullName" id="" class="auth-form__input"
+                                        <input type="text" name="fullName"  class="auth-form__input"
                                         placeholder="Họ và tên"
 										rules='required'>
 										<span class="message-err"></span>
@@ -279,7 +279,7 @@
 										<span class="message-err"></span>
                                     </div>   
 									<div class="auth-form__group">
-                                        <input type="text" name="verifyCode" id="" class="auth-form__input"
+                                        <input type="text" name="verifyCode"  class="auth-form__input"
                                         placeholder="Mã xác nhận"
 										rules='required'>
 										<span class="message-err"></span>

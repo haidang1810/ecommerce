@@ -2,7 +2,7 @@ const StaffsModel = require('../models/staffsModel');
 class StaffsController {
 
     getByUser(req,res){
-        StaffsModel.agetByUserdd(req,function(response){
+        StaffsModel.getByUser(req,function(response){
             res.json(response);
         })
     }

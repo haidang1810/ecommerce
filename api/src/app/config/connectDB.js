@@ -4,7 +4,8 @@ const pool = mysql.createPool({
     user     : 'root',
     password : '',
     database : 'db_cua_hang',
-    connectionLimit: 10
+    connectionLimit: 10,
+	dateStrings: true
 });
 
 

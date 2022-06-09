@@ -112,17 +112,10 @@
             
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse_feedback"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fa-solid fa-comments"></i>
-                    <span>Phản hồi</span>
+                <a class="nav-link" href="../../danh_gia/">
+                    <i class="fa-solid fa-comment"></i>
+                    <span>Đánh giá</span>
                 </a>
-                <div id="collapse_feedback" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="../../danh_gia/">Đánh giá</a>
-                        <a class="collapse-item" href="../../tin_nhan/">Tin nhắn</a>
-                    </div>
-                </div>
             </li>
             <hr class="sidebar-divider">
 
@@ -310,9 +303,9 @@
                                         id="product-list" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th>STT</th>
                                                     <th>Ảnh bìa</th>
                                                     <th>Tên sản phẩm</th>
+                                                    <th>Phân loại</th>
                                                     <th>Giá bán</th>
                                                     <th>Số lượng</th>
                                                     <th>Thành tiền</th>
@@ -351,6 +344,7 @@
                                         <div class="col-6">
                                             <p class="payment__info">Tạm tính:</p>
                                             <p class="payment__info">Phí vận chuyển:</p>
+                                            <p class="payment__info">Giảm giá áp dụng:</p>
                                             <p class="payment__info">Tổng thanh toán:</p>
                                         </div>
                                         <div class="col-67">
@@ -359,6 +353,9 @@
 											</p>
                                             <p class="payment__info" id="transport-cost">
 
+											</p>
+                                            <p class="payment__info" id="discount">
+												
 											</p>
                                             <p class="payment__info" id="total-cost">
 												
@@ -403,15 +400,15 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Đăng xuất</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Ấn đăng xuất nếu bạn muốn thoát khỏi trang quản lý</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="">Logout</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Huỷ</button>
+                    <a class="btn btn-primary" id="btn-logout-admin">Đăng xuất</a>
                 </div>
             </div>
         </div>

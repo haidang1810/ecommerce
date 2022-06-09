@@ -1,0 +1,436 @@
+p {
+	margin: 0;
+}
+.header-payment{
+	background-color: var(--white-color);
+	padding-bottom: 20px;
+	margin-top: 20px;
+}
+.header-payment__line{
+	height: 3px;
+    width: 100%;
+    background-position-x: -30px;
+    background-size: 116px 3px;
+    background-image: repeating-linear-gradient(45deg,#6fa6d6,#6fa6d6 33px,
+	transparent 0,transparent 41px,#f18d9b 0,#f18d9b 74px,
+	transparent 0,transparent 82px);
+}
+.header-payment__main{
+	margin-top: 20px;
+	padding: 0 30px;
+}
+.header-payment__heading{
+	font-size: 2rem;
+	color: var(--red-color);
+}
+.header-payment__heading i {
+	font-size: 1.6rem;
+	margin-right: 10px;
+}
+.header-payment__input--hide {
+	display: none;
+}
+.header-payment__input {
+	font-size: 1.6rem;
+	padding: 5px 10px;
+	outline: none;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+	margin-right: 5px;
+}
+.header-payment__info{
+	font-size: 1.6rem;
+}
+.header-payment__customer{
+	font-weight: bold;
+	margin-right: 15px;
+}
+.header-payment__address{
+	margin-right: 15px;
+}
+.header-payment__btn{
+	color: #0055aa;
+	cursor: pointer;
+}
+.product{
+	background-color: var(--white-color);
+	margin-top: 20px;
+	font-size: 1.6rem;
+}
+.product__title{
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	padding: 10px 20px;
+	font-size: 1.6rem;
+	color: var(--text-color);
+	border-bottom: 1px solid #ccc;
+}
+.product__title-product{
+	width: 60%;
+}
+.product__title-price,
+.product__title-amount,
+.product__title-total{
+	width: 13.33333%;
+	text-align: center;
+}
+
+.product__list{
+	margin-top: 15px;
+}
+.product__item{
+	padding: 20px;
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	border-bottom: 1px dashed #d3d3d3;
+}
+.product_info{
+	width: 60%;
+	display: flex;
+	justify-content: left;
+	align-items: center;
+}
+.product__img{
+	width: 80px;
+	height: 80px;
+	object-fit: cover;
+}
+.product__name{
+	margin-left: 15px;
+	width: 50%;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+.product__variation{
+	color: #787878;
+	margin-left: 15px;
+	
+}
+.product__price,
+.product__amount,
+.product__money{
+	width: 13.33333%;
+	text-align: center;
+}
+
+.voucher{
+	background-color: var(--white-color);
+	margin-top: 20px;
+	padding: 0 0 20px 0;
+}
+.voucher__header{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 20px 20px 20px;
+	border-bottom: 1px solid #ccc;
+}
+.voucher__heading{
+	font-size: 2rem;
+	color: var(--red-color);
+	font-weight: 500;
+}
+
+.voucher__btn{
+	background-color: transparent;
+	border: none;
+	color: #0055aa;
+	font-size: 1.6rem;
+}
+.voucher__list{
+	margin-top: 20px;
+}
+.voucher__item{
+	font-size: 1.5rem;
+	margin-top: 20px;
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	padding: 0 15px;
+}
+
+.voucher__description{
+	width: 70%;
+}
+.voucher__discount{
+	width: 10%;
+}
+.voucher__time {
+	width: 20%;
+	text-align: right;
+}
+.payment{
+	background-color: var(--white-color);
+	margin-top: 20px;
+	margin-bottom: 50px;
+}
+.payment__header{
+	font-size: 2rem;
+	font-weight: 500;
+	padding: 20px;
+	border-bottom: 1px solid #ccc;
+}
+.payment__main {
+	padding: 20px 0;
+}
+.payment__radio {
+    transform: scale(1.35);
+    cursor: pointer;
+	margin-left: 20px;
+}
+.payment__label {
+    cursor: pointer;
+    margin-left: 5px;
+	font-size: 1.6rem;
+	user-select: none;
+}
+#online-payment:checked  ~ .payment__list {
+    display: flex;
+}
+.payment__list {
+    width: 75%;
+    display: flex;
+    align-items: center;
+    display: none;
+}
+.payment__item {
+    margin-right: 10px;
+    cursor: pointer;
+}
+.payment__item--active {
+    border: 1px solid #ee4d2d;
+}
+.payment__item img {
+    padding: 3px;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+.payment__info{
+	font-size: 1.5rem;
+	color: #5d5d5d;
+	padding: 20px 0;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+.payment__col {
+	width: 73%;
+}
+.payment__info-item{
+	display: flex;
+	align-items: center;
+	padding-right: 20px;
+}
+.payment__info-title {
+	text-align: left;
+	width: 17%;
+}
+.payment__info-value {
+	width: 10%;
+	text-align: right;
+}
+.payment__info-value--red {
+	color: var(--red-color);
+	font-size: 2.2rem;
+	font-weight: 500;
+}
+.payment__footer {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: end;
+}
+.payment__footer--col {
+	width: 80%;
+}
+.payment__submit {
+	border: none;
+	font-size: 1.6rem;
+	color: var(--white-color);
+	background-color: var(--red-color);
+	padding: 5px 20px;
+	border-radius: 4px;
+	margin: 20px 20px 0 0;
+}
+.payment__submit:hover{
+	opacity: 0.9;
+}
+.modal__inner{
+    background-color: var(--background-hover-color);
+    margin-top: 10%;
+    padding: 15px;
+    z-index: 10;
+    width: 600px;
+    padding-bottom: 0;
+    border-radius: 2px;
+}
+.modal__header{
+    background-color: var(--white-color);
+    padding: 15px 20px;
+    position: relative;
+    border-bottom: 1px solid #eeeeee;
+}
+.modal__header h3 {
+    text-align: center;
+    margin: 0;
+    font-size: 2rem;
+}
+.modal__close-btn{
+    position: absolute;
+    top: -25px;
+    right: -25px;
+    font-size: 1.6rem;
+    width: 25px;
+    height: 25px;
+    background-color: var(--white-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.modal__body{
+    background-color: var(--white-color);
+    margin: 0;
+    font-size: 1.5rem;
+    padding: 15px 20px;
+	padding-bottom: 0;
+}
+.modal__form {
+	width: 80%;
+	margin: 0 auto;
+}
+.modal__form--address {
+	width: 90%;
+}
+.modal__form-location{
+	margin-bottom: 15px;
+}
+.modal__form-input {
+	width: 100%;
+	font-size: 1.4rem;
+	padding: 10px 20px;
+	border: 1px solid #a2a2a2;
+	border-radius: 2px;
+	outline: none;
+}
+.modal__form-input--address {
+	width: calc(66.666667% - 30px) !important;
+	margin: 0 15px;
+	border: 1px solid #ccc;
+	font-size: 1.6rem;
+	padding: 5px 10px;
+	outline: none;
+}
+.modal__form-label {
+	display: block;
+	color: #a2a2a2;
+}
+.modal__footer{
+    padding: 15px 0;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+.modal__footer-btn{
+    width: 100px;
+    height: 40px;
+    font-size: 1.4rem;
+    border: none;
+    border-radius: 2px;
+}
+
+.modal__footer-btn--cancel {
+	color: var(--text-color);
+	border: 1px solid #a3a3a3;
+	background-color: var(--white-color);
+}
+.modal__footer-btn--cancel:hover {
+	background-color: var(--background-hover-color);
+}
+.modal__footer-btn--submit {
+	color: var(--white-color);
+    background-color: rgba(255, 66, 78);
+	margin-left: 15px;	
+}
+.modal__footer-btn--submit:hover {
+    background-color: rgba(255, 66, 78, 0.8);
+}
+
+.modal__voucher-list {
+	height: 400px;
+	overflow-y: scroll;
+}
+.modal__voucher-search {
+	width: calc(75% - 13px);
+	display: block;
+	margin: 0 auto;	
+	transform: translateX(-9px);
+	padding: 10px 20px;
+	font-size: 1.5rem;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+	outline: none;
+}
+.modal__voucher-item{
+	margin: 10px auto;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+	padding: 10px;
+	width: 75%;
+	height: 80px;
+	display: flex;
+	align-items: center;
+}
+.modal__voucher-info {
+	width: 70%;
+}
+.modal__voucher-desc {
+	font-weight: 500;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.modal__voucher-time{
+	font-size: 1.4rem;
+	color: #868686;
+}
+.modal__voucher-control {
+	width: 30%;
+	text-align: center;
+	position: relative;
+}
+.modal__voucher-add {
+	color: var(--orange-color);
+	border: 1px solid var(--orange-color);
+	border-radius: 2px;
+	background-color: transparent;
+	padding: 2px 4px;
+}
+.modal__voucher-add:hover {
+	background-color: var(--orange-color);
+	color: var(--white-color);
+}
+.modal__voucher-delete {
+	position: absolute;
+	color: var(--white-color);
+	background-color: #919191;
+	border: none;
+	padding: 4px 10px;
+	font-size: 1rem;
+	bottom: 16px;
+	right: -10px;
+	border-bottom-left-radius: 15px;
+}
+
+#info-phone::-webkit-outer-spin-button,
+#info-phone::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

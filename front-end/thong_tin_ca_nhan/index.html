@@ -68,7 +68,7 @@
                                     <li class="navbar__user--menu-item">
                                         <a href="./">Tài khoản của tôi</a>
                                     </li>
-                                    <li class="navbar__user--menu-item">
+                                    <li class="navbar__user--menu-item" id="btn-link-order-list">
                                         <a href="#">Đơn mua</a>
                                     </li>
                                     <li class="navbar__user--menu-item">
@@ -118,29 +118,29 @@
 					<div class="col-xl-2">
 						<ul class="menu-bar">
 							<li class="menu-bar__item">
-								<a href="" class="menu-bar__link">
+								<a href="./" class="menu-bar__link">
 									<i class="fa-regular fa-user menu-bar__icon"></i>
 									Tài khoản của tôi
 								</a>
 							</li>
 							<li class="menu-bar__item">
-								<a href="" class="menu-bar__link">
+								<a href="../don_hang/" class="menu-bar__link">
 									<i class="fa-solid fa-clipboard-list menu-bar__icon"></i>
 									Đơn mua
 								</a>
 							</li>
-							<li class="menu-bar__item">
-								<a href="" class="menu-bar__link">
+							<!-- <li class="menu-bar__item">
+								<a href="../thong_bao/" class="menu-bar__link">
 									<i class="far fa-bell menu-bar__icon  menu-bar__icon--orange"></i>
 									Thông báo
 								</a>
-							</li>
-							<li class="menu-bar__item">
-								<a href="" class="menu-bar__link">
+							</li> -->
+							<!-- <li class="menu-bar__item">
+								<a href="../voucher/" class="menu-bar__link">
 									<i class="fa-solid fa-ticket menu-bar__icon menu-bar__icon--orange"></i>
 									Kho khuyến mãi
 								</a>
-							</li>
+							</li> -->
 						</ul>
 					</div>
 					<div class="col-xl-10 profile">
@@ -152,6 +152,16 @@
 									<p class="profile__control" id="profile-username">
 
 									</p>
+								</div>
+								<div class="profile__group">
+									<div class="profile__label">Mật khẩu</div>
+									<div class="profile__control">
+										<span id="profile-password">********</span>
+										<button class="profile__btn-link text-primary"
+										data-toggle="modal" data-target=".modal_change_password">
+											Thay đổi
+										</button>
+									</div>
 								</div>
 								<div class="profile__group">
 									<p class="profile__label">Họ và tên</p>
@@ -362,6 +372,71 @@
                         </button>
                         <button class="modal__footer-btn modal__footer-btn--submit" 
 						id="btn_select_address">
+                            Lưu lại
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="modal fade modal_change_password" >
+            <div class="modal-dialog">
+                <div class="modal__inner modal-content">
+                    <div class="modal__header">
+                        <h3>Thay đổi mật khẩu</h3>
+                        <div class="modal__close-btn" data-dismiss="modal">
+                            <i class="fa-solid fa-xmark"></i>
+                        </div>
+                    </div>
+                    <div class="modal__body">
+                        <form class="modal__form modal__form--password">
+							<label for="" class="modal__form-label">
+								Mật khẩu củ
+							</label>
+                            <div class="auth-form__group auth-form__group--password ">
+								<input type="password" name="password"
+								rules='required'
+								class="auth-form__input auth-form__input--password input-password-change"
+								autocomplete="false">
+								<button class="auth-form__group--icon btn-show-pass-change" type="button">
+									<i class="fa-solid fa-eye"></i>
+								</button>
+								<span class="message-err"></span>
+							</div>
+							<label for="" class="modal__form-label">
+								Mật khẩu mới
+							</label>
+                            <div class="auth-form__group auth-form__group--password">
+								<input type="password" name="newPassword" 
+								rules='required|min:8|max:30'
+								class="auth-form__input auth-form__input--password input-password-change"
+								autocomplete="false">
+								<button class="auth-form__group--icon btn-show-pass-change" type="button">
+									<i class="fa-solid fa-eye"></i>
+								</button>
+								<span class="message-err"></span>
+							</div>
+							<label for="" class="modal__form-label">
+								Nhập lại mật khẩu mới
+							</label>
+                            <div class="auth-form__group auth-form__group--password">
+								<input type="password" name="confirmPass" 
+								rules='required|min:8|max:30'
+								class="auth-form__input auth-form__input--password input-password-change"
+								autocomplete="false">
+								<button class="auth-form__group--icon btn-show-pass-change" type="button">
+									<i class="fa-solid fa-eye"></i>
+								</button>
+								<span class="message-err"></span>
+							</div>
+                        </form>
+                    </div>
+                    <div class="modal__footer">
+						<button class="modal__footer-btn modal__footer-btn--cancel" 
+						data-dismiss="modal" type="buttton">
+                            Huỷ
+                        </button>
+                        <button class="modal__footer-btn modal__footer-btn--submit" 
+						id="btn_submit_change_pass">
                             Lưu lại
                         </button>
                     </div>

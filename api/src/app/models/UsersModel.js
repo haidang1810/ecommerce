@@ -1,4 +1,5 @@
 const pool = require('../config/connectDB');
+const poolAwait = require('../config/connectDBAwait');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
@@ -39,7 +40,6 @@ const createCustomer = (username,fullName,phone,resolve,reject)  => {
     })
 }
 User.add = (req, res) => {
-    console.log(req.body.verifyCode);
 	if(!verifyCode.checkCode(req.body.verifyCode)){
 		res({
 			status: 0,
@@ -176,7 +176,7 @@ User.add = (req, res) => {
         })
     })    
 }
-User.getVerifyCode =  (req, res) => {
+User.getVerifyCode = async (req, res) => {
 	let phone = req.params.phone;
 	verifyCode.getCode(phone, (isSuccess)=>{
 		if(isSuccess){
@@ -195,5 +195,114 @@ User.getVerifyCode =  (req, res) => {
 	})
 }
 
+User.changePassword = (req, res) => {
+	let password = req.body.password;
+	let newPassword = req.body.newPassword;
+	let confirmPass = req.body.confirmPass;
+	if(newPassword!=confirmPass){
+		res({
+			status: 0,
+			msg: 'Nhập lại mật khẩu không chính xác'
+		});
+		return;
+	}
+	const getUser = `select * from tb_nguoi_dung where TaiKhoan=?`;
+	pool.query(getUser, req.username, (err, user)=>{
+		if(err){
+			res({
+				status: 0,
+				msg: err.sqlMessage
+			});
+			return;
+		}
+		bcrypt.compare(password, user[0].MatKhau, function(err, bool) {
+			if(err){
+				res({
+					status: 0,
+					msg: err
+				});
+				return;
+			}
+			if(bool){
+				const updatePass = `update tb_nguoi_dung set MatKhau=? where TaiKhoan=?`;
+				bcrypt.hash(newPassword, saltRounds, function(err, hash) {
+                    if(err){
+                        res({
+                            status: 0,
+                            msg: err
+                        });
+                        return;
+                    }
+                    pool.query(updatePass,[hash, req.username],(err)=>{
+						if(err){
+							res({
+								status: 0,
+								msg: err.sqlMessage
+							});
+							return;
+						}
+						res({
+							status: 1,
+							msg: 'success'
+						});
+						return;
+					})
+                });
+			}else{
+				res({
+					status: 0,
+					msg: "Mật khẩu không chính xác",
+				});
+				return;
+			}
+		});
+	})
+}
 
+User.forgotPassword = (req, res) => {
+	if(!verifyCode.checkCode(req.body.verifyCode)){
+		res({
+			status: 0,
+			msg: "Mã xác nhận không chính xác hoặc hết hạn",
+		});
+		return;
+	}
+	let password = req.body.password;
+	let phone = req.body.phone;
+	const getUser = `select * from tb_khach_hang where SDT=?`;
+	pool.query(getUser, phone, (err, user)=>{
+		if(err){
+			res({
+				status: 0,
+				msg: err.sqlMessage
+			});
+			return;
+		}
+		const updatePass = `update tb_nguoi_dung set MatKhau=? where TaiKhoan=?`;
+		bcrypt.hash(password, saltRounds, function(err, hash) {
+			if(err){
+				res({
+					status: 0,
+					msg: err
+				});
+				return;
+			}
+			pool.query(updatePass,[hash, user[0].TaiKhoan],(err)=>{
+				if(err){
+					res({
+						status: 0,
+						msg: err.sqlMessage
+					});
+					return;
+				}
+				verifyCode.deleteCode(req.body.verifyCode);
+				res({
+					status: 1,
+					msg: 'success'
+				});
+				return;
+			})
+		});
+	})
+}
 module.exports = User;

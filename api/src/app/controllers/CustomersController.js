@@ -21,6 +21,11 @@ class CustomersController {
             res.json(response);
         })
     }
+    getMyAccount(req,res){
+        CustomersModel.getMyAccount(req,function(response){
+            res.json(response);
+        })
+    }
     getVerifyCode(req,res){
         CustomersModel.getVerifyCode(req,function(response){
             res.json(response);

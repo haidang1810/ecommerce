@@ -111,17 +111,10 @@
             
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse_feedback"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fa-solid fa-comments"></i>
-                    <span>Phản hồi</span>
+                <a class="nav-link" href="../danh_gia/">
+                    <i class="fa-solid fa-comment"></i>
+                    <span>Đánh giá</span>
                 </a>
-                <div id="collapse_feedback" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="../danh_gia/">Đánh giá</a>
-                        <a class="collapse-item" href="../tin_nhan/">Tin nhắn</a>
-                    </div>
-                </div>
             </li>
             <hr class="sidebar-divider">
 
@@ -257,11 +250,13 @@
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                     aria-labelledby="dropdownMenuLink">
                                     <div class="dropdown-header">Hiển thị theo:</div>
-                                    <a class="dropdown-item" href="#">Chờ phê duyệt</a>
-                                    <a class="dropdown-item" href="#">Đã duyệt</a>
-                                    <a class="dropdown-item" href="#">Đang vận chuyển</a>
-                                    <a class="dropdown-item" href="#">Giao thành công</a>
-                                    <a class="dropdown-item" href="#">Giao thất bại</a>
+                                    <a id="-1" class="dropdown-item btn-filter-order">Tất cả</a>
+                                    <a id="0" class="dropdown-item btn-filter-order">Chờ phê duyệt</a>
+                                    <a id="1" class="dropdown-item btn-filter-order">Đã duyệt</a>
+                                    <a id="2" class="dropdown-item btn-filter-order">Đang vận chuyển</a>
+                                    <a id="3" class="dropdown-item btn-filter-order">Giao thành công</a>
+                                    <a id="4" class="dropdown-item btn-filter-order">Giao thất bại</a>
+                                    <a id="5" class="dropdown-item btn-filter-order">Đã huỷ</a>
                                 </div>
                             </div>
                         </div>
@@ -274,6 +269,7 @@
                                             <th>Mã đơn hàng</th>
                                             <th>Tên khách hàng</th>
                                             <th>Tổng tiền</th>
+                                            <th>Ngày lập</th>
                                             <th>Trạng thái</th>
                                             <th>Hành động</th>
                                         </tr>
@@ -354,15 +350,15 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Đăng xuất</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Ấn đăng xuất nếu bạn muốn thoát khỏi trang quản lý</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="">Logout</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Huỷ</button>
+                    <a class="btn btn-primary" id="btn-logout-admin">Đăng xuất</a>
                 </div>
             </div>
         </div>

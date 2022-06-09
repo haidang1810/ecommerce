@@ -12,6 +12,8 @@ var API_USER = 'users/';
 
 var USER_ADD = 'add/'
 var USER_VERIFYCODE = 'getVerifyCode/';
+var USER_CHANGEPASS = 'changePassword/';
+var USER_FORGOT = 'forgotPassword/';
 
 // API category
 var API_CATEGORY = "categories/";
@@ -34,7 +36,10 @@ var PRODUCT_DELETE = 'delete/';
 // API Rating
 var API_RATING = 'ratings/';
 
+var RATING_GETALL = 'getAll/';
 var RATING_GETBYPRODUCT = 'getByProduct/';
+var RATING_ADD = 'add/';
+var RATING_REPLY = 'replyByAdmin/';
 
 //API images
 var API_IMAGE = 'images/';
@@ -54,12 +59,15 @@ var API_CART = 'carts/';
 
 var CART_GETBYUSER = 'getByUser/';
 var CART_ADD = 'add/';
+var CART_DELETE = 'delete/';
+var CART_UPDATE = 'updateAmount/';
 
 // API customer
 var API_CUSTOMER = 'customers/';
 
 var CUSTOMER_GETALL = 'getAll/';
 var CUSTOMER_GETBYACCOUNT = 'getByAccount/';
+var CUSTOMER_GETMYACCOUNT = 'getMyAccount/';
 var CUSTOMER_CHANGEGMAIL = 'changeGmail/';
 var CUSTOMER_GETVERIFYCODE = 'getVerifyCode/';
 var CUSTOMER_CHANGEPHONE = "changePhone/";
@@ -75,11 +83,60 @@ var ORDER_GETALL = 'getAll/';
 var ORDER_CHANGESTATUS = 'changeStatus/';
 var ORDER_GETBYID = 'getById/';
 var ORDER_CREATE = 'createOrder/';
+var ORDER_GETBYCUSTOMER = 'getByCustomer/';
 
 // API Notification
 var API_NOTIFICATION = 'notifications/';
 
 var NOTI_GETBYUSER = 'getByUser/';
+
+
+// API group customer
+var API_GROUP = 'groups/';
+
+var GROUP_GETALL = 'getAll/';
+var GROUP_DELETE = 'delete/';
+var GROUP_ADD= 'add/';
+
+// API Variation: 
+var API_VARIATION = 'variations/'
+var VARIATION_GETBYPRODUCT = 'getByProduct/';
+var VARIATION_ADD = 'add/';
+var VARIATION_ADDOPT = 'addOption/';
+var VARIATION_DELETE = 'delete/';
+var VARIATION_STATUSOPT = 'changeStatusOption/';
+var VARIATION_DELETEOPT = 'deleteOption/';
+
+
+// API Discount
+var API_DISCOUNT = 'discounts/';
+
+var DISCOUNT_GETALL = 'getAll/';
+var DISCOUNT_DELETE = 'delete/';
+var DISCOUNT_ADD = 'add/';
+var DISCOUNT_GETBYID = 'getById/';
+
+// API Campaign
+var API_CAMPAIGN = 'campaigns/';
+var CAMPAIGN_ADD = 'add/';
+var CAMPAIGN_GETALL = 'getAll/';
+var CAMPAIGN_GETBYID = 'getById/';
+
+// API voucher
+var API_VOUCHER = 'vouchers/';
+
+var VOUCHER_GETALL = 'getAll/';
+
+
+// API report
+
+var API_REPORT = 'reports/';
+
+var REPORT_BASEINFO = 'baseInfo/';
+var REPORT_SALES = 'reportSales/';
+var REPORT_ORDER = 'reportOrder/';
+var REPORT_PRODUCT = 'reportProduct/';
+var REPORT_BESTSALES = 'reportBestSales/';
 
 var LENGHT_BOX = 50;
 var WIDTH_BOX = 35;

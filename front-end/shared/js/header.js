@@ -3,6 +3,12 @@ $("#btn-search").click(function(){
 	$(".header__input").val("");
 	window.location.href = BASE_URL_CLIENT+`tim_kiem/?keyword=${keyword}`;
 });
+$('#input-register-phone').on('keypress', function (event) {
+    var charCode = !event.charCode ? event.which : event.charCode;
+    if( charCode == 46 || charCode == 69 || charCode == 101 
+    || charCode == 45 || charCode == 43)
+        event.preventDefault();
+});
 $("#btn-show-pass-login").click(function(){
     if($("#input-password-login").attr("type") == "password"){
         $("#btn-show-pass-login").html(`<i class="fa-solid fa-eye-slash"></i>`);
@@ -140,6 +146,8 @@ function checkLogin(isLogin){
 				isLogin(data); 
 			else if(data.rule==2){
 				window.location.href=BASE_URL_CLIENT+'admin/trang_chu/';
+			}else{
+				isLogin(false); 
 			}
 		})
 		.catch(handlerError);
@@ -310,4 +318,15 @@ $("#btn_logout").click(function(){
 			window.location.reload();
 		})	
 })
-
+$(".cart__button").click(function(){
+	window.location.href = BASE_URL_CLIENT+'gio_hang/';
+});
+$(".header__cart-footer").click(function(){
+	window.location.href = BASE_URL_CLIENT+'gio_hang/';
+});
+$("#btn-link-order-list").click(function(){
+	window.location.href = BASE_URL_CLIENT+'don_hang/';
+})
+$(".auth-form__link--forgot").click(function(){
+	window.location.href = BASE_URL_CLIENT+'quen_mat_khau/';
+})

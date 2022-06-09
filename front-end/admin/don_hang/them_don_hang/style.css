@@ -221,3 +221,27 @@ html {
 	padding: 5px 10px;
 	outline: none;
 }
+
+.modify__option-item{
+	cursor: pointer;
+	margin-top: 5px;
+	padding: 5px 15px;
+	background-color: transparent;
+}
+
+.modify__option-item--active {
+	border: 1px solid var(--red-color) !important;
+	color: var(--red-color);
+}
+.modify__option-item--disable {
+	color: #adadad;
+	user-select: none;
+	cursor: default
+}
+.modify__option-item--normal {
+	border: 1px solid #adadad;
+}
+.modify__option-item--normal:hover {
+	border: 1px solid var(--red-color);
+	color: var(--red-color);
+}

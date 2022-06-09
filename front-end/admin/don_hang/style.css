@@ -70,3 +70,6 @@ html {
 .modal__footer-btn{
     margin: 0 4px;
 }
+.dropdown-item {
+	cursor: pointer;
+}

@@ -1,8 +1,11 @@
 const pool = require('../config/connectDB');
+const poolAwait = require('../config/connectDBAwait');
 const bcrypt = require('bcrypt');
 const verifyCode = require('../services/verifyCode');
 const cloudinary = require('cloudinary').v2;
 const Address = require('./AddressesModel');
+const autoJoinGroup = require('../services/autoJoinGroup');
+
 cloudinary.config({
 	cloud_name: process.env.CLOUDINARY_NAME,
 	api_key: process.env.CLOUDINARY_API_KEY,
@@ -19,22 +22,14 @@ const Customer = function(customer) {
     this.Gmail = staff.Gmail;
     this.AnhDaiDien = staff.AnhDaiDien;
 }
-const createCode = () => {
-    let code = "";
-    let possible = "abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    for (let i = 0; i < 20; i++)
-    	code += possible.charAt(Math.floor(Math.random() * possible.length));
-	pool.query("select MaKh from tb_khach_hang where MaKH=?",code,(err,result)=>{
-		if(err||result.length>0){
-			createCode();
-		}else
-			return code;
-	})
-    return code;
+async function getAddressByCustomer(customer){
+	return await (await Address.findOne({customer}));
 }
+
+
 Customer.getAll = (req, res) => {
 	const getCustomer = 'select * from tb_khach_hang';
-	pool.query(getCustomer, (err,result)=>{
+	pool.query(getCustomer, async (err,result)=>{
 		if(err){
 			res({
 				status: 0,
@@ -42,10 +37,33 @@ Customer.getAll = (req, res) => {
 			});
 			return;
 		}
+		let customers = result;
+		for(let i=0; i<customers.length;i++){
+			const getGroup = `select TenNhom 
+			from tb_nhom_khach_hang, tb_kh_nhom_kh 
+			where tb_kh_nhom_kh.MaNhom=tb_nhom_khach_hang.MaNhom and 
+			MaKH=?`
+			try {
+				let [groups, fields] = await poolAwait.query(getGroup,customers[i].MaKH);
+				if(groups)
+					customers[i].NhomKH = groups;
+				else customers[i].NhomKH = [];
+				let address = await getAddressByCustomer(customers[i].MaKH);
+				if(address){
+					customers[i].DiaChi = `${address.address}, ${address.ward.name}, ${address.district.name}, ${address.province.name}`
+				}else customers[i].DiaChi = '';
+			} catch (error) {
+				res({
+					status: 0,
+					msg: error
+				});
+				return;
+			}
+		}
 		res({
 			status: 1,
 			msg: "success",
-			data: result
+			data: customers
 		});
 		return;
 	})
@@ -90,7 +108,26 @@ Customer.searchByName = (req, res) => {
 }
 Customer.getByAccount = (req, res)=>{
 	const getCustomer = 'select * from tb_khach_hang where TaiKhoan=?';
-	pool.query(getCustomer,req.username, (err,result)=>{
+	pool.query(getCustomer,req.params.user, (err,result)=>{
+		if(err){
+			res({
+				status: 0,
+				msg: err
+			});
+			return;
+		}
+		res({
+			status: 1,
+			msg: "success",
+			data: result[0]
+		});
+		return;
+	})
+}
+Customer.getMyAccount = (req, res) => {
+	const username = req.username;
+	const getCustomer = `select * from tb_khach_hang where TaiKhoan=?`;
+	pool.query(getCustomer, username, (err, result)=>{
 		if(err){
 			res({
 				status: 0,
@@ -226,6 +263,7 @@ Customer.changeInfo = (req, res)=>{
 				status: 1,
 				msg: "success"
 			});
+			autoJoinGroup();
 			return
 		});
 	}else{
@@ -304,10 +342,12 @@ Customer.changeInfo = (req, res)=>{
 	}
 	
 }
-Customer.add = (req, res) => {
-	let customerID = createCode();
+Customer.add = async (req, res) => {
+	let customerID = await createCode();
 	let name = req.body.HoTen;
 	let phone = req.body.SDT;
+	let gender = req.body.GioiTinh;
+	let gmail = req.body.Gmail;
 	pool.query("select MaKH from tb_khach_hang where SDT=?",phone,(err,result)=>{
 		if(err){
 			res({
@@ -323,9 +363,9 @@ Customer.add = (req, res) => {
 			});
 		}
 	});
-	const addCustomer = `insert into tb_khach_hang(MaKH,HoTen,SDT)
-		values(?,?,?)`;
-	pool.query(addCustomer,[customerID,name,phone],
+	const addCustomer = `insert into tb_khach_hang(MaKH,HoTen,SDT,GioiTinh,Gmail)
+		values(?,?,?,?,?)`;
+	pool.query(addCustomer,[customerID,name,phone,gender,gmail],
 		(err)=>{
 			if(err){
 				res({
@@ -344,13 +384,16 @@ Customer.add = (req, res) => {
 						msg: "Thêm thànhg công",
 						customerID
 					});
+					autoJoinGroup();
+					return;
 				})
-				.catch(()=>{
+				.catch((err)=>{
 					pool.query("delete from tb_khach_hang where MaKH=?",customerID);
 					res({
 						status: 0,
 						msg: "Có lỗi khi thêm địa chỉ vui lòng thử lại"
 					});
+					return;
 				})
 		})
 }

@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Website mua bán trang sức số 1 Việt Nam</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+        <script src="https://kit.fontawesome.com/a009e9706c.js"></script>
+        <link rel="stylesheet" href="../shared/css/base.css">   
+        <link rel="stylesheet" href="../shared/css/index.css">
+        <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="../shared/css/header.css">
+    </head>
+    <body>
+        <div class="app">
+			<div class="loading loading_hide">
+				<img src="../shared/img/loading.gif" alt="">
+			</div>
+            <header class="header">
+                <nav class="header__navbar container">
+                    <ul class="header__navbar-list">
+                        <li class="header__navbar-item">
+                            Kết nối
+                            <a href="https://www.facebook.com/vlute.edu.vn" class="header__navbar-item--icon-link">
+                                <i class="header__navbar--icon fa-brands fa-facebook"></i>
+                            </a>
+                            <a href="#" class="header__navbar-item--icon-link">
+                                <i class="header__navbar--icon fa-brands fa-instagram"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="header__navbar-list">
+                        <li class="header__navbar-item header__navbar-item__has-nofi">
+                            <div class="header__navbar-item-link">
+                                <i class="header__navbar--icon far fa-bell"></i>
+                                Thông báo
+                            </div>
+                            <div class="header__notify">
+                                <header class="header__notify--header">
+                                    <h3>Thông báo mới nhận</h3>
+                                </header>
+                                <ul class="header__notify-list">
+                                    
+                                </ul>
+                                <footer class="header__notify--footer">
+                                    <a href="#" class="header__notify--footer-btn">
+                                        Xem tất cả
+                                    </a>
+                                </footer>
+                            </div>
+                        </li>
+                        <li class="header__navbar-item">
+                            <a href="#" class="header__navbar-item-link">
+                                <i class="header__navbar--icon fa-solid fa-circle-question"></i>
+                                Hỗ trợ
+                            </a>
+                        </li>
+                        <li class="header__navbar-item header__navbar-item--separate"
+						id="header__item--register">
+                            <label data-toggle="modal" data-target="#modal-auth" 
+                            for="auth-form__register"
+                            class="header__navbar-item-link header__navbar-item-link--strong"
+                            id="btn-show-modal-register">
+                                Đăng ký                                
+                            </label>
+                        </li>
+                        <li class="header__navbar-item" id="header__item--login">
+                            <label data-toggle="modal" data-target="#modal-auth" 
+                            for="auth-form__login"
+                            class="header__navbar-item-link header__navbar-item-link--strong"
+                            id="btn-show-modal-login">
+                                Đăng nhập
+                            </lab>
+                        </li>
+                        <li class="header__navbar-item navbar__user hide"
+						id="header__item--user">
+                            <img src="https://picsum.photos/200" alt="" 
+                            class="navbar__user--avatar">
+                            <span class="navbar__user--info" id="header-full-name">
+                                Hải Đăng
+                            </span>
+                            <div class="navbar__user--menu">
+                                <ul class="navbar__user--menu-list">
+                                    <li class="navbar__user--menu-item">
+                                        <a href="../thong_tin_ca_nhan/">Tài khoản của tôi</a>
+                                    </li>
+                                    <li class="navbar__user--menu-item" id="btn-link-order-list">
+                                        <a href="#">Đơn mua</a>
+                                    </li>
+                                    <li class="navbar__user--menu-item">
+                                        <a id="btn_logout">Đăng xuất</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="header-search container row align-items-center">
+                    <a class="col-xl-2 header__logo" id="logo-link">
+                        JWB Shop
+                    </a>
+                    <div class="col-xl-8 header__searchBar">
+                        <input type="text" name="" class="header__input" 
+                        placeholder="Tìm kiếm sản phẩm">
+                        <button class="header__button" id="btn-search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                    <div class="header__cart col-xl-2">
+                        <button class="cart__button">
+                            <i class="bi bi-cart"></i>
+                        </button>
+                        <span class="cart__badge hide"></span>
+                        <!--add class header__cart-list--null while list cart null   -->
+                        <div class="header__cart-list header__cart-list--null">
+                            <img src="../shared/img/no-cart.png" alt="loading" 
+                            class="header__cart--img">
+                            <p class="header__cart-list--null-title">Chưa có sản phẩm</p>
+                            <h3 class="header__cart-heading">
+                                Sản phẩm đã thêm
+                            </h3>
+                            <ul class="header__cart-list-item">
+                                
+                            </ul>
+                            <button class="header__cart-footer">
+                                Xem giỏ hàng
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="container">
+                <div class="cart__header">
+					<div class="cart__header-product">
+						Sản phẩm
+					</div>
+					<div class="cart__header-price">
+						Đơn giá
+					</div>
+					<div class="cart__header-amount">
+						Số lượng
+					</div>
+					<div class="cart__header-total">
+						Thành tiền
+					</div>
+					<div class="cart__header-action">
+						Thao tác
+					</div>
+				</div>
+				<div class="cart__list">
+					
+				</div>
+				<div class="cart__payment">
+					Tổng thanh toán
+					<span id="total-product">(0 Sản phâm):</span>
+					<span class="cart__payment-total">0đ</span>
+					<button class="cart__submit">
+						Mua hàng
+					</button>
+				</div>
+            </div>
+            <div class="modal" id="modal-auth">
+                <div class="modal-dialog ">
+                    <div class="modal__body modal-content">
+                        <div class="auth-form">
+                            <input type="radio" name="control-auth-form" 
+                            class="auth-form__control" id="auth-form__login">
+                            <input type="radio" name="control-auth-form"
+                            class="auth-form__control" id="auth-form__register">
+                            <div class="auth-form__login">
+                                <div class="auth-form__header">
+                                    <h3 class="auth-form__heading">Đăng nhập</h3>
+                                    <label class="auth-form__switch-btn"
+                                    id="switch-btn-register" for="auth-form__register">
+                                        Đăng ký
+                                    </label>
+                                </div>
+                                <div class="auth-form__form">
+                                    <div class="auth-form__group">
+                                        <input type="text" name="" id="input-username-login" 
+										class="auth-form__input"
+                                        placeholder="Tài khoản">
+                                    </div>
+                                    <div class="auth-form__group auth-form__group--password">
+                                        <input type="password" name="" id="input-password-login" 
+                                        class="auth-form__input auth-form__input--password"
+                                        placeholder="Mật khẩu" autocomplete="false">
+                                        <button class="auth-form__group--icon" 
+                                        id="btn-show-pass-login">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                    </div>
+                                    <div class="auth-form__group auth-form__group--right">
+                                        <a  class="auth-form__link auth-form__link--forgot">Quên mật khẩu</a>
+                                    </div>
+                                    <div class="auth-form__footer">
+                                        <button class="auth-form__btn auth-form__btn--close" data-dismiss="modal">Trở lại</button>
+                                        <button class="auth-form__btn auth-form__btn--submit" type="button"
+										id="btn-login">
+											Đăng nhập
+										</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <form class="auth-form__register">
+                                <div class="auth-form__header">
+                                    <h3 class="auth-form__heading">Đăng ký</h3>
+                                    <label class="auth-form__switch-btn"
+                                    id="switch-btn-login" for="auth-form__login">
+                                        Đăng nhập
+                                    </label>
+                                </div>
+                                <div class="auth-form__form">
+                                    <div class="auth-form__group">
+                                        <input type="text" name="username"  rules='required|min:4|max:30'
+										class="auth-form__input"
+                                        placeholder="Tài khoản">
+										<span class="message-err"></span>
+                                    </div>
+                                    <div class="auth-form__group auth-form__group--password">
+                                        <input type="password" name="password" id="input-password-register" 
+										rules='required|min:8|max:30'
+                                        class="auth-form__input auth-form__input--password"
+                                        placeholder="Mật khẩu" autocomplete="false">
+                                        <button class="auth-form__group--icon" 
+                                        id="btn-show-pass-register">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+										<span class="message-err"></span>
+                                    </div>
+                                    <div class="auth-form__group">
+                                        <input type="text" name="fullName"  class="auth-form__input"
+                                        placeholder="Họ và tên"
+										rules='required'>
+										<span class="message-err"></span>
+                                    </div>
+                                    <div class="auth-form__group auth-form__group--password">
+                                        <input type="number" name="phone" id="input-register-phone" 
+										class="auth-form__input"
+                                        placeholder="Số điện thoại" rules='required|min:10'>
+										<button class="auth-form__group--icon" 
+                                        id="btn-send-verify-code">
+										<i class="fa-solid fa-envelope"></i>
+                                        </button>
+										<span class="message-err"></span>
+                                    </div>   
+									<div class="auth-form__group">
+                                        <input type="text" name="verifyCode"  class="auth-form__input"
+                                        placeholder="Mã xác nhận"
+										rules='required'>
+										<span class="message-err"></span>
+                                    </div>                                   
+                                    <div class="auth-form__footer">
+                                        <button class="auth-form__btn auth-form__btn--close" data-dismiss="modal">Trở lại</button>
+                                        <button type="submit" class="auth-form__btn auth-form__btn--submit">Đăng ký</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer">
+
+            </footer>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.all.min.js"></script>
+		<script src="../shared/js/validator.js"></script>
+		<script src="../shared/js/config.js"></script>
+		<script src="../shared/js/base.js"></script>
+		<script src="../shared/js/header.js"></script>
+        <script src="./app.js"></script>
+    </body>
+</html>

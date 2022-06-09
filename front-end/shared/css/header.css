@@ -475,6 +475,7 @@
     font-size: 1.6rem;
 }
 .auth-form__link--forgot{
+	cursor: pointer;
     color: var(--orange-color);
     float: right;
 }

@@ -23,7 +23,9 @@
     <link rel="stylesheet" href="./style.css">
 
 </head>
-
+<div class="loading loading_hide">
+	<img src="../../../shared/img/loading.gif" alt="">
+</div>
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -113,17 +115,10 @@
             
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse_feedback"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fa-solid fa-comments"></i>
-                    <span>Phản hồi</span>
+                <a class="nav-link" href="../../danh_gia/">
+                    <i class="fa-solid fa-comment"></i>
+                    <span>Đánh giá</span>
                 </a>
-                <div id="collapse_feedback" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="../../danh_gia/">Đánh giá</a>
-                        <a class="collapse-item" href="../../tin_nhan/">Tin nhắn</a>
-                    </div>
-                </div>
             </li>
             <hr class="sidebar-divider">
 
@@ -236,7 +231,8 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Tạo chiến dịch</h1>
                         <button 
-                        class="btn btn-primary shadow-sm px-3 py-2 mr-2">
+                        class="btn btn-primary shadow-sm px-3 py-2 mr-2"
+						id="btn-add-campaign">
                             <i class="fa-solid fa-plus"></i>
                             Lưu
                         </button>
@@ -259,13 +255,11 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="">Tên chiến dịch</label>
-                                        <input type="text" class="form-control" name="" id="" 
-                                        placeholder="Nhập tên chiến dịch...">
+                                        <input type="text" class="form-control" id="camp-name">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Mã chiến dịch</label>
-                                        <input type="text" class="form-control" name="" id=""  
-                                        placeholder="Nhập mã chiến dịch...">
+                                        <input type="text" class="form-control" id="camp-id">
                                     </div>
                                 </div>
                             </div>
@@ -279,24 +273,22 @@
                                 <div class="card-body">
                                     <form action="">
                                         <div class="form-group">
-                                            <input type="radio" name="group-customer" 
+                                            <input type="radio" name="group-customer" value="all" 
                                             class="form-radio" id="for-all-customer" checked>
                                             <label  class="form-label" for="for-all-customer">
                                                 Tất cả
                                             </label>
                                         </div>
                                         <div class="form-group">
-                                            <input type="radio" name="group-customer" 
+                                            <input type="radio" name="group-customer" value="group"
                                             class="form-radio" id="for-group-customer">
                                             <label class="form-label" for="for-group-customer">
                                                 Theo nhóm
                                             </label>
                                             <div class="select-search">
                                                 <div class="form-group">
-                                                    <select class="selectpicker" data-live-search="true">
-                                                        <option >Chọn nhóm khách hàng</option>
-                                                        <option data-tokens="CD001">Chiến dịch 30/04</option>
-                                                        <option data-tokens="CD002">Tưng bừng tháng 6</option>
+                                                    <select class="selectpicker" data-live-search="true" id="select-group">
+                                                        <option value="-1">Chọn nhóm khách hàng</option>
                                                     </select> 
                                                 </div>
                                             </div>
@@ -317,28 +309,28 @@
                                     <div class="row">
                                         <div class="form-group col-xl-5 col-sm-12">
                                             <label for="">Loại tin nhắn</label>
-                                            <select name="" id="" class="form-control">
-                                                <option value="">SMS</option>
-                                                <option value="">Gmail</option>
+                                            <select id="select-type"  class="form-control">
+                                                <option value="1">SMS</option>
+                                                <option value="2">Gmail</option>
                                             </select>
                                         </div>
                                         <div class="form-group col-xl-7 col-sm-12">
                                             <label for="">Thời gian kích hoạt</label>
                                             <div class="group-send">
                                                 <div>
-                                                    <input class="form-radio" type="radio" 
+                                                    <input class="form-radio" type="radio" value="now"
                                                     name="time-send" id="send-now" checked>
                                                     <label class="form-label" for="send-now">
                                                         Gửi ngay
                                                     </label>
                                                 </div>
                                                 <div>
-                                                    <input class="form-radio ml-3" type="radio" 
+                                                    <input class="form-radio ml-3" type="radio" value="later"
                                                     name="time-send" id="send-later">
                                                     <label class="form-label" for="send-later">
                                                         Gửi vào lúc
                                                     </label>
-                                                    <input type="datetime-local" name="" id=""
+                                                    <input type="datetime-local"
                                                     class="form-control ml-3 input-time-send">                                                    
                                                 </div>
                                             </div>
@@ -346,20 +338,20 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="">Nội dung</label>
-                                        <textarea class="form-control" name="" 
-                                        id="" rows="7"></textarea>
+                                        <textarea class="form-control" id="camp-content" 
+                                        rows="7"></textarea>
                                     </div>
                                     <div class="">
-                                        <label for="">Gửi kèm mã giảm giá</label>
+                                        <label for="">Tặng kèm mã giảm giá</label>
                                         <div>
-                                            <input type="radio" name="discount-code" 
+                                            <input type="radio" name="discount-code" value="no"
                                             class="form-radio" id="undiscount" checked>
                                             <label class="form-label" for="undiscount">
                                                 Không
                                             </label>
                                         </div>
                                         <div class="mt-2">
-                                            <input type="radio" name="discount-code" 
+                                            <input type="radio" name="discount-code" value="yes"
                                             class="form-radio" id="isDiscount">
                                             <label class="form-label" for="isDiscount">
                                                 Có
@@ -367,17 +359,18 @@
                                             <div class="discount">
                                                 <div class="form-group">
                                                     <label for="">Mô tả</label>
-                                                    <textarea class="form-control" name="" id="" rows="7"></textarea>
+                                                    <textarea class="form-control" id="input-discount-desc"  
+													rows="7"></textarea>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="">Số tiền giảm</label>
                                                     <input type="number" class="form-control discount__input--number" 
-                                                    name="" id="" >
+                                                    id="input-discount-value">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="">Hạn sử dụng</label>
                                                     <input type="datetime-local" class="form-control" 
-                                                    name="" id="" >
+                                                    id="input-expiry">
                                                 </div>
                                             </div>
                                         </div>
@@ -420,15 +413,15 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Đăng xuất</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Ấn đăng xuất nếu bạn muốn thoát khỏi trang quản lý</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="">Logout</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Huỷ</button>
+                    <a class="btn btn-primary" id="btn-logout-admin">Đăng xuất</a>
                 </div>
             </div>
         </div>
@@ -454,11 +447,11 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.all.min.js"></script>
 
 	<!-- Page level custom scripts -->
-	<script src="../../shared/js/validator.js"></script>
+	<script src="../../../shared/js/validator.js"></script>
     <!-- Page level custom scripts -->
-	<script src="../../shared/js/config.js"></script>
-	<script src="../../shared/js/base.js"></script>
-	<script src="../../shared/js/baseAdmin.js"></script>	
+	<script src="../../../shared/js/config.js"></script>
+	<script src="../../../shared/js/base.js"></script>
+	<script src="../../../shared/js/baseAdmin.js"></script>	
     <script src="./app.js"></script>
     
 </body>

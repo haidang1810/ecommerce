@@ -87,6 +87,90 @@ fetch(BASE_URL+API_CATEGORY+CATEGORY_GETALL,{
 		}
 	})
 	.catch(handlerError);
+
+var variation = [];
+
+function genderVariation(){
+	$(".variation").html("");
+	for(let i=0; i<variation.length; i++){
+		let html = ``;
+		html += `
+			<div class="variation__item">
+				<div class="variation__header">
+					<div class="variation__name">
+						${variation[i].TenPL}
+					</div>
+					<div class="variation__control">
+						<button class="variation__btn variation__btn--add add-variation" 
+						id="${i}">
+							<i class="fa-solid fa-plus"></i>
+						</button>
+						<button  class="variation__btn variation__btn--delete delete-variation" 
+						id="${i}">
+							<i class="fa-solid fa-trash-can"></i>
+						</button>
+					</div>
+				</div>
+				<div class="variation__option-list variation__option-list--show">
+		`;
+		for(let j=0; j<variation[i].LuaChon.length; j++){
+			html += `
+				<div class="variation__option-item">
+					<div>${variation[i].LuaChon[j]}</div>
+					<div class="variation__control">
+						<button  class="variation__btn variation__btn--delete delete-option" 
+						id="${j}" varID="${i}">
+							<i class="fa-solid fa-trash-can"></i>
+						</button>
+					</div>
+				</div>
+			`;
+		}
+		html += `
+				</div>
+			</div>
+		`;
+		$(".variation").append(html);
+	}
+}
+$("#btn-add-varition").click(async function(){
+	const { value: varitionName } = await Swal.fire({
+		title: 'Thêm phân loại',
+		input: 'text',
+		inputPlaceholder: 'Nhập tên phân loại'
+	})
+	if(varitionName){
+		variation.push({
+			TenPL: varitionName,
+			LuaChon: []
+		});
+		genderVariation();
+	}
+	
+});
+$(".variation").on("click", ".add-variation", async function(){
+	const { value: optionName } = await Swal.fire({
+		title: 'Thêm lựa chọn',
+		input: 'text',
+		inputPlaceholder: 'Nhập tên lựa chọn'
+	});
+	if(optionName){
+		let variationIndex = $(this).attr("id");
+		variation[variationIndex].LuaChon.push(optionName);
+		genderVariation();		
+	}
+})
+$(".variation").on("click", ".delete-variation", async function(){
+	let variationIndex = $(this).attr("id");
+	variation.splice(variationIndex,1);
+	genderVariation();
+})
+$(".variation").on("click", ".delete-option", async function(){
+	let variationIndex = $(this).attr("varID");
+	optionIndex = $(this).attr("id");
+	variation[variationIndex].LuaChon.splice(optionIndex,1);
+	genderVariation();
+})
 validator('.info-product',{
 	formGroup: '.form-group',
 	formMessage: '.message-err',
@@ -100,6 +184,7 @@ validator('.info-product',{
 		formData.append('SoLuong', formValues.SoLuong);
 		formData.append('AnhBia', $("#avatar_input")[0].files[0]);
 		formData.append('MoTa', editor.getData());
+		formData.append('PhanLoai', JSON.stringify(variation));
 		$(".loading").toggleClass("loading_hide");
 		fetch(BASE_URL+API_PRODUCT+PRODUCT_ADD,{
 			method: 'POST', 
@@ -159,3 +244,6 @@ validator('.info-product',{
 $("#btn-add-product").click(function(){
 	$(".info-product").submit();
 })
+$(".variation").on("click", ".variation__name", function(){
+	$(this).parent('.variation__header').next(".variation__option-list").toggleClass("variation__option-list--show");
+});
