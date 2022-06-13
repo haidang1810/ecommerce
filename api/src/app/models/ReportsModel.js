@@ -404,20 +404,18 @@ Report.reportBestSales = async (req, res) => {
 				return;
 			}
 		}else{
-			for(let i=start; i<=end; i++){
-				try {
-					let [orders, fields] = await poolAwait.query(getValue,[time.year,10,11,12]);
-					for(let order of orders){
-						x.push(order.TenSP);
-						y.push(Number(order.SoLuong));
-					}
-				} catch (error) {
-					res({
-						status: 0,
-						msg: error
-					});
-					return;
+			try {
+				let [orders, fields] = await poolAwait.query(getValue,[time.year,10,11,12]);
+				for(let order of orders){
+					x.push(order.TenSP);
+					y.push(Number(order.SoLuong));
 				}
+			} catch (error) {
+				res({
+					status: 0,
+					msg: error
+				});
+				return;
 			}
 		}
 	}else{
