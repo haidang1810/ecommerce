@@ -545,11 +545,9 @@ fetch(BASE_URL+API_IMAGE+IMAGE_GETBYPRODUCT+productID, {
 					$(".main-img").html(`
 					<img src="${item.DuongDan}" alt="loading">
 					`);
-				}else{
-					$(".list-img-item").append(`
-						<img src="${item.DuongDan}" alt="loading">
-					`);
-				}
+				}$(".list-img-item").append(`
+					<img src="${item.DuongDan}" alt="loading">
+				`);
 			});
 			$(".list-img-item img").click(function(){
 				$(".list-img-item img").each(function(){
