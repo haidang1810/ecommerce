@@ -32,11 +32,12 @@ Product.getAll = (req, res) => {
 		LEFT JOIN tb_chi_tiet_don 
 		ON tb_san_pham.MaSP=tb_chi_tiet_don.MaSP
 		LEFT JOIN tb_dot_khuyen_mai 
-		ON tb_san_pham_khuyen_mai.MaDotKM=(SELECT Id 
-									FROM tb_dot_khuyen_mai
-									WHERE tb_dot_khuyen_mai.ThoiGianBD<=NOW()
-									AND tb_dot_khuyen_mai.ThoiGianKT>=NOW())
-		WHERE tb_san_pham.TrangThai=1
+		ON tb_san_pham_khuyen_mai.MaDotKM=tb_dot_khuyen_mai.Id
+		WHERE tb_san_pham.TrangThai=1 and
+		tb_dot_khuyen_mai.Id=(SELECT Id 
+			FROM tb_dot_khuyen_mai
+			WHERE tb_dot_khuyen_mai.ThoiGianBD<=NOW()
+			AND tb_dot_khuyen_mai.ThoiGianKT>=NOW())
 		GROUP BY tb_san_pham.MaSP;`;
     pool.query(getAllProduct, (err, result)=>{
         if(err){
