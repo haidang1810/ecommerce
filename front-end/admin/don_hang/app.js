@@ -172,13 +172,14 @@ var table = $('#table-order').DataTable({
 		"lengthMenu": [10, 15, 20, 25, 30, 40, 50 ],
 		"processing": true,
 		columns: [
-			{},
-			{},
-			{},
-			{},
+			null,
+			null,
+			null,
+			null,
 			{"width": "125px"},
 			{"width": "180px"}
-		]
+		],
+		autoWidth: false
 	});
 $("#table-order tbody").on("click", ".btn-change-status",function(){
 	let orderID = $(this).attr('id').split('|')[0];

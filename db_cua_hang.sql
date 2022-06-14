@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 29, 2022 lúc 02:56 PM
+-- Thời gian đã tạo: Th6 09, 2022 lúc 05:26 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 7.4.28
 
@@ -41,12 +41,19 @@ CREATE TABLE `tb_anh_bia` (
 CREATE TABLE `tb_chien_dich` (
   `MaCD` varchar(10) NOT NULL,
   `TenCD` varchar(200) NOT NULL,
-  `NhomKH` varchar(10) NOT NULL,
+  `NhomKH` varchar(10) DEFAULT NULL,
   `LoaiTinNhan` int(11) NOT NULL,
   `NoiDung` text NOT NULL,
-  `ThoiGianKichHoat` datetime NOT NULL,
-  `TrangThai` int(11) NOT NULL
+  `ThoiGianKichHoat` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `tb_chien_dich`
+--
+
+INSERT INTO `tb_chien_dich` (`MaCD`, `TenCD`, `NhomKH`, `LoaiTinNhan`, `NoiDung`, `ThoiGianKichHoat`) VALUES
+('CD001', 'Chiến dịch ngày 18', 'NGAY18', 2, 'Chúc mừng các bạn sinh ngày 18', '2022-06-03 22:36:04'),
+('CD002', 'Tháng 6 vui vẻ', NULL, 2, 'Chúc các bạn có 1 tháng 6 vui vẻ', '2022-06-03 22:36:37');
 
 -- --------------------------------------------------------
 
@@ -59,6 +66,19 @@ CREATE TABLE `tb_chi_tiet_chien_dich` (
   `MaKH` varchar(20) NOT NULL,
   `TrangThai` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `tb_chi_tiet_chien_dich`
+--
+
+INSERT INTO `tb_chi_tiet_chien_dich` (`MaCD`, `MaKH`, `TrangThai`) VALUES
+('CD001', '7OHL6sAnH4UKUXqBAq0o', 1),
+('CD002', '6LCVKLEqs8BY117OxZhF', 2),
+('CD002', '7OHL6sAnH4UKUXqBAq0o', 1),
+('CD002', 'I0M2NnebynRz4WE28ax4', 2),
+('CD002', 'j2RoJqwGNBvlwNKkA2ZT', 2),
+('CD002', 'RzHps7DXS0ZGzfMtWRh3', 1),
+('CD002', 'thLK4OGeCMKjyvlzpd1m', 2);
 
 -- --------------------------------------------------------
 
@@ -78,11 +98,12 @@ CREATE TABLE `tb_chi_tiet_don` (
 --
 
 INSERT INTO `tb_chi_tiet_don` (`MaDon`, `MaSP`, `SoLuong`, `Gia`) VALUES
-('jTFTMU2gILIHCXL91fAEhENNYq5faS', 'SP002', 1, 300000),
-('jTFTMU2gILIHCXL91fAEhENNYq5faS', 'SP003', 2, 40000),
-('RT8AC78dONN6gZQ1J7ArDKMMrai0i7', 'SP001', 1, 100000),
-('RT8AC78dONN6gZQ1J7ArDKMMrai0i7', 'SP003', 2, 40000),
-('VpCSLgc1dtgffdpe2XCRBbfg6DFdlW', 'SP001', 1, 100000);
+('eksruavItXsXfWJ1WYE4mnAuzsdHlI', 'SP002', 1, 240000),
+('eksruavItXsXfWJ1WYE4mnAuzsdHlI', 'SP003', 1, 40000),
+('q3IFCsbGURLVBAxLu3NugT2P84NM5B', 'SP001', 1, 80000),
+('q3IFCsbGURLVBAxLu3NugT2P84NM5B', 'SP004', 1, 185000),
+('rwAKiwcu9NZwmjXyuRnB7dLLkvABAY', 'SP001', 1, 80000),
+('wvCFwtMP1WaHO4Jjk9bkVjyl06YK73', 'SP008', 1, 249000);
 
 -- --------------------------------------------------------
 
@@ -102,10 +123,10 @@ CREATE TABLE `tb_ct_don_lua_chon` (
 --
 
 INSERT INTO `tb_ct_don_lua_chon` (`Id`, `MaDon`, `MaSP`, `MaLC`) VALUES
-(1, 'VpCSLgc1dtgffdpe2XCRBbfg6DFdlW', 'SP001', 1),
-(2, 'VpCSLgc1dtgffdpe2XCRBbfg6DFdlW', 'SP001', 5),
-(3, 'RT8AC78dONN6gZQ1J7ArDKMMrai0i7', 'SP001', 2),
-(4, 'RT8AC78dONN6gZQ1J7ArDKMMrai0i7', 'SP001', 6);
+(9, 'rwAKiwcu9NZwmjXyuRnB7dLLkvABAY', 'SP001', 1),
+(10, 'rwAKiwcu9NZwmjXyuRnB7dLLkvABAY', 'SP001', 7),
+(11, 'q3IFCsbGURLVBAxLu3NugT2P84NM5B', 'SP001', 2),
+(12, 'q3IFCsbGURLVBAxLu3NugT2P84NM5B', 'SP001', 14);
 
 -- --------------------------------------------------------
 
@@ -123,6 +144,14 @@ CREATE TABLE `tb_danh_gia` (
   `SoSao` tinyint(4) NOT NULL,
   `PhanHoi` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `tb_danh_gia`
+--
+
+INSERT INTO `tb_danh_gia` (`Id`, `TaiKhoan`, `MaSP`, `MaDon`, `ThoiGian`, `NoiDung`, `SoSao`, `PhanHoi`) VALUES
+(5, 'dang', 'SP002', 'eksruavItXsXfWJ1WYE4mnAuzsdHlI', '2022-06-02 21:42:06', 'Hàng rất chất lượng. Đúng như mô tả. Lần sau sẽ mua tiếp', 5, 'Cảm ơn bạn đã ủng hộ shop'),
+(6, 'dang', 'SP003', 'eksruavItXsXfWJ1WYE4mnAuzsdHlI', '2022-06-02 21:42:06', 'Hàng rất chất lượng. Đúng như mô tả. Lần sau sẽ mua tiếp', 5, NULL);
 
 -- --------------------------------------------------------
 
@@ -168,7 +197,8 @@ CREATE TABLE `tb_dieu_kien_nhom` (
 INSERT INTO `tb_dieu_kien_nhom` (`Id`, `MaNhom`, `ThuocTinh`, `DieuKien`, `GiaTri`) VALUES
 (7, 'NKH001', 'Số đơn hàng', 'nhỏ hơn', '6'),
 (8, 'NKH002', 'Giới tính', 'bằng', 'nữ'),
-(9, 'NKH002', 'Tháng sinh', 'bằng', '5');
+(9, 'NKH002', 'Tháng sinh', 'bằng', '5'),
+(11, 'NGAY18', 'Ngày sinh', 'bằng', '18');
 
 -- --------------------------------------------------------
 
@@ -183,17 +213,20 @@ CREATE TABLE `tb_don_hang` (
   `TrangThai` tinyint(4) NOT NULL,
   `TongTienHang` bigint(20) NOT NULL,
   `PhiVanChuyen` bigint(20) NOT NULL,
-  `PhuongThucThanhToan` int(11) NOT NULL DEFAULT 1
+  `TienDuocGiam` bigint(20) NOT NULL DEFAULT 0,
+  `PhuongThucThanhToan` int(11) NOT NULL DEFAULT 1,
+  `NgayLap` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Đang đổ dữ liệu cho bảng `tb_don_hang`
 --
 
-INSERT INTO `tb_don_hang` (`MaDon`, `MaKH`, `DiaChiNhanHang`, `TrangThai`, `TongTienHang`, `PhiVanChuyen`, `PhuongThucThanhToan`) VALUES
-('jTFTMU2gILIHCXL91fAEhENNYq5faS', '7OHL6sAnH4UKUXqBAq0o', '52/84/129 Nguyễn Huệ,Phường 2, Thành phố Vĩnh Long, Vĩnh Long', 0, 380000, 209000, 1),
-('RT8AC78dONN6gZQ1J7ArDKMMrai0i7', 'RzHps7DXS0ZGzfMtWRh3', '73 Nguyễn Huệ,Phường 2, Thành phố Vĩnh Long, Vĩnh Long', 0, 180000, 209000, 1),
-('VpCSLgc1dtgffdpe2XCRBbfg6DFdlW', '6LCVKLEqs8BY117OxZhF', '12 Đinh Tiên Hoàng,Phường Mễ Trì, Quận Nam Từ Liêm, Hà Nội', 0, 100000, 48400, 1);
+INSERT INTO `tb_don_hang` (`MaDon`, `MaKH`, `DiaChiNhanHang`, `TrangThai`, `TongTienHang`, `PhiVanChuyen`, `TienDuocGiam`, `PhuongThucThanhToan`, `NgayLap`) VALUES
+('eksruavItXsXfWJ1WYE4mnAuzsdHlI', '7OHL6sAnH4UKUXqBAq0o', '52/84/129 Nguyễn Huệ, Phường 2, Thành phố Vĩnh Long, Vĩnh Long', 3, 280000, 209000, 0, 1, '2022-05-04'),
+('q3IFCsbGURLVBAxLu3NugT2P84NM5B', 'RzHps7DXS0ZGzfMtWRh3', '73 Nguyễn Huệ,Phường 2, Thành phố Vĩnh Long, Vĩnh Long', 3, 265000, 209000, 0, 1, '2022-06-04'),
+('rwAKiwcu9NZwmjXyuRnB7dLLkvABAY', '7OHL6sAnH4UKUXqBAq0o', '52/84/129 Nguyễn Huệ, Phường 2, Thành phố Vĩnh Long, Vĩnh Long', 0, 80000, 209000, 80000, 1, '2022-06-08'),
+('wvCFwtMP1WaHO4Jjk9bkVjyl06YK73', '7OHL6sAnH4UKUXqBAq0o', '52/84/129 Nguyễn Huệ, Phường 2, Thành phố Vĩnh Long, Vĩnh Long', 5, 249000, 209000, 0, 1, '2022-06-01');
 
 -- --------------------------------------------------------
 
@@ -206,6 +239,14 @@ CREATE TABLE `tb_don_hang_ma_giam` (
   `MaDon` varchar(50) NOT NULL,
   `MaGiamGia` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `tb_don_hang_ma_giam`
+--
+
+INSERT INTO `tb_don_hang_ma_giam` (`Id`, `MaDon`, `MaGiamGia`) VALUES
+(5, 'rwAKiwcu9NZwmjXyuRnB7dLLkvABAY', 'DG7FD8GFDIKODFSH3'),
+(6, 'rwAKiwcu9NZwmjXyuRnB7dLLkvABAY', 'F7D98S32K432LK43');
 
 -- --------------------------------------------------------
 
@@ -225,7 +266,7 @@ CREATE TABLE `tb_dot_khuyen_mai` (
 --
 
 INSERT INTO `tb_dot_khuyen_mai` (`Id`, `ThoiGianBD`, `ThoiGianKT`, `ChietKhau`) VALUES
-(1, '2022-05-01 15:24:31', '2022-05-11 15:24:31', 15);
+(2, '2022-06-01 20:28:00', '2022-06-07 20:28:00', 20);
 
 -- --------------------------------------------------------
 
@@ -245,11 +286,7 @@ CREATE TABLE `tb_gio_hang` (
 --
 
 INSERT INTO `tb_gio_hang` (`id`, `MaSP`, `TaiKhoan`, `SoLuong`) VALUES
-(1, 'SP001', 'dang', 1),
-(2, 'SP002', 'dang', 1),
-(3, 'SP003', 'gam', 1),
-(16, 'SP001', 'gam', 1),
-(18, 'SP003', 'dang', 1);
+(3, 'SP003', 'gam', 1);
 
 -- --------------------------------------------------------
 
@@ -262,16 +299,6 @@ CREATE TABLE `tb_gio_hang_lua_chon` (
   `MaGH` bigint(20) NOT NULL,
   `MaLC` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Đang đổ dữ liệu cho bảng `tb_gio_hang_lua_chon`
---
-
-INSERT INTO `tb_gio_hang_lua_chon` (`Id`, `MaGH`, `MaLC`) VALUES
-(1, 1, 1),
-(2, 1, 7),
-(3, 16, 1),
-(4, 16, 7);
 
 -- --------------------------------------------------------
 
@@ -619,7 +646,7 @@ INSERT INTO `tb_khach_hang` (`MaKH`, `TaiKhoan`, `HoTen`, `GioiTinh`, `NgaySinh`
 ('6LCVKLEqs8BY117OxZhF', NULL, 'Đinh Tiên Hoàng', 1, NULL, '0831928571', '', NULL),
 ('7OHL6sAnH4UKUXqBAq0o', 'dang', 'Hải Đăng', 1, '1999-10-18', '0832248959', 'dang18101999@gmail.com', 'http://res.cloudinary.com/jwb/image/upload/v1652972453/user_avatar/gxwu93puhh6cskhd06hk.jpg'),
 ('I0M2NnebynRz4WE28ax4', NULL, 'Nguyễn Văn A', 1, NULL, '01928375123', NULL, NULL),
-('j2RoJqwGNBvlwNKkA2ZT', 'han', 'Ngọc Hân', 2, '2000-05-18', '0325641285', NULL, NULL),
+('j2RoJqwGNBvlwNKkA2ZT', 'han', 'Ngọc Hân', 2, '2000-05-19', '0325641285', NULL, NULL),
 ('RzHps7DXS0ZGzfMtWRh3', 'gam', 'Hồng Gấm', 2, '2000-10-26', '0532648592', '18004180@student.vlute.edu.vn', NULL),
 ('thLK4OGeCMKjyvlzpd1m', NULL, 'Trần Đình Nguyên', 1, NULL, '0392342432', '', NULL);
 
@@ -643,18 +670,12 @@ CREATE TABLE `tb_kh_nhom_kh` (
 INSERT INTO `tb_kh_nhom_kh` (`Id`, `MaKH`, `MaNhom`, `NgayGiaNhap`) VALUES
 (2, '7OHL6sAnH4UKUXqBAq0o', 'NKH001', '2022-05-25'),
 (5, 'j2RoJqwGNBvlwNKkA2ZT', 'NKH001', '2022-05-09'),
-(6, 'j2RoJqwGNBvlwNKkA2ZT', 'NKH002', '2022-05-01');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `tb_loai_chien_dich`
---
-
-CREATE TABLE `tb_loai_chien_dich` (
-  `MaLoai` int(11) NOT NULL,
-  `TenLoai` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+(6, 'j2RoJqwGNBvlwNKkA2ZT', 'NKH002', '2022-05-01'),
+(7, '7OHL6sAnH4UKUXqBAq0o', 'NGAY18', '2022-06-03'),
+(8, '6LCVKLEqs8BY117OxZhF', 'NKH001', '2022-06-03'),
+(9, 'I0M2NnebynRz4WE28ax4', 'NKH001', '2022-06-03'),
+(11, 'thLK4OGeCMKjyvlzpd1m', 'NKH001', '2022-06-03'),
+(12, 'RzHps7DXS0ZGzfMtWRh3', 'NKH001', '2022-06-03');
 
 -- --------------------------------------------------------
 
@@ -719,10 +740,10 @@ INSERT INTO `tb_lua_chon` (`Id`, `MaPL`, `TenLC`, `TrangThai`) VALUES
 (2, 1, '18mm', 1),
 (3, 1, '20mm', 0),
 (4, 1, '22mm', 1),
-(5, 2, 'Tròn', 1),
 (6, 2, 'Trái tim', 1),
 (7, 2, 'Cỏ 3 lá', 1),
-(8, 2, 'Cỏ 4 lá', 0);
+(8, 2, 'Cỏ 4 lá', 0),
+(14, 2, 'Tròn', 1);
 
 -- --------------------------------------------------------
 
@@ -735,8 +756,19 @@ CREATE TABLE `tb_ma_giam_gia` (
   `MaKH` varchar(20) NOT NULL,
   `MoTa` varchar(300) NOT NULL,
   `TienGiam` bigint(20) NOT NULL,
-  `HanSuDung` datetime NOT NULL
+  `HanSuDung` datetime NOT NULL,
+  `TrangThai` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `tb_ma_giam_gia`
+--
+
+INSERT INTO `tb_ma_giam_gia` (`MaGiamGia`, `MaKH`, `MoTa`, `TienGiam`, `HanSuDung`, `TrangThai`) VALUES
+('DG7FD8GFDIKODFSH3', '7OHL6sAnH4UKUXqBAq0o', 'Nhân dịp 30k thành viên giảm 30k', 30000, '2022-06-07 20:43:20', 0),
+('F6D87FD786F87DS', '7OHL6sAnH4UKUXqBAq0o', 'Giảm 50k', 50000, '2022-06-08 09:15:42', 1),
+('F7D98S32K432LK43', '7OHL6sAnH4UKUXqBAq0o', 'Nhân dịp quốc tế thiếu nhi giảm 50K', 50000, '2022-06-01 23:00:00', 0),
+('FD78SFD8S7F7DS8', '7OHL6sAnH4UKUXqBAq0o', 'Giảm 20k', 20000, '2022-06-08 09:15:42', 1);
 
 -- --------------------------------------------------------
 
@@ -756,8 +788,8 @@ CREATE TABLE `tb_nguoi_dung` (
 --
 
 INSERT INTO `tb_nguoi_dung` (`TaiKhoan`, `LoaiND`, `MatKhau`, `RefreshToken`) VALUES
-('admin', 2, '$2b$10$ucXUEx1AuyFP.Cq/tV9Fi.MgtEcVeaV/e6uPPVpHSNZPGlFBHIPW.', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwidGltZSI6IjIwMjItMDUtMjlUMTI6Mjc6NDUuOTYxWiIsImlhdCI6MTY1MzgyNzI2NSwiZXhwIjoxNjU0NDMyMDY1fQ.TKVumLj5Sh5cCxNBuPi1tY7hzvHPCz-JB4xhBAMkGvM'),
-('dang', 1, '$2b$10$/brDNQvhGQgIFj/DNLIG0uvGszxuJ7D.sExt6qJuUWf4y0/IwnjdO', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmciLCJ0aW1lIjoiMjAyMi0wNS0yOVQxMTo1NDoyNC43MjVaIiwiaWF0IjoxNjUzODI1MjY0LCJleHAiOjE2NTQ0MzAwNjR9.uxJ4i5I3rYR1nN1Tw0LgsYDQCbBv-ZFBYLv7W16xiuk'),
+('admin', 2, '$2b$10$ucXUEx1AuyFP.Cq/tV9Fi.MgtEcVeaV/e6uPPVpHSNZPGlFBHIPW.', ''),
+('dang', 1, '$2b$10$/brDNQvhGQgIFj/DNLIG0uvGszxuJ7D.sExt6qJuUWf4y0/IwnjdO', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRhbmciLCJ0aW1lIjoiMjAyMi0wNi0wOFQwNDoxNzo1NC43MDNaIiwiaWF0IjoxNjU0NjYxODc0LCJleHAiOjE2NTUyNjY2NzR9.j8XDDkY9rhzsH6DyB9C5gmBFV5pIQs8f_GKWAnwRTpM'),
 ('gam', 1, '$2b$10$lVI7SpyIZgWc0H8OMxTc0.J.Sh.X0Qcwe5RqsIafnNO398Q84FXSe', ''),
 ('han', 1, '$2b$10$ucXUEx1AuyFP.Cq/tV9Fi.MgtEcVeaV/e6uPPVpHSNZPGlFBHIPW.', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhhbiIsInRpbWUiOiIyMDIyLTA1LTA5VDEyOjE1OjU2Ljk0NloiLCJpYXQiOjE2NTIwOTg1NTYsImV4cCI6MTY1MjcwMzM1Nn0.acb2VB5ki3zdDb9Glv_35HxfW-lFmmGDvdPb2cm9304');
 
@@ -779,6 +811,7 @@ CREATE TABLE `tb_nhom_khach_hang` (
 --
 
 INSERT INTO `tb_nhom_khach_hang` (`MaNhom`, `TenNhom`, `MoTa`, `NgayTao`) VALUES
+('NGAY18', 'Ngày 18', 'Nhóm khách hàng sinh ngày 18', '2022-06-03'),
 ('NKH001', 'Bán lẻ', 'Nhóm khách hàng mua ít', '2022-02-10'),
 ('NKH002', 'Nữ sinh nhật tháng 5', 'Nhóm khách hàng là nữ sinh vào tháng 5', '2022-04-30');
 
@@ -846,14 +879,14 @@ CREATE TABLE `tb_san_pham` (
 --
 
 INSERT INTO `tb_san_pham` (`MaSP`, `LoaiSP`, `TenSP`, `MoTa`, `KhoiLuong`, `Gia`, `SoLuong`, `AnhBia`, `NgayDang`, `TrangThai`) VALUES
-('SP001', '2', 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức', '<blockquote><h2><span style=\"color:hsl(0,0%,0%);\"><strong>MÔ TẢ SẢN PHẨM</strong></span></h2></blockquote><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Số Lượng: 1 chiếc Kích Thước 3/4/5 mm&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Trọng Lượng: 0.16-0.68g&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Thông tin sản phẩm :&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">+ Chất liệu bạc 925 cao cấp 100% nguyên chất - Có chứng nhận trên sp ( shop cam kết )&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">+ Độ trắng sáng cao, không lo bị đen, gỉ, xỉn màu&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">+ Bảo hành miễn phí trọn đời đánh bóng&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Lưu ý: tránh tiếp xúc vs hóa chất , chất tẩy rửa mạnh, có thể làm sáng bằng cách chà kem đánh răng, nước rửa bát, nước chanh ...&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Sản phẩm y hình shop đăng&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">-Chất lượng sản phẩm đã được kiểm duyệt&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Hoàn tiền 100% nếu không đúng mẫu mã chất lượng sản phẩm.&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Bạc 925 là gì ?&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">-Bạc 925 ( còn gọi là bạc ý , bạc thái ) với thành phần bạc nguyên chất chiếm tới 92.5%, riêng 7.5% còn lại sẽ là hợp chất kim loại khác . Có độ cứng rất cao, độ sáng bóng phù hợp để tạo nên những đồ vật có độ tinh xảo và chính xác đến từng milimet.&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">- Cảm giác thoải mái không gây dị ứng&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">- Phong cách trẻ trung, thời thượng&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">- Sản phẩm hot được nhiều bạn trẻ yêu thích&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">- Khuyên tai đẹp, độc lạ duy nhất có tại Trangsucsg ( Trang sức SG )</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">-----------&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">- Xuất Xứ: Việt Nam</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">-Tên của tổ chức chịu trách nhiệm sản xuất, phân phối: Trang Sức SG&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">-Địa chỉ tổ chức chịu trách nhiệm hàng hóa: 1508 lê văn lương xã nhơn đức nhà bè TP HCM</span></p>', 50, 100000, 198, 'https://res.cloudinary.com/jwb/image/upload/v1653387310/product_avatar/1f95b450eb9d5a3a18b7567324673a3d_lose8l.jpg', '2022-05-01 22:56:49', 1),
-('SP002', '3', 'Dây chuyền bạc 925 hình cỏ may mắn khảm đá', '<blockquote><h2><span style=\"color:hsl(0,0%,0%);\"><strong>MÔ TẢ SẢN PHẨM</strong></span></h2></blockquote><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Số Lượng: 1 chiếc Kích Thước 3/4/5 mm&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Trọng Lượng: 0.16-0.68g&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Thông tin sản phẩm :&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">+ Chất liệu bạc 925 cao cấp 100% nguyên chất - Có chứng nhận trên sp ( shop cam kết )&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">+ Độ trắng sáng cao, không lo bị đen, gỉ, xỉn màu&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">+ Bảo hành miễn phí trọn đời đánh bóng&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Lưu ý: tránh tiếp xúc vs hóa chất , chất tẩy rửa mạnh, có thể làm sáng bằng cách chà kem đánh răng, nước rửa bát, nước chanh ...&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Sản phẩm y hình shop đăng&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">-Chất lượng sản phẩm đã được kiểm duyệt&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Hoàn tiền 100% nếu không đúng mẫu mã chất lượng sản phẩm.&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Bạc 925 là gì ?&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">-Bạc 925 ( còn gọi là bạc ý , bạc thái ) với thành phần bạc nguyên chất chiếm tới 92.5%, riêng 7.5% còn lại sẽ là hợp chất kim loại khác . Có độ cứng rất cao, độ sáng bóng phù hợp để tạo nên những đồ vật có độ tinh xảo và chính xác đến từng milimet.&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">- Cảm giác thoải mái không gây dị ứng&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">- Phong cách trẻ trung, thời thượng&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">- Sản phẩm hot được nhiều bạn trẻ yêu thích&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">- Khuyên tai đẹp, độc lạ duy nhất có tại Trangsucsg ( Trang sức SG )</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">-----------&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">- Xuất Xứ: Việt Nam</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">-Tên của tổ chức chịu trách nhiệm sản xuất, phân phối: Trang Sức SG&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">-Địa chỉ tổ chức chịu trách nhiệm hàng hóa: 1508 lê văn lương xã nhơn đức nhà bè TP HCM</span></p>', 200, 300000, 499, 'https://res.cloudinary.com/jwb/image/upload/v1651466978/product_avatar/3e27f67f087a00b5c9580f28451732d5_are1hc.jpg', '2022-05-01 22:57:06', 1),
-('SP003', '5', 'Set nhẫn hở 17KM bạc thiết kế kiểu trái tim phong cách bụi bặm thời trang', '<blockquote><h2><span style=\"color:hsl(0,0%,0%);\"><strong>MÔ TẢ SẢN PHẨM</strong></span></h2></blockquote><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Số Lượng: 1 chiếc Kích Thước 3/4/5 mm&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Trọng Lượng: 0.16-0.68g&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Thông tin sản phẩm :&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">+ Chất liệu bạc 925 cao cấp 100% nguyên chất - Có chứng nhận trên sp ( shop cam kết )&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">+ Độ trắng sáng cao, không lo bị đen, gỉ, xỉn màu&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">+ Bảo hành miễn phí trọn đời đánh bóng&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Lưu ý: tránh tiếp xúc vs hóa chất , chất tẩy rửa mạnh, có thể làm sáng bằng cách chà kem đánh răng, nước rửa bát, nước chanh ...&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Sản phẩm y hình shop đăng&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">-Chất lượng sản phẩm đã được kiểm duyệt&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Hoàn tiền 100% nếu không đúng mẫu mã chất lượng sản phẩm.&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Bạc 925 là gì ?&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">-Bạc 925 ( còn gọi là bạc ý , bạc thái ) với thành phần bạc nguyên chất chiếm tới 92.5%, riêng 7.5% còn lại sẽ là hợp chất kim loại khác . Có độ cứng rất cao, độ sáng bóng phù hợp để tạo nên những đồ vật có độ tinh xảo và chính xác đến từng milimet.&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">- Cảm giác thoải mái không gây dị ứng&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">- Phong cách trẻ trung, thời thượng&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">- Sản phẩm hot được nhiều bạn trẻ yêu thích&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">- Khuyên tai đẹp, độc lạ duy nhất có tại Trangsucsg ( Trang sức SG )</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">-----------&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">- Xuất Xứ: Việt Nam</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">-Tên của tổ chức chịu trách nhiệm sản xuất, phân phối: Trang Sức SG&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">-Địa chỉ tổ chức chịu trách nhiệm hàng hóa: 1508 lê văn lương xã nhơn đức nhà bè TP HCM</span></p>', 250, 40000, 845, 'https://res.cloudinary.com/jwb/image/upload/v1651467032/product_avatar/6e15fcb0805169d82153f3e5a259180f_xin992.jpg', '2022-05-01 22:57:14', 1),
-('SP004', '1', 'Lắc Tay Bạc 925 thiết kế chiếc lông vũ kèm hạt pha lê sang trọng phong cách ', '<p>➤ Sản phẩm: Lắc Tay Bạc 925 thiết kế chiếc lông vũ kèm hạt pha lê sang trọng phong cách Hàn Quốc MEZI Jewelry - ATJ7048&nbsp;</p><p>➤ Thương hiệu: MEZI_STORE&nbsp;</p><p>➤ Chất Liệu: Bạc 925 Chuẩn Quốc Tế&nbsp;</p><p>➤ Ý nghĩa: Thời trang Giúp các Nàng làm Đẹp. Quà ý nghĩa cho người thân, bạn bè của bạn trong các dịp lễ, sinh nhật&nbsp;</p><p>➤ Sản Phẩm kèm hộp xinh xắn rất đẹp có thể làm quà tặng&nbsp;</p><p>➤ Thời trang theo phong cách Hàn Quốc hiện đại&nbsp;</p><p>➤ Bộ sản phẩm gồm : Vòng tay + Hộp đựng xinh xắn&nbsp;</p><p>➤ Kiểu dáng trẻ trung, đẹp xinh, đáng yêu&nbsp;</p>', 360, 185000, 100, 'https://res.cloudinary.com/jwb/image/upload/v1652016838/product_avatar/2e01e9b1050add664cc22790a091bef8_jgk5gp.jpg ', '2022-05-09 00:00:00', 1),
+('SP001', '2', 'Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức', '<blockquote><h2><span style=\"color:hsl(0,0%,0%);\"><strong>MÔ TẢ SẢN PHẨM</strong></span></h2></blockquote><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Số Lượng: 1 chiếc Kích Thước 3/4/5 mm&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Trọng Lượng: 0.16-0.68g&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Thông tin sản phẩm :&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">+ Chất liệu bạc 925 cao cấp 100% nguyên chất - Có chứng nhận trên sp ( shop cam kết )&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">+ Độ trắng sáng cao, không lo bị đen, gỉ, xỉn màu&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">+ Bảo hành miễn phí trọn đời đánh bóng&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Lưu ý: tránh tiếp xúc vs hóa chất , chất tẩy rửa mạnh, có thể làm sáng bằng cách chà kem đánh răng, nước rửa bát, nước chanh ...&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Sản phẩm y hình shop đăng&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">-Chất lượng sản phẩm đã được kiểm duyệt&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Hoàn tiền 100% nếu không đúng mẫu mã chất lượng sản phẩm.&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Bạc 925 là gì ?&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">-Bạc 925 ( còn gọi là bạc ý , bạc thái ) với thành phần bạc nguyên chất chiếm tới 92.5%, riêng 7.5% còn lại sẽ là hợp chất kim loại khác . Có độ cứng rất cao, độ sáng bóng phù hợp để tạo nên những đồ vật có độ tinh xảo và chính xác đến từng milimet.&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">- Cảm giác thoải mái không gây dị ứng&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">- Phong cách trẻ trung, thời thượng&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">- Sản phẩm hot được nhiều bạn trẻ yêu thích&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">- Khuyên tai đẹp, độc lạ duy nhất có tại Trangsucsg ( Trang sức SG )</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">-----------&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">- Xuất Xứ: Việt Nam</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">-Tên của tổ chức chịu trách nhiệm sản xuất, phân phối: Trang Sức SG&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">-Địa chỉ tổ chức chịu trách nhiệm hàng hóa: 1508 lê văn lương xã nhơn đức nhà bè TP HCM</span></p>', 50, 100000, 194, 'https://res.cloudinary.com/jwb/image/upload/v1653387310/product_avatar/1f95b450eb9d5a3a18b7567324673a3d_lose8l.jpg', '2022-05-01 22:56:49', 1),
+('SP002', '3', 'Dây chuyền bạc 925 hình cỏ may mắn khảm đá', '<blockquote><h2><span style=\"color:hsl(0,0%,0%);\"><strong>MÔ TẢ SẢN PHẨM</strong></span></h2></blockquote><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Số Lượng: 1 chiếc Kích Thước 3/4/5 mm&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Trọng Lượng: 0.16-0.68g&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Thông tin sản phẩm :&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">+ Chất liệu bạc 925 cao cấp 100% nguyên chất - Có chứng nhận trên sp ( shop cam kết )&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">+ Độ trắng sáng cao, không lo bị đen, gỉ, xỉn màu&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">+ Bảo hành miễn phí trọn đời đánh bóng&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Lưu ý: tránh tiếp xúc vs hóa chất , chất tẩy rửa mạnh, có thể làm sáng bằng cách chà kem đánh răng, nước rửa bát, nước chanh ...&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Sản phẩm y hình shop đăng&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">-Chất lượng sản phẩm đã được kiểm duyệt&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Hoàn tiền 100% nếu không đúng mẫu mã chất lượng sản phẩm.&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Bạc 925 là gì ?&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">-Bạc 925 ( còn gọi là bạc ý , bạc thái ) với thành phần bạc nguyên chất chiếm tới 92.5%, riêng 7.5% còn lại sẽ là hợp chất kim loại khác . Có độ cứng rất cao, độ sáng bóng phù hợp để tạo nên những đồ vật có độ tinh xảo và chính xác đến từng milimet.&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">- Cảm giác thoải mái không gây dị ứng&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">- Phong cách trẻ trung, thời thượng&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">- Sản phẩm hot được nhiều bạn trẻ yêu thích&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">- Khuyên tai đẹp, độc lạ duy nhất có tại Trangsucsg ( Trang sức SG )</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">-----------&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">- Xuất Xứ: Việt Nam</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">-Tên của tổ chức chịu trách nhiệm sản xuất, phân phối: Trang Sức SG&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">-Địa chỉ tổ chức chịu trách nhiệm hàng hóa: 1508 lê văn lương xã nhơn đức nhà bè TP HCM</span></p>', 200, 300000, 495, 'https://res.cloudinary.com/jwb/image/upload/v1651466978/product_avatar/3e27f67f087a00b5c9580f28451732d5_are1hc.jpg', '2022-05-01 22:57:06', 1),
+('SP003', '5', 'Set nhẫn hở 17KM bạc thiết kế kiểu trái tim phong cách bụi bặm thời trang', '<blockquote><h2><span style=\"color:hsl(0,0%,0%);\"><strong>MÔ TẢ SẢN PHẨM</strong></span></h2></blockquote><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Bông tai bạc ý 925 nụ đá Silver khuyên tai trang sức&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Số Lượng: 1 chiếc Kích Thước 3/4/5 mm&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Trọng Lượng: 0.16-0.68g&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Thông tin sản phẩm :&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">+ Chất liệu bạc 925 cao cấp 100% nguyên chất - Có chứng nhận trên sp ( shop cam kết )&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">+ Độ trắng sáng cao, không lo bị đen, gỉ, xỉn màu&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">+ Bảo hành miễn phí trọn đời đánh bóng&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Lưu ý: tránh tiếp xúc vs hóa chất , chất tẩy rửa mạnh, có thể làm sáng bằng cách chà kem đánh răng, nước rửa bát, nước chanh ...&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Sản phẩm y hình shop đăng&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">-Chất lượng sản phẩm đã được kiểm duyệt&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Hoàn tiền 100% nếu không đúng mẫu mã chất lượng sản phẩm.&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">Bạc 925 là gì ?&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">-Bạc 925 ( còn gọi là bạc ý , bạc thái ) với thành phần bạc nguyên chất chiếm tới 92.5%, riêng 7.5% còn lại sẽ là hợp chất kim loại khác . Có độ cứng rất cao, độ sáng bóng phù hợp để tạo nên những đồ vật có độ tinh xảo và chính xác đến từng milimet.&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">- Cảm giác thoải mái không gây dị ứng&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">- Phong cách trẻ trung, thời thượng&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">- Sản phẩm hot được nhiều bạn trẻ yêu thích&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">- Khuyên tai đẹp, độc lạ duy nhất có tại Trangsucsg ( Trang sức SG )</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">-----------&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">- Xuất Xứ: Việt Nam</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">-Tên của tổ chức chịu trách nhiệm sản xuất, phân phối: Trang Sức SG&nbsp;</span></p><p style=\"margin-left:0px;\"><span style=\"color:hsl(0,0%,0%);\">-Địa chỉ tổ chức chịu trách nhiệm hàng hóa: 1508 lê văn lương xã nhơn đức nhà bè TP HCM</span></p>', 250, 40000, 838, 'https://res.cloudinary.com/jwb/image/upload/v1651467032/product_avatar/6e15fcb0805169d82153f3e5a259180f_xin992.jpg', '2022-05-01 22:57:14', 1),
+('SP004', '1', 'Lắc Tay Bạc 925 thiết kế chiếc lông vũ kèm hạt pha lê sang trọng phong cách ', '<p>➤ Sản phẩm: Lắc Tay Bạc 925 thiết kế chiếc lông vũ kèm hạt pha lê sang trọng phong cách Hàn Quốc MEZI Jewelry - ATJ7048&nbsp;</p><p>➤ Thương hiệu: MEZI_STORE&nbsp;</p><p>➤ Chất Liệu: Bạc 925 Chuẩn Quốc Tế&nbsp;</p><p>➤ Ý nghĩa: Thời trang Giúp các Nàng làm Đẹp. Quà ý nghĩa cho người thân, bạn bè của bạn trong các dịp lễ, sinh nhật&nbsp;</p><p>➤ Sản Phẩm kèm hộp xinh xắn rất đẹp có thể làm quà tặng&nbsp;</p><p>➤ Thời trang theo phong cách Hàn Quốc hiện đại&nbsp;</p><p>➤ Bộ sản phẩm gồm : Vòng tay + Hộp đựng xinh xắn&nbsp;</p><p>➤ Kiểu dáng trẻ trung, đẹp xinh, đáng yêu&nbsp;</p>', 360, 185000, 99, 'https://res.cloudinary.com/jwb/image/upload/v1652016838/product_avatar/2e01e9b1050add664cc22790a091bef8_jgk5gp.jpg ', '2022-05-09 00:00:00', 1),
 ('SP005', '1', 'Lắc Tay Bạc Blue Peach Daisy Tini', '<p>? Chất liệu: Bạc 925&nbsp;</p><p>? Xi bóng bền màu&nbsp;</p><p>? An toàn cho da, không dị ứng&nbsp;</p><p>? Hỗ trợ kiểm định chất lượng bạc theo yêu cầu&nbsp;</p><p>? Hướng dẫn bảo quản: tránh tiếp xúc hóa chất, chất tẩy rửa mạnh, có thể làm sáng bằng kem đánh răng&nbsp;</p><p>? Lưu ý khi sử dụng: Tránh va đập, sử dụng nhẹ nhàng tránh vướng mắc vào các quần áo&nbsp;</p><p>? Bảo hành: Bảo hành trọn đời</p>', 350, 299000, 150, 'https://res.cloudinary.com/jwb/image/upload/v1652016969/product_avatar/1f0e33f153d488c276840cca874943df_e5sunr.jpg', '2022-05-09 15:00:00', 1),
 ('SP006', '1', 'Lắc tay bạc nữ họa tiết lập phương đính đá trắng trẻ trung bạc 92 thời trang', '<p>LẮC TAY BẠC XINH – VÒNG TAY VIỄN CHÍ BẢO&nbsp;</p><p>- Chất Liệu : Bạc chuẩn 925&nbsp;</p><p>- Bộ sản phẩm gồm: 1 chiếc lắc tay ( vòng tay)</p><p>- Kiểu Dáng : thiết kế lắc tay nữ tinh tế sắc sảo, vòng tay mẫu mã mới nhất theo Trend !&nbsp;</p><p>- Sản Xuất : lắc tay bạc nữ được sản xuất trực tiếp tại xưởng Việt Nam hoặc nhập khẩu</p>', 340, 446000, 1000, 'https://res.cloudinary.com/jwb/image/upload/v1652016999/product_avatar/4663deb8c144fe857de072df90043b72_qohwuk.jpg', '2022-05-09 17:30:00', 1),
 ('SP007', '1', 'Lắc tay bạc nữ KYDOPAL đính đá cao cấp hình bướm ', '<p>Lắc tay bạc Ý 925 cao cấp được thiết kế bởi KYDOPAL Việt Nam&nbsp;</p><p>Vòng tay bạc được thiết kế cập nhật theo xu hướng mới nhất của ngành trang sức bạc phụ kiện. Lắc tay bạc của KYDOPAL dễ dàng phối với rất nhiều bộ trang sức sẵn có tại tủ đồ phụ kiện của bạn.&nbsp;</p><p>THÔNG TIN SẢN PHẨM LẮC TAY BẠC NỮ ĐÍNH ĐÁ KYDOPAL&nbsp;</p><ul style=\"list-style-type:disc;\"><li>Thương hiệu: KYDOPAL - Brand made in VIETNAM&nbsp;</li><li>Chất liệu: Bạc S925 (92,5% Bạc và 7,5% hợp kim cao cấp sản xuất theo công nghệ Bạc Ý)&nbsp;</li><li>Thiết kế ngoài : Bạc 925 - đính đá cao cấp&nbsp;</li></ul>', 254, 299000, 1000, 'https://res.cloudinary.com/jwb/image/upload/v1652017141/product_avatar/f23155162bd0e4f5538f249f54ef218d_kvmacn.jpg', '2022-05-09 17:40:00', 1),
-('SP008', '1', 'Lắc Tay Bạc Nữ Minh Canh Jewelry - Hồ Ly May Mắn', '(index):33 <p>Theo quan niệm phong thủy phương Đông, những cô nàng khi sở hữu những vật có biểu tượng hồ ly như vòng tay đặc biệt là vòng tay hồ ly 9 đuôi sẽ nhận được nhiều may mắn. Đặc biệt là về đường tình duyên, gia đình.&nbsp;</p><p>THÔNG TIN SẢN PHẨM&nbsp;</p><p style=\"margin-left:40px;\">✓ Chất liệu: Bạc ta&nbsp;</p><p style=\"margin-left:40px;\">✓ Xuất xứ: Việt Nam CHÍNH SÁCH BẢO HÀNH&nbsp;</p><p style=\"margin-left:40px;\">✓ Làm sáng miễn phí trọn đời các sản phẩm bạc ( không gồm các sản phẩm xi mạ )&nbsp;</p><p style=\"margin-left:40px;\">✓ Bảo hành gắn đá miễn phí với cỡ đá dưới 2 mm. Với các cỡ đá lớn hơn tùy theo tình trạng, loại đá sẽ miễn phí hoặc tính phí ưu đãi.&nbsp;</p><p style=\"margin-left:40px;\">✓ Những dòng dây mảnh, nhỏ nên rất dễ đứt do người sử dụng gây ra ( shop hỗ trợ hàn nối phí 30,000 đ – 50,000 đ tùy từng sản phẩm )</p>', 249, 249000, 1000, 'https://res.cloudinary.com/jwb/image/upload/v1652017158/product_avatar/68f39f516739b5ce8726c9e59c003a5a_qpfpar.jpg', '2022-05-09 17:50:00', 1),
+('SP008', '1', 'Lắc Tay Bạc Nữ Minh Canh Jewelry - Hồ Ly May Mắn', '(index):33 <p>Theo quan niệm phong thủy phương Đông, những cô nàng khi sở hữu những vật có biểu tượng hồ ly như vòng tay đặc biệt là vòng tay hồ ly 9 đuôi sẽ nhận được nhiều may mắn. Đặc biệt là về đường tình duyên, gia đình.&nbsp;</p><p>THÔNG TIN SẢN PHẨM&nbsp;</p><p style=\"margin-left:40px;\">✓ Chất liệu: Bạc ta&nbsp;</p><p style=\"margin-left:40px;\">✓ Xuất xứ: Việt Nam CHÍNH SÁCH BẢO HÀNH&nbsp;</p><p style=\"margin-left:40px;\">✓ Làm sáng miễn phí trọn đời các sản phẩm bạc ( không gồm các sản phẩm xi mạ )&nbsp;</p><p style=\"margin-left:40px;\">✓ Bảo hành gắn đá miễn phí với cỡ đá dưới 2 mm. Với các cỡ đá lớn hơn tùy theo tình trạng, loại đá sẽ miễn phí hoặc tính phí ưu đãi.&nbsp;</p><p style=\"margin-left:40px;\">✓ Những dòng dây mảnh, nhỏ nên rất dễ đứt do người sử dụng gây ra ( shop hỗ trợ hàn nối phí 30,000 đ – 50,000 đ tùy từng sản phẩm )</p>', 249, 249000, 999, 'https://res.cloudinary.com/jwb/image/upload/v1652017158/product_avatar/68f39f516739b5ce8726c9e59c003a5a_qpfpar.jpg', '2022-05-09 17:50:00', 1),
 ('SP009', '1', 'Lắc tay nữ bạc ta quả cầu gắn đá trắng nhỏ - Bibi silver - BBS', '(index):33 <p>MÔ TẢ SẢN PHẨM TRANG SỨC BẠC BIBI SILVER - GIAN HÀNG CHÍNH HÃNG&nbsp;</p><p>?THÔNG TIN SẢN PHẨM LẮC TAY , LẮC CHÂN BẠC BIBI SILVER&nbsp;</p><p style=\"margin-left:40px;\">- Chất Liệu : Bạc chuẩn, nguyên chất không pha tạp.&nbsp;</p><p style=\"margin-left:40px;\">- Bảo hành, miễn phí làm sáng trọn đời sản phẩm.&nbsp;</p><p style=\"margin-left:40px;\">- Size có sẵn :</p><p style=\"margin-left:80px;\">+Lắc tay nữ dài 15 – 17cm&nbsp;</p><p style=\"margin-left:80px;\">+ 2cm dây phụ&nbsp;</p><p style=\"margin-left:80px;\">+Lắc chân dài 21-22cm&nbsp;</p><p style=\"margin-left:80px;\">+ 2cm dây phụ&nbsp;</p><p style=\"margin-left:80px;\">+ Lắc trẻ em theo cân nặng ( khoảng 13-15cm )&nbsp;</p><p>Với các size không có sẵn các bạn vui lòng liên hệ shop để lấy size nhé&nbsp;</p><p>-Kiểu Dáng : thiết kế tinh tế sắc sảo, mẫu mã mới nhất theo Trend !&nbsp;</p><p>-Sản Xuất : Sản xuất trực tiếp tại xưởng Việt Nam hoặc nhập khẩu</p>', 239, 200000, 797, 'https://res.cloudinary.com/jwb/image/upload/v1652017239/product_avatar/dd60084ac6c04143c167ccadfeed016b_yezjck.jpg', '2022-05-09 18:00:00', 1),
 ('SP010', '1', 'Lắc tay nữ bạc thật dạng kiềng khắc tên LTN0194 Trang Sức TNJ', '<blockquote><p>MÔ TẢ SẢN PHẨM</p></blockquote><p>&nbsp;Lắc tay nữ bạc thật dạng kiềng khắc tên LTN0194&nbsp;</p><p>- Trang Sức TNJ- Lắc tay nữ bạc thâth khắc tên được thiết kế và sản xuất trên công nghệ hiện đại</p><p>- Đeo lắc tay nữ bạc khắc tên không chỉ làm tăng thêm vẻ đẹp nữ tính và sức cuốn hút mà còn mang lại may mắn và sức khoẻ cho phái nữ&nbsp;</p><p>- Vòng tay nữ bạc LTN0194 còn là món quà tặng ý nghĩa cho gia đình, người thân và bạn bè của bạn.Thông tin chi tiết về lắc tay bạc nữ đẹp:</p><p>- Chất liệu bạc cao cấp 925.&nbsp;</p><p>- Độ trắng sáng cao, không lo bị đen, xỉn màu.</p><p>- Kích cỡ có thể tự điều chỉnh theo cỡ tay</p><p>- Khắc tên trên công nghệ Laser hiện đại nhất hiện nay</p><p>- Bảo hành miễn phí trọn đời đánh bóng, làm mới hoặc gắn lại đá</p><p>- Bạn nhắn tên khắc trong phần Chat hoặc phần ghi chú đơn hàng cho shop nhé</p>', 259, 520000, 1000, 'https://res.cloudinary.com/jwb/image/upload/v1652017257/product_avatar/7058827a2928e0816a3d82dc799405c7_fwlaep.jpg', '2022-05-09 18:10:00', 1),
 ('SP011', '1', 'Lắc tay nữ bi bạc cao cấp LTN0250 Trang Sức TNJ', '(index):33 <h3>Quà 20/10 tặng mẹ&nbsp;</h3><p>- Lắc tay nữ bi bạc cao cấp LTN0250&nbsp;</p><p>- Trang Sức TNJ- Lắc tay nữ được thiết kế thời trang, trẻ trung phù hợp với mọi lứa tuổi</p><p>- Phù hợp sử dụng trong các buổi gặp gỡ, tiệc tùng, lễ cưới, lễ đính hôn,... và trong cuộc sống hằng ngày</p><p>- Đeo lắc tay nữ không chỉ mang lại vẻ đẹp cuốn hút mà còn mang lại may mắn đặc biệt trong tình yêu cho nàng</p><p>- Lắc tay nữ bạc còn là món quà tặng ý nghĩa cho người thân, gia đình và bạn bè của bạn&nbsp;</p><h3>Thông tin chi tiết về lắc tay nữ bi bạc:</h3><p style=\"margin-left:40px;\">- Chất liệu bạc cao cấp 925</p><p style=\"margin-left:40px;\">.-Độ trắng sáng cao, không lo bị đen, xỉn màu.</p><p style=\"margin-left:40px;\">- Lắc dài 16cm và có móc chờ điều chỉnh rộng chật</p><p style=\"margin-left:40px;\">- &nbsp;Bảo hành miễn phí trọn đời đánh bóng, làm mới hoặc gắn lại đá</p>', 400, 600000, 1000, 'https://res.cloudinary.com/jwb/image/upload/v1652017367/product_avatar/116677631d6973d2829313161095a7a3_cfznet.jpg', '2022-05-09 18:20:00', 1),
@@ -918,8 +951,8 @@ CREATE TABLE `tb_san_pham_khuyen_mai` (
 --
 
 INSERT INTO `tb_san_pham_khuyen_mai` (`Id`, `MaSP`, `MaDotKM`) VALUES
-(1, 'SP001', 1),
-(2, 'SP002', 1);
+(3, 'SP001', 2),
+(4, 'SP002', 2);
 
 -- --------------------------------------------------------
 
@@ -960,7 +993,6 @@ ALTER TABLE `tb_anh_bia`
 --
 ALTER TABLE `tb_chien_dich`
   ADD PRIMARY KEY (`MaCD`),
-  ADD KEY `fk_cd_lcd` (`LoaiTinNhan`),
   ADD KEY `fk_cd_nhomkh` (`NhomKH`);
 
 --
@@ -1068,12 +1100,6 @@ ALTER TABLE `tb_kh_nhom_kh`
   ADD KEY `fk_nkh_khach_hang` (`MaKH`);
 
 --
--- Chỉ mục cho bảng `tb_loai_chien_dich`
---
-ALTER TABLE `tb_loai_chien_dich`
-  ADD PRIMARY KEY (`MaLoai`);
-
---
 -- Chỉ mục cho bảng `tb_loai_nguoi_dung`
 --
 ALTER TABLE `tb_loai_nguoi_dung`
@@ -1161,13 +1187,13 @@ ALTER TABLE `tb_anh_bia`
 -- AUTO_INCREMENT cho bảng `tb_ct_don_lua_chon`
 --
 ALTER TABLE `tb_ct_don_lua_chon`
-  MODIFY `Id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT cho bảng `tb_danh_gia`
 --
 ALTER TABLE `tb_danh_gia`
-  MODIFY `Id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `tb_dia_chi`
@@ -1179,31 +1205,31 @@ ALTER TABLE `tb_dia_chi`
 -- AUTO_INCREMENT cho bảng `tb_dieu_kien_nhom`
 --
 ALTER TABLE `tb_dieu_kien_nhom`
-  MODIFY `Id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `Id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT cho bảng `tb_don_hang_ma_giam`
 --
 ALTER TABLE `tb_don_hang_ma_giam`
-  MODIFY `Id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `tb_dot_khuyen_mai`
 --
 ALTER TABLE `tb_dot_khuyen_mai`
-  MODIFY `Id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `tb_gio_hang`
 --
 ALTER TABLE `tb_gio_hang`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT cho bảng `tb_gio_hang_lua_chon`
 --
 ALTER TABLE `tb_gio_hang_lua_chon`
-  MODIFY `Id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `tb_hinh_anh`
@@ -1215,13 +1241,7 @@ ALTER TABLE `tb_hinh_anh`
 -- AUTO_INCREMENT cho bảng `tb_kh_nhom_kh`
 --
 ALTER TABLE `tb_kh_nhom_kh`
-  MODIFY `Id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT cho bảng `tb_loai_chien_dich`
---
-ALTER TABLE `tb_loai_chien_dich`
-  MODIFY `MaLoai` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT cho bảng `tb_loai_nguoi_dung`
@@ -1233,7 +1253,7 @@ ALTER TABLE `tb_loai_nguoi_dung`
 -- AUTO_INCREMENT cho bảng `tb_lua_chon`
 --
 ALTER TABLE `tb_lua_chon`
-  MODIFY `Id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `Id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT cho bảng `tb_phan_loai`
@@ -1251,7 +1271,7 @@ ALTER TABLE `tb_phuong_thuc_thanh_toan`
 -- AUTO_INCREMENT cho bảng `tb_san_pham_khuyen_mai`
 --
 ALTER TABLE `tb_san_pham_khuyen_mai`
-  MODIFY `Id` bigint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id` bigint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -1261,7 +1281,6 @@ ALTER TABLE `tb_san_pham_khuyen_mai`
 -- Các ràng buộc cho bảng `tb_chien_dich`
 --
 ALTER TABLE `tb_chien_dich`
-  ADD CONSTRAINT `fk_cd_lcd` FOREIGN KEY (`LoaiTinNhan`) REFERENCES `tb_loai_chien_dich` (`MaLoai`),
   ADD CONSTRAINT `fk_cd_nhomkh` FOREIGN KEY (`NhomKH`) REFERENCES `tb_nhom_khach_hang` (`MaNhom`);
 
 --
@@ -1376,6 +1395,13 @@ ALTER TABLE `tb_phan_loai`
 --
 ALTER TABLE `tb_san_pham`
   ADD CONSTRAINT `fk_sp_lsp` FOREIGN KEY (`LoaiSP`) REFERENCES `tb_loai_san_pham` (`MaLoai`);
+
+--
+-- Các ràng buộc cho bảng `tb_san_pham_khuyen_mai`
+--
+ALTER TABLE `tb_san_pham_khuyen_mai`
+  ADD CONSTRAINT `fk_spkm_km` FOREIGN KEY (`MaDotKM`) REFERENCES `tb_dot_khuyen_mai` (`Id`),
+  ADD CONSTRAINT `fk_spkm_sp` FOREIGN KEY (`MaSP`) REFERENCES `tb_san_pham` (`MaSP`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
