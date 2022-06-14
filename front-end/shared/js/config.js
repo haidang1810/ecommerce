@@ -1,5 +1,5 @@
 var BASE_URL = "http://localhost:3000/";
-var BASE_URL_CLIENT = "http://localhost:81/ecommerce/front-end/";
+var BASE_URL_CLIENT = "http://localhost:8080/ecommerce/front-end/";
 // API Authentication 
 var API_AUTH = "auth/";
 
@@ -126,6 +126,7 @@ var CAMPAIGN_GETBYID = 'getById/';
 var API_VOUCHER = 'vouchers/';
 
 var VOUCHER_GETALL = 'getAll/';
+var VOUCHER_FINDBYID = 'findById/';
 
 
 // API report

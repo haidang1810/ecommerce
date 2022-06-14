@@ -288,6 +288,30 @@ function getAllVoucher(){
 		})
 		.catch(handlerError);
 }
+function searchVoucher(keyword){
+	fetch(BASE_URL+API_VOUCHER+VOUCHER_FINDBYID+keyword, {
+		method: 'GET', 
+		credentials: 'include',
+		headers:{
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+		}
+	})
+		.then(statusRes)
+		.then(json)
+		.then((res)=>{
+			if(res.status==1){
+				if(res.data){
+					vouchers = res.data;
+					for(let i=0; i<vouchers.length; i++){
+						vouchers[i].ApDung = false;
+					}
+					genderVoucherList();
+				}
+			}
+		})
+		.catch(handlerError);
+}
 function genderVoucherList(){
 	$(".modal__voucher-list").html("");
 	for(let voucher of vouchers){
@@ -322,6 +346,23 @@ function genderVoucherList(){
 		}
 	}
 	updateDiscount();
+}
+var typingTimer;                //timer identifier
+var doneTypingInterval = 700;  //time in ms (1 seconds)
+
+//on keyup, start the countdown
+$('.modal__voucher-search').keyup(function(){
+    clearTimeout(typingTimer);
+    typingTimer = setTimeout(doneTyping, doneTypingInterval);
+});
+
+//user is "finished typing," do something
+function doneTyping () {
+    if($('.modal__voucher-search').val()){
+		searchVoucher($('.modal__voucher-search').val());
+	}else{
+		getAllVoucher()
+	}
 }
 $(".modal__voucher-list").on("click", ".modal__voucher-add", function(){
 	let id = $(this).attr("id");

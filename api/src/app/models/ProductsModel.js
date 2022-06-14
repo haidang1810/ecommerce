@@ -94,7 +94,7 @@ Product.getDetail = (req, res) => {
 	const productID = req.params.id;
 	const getDetailProduct = `select tb_san_pham.MaSP, tb_loai_san_pham.TenLoai, TenSP, 
 	tb_san_pham.Gia, tb_san_pham.SoLuong, tb_san_pham.MoTa, tb_san_pham.KhoiLuong,
-	AnhBia, AVG(SoSao) as DanhGia, tb_dot_khuyen_mai.ChietKhau, LoaiSP,
+	AnhBia, AVG(SoSao) as DanhGia, CK.ChietKhau, LoaiSP,
 	tb_san_pham.NgayDang, tb_chi_tiet_don.SoLuong as DaBan, COUNT(tb_danh_gia.TaiKhoan) as LuotDanhGia,
 	tb_san_pham.TrangThai
 		from tb_san_pham
@@ -106,13 +106,13 @@ Product.getDetail = (req, res) => {
 		ON tb_san_pham.MaSP=tb_san_pham_khuyen_mai.MaSP
 		LEFT JOIN tb_chi_tiet_don 
 		ON tb_san_pham.MaSP=tb_chi_tiet_don.MaSP
-		LEFT JOIN tb_dot_khuyen_mai 
-		ON tb_san_pham_khuyen_mai.MaDotKM=tb_dot_khuyen_mai.Id
-		WHERE tb_san_pham.MaSP=? AND
-        tb_dot_khuyen_mai.Id=(SELECT Id 
-									FROM tb_dot_khuyen_mai
-									WHERE tb_dot_khuyen_mai.ThoiGianBD<=NOW()
-									AND tb_dot_khuyen_mai.ThoiGianKT>=NOW())
+		LEFT JOIN (select MaSP, ChietKhau
+			from tb_dot_khuyen_mai, tb_san_pham_khuyen_mai
+			WHERE tb_dot_khuyen_mai.Id=tb_san_pham_khuyen_mai.MaDotKM
+			and ThoiGianBD<=NOW() 
+			and ThoiGianKT>=NOW()) as CK
+		ON tb_san_pham.MaSP=CK.MaSP
+		WHERE tb_san_pham.MaSP=? 
 		GROUP BY tb_san_pham.MaSP;`
 	pool.query(getDetailProduct, productID,(err, result)=>{
 		if(err){
