@@ -724,8 +724,8 @@ function addCustomer(data){
 		.catch(handlerError);
 }
 $("#btn-change-address").click(function(){
-	let address = $(".input-address-change").val();
-	if(address.trim()==''){
+	let address = $("#input-address-change").val().trim();
+	if(address==''){
 		Toast.fire({
 			icon: 'error',
 			title: 'Chưa nhập địa chỉ',
@@ -752,6 +752,7 @@ $("#btn-change-address").click(function(){
 		});
 		let fullAddress = `${address},${wardName},${districtName},${provinceName}`;
 		$("#input-address").val(fullAddress);
+		$(".modal__close-btn").click();
 	}
 });
 $("#btn-create-order").click(function(){

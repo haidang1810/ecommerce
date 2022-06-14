@@ -342,6 +342,20 @@ Customer.changeInfo = (req, res)=>{
 	}
 	
 }
+const createCode = async () => {
+    let code = "";
+    let possible = "abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    for (let i = 0; i < 20; i++)
+    	code += possible.charAt(Math.floor(Math.random() * possible.length));
+	try {
+		let [customer,fields] = await poolAwait.query("select MaKh from tb_khach_hang where MaKH=?",code);
+		if(customer.length>0){
+			createCode();
+		}else  return code;
+	} catch (error) {
+		createCode();
+	}
+}
 Customer.add = async (req, res) => {
 	let customerID = await createCode();
 	let name = req.body.HoTen;
